@@ -32,8 +32,9 @@ jobs:
     # Install the python packages (from requirements.txt)
     - name: Install python packages
       run: |
-        pip install --user -r requirements_imongo.txt
-        pip install --user -r requirements.txt
+        pip install -r requirements_imongo.txt
+        pip install --user git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel
+        pip install -r requirements.txt
         cp ./imongo_config.yml ~/.jupyter/imongo_config.yml
 
     # Build the html version of the book
