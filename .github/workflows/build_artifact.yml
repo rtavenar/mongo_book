@@ -32,7 +32,7 @@ jobs:
     # Install the python packages (from requirements.txt)
     - name: Install python packages
       run: |
-        pip install jupyter_client
+        pip install -r requirements_imongo.txt
         pip install -r requirements.txt
         cp ./imongo_config.yml ~/.jupyter/imongo_config.yml
 
