@@ -33,8 +33,7 @@ jobs:
     - name: Install python packages
       run: |
         python -m pip install -r requirements_imongo.txt
-        sudo chmod ugo+rw /usr/local/share/jupyter
-        python -m pip install git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel
+        python -m pip install git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel --prefix=`jupyter --config-dir`
         python -m pip install -r requirements.txt
         cp ./imongo_config.yml ~/.jupyter/imongo_config.yml
 
