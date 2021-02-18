@@ -33,7 +33,7 @@ jobs:
     - name: Install python packages
       run: |
         pip install -r requirements_imongo.txt
-        sudo pip install --user git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel
+        sudo -H pip install --user git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel
         pip install -r requirements.txt
         cp ./imongo_config.yml ~/.jupyter/imongo_config.yml
 
