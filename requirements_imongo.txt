@@ -1,0 +1,4 @@
+jupyter>=1.0.0
+ipykernel
+pexpect>=4.2.1
+pyyaml
