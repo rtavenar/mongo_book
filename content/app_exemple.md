@@ -88,8 +88,6 @@ WHERE a = 1
 ou encore :
 
 ````{panels}
-:column: col-4
-:card: border-2
 
 MongoDB
 ^^^
