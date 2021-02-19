@@ -13,7 +13,7 @@ kernelspec:
   name: imongo
 ---
 
-# Exemple de fichier
+# Annexe : Exemple de fichier
 
 N'hésitez pas à vous inspirer de ce fichier pour vos propres réalisations
 (vous pouvez télécharger le code source correspondant à l'aide du bouton dédié

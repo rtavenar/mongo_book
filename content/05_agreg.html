@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MongoDB : Notes de cours &#8212; MongoDB : notes de cours</title>
+    <title>Les requêtes d’agrégation &#8212; MongoDB : notes de cours</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -54,7 +54,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Exemple de fichier" href="exemple.html" />
+    <link rel="next" title="Requêtes de modification" href="06_modif.html" />
+    <link rel="prev" title="Les index" href="04_index.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -83,16 +84,51 @@
 </form>
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_intro.html">
    MongoDB : Notes de cours
   </a>
  </li>
 </ul>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="exemple.html">
-   Exemple de fichier
+  <a class="reference internal" href="01_find.html">
+   Premières requêtes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_listes.html">
+   Attributs de type liste
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_dates.html">
+   Attributs de type date
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_index.html">
+   Les index
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Les requêtes d’agrégation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06_modif.html">
+   Requêtes de modification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07_scripts.html">
+   Requêtes depuis des programmes Python ou R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="app_exemple.html">
+   Annexe : Exemple de fichier
   </a>
  </li>
  <li class="toctree-l1">
@@ -145,7 +181,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/content/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/content/05_agreg.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -165,7 +201,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/rtavenar/mongo_book/issues/new?title=Issue%20on%20page%20%2Fcontent/intro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/rtavenar/mongo_book/issues/new?title=Issue%20on%20page%20%2Fcontent/05_agreg.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -192,8 +228,13 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#todo-list">
-   TODO list
+  <a class="reference internal nav-link" href="#regroupements">
+   Regroupements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#successions-d-etapes-d-agregation">
+   Successions d’étapes d’agrégation
   </a>
  </li>
 </ul>
@@ -207,18 +248,27 @@
         
               <div>
                 
-  <div class="section" id="mongodb-notes-de-cours">
-<h1>MongoDB : Notes de cours<a class="headerlink" href="#mongodb-notes-de-cours" title="Permalink to this headline">¶</a></h1>
-<p>Ce document compile des notes pour un cours de MongoDB dispensé en Master
-Mathématiques Appliquées, Statistiques (parcours <em>Data Science</em>), à
-l’Université de Rennes 2.</p>
-<div class="section" id="todo-list">
-<h2>TODO list<a class="headerlink" href="#todo-list" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="les-requetes-d-agregation">
+<h1>Les requêtes d’agrégation<a class="headerlink" href="#les-requetes-d-agregation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="regroupements">
+<h2>Regroupements<a class="headerlink" href="#regroupements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Découpage du cours en (14 ? 9 ?) unités “équivalentes”</p></li>
+<li><p>Auteurs/trices : <strong>TODO</strong></p></li>
 </ul>
-<div class="toctree-wrapper compound">
+<p>Cette section traite de :</p>
+<ul class="simple">
+<li><p>somme, count, max, min, avec ou sans groupe</p></li>
+</ul>
 </div>
+<div class="section" id="successions-d-etapes-d-agregation">
+<h2>Successions d’étapes d’agrégation<a class="headerlink" href="#successions-d-etapes-d-agregation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Auteurs/trices : <strong>TODO</strong></p></li>
+</ul>
+<p>Cette section traite de :</p>
+<ul class="simple">
+<li><p>successions d’étapes d’agrégation + unwind + project + sort + limit</p></li>
+</ul>
 </div>
 </div>
 
@@ -250,7 +300,8 @@ l’Université de Rennes 2.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="exemple.html" title="next page">Exemple de fichier</a>
+    <a class='left-prev' id="prev-link" href="04_index.html" title="previous page">Les index</a>
+    <a class='right-next' id="next-link" href="06_modif.html" title="next page">Requêtes de modification</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
