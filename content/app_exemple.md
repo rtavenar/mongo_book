@@ -14,7 +14,7 @@ kernelspec:
 ---
 
 (sec:exemple)=
-# Annexe A : Exemple de fichier
+# Annexe A : Exemple de fichier source
 
 N'hésitez pas à vous inspirer de ce fichier pour vos propres réalisations
 (vous pouvez télécharger le code source correspondant à l'aide du bouton dédié

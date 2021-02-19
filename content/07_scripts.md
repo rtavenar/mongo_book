@@ -1,4 +1,4 @@
-# Requêtes depuis des programmes Python ou R
+# Effectuer des requêtes depuis des programmes Python ou R
 
 ## Requêtes depuis Python : `pymongo`
 
