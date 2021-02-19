@@ -38,7 +38,8 @@ jobs:
         pip install git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel --user
         jupyter kernelspec list
         python -m pip install -r requirements.txt
-        cp ./imongo_config.yml `jupyter --config-dir`
+        export JUPYTER_CONFIG_DIR=`jupyter --config-dir`
+        cp ./imongo_config.yml ${JUPYTER_CONFIG_DIR}
 
     # Build the html version of the book
     - name: Build the html-book
