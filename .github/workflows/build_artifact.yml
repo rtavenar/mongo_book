@@ -44,6 +44,7 @@ jobs:
     # Build the html version of the book
     - name: Build the html-book
       run: |
+        export JUPYTER_CONFIG_DIR=`jupyter --config-dir`
         jupyter-book build .
         tar -cvf mongo_book.tar.gz _build
 
