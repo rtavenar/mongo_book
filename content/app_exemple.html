@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Annexe : Exemple de fichier &#8212; MongoDB : notes de cours</title>
+    <title>Annexe A : Exemple de fichier source &#8212; MongoDB : notes de cours</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -56,8 +56,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Annexe : Utilisation de git" href="app_git.html" />
-    <link rel="prev" title="Requêtes depuis des programmes Python ou R" href="07_scripts.html" />
+    <link rel="next" title="Annexe B : Utilisation de git" href="app_git.html" />
+    <link rel="prev" title="7. Effectuer des requêtes depuis des programmes Python ou R" href="07_scripts.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -92,50 +92,62 @@
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapitres
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="01_find.html">
-   Premières requêtes
+   1. Premières requêtes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_listes.html">
-   Attributs de type liste
+   2. Attributs de type liste
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_dates.html">
-   Attributs de type date
+   3. Attributs de type date
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_index.html">
-   Les index
+   4. Les index
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_agreg.html">
-   Les requêtes d’agrégation
+   5. Les requêtes d’agrégation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06_modif.html">
-   Requêtes de modification
+   6. Les requêtes de modification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07_scripts.html">
-   Requêtes depuis des programmes Python ou R
+   7. Effectuer des requêtes depuis des programmes Python ou R
   </a>
  </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Annexes
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Annexe : Exemple de fichier
+   Annexe A : Exemple de fichier source
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="app_git.html">
-   Annexe : Utilisation de
+   Annexe B : Utilisation de
    <code class="docutils literal notranslate">
     <span class="pre">
      git
@@ -292,8 +304,8 @@
         
               <div>
                 
-  <div class="section" id="annexe-exemple-de-fichier">
-<h1>Annexe : Exemple de fichier<a class="headerlink" href="#annexe-exemple-de-fichier" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="annexe-a-exemple-de-fichier-source">
+<span id="sec-exemple"></span><h1>Annexe A : Exemple de fichier source<a class="headerlink" href="#annexe-a-exemple-de-fichier-source" title="Permalink to this headline">¶</a></h1>
 <p>N’hésitez pas à vous inspirer de ce fichier pour vos propres réalisations
 (vous pouvez télécharger le code source correspondant à l’aide du bouton dédié
 en haut à droite de cette page).</p>
@@ -336,8 +348,8 @@ syntaxique correspondant au langage <code class="docutils literal notranslate"><
 <p>On peut même imaginer mettre, en parallèle, la syntaxe MongoDB et son
 équivalent SQL :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f987c8cb-692f-48cf-90ce-4742b13d4a7b" name="3e07537a-29aa-4dbd-8423-6b641d3d8fe1" type="radio">
-</input><label class="tabbed-label" for="f987c8cb-692f-48cf-90ce-4742b13d4a7b">
+<input checked="checked" id="f0b38719-c3a4-4908-8aa2-972419578d4c" name="d16a4fcc-e63b-446d-b4ba-2edc676968e3" type="radio">
+</input><label class="tabbed-label" for="f0b38719-c3a4-4908-8aa2-972419578d4c">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">t</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mf">1</span><span class="p">},</span>
@@ -346,8 +358,8 @@ MongoDB</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="d13a49ca-cbc5-4706-af57-1874fb2f8e2b" name="3e07537a-29aa-4dbd-8423-6b641d3d8fe1" type="radio">
-</input><label class="tabbed-label" for="d13a49ca-cbc5-4706-af57-1874fb2f8e2b">
+<input id="96a6e00b-40b6-4f87-8fc4-08306bd0c483" name="d16a4fcc-e63b-446d-b4ba-2edc676968e3" type="radio">
+</input><label class="tabbed-label" for="96a6e00b-40b6-4f87-8fc4-08306bd0c483">
 Équivalent SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">b</span>
 <span class="k">FROM</span> <span class="n">t</span>
@@ -439,7 +451,7 @@ MongoDB qui seront exécutées à la volée :</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb0568f&quot;),
+	&quot;_id&quot; : ObjectId(&quot;602fa0ac92a04f87664c9887&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1236&quot;,
 		&quot;loc&quot; : {
@@ -475,7 +487,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40363289&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb056a2&quot;),
+	&quot;_id&quot; : ObjectId(&quot;602fa0ac92a04f87664c9898&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;277&quot;,
 		&quot;loc&quot; : {
@@ -521,7 +533,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40364296&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb05c19&quot;),
+	&quot;_id&quot; : ObjectId(&quot;602fa0ac92a04f87664c9e11&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2459&quot;,
 		&quot;loc&quot; : {
@@ -562,7 +574,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40510328&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb05ca6&quot;),
+	&quot;_id&quot; : ObjectId(&quot;602fa0ac92a04f87664c9e9c&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2102&quot;,
 		&quot;loc&quot; : {
@@ -603,7 +615,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40529203&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb05d54&quot;),
+	&quot;_id&quot; : ObjectId(&quot;602fa0ac92a04f87664c9f4b&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;3511&quot;,
 		&quot;loc&quot; : {
@@ -644,7 +656,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40551996&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb05d55&quot;),
+	&quot;_id&quot; : ObjectId(&quot;602fa0ac92a04f87664c9f4c&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;732&quot;,
 		&quot;loc&quot; : {
@@ -690,7 +702,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40552226&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb05de7&quot;),
+	&quot;_id&quot; : ObjectId(&quot;602fa0ac92a04f87664c9fdf&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;202&quot;,
 		&quot;loc&quot; : {
@@ -736,7 +748,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40571587&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb05df4&quot;),
+	&quot;_id&quot; : ObjectId(&quot;602fa0ac92a04f87664c9fed&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1474&quot;,
 		&quot;loc&quot; : {
@@ -772,7 +784,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40573101&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb060b0&quot;),
+	&quot;_id&quot; : ObjectId(&quot;602fa0ac92a04f87664ca2a8&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1702&quot;,
 		&quot;loc&quot; : {
@@ -813,7 +825,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40701165&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb06271&quot;),
+	&quot;_id&quot; : ObjectId(&quot;602fa0ac92a04f87664ca468&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1811&quot;,
 		&quot;loc&quot; : {
@@ -858,481 +870,6 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;name&quot; : &quot;Hong Kong Restaurant&quot;,
 	&quot;restaurant_id&quot; : &quot;40765358&quot;
 }
-{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb062fb&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;796&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.91637759999999,
-				40.8226814
-			]
-		},
-		&quot;street&quot; : &quot;Courtlandt Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10451&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-08-15T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-08-27T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-03-06T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-08-14T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-03-21T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 17
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-10-24T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		}
-	],
-	&quot;name&quot; : &quot;Kristy&#39;S Restaurant&quot;,
-	&quot;restaurant_id&quot; : &quot;40804049&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb06375&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;1634&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8306577,
-				40.8450232
-			]
-		},
-		&quot;street&quot; : &quot;Crosby Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10461&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-08-08T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-07-23T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-12-14T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-06-25T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 6
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-10-03T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 8
-		}
-	],
-	&quot;name&quot; : &quot;East Dynasty&quot;,
-	&quot;restaurant_id&quot; : &quot;40827529&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb063ba&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;2461&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.9041182,
-				40.8644648
-			]
-		},
-		&quot;street&quot; : &quot;University Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10468&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-04-10T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-03-27T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 4
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-10-25T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-10-11T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;P&quot;,
-			&quot;score&quot; : 2
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-11-01T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 11
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-04-20T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 17
-		}
-	],
-	&quot;name&quot; : &quot;Lin Home Chinese Restaura&quot;,
-	&quot;restaurant_id&quot; : &quot;40842437&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb063d8&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;70&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.9066601,
-				40.8592187
-			]
-		},
-		&quot;street&quot; : &quot;West  183 Street&quot;,
-		&quot;zipcode&quot; : &quot;10453&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-12-01T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 4
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2014-07-02T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 11
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2014-01-23T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-07-24T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-01-14T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-07-19T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 20
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-12-21T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 14
-		}
-	],
-	&quot;name&quot; : &quot;Peacock Restaurant&quot;,
-	&quot;restaurant_id&quot; : &quot;40849313&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb0640b&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;317&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.909629,
-				40.837446
-			]
-		},
-		&quot;street&quot; : &quot;East 170 Street&quot;,
-		&quot;zipcode&quot; : &quot;10456&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-12-03T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 10
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2014-04-26T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-11-19T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-05-06T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-09-11T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 11
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-04-17T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		}
-	],
-	&quot;name&quot; : &quot;Lin&#39;S Garden&quot;,
-	&quot;restaurant_id&quot; : &quot;40857406&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb06523&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;3906&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8612466,
-				40.8858379
-			]
-		},
-		&quot;street&quot; : &quot;White Plains Road&quot;,
-		&quot;zipcode&quot; : &quot;10466&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-05-12T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-10-07T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 6
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-10-04T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 10
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-10-05T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-06-30T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		}
-	],
-	&quot;name&quot; : &quot;New Rainbow Restaurant&quot;,
-	&quot;restaurant_id&quot; : &quot;40899178&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb0664e&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;1171&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.92330419999999,
-				40.83573620000001
-			]
-		},
-		&quot;street&quot; : &quot;Jerome Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10452&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-10-27T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2014-05-01T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-09-23T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-09-05T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		}
-	],
-	&quot;name&quot; : &quot;Xin Hing Restaurant&quot;,
-	&quot;restaurant_id&quot; : &quot;40941277&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb06696&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;706&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8668038,
-				40.8712861
-			]
-		},
-		&quot;street&quot; : &quot;Burke Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10467&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-08-11T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2014-02-01T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 0
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-07-22T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 17
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-12-18T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-10-03T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;P&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-10-27T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		}
-	],
-	&quot;name&quot; : &quot;K &amp; Q Restaruant&quot;,
-	&quot;restaurant_id&quot; : &quot;40947971&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb0669a&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;2211&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8513981,
-				40.8344605
-			]
-		},
-		&quot;street&quot; : &quot;Westchester Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-10-08T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-09-25T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-09-26T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		}
-	],
-	&quot;name&quot; : &quot;China One&quot;,
-	&quot;restaurant_id&quot; : &quot;40948231&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;602f9a212b43de588fb06704&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;3003&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8821102,
-				40.8685226
-			]
-		},
-		&quot;street&quot; : &quot;Webster Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10458&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-05-13T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 8
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-12-07T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 11
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-06-19T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 6
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-01-09T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 5
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-04-04T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 27
-		}
-	],
-	&quot;name&quot; : &quot;Great Wall&quot;,
-	&quot;restaurant_id&quot; : &quot;40962349&quot;
-}
 Type &quot;it&quot; for more
 </pre></div>
 </div>
@@ -1371,8 +908,8 @@ dans un client MongoDB.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="07_scripts.html" title="previous page">Requêtes depuis des programmes Python ou R</a>
-    <a class='right-next' id="next-link" href="app_git.html" title="next page">Annexe : Utilisation de <code class="docutils literal notranslate"><span class="pre">git</span></code></a>
+    <a class='left-prev' id="prev-link" href="07_scripts.html" title="previous page"><span class="section-number">7. </span>Effectuer des requêtes depuis des programmes Python ou R</a>
+    <a class='right-next' id="next-link" href="app_git.html" title="next page">Annexe B : Utilisation de <code class="docutils literal notranslate"><span class="pre">git</span></code></a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

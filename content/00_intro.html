@@ -54,7 +54,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Premières requêtes" href="01_find.html" />
+    <link rel="next" title="1. Premières requêtes" href="01_find.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -89,50 +89,62 @@
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapitres
+ </span>
+</p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="01_find.html">
-   Premières requêtes
+   1. Premières requêtes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_listes.html">
-   Attributs de type liste
+   2. Attributs de type liste
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_dates.html">
-   Attributs de type date
+   3. Attributs de type date
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_index.html">
-   Les index
+   4. Les index
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="05_agreg.html">
-   Les requêtes d’agrégation
+   5. Les requêtes d’agrégation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06_modif.html">
-   Requêtes de modification
+   6. Les requêtes de modification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07_scripts.html">
-   Requêtes depuis des programmes Python ou R
+   7. Effectuer des requêtes depuis des programmes Python ou R
   </a>
  </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Annexes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="app_exemple.html">
-   Annexe : Exemple de fichier
+   Annexe A : Exemple de fichier source
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="app_git.html">
-   Annexe : Utilisation de
+   Annexe B : Utilisation de
    <code class="docutils literal notranslate">
     <span class="pre">
      git
@@ -227,9 +239,11 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#proposition-de-decoupage-en-9-parties">
-   Proposition de découpage en 9 parties
+  <a class="reference internal nav-link" href="#fonctionnement">
+   Fonctionnement
   </a>
+  <ul class="nav section-nav flex-column">
+  </ul>
  </li>
 </ul>
 
@@ -247,27 +261,24 @@
 <p>Ce document compile des notes pour un cours de MongoDB dispensé en Master
 Mathématiques Appliquées, Statistiques (parcours <em>Data Science</em>), à
 l’Université de Rennes 2.</p>
-<div class="section" id="proposition-de-decoupage-en-9-parties">
-<h2>Proposition de découpage en 9 parties<a class="headerlink" href="#proposition-de-decoupage-en-9-parties" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fonctionnement">
+<h2>Fonctionnement<a class="headerlink" href="#fonctionnement" title="Permalink to this headline">¶</a></h2>
+<p>Ceci est le document que vous allez devoir modifier collaborativement.
+Il utilise des fichiers au format Markdown (extensions <code class="docutils literal notranslate"><span class="pre">.md</span></code>) qui sont
+mis en forme avec Jupyter Book, un des utilitaires de la famille Jupyter (vous
+connaissez dejà probablement les notebooks Jupyter) qui permet de générer des
+livres au format HTML avec des bouts de code exécutables à l’intérieur.</p>
+<p>Pour mieux vous rendre compte de ce qui vous attend, il faut :</p>
 <ul class="simple">
-<li><p>Syntaxe de requêtes simples (syntaxe de <code class="docutils literal notranslate"><span class="pre">find</span></code>, opérateurs de comparaison, <code class="docutils literal notranslate"><span class="pre">distinct</span></code>, <code class="docutils literal notranslate"><span class="pre">count</span></code>, <code class="docutils literal notranslate"><span class="pre">sort</span></code>, <code class="docutils literal notranslate"><span class="pre">limit</span></code>)</p></li>
-<li><p>Cas des listes</p></li>
-<li><p>Cas des dates (et sous-cas des listes de dates)</p></li>
-<li><p>Index + requêtes textuelles + requêtes géographiques</p></li>
-<li><p>Agrégation</p>
-<ul>
-<li><p>somme, count, max, min, avec ou sans groupe</p></li>
-<li><p>successions d’étapes d’agrégation + unwind + project + sort + limit</p></li>
+<li><p>lire l’<a class="reference internal" href="app_git.html#sec-git"><span class="std std-ref">annexe consacrée à <code class="docutils literal notranslate"><span class="pre">git</span></code></span></a> ;</p></li>
+<li><p>consulter <a class="reference internal" href="app_exemple.html#sec-exemple"><span class="std std-ref">la page d’exemple</span></a> pour se rendre compte de ce qu’il
+est possible de faire, et faire le lien avec
+<a class="reference external" href="https://raw.githubusercontent.com/rtavenar/mongo_book/main/content/app_exemple.md">la page source correspondante sur github</a> ;</p></li>
+<li><p>ne surtout pas hésiter à poser des questions s’il y a des choses que vous
+n’arrivez pas à faire.</p></li>
 </ul>
-</li>
-<li><p>Requêtes de modification</p></li>
-<li><p>Requêtes MongoDB depuis des programmes Python ou R</p>
-<ul>
-<li><p>Utilisation de <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> (utilisation de MongoDB depuis Python)</p></li>
-<li><p>Utilisation de <code class="docutils literal notranslate"><span class="pre">mongolite</span></code> (utilisation de MongoDB depuis R)</p></li>
-</ul>
-</li>
-</ul>
+<div class="toctree-wrapper compound">
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -301,7 +312,7 @@ l’Université de Rennes 2.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="01_find.html" title="next page">Premières requêtes</a>
+    <a class='right-next' id="next-link" href="01_find.html" title="next page"><span class="section-number">1. </span>Premières requêtes</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

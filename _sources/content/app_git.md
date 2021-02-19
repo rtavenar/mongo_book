@@ -1,4 +1,5 @@
-# Annexe : Utilisation de `git`
+(sec:git)=
+# Annexe B : Utilisation de `git`
 
 Pour rédiger collectivement ces notes de cours, vous allez utiliser un
 gestionnaire de versions appelé `git`.

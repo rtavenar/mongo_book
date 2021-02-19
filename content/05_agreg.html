@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Les requêtes d’agrégation &#8212; MongoDB : notes de cours</title>
+    <title>5. Les requêtes d’agrégation &#8212; MongoDB : notes de cours</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -54,8 +54,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Requêtes de modification" href="06_modif.html" />
-    <link rel="prev" title="Les index" href="04_index.html" />
+    <link rel="next" title="6. Les requêtes de modification" href="06_modif.html" />
+    <link rel="prev" title="4. Les index" href="04_index.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -90,50 +90,62 @@
   </a>
  </li>
 </ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Chapitres
+ </span>
+</p>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="01_find.html">
-   Premières requêtes
+   1. Premières requêtes
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="02_listes.html">
-   Attributs de type liste
+   2. Attributs de type liste
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="03_dates.html">
-   Attributs de type date
+   3. Attributs de type date
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04_index.html">
-   Les index
+   4. Les index
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Les requêtes d’agrégation
+   5. Les requêtes d’agrégation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="06_modif.html">
-   Requêtes de modification
+   6. Les requêtes de modification
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="07_scripts.html">
-   Requêtes depuis des programmes Python ou R
+   7. Effectuer des requêtes depuis des programmes Python ou R
   </a>
  </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Annexes
+ </span>
+</p>
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="app_exemple.html">
-   Annexe : Exemple de fichier
+   Annexe A : Exemple de fichier source
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="app_git.html">
-   Annexe : Utilisation de
+   Annexe B : Utilisation de
    <code class="docutils literal notranslate">
     <span class="pre">
      git
@@ -229,12 +241,12 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#regroupements">
-   Regroupements
+   5.1. Regroupements
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#successions-d-etapes-d-agregation">
-   Successions d’étapes d’agrégation
+   5.2. Successions d’étapes d’agrégation
   </a>
  </li>
 </ul>
@@ -249,9 +261,9 @@
               <div>
                 
   <div class="section" id="les-requetes-d-agregation">
-<h1>Les requêtes d’agrégation<a class="headerlink" href="#les-requetes-d-agregation" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">5. </span>Les requêtes d’agrégation<a class="headerlink" href="#les-requetes-d-agregation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="regroupements">
-<h2>Regroupements<a class="headerlink" href="#regroupements" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1. </span>Regroupements<a class="headerlink" href="#regroupements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Auteurs/trices : <strong>TODO</strong></p></li>
 </ul>
@@ -259,9 +271,10 @@
 <ul class="simple">
 <li><p>somme, count, max, min, avec ou sans groupe</p></li>
 </ul>
+<p>Le fichier que vous devez modifier pour ce chapitre est <code class="docutils literal notranslate"><span class="pre">mongo_book/content/05_agreg.md</span></code>.</p>
 </div>
 <div class="section" id="successions-d-etapes-d-agregation">
-<h2>Successions d’étapes d’agrégation<a class="headerlink" href="#successions-d-etapes-d-agregation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2. </span>Successions d’étapes d’agrégation<a class="headerlink" href="#successions-d-etapes-d-agregation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Auteurs/trices : <strong>TODO</strong></p></li>
 </ul>
@@ -269,6 +282,7 @@
 <ul class="simple">
 <li><p>successions d’étapes d’agrégation + unwind + project + sort + limit</p></li>
 </ul>
+<p>Le fichier que vous devez modifier pour ce chapitre est <code class="docutils literal notranslate"><span class="pre">mongo_book/content/05_agreg.md</span></code>.</p>
 </div>
 </div>
 
@@ -300,8 +314,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="04_index.html" title="previous page">Les index</a>
-    <a class='right-next' id="next-link" href="06_modif.html" title="next page">Requêtes de modification</a>
+    <a class='left-prev' id="prev-link" href="04_index.html" title="previous page"><span class="section-number">4. </span>Les index</a>
+    <a class='right-next' id="next-link" href="06_modif.html" title="next page"><span class="section-number">6. </span>Les requêtes de modification</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
