@@ -37,8 +37,9 @@ jobs:
         python -c "from jupyter_core.paths import jupyter_path; print(jupyter_path())"
         git clone https://github.com/rtavenar/imongo.git
         cd imongo/
-        python -m pip install --prefix=machin .
+        python -m pip install --install-option="--nokernelinstall" .
         cd -
+        jupyter kernelspec list
         python -m pip install -r requirements.txt
         cp ./imongo_config.yml ~/.jupyter/imongo_config.yml
 
