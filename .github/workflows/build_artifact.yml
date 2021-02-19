@@ -30,18 +30,14 @@ jobs:
         python-version: 3.8
 
     # Install the python packages (from requirements.txt)
-    # --prefix=/home/runner/.local/
+    # cp ./imongo_config.yml ~/.jupyter/imongo_config.yml
     - name: Install python packages
       run: |
         python -m pip install -r requirements_imongo.txt
         python -c "from jupyter_core.paths import jupyter_path; print(jupyter_path())"
-        git clone https://github.com/rtavenar/imongo.git
-        cd imongo/
-        python setup.py install --user
-        cd -
+        pip install git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel --user
         jupyter kernelspec list
         python -m pip install -r requirements.txt
-        cp ./imongo_config.yml ~/.jupyter/imongo_config.yml
 
     # Build the html version of the book
     - name: Build the html-book
