@@ -38,9 +38,6 @@ jobs:
         pip install git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel --user
         jupyter kernelspec list
         python -m pip install -r requirements.txt
-        export JUPYTER_CONFIG_DIR=`jupyter --config-dir`
-        mkdir ${JUPYTER_CONFIG_DIR}
-        cp ./imongo_config.yml ${JUPYTER_CONFIG_DIR}/imongo_config.yml
 
     # Start a local MongoDB server
     - name: Start MongoDB
@@ -51,8 +48,7 @@ jobs:
       run: |
         cd install_db
         export MONGODB_PORT=27017
-        sourceinstall_db.sh
-
+        source install_db.sh
 
     # Build the html version of the book
     - name: Build the html-book
