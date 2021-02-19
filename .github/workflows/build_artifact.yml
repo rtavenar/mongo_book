@@ -34,9 +34,7 @@ jobs:
     - name: Install python packages
       run: |
         python -m pip install -r requirements_imongo.txt
-        python -c "from jupyter_core.paths import jupyter_path; print(jupyter_path())"
         pip install git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel --user
-        jupyter kernelspec list
         python -m pip install -r requirements.txt
 
     # Start a local MongoDB server
@@ -53,7 +51,6 @@ jobs:
     # Build the html version of the book
     - name: Build the html-book
       run: |
-        ls -alh ~/.jupyter/
         jupyter-book build .
         tar -cvf mongo_book.tar.gz _build
 
