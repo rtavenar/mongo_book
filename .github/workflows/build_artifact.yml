@@ -65,7 +65,7 @@ jobs:
 
     # Push the book's HTML to github-pages
     - name: Push to gh_pages
-      if: ${{ github.event_name == 'push' && main }}
+      if: ${{ github.event_name == 'push' && github.ref == "refs/heads/main" }}
       uses: peaceiris/actions-gh-pages@v3.6.1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
