@@ -1,0 +1,1365 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemple de fichier &#8212; MongoDB : notes de cours</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Annexe : Utilisation de git" href="app_git.html" />
+    <link rel="prev" title="MongoDB : Notes de cours" href="intro.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">MongoDB : notes de cours</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   MongoDB : Notes de cours
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Exemple de fichier
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="app_git.html">
+   Annexe : Utilisation de
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     git
+    </span>
+   </code>
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/content/exemple.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/content/exemple.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/rtavenar/mongo_book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/rtavenar/mongo_book/issues/new?title=Issue%20on%20page%20%2Fcontent/exemple.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/rtavenar/mongo_book/main?urlpath=tree/docs/content/exemple.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ceci-est-un-titre-de-niveau-2">
+   Ceci est un titre de niveau 2
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ceci-est-un-titre-de-niveau-3">
+     Ceci est un titre de niveau 3
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#un-peu-de-maths">
+   Un peu de maths
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#un-peu-de-code">
+   Un peu de code
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mise-en-valeur">
+   Mise en valeur
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#et-maintenant-la-magie">
+   Et maintenant, la magie !
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="exemple-de-fichier">
+<h1>Exemple de fichier<a class="headerlink" href="#exemple-de-fichier" title="Permalink to this headline">¶</a></h1>
+<p>N’hésitez pas à vous inspirer de ce fichier pour vos propres réalisations
+(vous pouvez télécharger le code source correspondant à l’aide du bouton dédié
+en haut à droite de cette page).</p>
+<p>Pour commencer, quelques exemples de syntaxe markdown (plus de détails
+<a class="reference external" href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">là</a>,
+par exemple) :</p>
+<div class="section" id="ceci-est-un-titre-de-niveau-2">
+<h2>Ceci est un titre de niveau 2<a class="headerlink" href="#ceci-est-un-titre-de-niveau-2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ceci-est-un-titre-de-niveau-3">
+<h3>Ceci est un titre de niveau 3<a class="headerlink" href="#ceci-est-un-titre-de-niveau-3" title="Permalink to this headline">¶</a></h3>
+<p>Ce texte est <strong>en gras</strong>, voire <em>en italique</em>.</p>
+</div>
+</div>
+<div class="section" id="un-peu-de-maths">
+<h2>Un peu de maths<a class="headerlink" href="#un-peu-de-maths" title="Permalink to this headline">¶</a></h2>
+<p>Vous pouvez utiliser des formules mathématiques <span class="math notranslate nohighlight">\(y = f(x)\)</span>, voire même :</p>
+<div class="math notranslate nohighlight">
+\[
+    y = f(x)
+\]</div>
+</div>
+<div class="section" id="un-peu-de-code">
+<h2>Un peu de code<a class="headerlink" href="#un-peu-de-code" title="Permalink to this headline">¶</a></h2>
+<p>De la même manière, vous pouvez avoir des morceaux de code <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">f(x)</span></code> au milieu
+de votre texte, ou bien :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Lorsque vous voudrez présenter du code MongoDB, vous utiliserez la coloration
+syntaxique correspondant au langage <code class="docutils literal notranslate"><span class="pre">javascript</span></code> :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Chinese&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Vous remarquerez que ce code est mis en forme, mais pas exécuté.</p>
+<p>On peut même imaginer mettre, en parallèle, la syntaxe MongoDB et son
+équivalent SQL :</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="6e3c967a-3791-47de-a02e-6492115ca3b5" name="66e940b9-7f47-49d3-bb6f-bbcdeced236a" type="radio">
+</input><label class="tabbed-label" for="6e3c967a-3791-47de-a02e-6492115ca3b5">
+MongoDB</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">t</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mf">1</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="ee1296e3-286d-4347-8670-a2faac88120c" name="66e940b9-7f47-49d3-bb6f-bbcdeced236a" type="radio">
+</input><label class="tabbed-label" for="ee1296e3-286d-4347-8670-a2faac88120c">
+Équivalent SQL</label><div class="tabbed-content docutils">
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">b</span>
+<span class="k">FROM</span> <span class="n">t</span>
+<span class="k">WHERE</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>ou encore :</p>
+<div class="sphinx-bs container pb-4 docutils">
+<div class="row docutils">
+<div class="d-flex col-4 docutils">
+<div class="card w-100 border-2 docutils">
+<div class="card-header docutils">
+<p class="card-text">MongoDB</p>
+</div>
+<div class="card-body docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">t</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mf">1</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;b&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="d-flex col-4 docutils">
+<div class="card w-100 border-2 docutils">
+<div class="card-header docutils">
+<p class="card-text">Équivalent SQL</p>
+</div>
+<div class="card-body docutils">
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">b</span>
+<span class="k">FROM</span> <span class="n">t</span>
+<span class="k">WHERE</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Malheureusement, dans ce cas de contenus disposés en onglets ou en “cartes”,
+on ne peut pas
+insérer de code <strong>exécutable</strong> dans ces contenus
+(voir <a class="reference internal" href="#sec-exec"><span class="std std-ref">plus bas</span></a>).</p>
+</div>
+<div class="section" id="mise-en-valeur">
+<h2>Mise en valeur<a class="headerlink" href="#mise-en-valeur" title="Permalink to this headline">¶</a></h2>
+<p>Vous pouvez également mettre en avant certains paragraphes :</p>
+<div class="admonition-titre admonition">
+<p class="admonition-title">Titre</p>
+<p>Contenu</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Titre</p>
+<p>Contenu</p>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Vous pouvez même écrire dans les marges !</p>
+</div>
+<p>Au passage, tous les caractères UTF-8 sont valides ⚠️🤣 (ce qui ne veut pas dire
+que vous devez à tout prix en abuser :)</p>
+</div>
+<div class="section" id="et-maintenant-la-magie">
+<span id="sec-exec"></span><h2>Et maintenant, la magie !<a class="headerlink" href="#et-maintenant-la-magie" title="Permalink to this headline">¶</a></h2>
+<p>Mais le plus intéressant dans tout cela, c’est d’avoir des cellules de code
+MongoDB qui seront exécutées à la volée :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">use</span> <span class="nx">food</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>switched to db food
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Chinese&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf35d7c&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1236&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8893654,
+				40.81376179999999
+			]
+		},
+		&quot;street&quot; : &quot;238 Spofford Ave&quot;,
+		&quot;zipcode&quot; : &quot;10474&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2013-12-30T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 8
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-01-08T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-06-12T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 15
+		}
+	],
+	&quot;name&quot; : &quot;Happy Garden&quot;,
+	&quot;restaurant_id&quot; : &quot;40363289&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf35d8e&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;277&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8941893,
+				40.8634684
+			]
+		},
+		&quot;street&quot; : &quot;East Kingsbridge Road&quot;,
+		&quot;zipcode&quot; : &quot;10458&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-03-03T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-09-26T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-03-19T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-08-29T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-08-17T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		}
+	],
+	&quot;name&quot; : &quot;Happy Garden&quot;,
+	&quot;restaurant_id&quot; : &quot;40364296&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36307&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;2459&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8929629,
+				40.8601605
+			]
+		},
+		&quot;street&quot; : &quot;Webster Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10458&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-12-23T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-01-07T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 8
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-12-28T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-07-18T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		}
+	],
+	&quot;name&quot; : &quot;China Wok Ii&quot;,
+	&quot;restaurant_id&quot; : &quot;40510328&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36391&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;2102&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.82609699999999,
+				40.8687177
+			]
+		},
+		&quot;street&quot; : &quot;Bartow Ave&quot;,
+		&quot;zipcode&quot; : &quot;10475&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-08-04T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-02-21T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 4
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-05-30T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 17
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-04-13T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		}
+	],
+	&quot;name&quot; : &quot;Dragon City&quot;,
+	&quot;restaurant_id&quot; : &quot;40529203&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf3643f&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;3511&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.9100876,
+				40.8860444
+			]
+		},
+		&quot;street&quot; : &quot;Johnson Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10463&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-07-02T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 5
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-11-06T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 8
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-03-29T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 17
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-06-20T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 27
+		}
+	],
+	&quot;name&quot; : &quot;Hunan Balcony&quot;,
+	&quot;restaurant_id&quot; : &quot;40551996&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36441&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;732&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.883128,
+				40.85353
+			]
+		},
+		&quot;street&quot; : &quot;East  187 Street&quot;,
+		&quot;zipcode&quot; : &quot;10458&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-11-07T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-05-15T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-11-18T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-06-10T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-09-17T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 19
+		}
+	],
+	&quot;name&quot; : &quot;Great Wall Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40552226&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf364d4&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;202&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.9164504,
+				40.8341845
+			]
+		},
+		&quot;street&quot; : &quot;East  167 Street&quot;,
+		&quot;zipcode&quot; : &quot;10456&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-12-10T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-12-12T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-12-20T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-08-01T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-03-13T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		}
+	],
+	&quot;name&quot; : &quot;Lucky House Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40571587&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf364e1&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1474&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.88122729999999,
+				40.8281391
+			]
+		},
+		&quot;street&quot; : &quot;Westchester Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10472&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-12-24T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-01-13T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-01-08T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		}
+	],
+	&quot;name&quot; : &quot;New Wah Kitchen&quot;,
+	&quot;restaurant_id&quot; : &quot;40573101&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf3679e&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1702&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.9137269,
+				40.8482958
+			]
+		},
+		&quot;street&quot; : &quot;Grand Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10453&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-04-16T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-04-10T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-03-14T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 5
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-09-22T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 17
+		}
+	],
+	&quot;name&quot; : &quot;New Hing Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40701165&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf3695e&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1811&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8518311,
+				40.8504655
+			]
+		},
+		&quot;street&quot; : &quot;Williamsbridge Road&quot;,
+		&quot;zipcode&quot; : &quot;10461&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-03-26T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-03-05T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-09-12T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-04-17T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-11-03T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 4
+		}
+	],
+	&quot;name&quot; : &quot;Hong Kong Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40765358&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf369e9&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;796&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.91637759999999,
+				40.8226814
+			]
+		},
+		&quot;street&quot; : &quot;Courtlandt Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10451&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-08-15T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-08-27T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-03-06T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-08-14T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-03-21T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 17
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-10-24T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		}
+	],
+	&quot;name&quot; : &quot;Kristy&#39;S Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40804049&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36a64&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1634&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8306577,
+				40.8450232
+			]
+		},
+		&quot;street&quot; : &quot;Crosby Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10461&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-08-08T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-07-23T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-12-14T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-06-25T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 6
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-10-03T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 8
+		}
+	],
+	&quot;name&quot; : &quot;East Dynasty&quot;,
+	&quot;restaurant_id&quot; : &quot;40827529&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36aa6&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;2461&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.9041182,
+				40.8644648
+			]
+		},
+		&quot;street&quot; : &quot;University Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10468&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-04-10T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-03-27T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 4
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-10-25T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-10-11T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;P&quot;,
+			&quot;score&quot; : 2
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-11-01T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-04-20T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 17
+		}
+	],
+	&quot;name&quot; : &quot;Lin Home Chinese Restaura&quot;,
+	&quot;restaurant_id&quot; : &quot;40842437&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36ac5&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;70&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.9066601,
+				40.8592187
+			]
+		},
+		&quot;street&quot; : &quot;West  183 Street&quot;,
+		&quot;zipcode&quot; : &quot;10453&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-12-01T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 4
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-07-02T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-01-23T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-07-24T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-01-14T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-07-19T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 20
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-12-21T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 14
+		}
+	],
+	&quot;name&quot; : &quot;Peacock Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40849313&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36af9&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;317&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.909629,
+				40.837446
+			]
+		},
+		&quot;street&quot; : &quot;East 170 Street&quot;,
+		&quot;zipcode&quot; : &quot;10456&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-12-03T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-04-26T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-11-19T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-05-06T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-09-11T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-04-17T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		}
+	],
+	&quot;name&quot; : &quot;Lin&#39;S Garden&quot;,
+	&quot;restaurant_id&quot; : &quot;40857406&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36c0f&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;3906&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8612466,
+				40.8858379
+			]
+		},
+		&quot;street&quot; : &quot;White Plains Road&quot;,
+		&quot;zipcode&quot; : &quot;10466&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-05-12T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-10-07T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 6
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-10-04T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-10-05T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-06-30T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		}
+	],
+	&quot;name&quot; : &quot;New Rainbow Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40899178&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36d3a&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1171&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.92330419999999,
+				40.83573620000001
+			]
+		},
+		&quot;street&quot; : &quot;Jerome Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10452&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-10-27T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-05-01T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-09-23T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-09-05T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		}
+	],
+	&quot;name&quot; : &quot;Xin Hing Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40941277&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36d7f&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;706&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8668038,
+				40.8712861
+			]
+		},
+		&quot;street&quot; : &quot;Burke Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10467&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-08-11T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-02-01T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 0
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-07-22T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 17
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-12-18T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-10-03T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;P&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-10-27T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		}
+	],
+	&quot;name&quot; : &quot;K &amp; Q Restaruant&quot;,
+	&quot;restaurant_id&quot; : &quot;40947971&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36d85&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;2211&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8513981,
+				40.8344605
+			]
+		},
+		&quot;street&quot; : &quot;Westchester Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-10-08T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-09-25T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-09-26T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		}
+	],
+	&quot;name&quot; : &quot;China One&quot;,
+	&quot;restaurant_id&quot; : &quot;40948231&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;602f889e8b0cb411abf36df6&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;3003&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8821102,
+				40.8685226
+			]
+		},
+		&quot;street&quot; : &quot;Webster Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10458&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-05-13T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 8
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-12-07T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-06-19T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 6
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-01-09T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 5
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-04-04T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 27
+		}
+	],
+	&quot;name&quot; : &quot;Great Wall&quot;,
+	&quot;restaurant_id&quot; : &quot;40962349&quot;
+}
+Type &quot;it&quot; for more
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ici, le résultat affiché est celui obtenu lorsque l’on exécute ces deux lignes
+dans un client MongoDB.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "imongo"
+        },
+        kernelOptions: {
+            kernelName: "imongo",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'imongo'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">MongoDB : Notes de cours</a>
+    <a class='right-next' id="next-link" href="app_git.html" title="next page">Annexe : Utilisation de <code class="docutils literal notranslate"><span class="pre">git</span></code></a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Ouvrage collectif<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>
