@@ -42,6 +42,18 @@ jobs:
         mkdir ${JUPYTER_CONFIG_DIR}
         cp ./imongo_config.yml ${JUPYTER_CONFIG_DIR}/imongo_config.yml
 
+    # Start a local MongoDB server
+    - name: Start MongoDB
+      uses: supercharge/mongodb-github-action@1.3.0
+
+    # Load databases on the server
+    - name: Load databases
+      run: |
+        cd install_db
+        export MONGODB_PORT=27017
+        sourceinstall_db.sh
+
+
     # Build the html version of the book
     - name: Build the html-book
       run: |
