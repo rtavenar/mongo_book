@@ -7,7 +7,6 @@ l'Université de Rennes 2.
 ## TODO list
 
 * GitHub Actions pour :
-    * PR : générer le book html en asset
     * push : publier
-    * attention : install mongodb + setup imongo + set imongo config
+    * force pretty print in outputs
 * Découpage du cours en (14 ? 9 ?) unités "équivalentes"

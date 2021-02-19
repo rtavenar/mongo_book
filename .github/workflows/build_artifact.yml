@@ -51,6 +51,7 @@ jobs:
     # Build the html version of the book
     - name: Build the html-book
       run: |
+        echo "DBQuery.prototype._prettyShell = true" > ~/.mongorc.js
         jupyter-book build .
         tar -cvf mongo_book.tar.gz _build
 
