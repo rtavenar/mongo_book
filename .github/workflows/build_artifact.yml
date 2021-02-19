@@ -39,11 +39,15 @@ jobs:
         jupyter kernelspec list
         python -m pip install -r requirements.txt
         export JUPYTER_CONFIG_DIR=`jupyter --config-dir`
+        echo ${JUPYTER_CONFIG_DIR}
         cp ./imongo_config.yml ${JUPYTER_CONFIG_DIR}
 
     # Build the html version of the book
     - name: Build the html-book
       run: |
+        jupyter --config-dir
+        ls `jupyter --config-dir`
+        ls ~/.jupyter
         ln -s `jupyter --config-dir` ~/.jupyter
         jupyter-book build .
         tar -cvf mongo_book.tar.gz _build
