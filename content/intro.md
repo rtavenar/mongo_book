@@ -6,7 +6,4 @@ l'Université de Rennes 2.
 
 ## TODO list
 
-* GitHub Actions pour :
-    * push : publier
-    * force pretty print in outputs
 * Découpage du cours en (14 ? 9 ?) unités "équivalentes"
