@@ -1,6 +1,0 @@
-host: clusterm1.0rm7t.mongodb.net
-port: 27017
-username: etudiant
-password: ur2
-authenticationDatabase: admin
-quiet: null
