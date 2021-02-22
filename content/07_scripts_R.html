@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MongoDB : Notes de cours &#8212; MongoDB : notes de cours</title>
+    <title>7.2. Requêtes depuis R : mongolite &#8212; MongoDB : notes de cours</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -54,7 +54,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Premières requêtes" href="01_find.html" />
+    <link rel="next" title="Annexe A : Exemple de fichier source" href="app_exemple.html" />
+    <link rel="prev" title="7.1. Requêtes depuis Python : pymongo" href="07_scripts_py.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -83,8 +84,8 @@
 </form>
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="00_intro.html">
    MongoDB : Notes de cours
   </a>
  </li>
@@ -94,7 +95,7 @@
   Chapitres
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="01_find.html">
    1. Premières requêtes
@@ -125,11 +126,11 @@
    6. Les requêtes de modification
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 current active collapsible-parent">
   <a class="reference internal" href="07_scripts.html">
    7. Effectuer des requêtes depuis des programmes Python ou R
   </a>
-  <ul class="collapse-ul">
+  <ul class="current collapse-ul">
    <li class="toctree-l2">
     <a class="reference internal" href="07_scripts_py.html">
      7.1. Requêtes depuis Python :
@@ -140,8 +141,8 @@
      </code>
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="07_scripts_R.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      7.2. Requêtes depuis R :
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -215,11 +216,11 @@
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         <a class="dropdown-buttons"
-            href="../_sources/content/00_intro.ipynb"><button type="button"
+            href="../_sources/content/07_scripts_R.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/content/00_intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/content/07_scripts_R.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -239,7 +240,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/rtavenar/mongo_book/issues/new?title=Issue%20on%20page%20%2Fcontent/00_intro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/rtavenar/mongo_book/issues/new?title=Issue%20on%20page%20%2Fcontent/07_scripts_R.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -260,7 +261,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/rtavenar/mongo_book/main?urlpath=tree/docs/content/00_intro.md"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/rtavenar/mongo_book/main?urlpath=tree/docs/content/07_scripts_R.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -277,22 +278,6 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fonctionnement">
-   Fonctionnement
-  </a>
-  <ul class="nav section-nav flex-column">
-  </ul>
- </li>
-</ul>
-
-        </nav>
-        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -300,30 +285,43 @@
         
               <div>
                 
-  <div class="section" id="mongodb-notes-de-cours">
-<h1>MongoDB : Notes de cours<a class="headerlink" href="#mongodb-notes-de-cours" title="Permalink to this headline">¶</a></h1>
-<p>Ce document compile des notes pour un cours de MongoDB dispensé en Master
-Mathématiques Appliquées, Statistiques (parcours <em>Data Science</em>), à
-l’Université de Rennes 2.</p>
-<div class="section" id="fonctionnement">
-<h2>Fonctionnement<a class="headerlink" href="#fonctionnement" title="Permalink to this headline">¶</a></h2>
-<p>Ceci est le document que vous allez devoir modifier collaborativement.
-Il utilise des fichiers au format Markdown (extensions <code class="docutils literal notranslate"><span class="pre">.md</span></code>) qui sont
-mis en forme avec Jupyter Book, un des utilitaires de la famille Jupyter (vous
-connaissez dejà probablement les notebooks Jupyter) qui permet de générer des
-livres au format HTML avec des bouts de code exécutables à l’intérieur.</p>
-<p>Pour mieux vous rendre compte de ce qui vous attend, il faut :</p>
+  <div class="section" id="requetes-depuis-r-mongolite">
+<span id="sec-mongolite"></span><h1><span class="section-number">7.2. </span>Requêtes depuis R : <code class="docutils literal notranslate"><span class="pre">mongolite</span></code><a class="headerlink" href="#requetes-depuis-r-mongolite" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><p>lire l’<a class="reference internal" href="app_git.html#sec-git"><span class="std std-ref">annexe consacrée à <code class="docutils literal notranslate"><span class="pre">git</span></code></span></a> ;</p></li>
-<li><p>consulter <a class="reference internal" href="app_exemple.html#sec-exemple"><span class="std std-ref">la page d’exemple</span></a> pour se rendre compte de ce qu’il
-est possible de faire, et faire le lien avec
-<a class="reference external" href="https://raw.githubusercontent.com/rtavenar/mongo_book/main/content/app_exemple.md">la page source correspondante sur github</a> ;</p></li>
-<li><p>ne surtout pas hésiter à poser des questions s’il y a des choses que vous
-n’arrivez pas à faire.</p></li>
+<li><p>Auteurs/trices : <strong>TODO</strong></p></li>
 </ul>
-<div class="toctree-wrapper compound">
+<p>Comment faire pour effectuer les requêtes présentes dans les chapitres 1 à 6 avec <code class="docutils literal notranslate"><span class="pre">mongolite</span></code> ?</p>
+<p>Le fichier que vous devez modifier pour ce chapitre est <code class="docutils literal notranslate"><span class="pre">mongo_book/content/07_scripts_R.md</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">mongolite</span><span class="p">)</span>
+<span class="n">coll</span> <span class="o">&lt;-</span> <span class="nf">mongo</span><span class="p">(</span><span class="s">&quot;NYfood&quot;</span><span class="p">,</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;mongodb://localhost:27017/food&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">coll</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Mongo collection&gt; &#39;NYfood&#39; 
+ $aggregate(pipeline = &quot;{}&quot;, options = &quot;{\&quot;allowDiskUse\&quot;:true}&quot;, handler = NULL, pagesize = 1000, iterate = FALSE) 
+ $count(query = &quot;{}&quot;) 
+ $disconnect(gc = TRUE) 
+ $distinct(key, query = &quot;{}&quot;) 
+ $drop() 
+ $export(con = stdout(), bson = FALSE, query = &quot;{}&quot;, fields = &quot;{}&quot;, sort = &quot;{\&quot;_id\&quot;:1}&quot;) 
+ $find(query = &quot;{}&quot;, fields = &quot;{\&quot;_id\&quot;:0}&quot;, sort = &quot;{}&quot;, skip = 0, limit = 0, handler = NULL, pagesize = 1000) 
+ $import(con, bson = FALSE) 
+ $index(add = NULL, remove = NULL) 
+ $info() 
+ $insert(data, pagesize = 1000, stop_on_error = TRUE, ...) 
+ $iterate(query = &quot;{}&quot;, fields = &quot;{\&quot;_id\&quot;:0}&quot;, sort = &quot;{}&quot;, skip = 0, limit = 0) 
+ $mapreduce(map, reduce, query = &quot;{}&quot;, sort = &quot;{}&quot;, limit = 0, out = NULL, scope = NULL) 
+ $remove(query, just_one = FALSE) 
+ $rename(name, db = NULL) 
+ $replace(query, update = &quot;{}&quot;, upsert = FALSE) 
+ $run(command = &quot;{\&quot;ping\&quot;: 1}&quot;, simplify = TRUE) 
+ $update(query, update = &quot;{\&quot;$set\&quot;:{}}&quot;, filters = NULL, upsert = FALSE, multiple = FALSE) 
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -337,16 +335,16 @@ n’arrivez pas à faire.</p></li>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "imongo"
+            mode: "r"
         },
         kernelOptions: {
-            kernelName: "imongo",
+            kernelName: "ir",
             path: "./content"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'imongo'</script>
+    <script>kernelName = 'ir'</script>
 
               </div>
               
@@ -356,7 +354,8 @@ n’arrivez pas à faire.</p></li>
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="01_find.html" title="next page"><span class="section-number">1. </span>Premières requêtes</a>
+    <a class='left-prev' id="prev-link" href="07_scripts_py.html" title="previous page"><span class="section-number">7.1. </span>Requêtes depuis Python : <code class="docutils literal notranslate"><span class="pre">pymongo</span></code></a>
+    <a class='right-next' id="next-link" href="app_exemple.html" title="next page">Annexe A : Exemple de fichier source</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

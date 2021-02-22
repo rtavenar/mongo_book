@@ -57,7 +57,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Annexe B : Utilisation de git" href="app_git.html" />
-    <link rel="prev" title="7. Effectuer des requêtes depuis des programmes Python ou R" href="07_scripts.html" />
+    <link rel="prev" title="7.2. Requêtes depuis R : mongolite" href="07_scripts_R.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -132,7 +132,27 @@
   <a class="reference internal" href="07_scripts.html">
    7. Effectuer des requêtes depuis des programmes Python ou R
   </a>
-  <ul class="simple collapse-ul">
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_scripts_py.html">
+     7.1. Requêtes depuis Python :
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       pymongo
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_scripts_R.html">
+     7.2. Requêtes depuis R :
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       mongolite
+      </span>
+     </code>
+    </a>
+   </li>
   </ul>
   <i class="fas fa-chevron-down">
   </i>
@@ -352,8 +372,8 @@ syntaxique correspondant au langage <code class="docutils literal notranslate"><
 <p>On peut même imaginer mettre, en parallèle, la syntaxe MongoDB et son
 équivalent SQL :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="c1e4d223-5e12-4aee-a071-0d3c8f2945bd" name="c6d8ae59-2f0d-4285-b2c2-80fec1696a3b" type="radio">
-</input><label class="tabbed-label" for="c1e4d223-5e12-4aee-a071-0d3c8f2945bd">
+<input checked="checked" id="eb3c4222-fee8-4f91-ac7d-8c7b0f509b49" name="bbf96de9-462d-4b5c-ac5d-4f343da29b46" type="radio">
+</input><label class="tabbed-label" for="eb3c4222-fee8-4f91-ac7d-8c7b0f509b49">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">t</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mf">1</span><span class="p">},</span>
@@ -362,8 +382,8 @@ MongoDB</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="ca380bbe-a96c-47b8-b0ca-8f5899fd0d5c" name="c6d8ae59-2f0d-4285-b2c2-80fec1696a3b" type="radio">
-</input><label class="tabbed-label" for="ca380bbe-a96c-47b8-b0ca-8f5899fd0d5c">
+<input id="673801da-9bd8-4cd3-a031-e90b9416e3bc" name="bbf96de9-462d-4b5c-ac5d-4f343da29b46" type="radio">
+</input><label class="tabbed-label" for="673801da-9bd8-4cd3-a031-e90b9416e3bc">
 Équivalent SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">b</span>
 <span class="k">FROM</span> <span class="n">t</span>
@@ -455,7 +475,7 @@ MongoDB qui seront exécutées à la volée :</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdee8e&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379f90636a4d3cb8d0418&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1236&quot;,
 		&quot;loc&quot; : {
@@ -491,7 +511,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40363289&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdeea1&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379f90636a4d3cb8d042a&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;277&quot;,
 		&quot;loc&quot; : {
@@ -537,7 +557,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40364296&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf417&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379f90636a4d3cb8d09a3&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2459&quot;,
 		&quot;loc&quot; : {
@@ -578,7 +598,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40510328&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf4a3&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379f90636a4d3cb8d0a2e&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2102&quot;,
 		&quot;loc&quot; : {
@@ -619,48 +639,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40529203&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf552&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;3511&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.9100876,
-				40.8860444
-			]
-		},
-		&quot;street&quot; : &quot;Johnson Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10463&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-07-02T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 5
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-11-06T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 8
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-03-29T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 17
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-06-20T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 27
-		}
-	],
-	&quot;name&quot; : &quot;Hunan Balcony&quot;,
-	&quot;restaurant_id&quot; : &quot;40551996&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf554&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379f90636a4d3cb8d0add&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;732&quot;,
 		&quot;loc&quot; : {
@@ -706,7 +685,48 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40552226&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf5e6&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379f90636a4d3cb8d0ade&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;3511&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.9100876,
+				40.8860444
+			]
+		},
+		&quot;street&quot; : &quot;Johnson Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10463&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-07-02T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 5
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-11-06T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 8
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-03-29T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 17
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-06-20T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 27
+		}
+	],
+	&quot;name&quot; : &quot;Hunan Balcony&quot;,
+	&quot;restaurant_id&quot; : &quot;40551996&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;603379f90636a4d3cb8d0b6f&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;202&quot;,
 		&quot;loc&quot; : {
@@ -752,7 +772,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40571587&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf5f3&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379f90636a4d3cb8d0b7e&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1474&quot;,
 		&quot;loc&quot; : {
@@ -788,7 +808,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40573101&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf8ae&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379f90636a4d3cb8d0e3a&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1702&quot;,
 		&quot;loc&quot; : {
@@ -829,7 +849,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40701165&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdfa6f&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379f90636a4d3cb8d0ff9&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1811&quot;,
 		&quot;loc&quot; : {
@@ -912,7 +932,7 @@ dans un client MongoDB.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="07_scripts.html" title="previous page"><span class="section-number">7. </span>Effectuer des requêtes depuis des programmes Python ou R</a>
+    <a class='left-prev' id="prev-link" href="07_scripts_R.html" title="previous page"><span class="section-number">7.2. </span>Requêtes depuis R : <code class="docutils literal notranslate"><span class="pre">mongolite</span></code></a>
     <a class='right-next' id="next-link" href="app_git.html" title="next page">Annexe B : Utilisation de <code class="docutils literal notranslate"><span class="pre">git</span></code></a>
 
     </div>
