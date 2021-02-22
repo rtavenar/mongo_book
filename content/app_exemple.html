@@ -128,10 +128,14 @@
    6. Les requêtes de modification
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 collapsible-parent">
   <a class="reference internal" href="07_scripts.html">
    7. Effectuer des requêtes depuis des programmes Python ou R
   </a>
+  <ul class="simple collapse-ul">
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
  </li>
 </ul>
 <p class="caption collapsible-parent">
@@ -348,8 +352,8 @@ syntaxique correspondant au langage <code class="docutils literal notranslate"><
 <p>On peut même imaginer mettre, en parallèle, la syntaxe MongoDB et son
 équivalent SQL :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="d109d300-e840-4c6f-b726-95b82ec25b8b" name="3eaef6a8-b9e8-4b58-8bd8-16ae4cb67bde" type="radio">
-</input><label class="tabbed-label" for="d109d300-e840-4c6f-b726-95b82ec25b8b">
+<input checked="checked" id="c1e4d223-5e12-4aee-a071-0d3c8f2945bd" name="c6d8ae59-2f0d-4285-b2c2-80fec1696a3b" type="radio">
+</input><label class="tabbed-label" for="c1e4d223-5e12-4aee-a071-0d3c8f2945bd">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">t</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="o">:</span> <span class="mf">1</span><span class="p">},</span>
@@ -358,8 +362,8 @@ MongoDB</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="28dd1b8c-8cad-46f9-b735-39956a001bc3" name="3eaef6a8-b9e8-4b58-8bd8-16ae4cb67bde" type="radio">
-</input><label class="tabbed-label" for="28dd1b8c-8cad-46f9-b735-39956a001bc3">
+<input id="ca380bbe-a96c-47b8-b0ca-8f5899fd0d5c" name="c6d8ae59-2f0d-4285-b2c2-80fec1696a3b" type="radio">
+</input><label class="tabbed-label" for="ca380bbe-a96c-47b8-b0ca-8f5899fd0d5c">
 Équivalent SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">b</span>
 <span class="k">FROM</span> <span class="n">t</span>
@@ -451,7 +455,7 @@ MongoDB qui seront exécutées à la volée :</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;603371f671925740ebacb35c&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdee8e&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1236&quot;,
 		&quot;loc&quot; : {
@@ -487,7 +491,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40363289&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603371f671925740ebacb36e&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdeea1&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;277&quot;,
 		&quot;loc&quot; : {
@@ -533,7 +537,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40364296&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603371f671925740ebacb8e7&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf417&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2459&quot;,
 		&quot;loc&quot; : {
@@ -574,7 +578,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40510328&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603371f671925740ebacb971&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf4a3&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2102&quot;,
 		&quot;loc&quot; : {
@@ -615,7 +619,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40529203&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603371f671925740ebacba21&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf552&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;3511&quot;,
 		&quot;loc&quot; : {
@@ -656,7 +660,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40551996&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603371f671925740ebacba22&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf554&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;732&quot;,
 		&quot;loc&quot; : {
@@ -702,7 +706,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40552226&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603371f671925740ebacbab4&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf5e6&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;202&quot;,
 		&quot;loc&quot; : {
@@ -748,7 +752,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40571587&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603371f671925740ebacbac2&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf5f3&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1474&quot;,
 		&quot;loc&quot; : {
@@ -784,7 +788,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40573101&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603371f671925740ebacbd7e&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdf8ae&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1702&quot;,
 		&quot;loc&quot; : {
@@ -825,7 +829,7 @@ MongoDB qui seront exécutées à la volée :</p>
 	&quot;restaurant_id&quot; : &quot;40701165&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;603371f671925740ebacbf3e&quot;),
+	&quot;_id&quot; : ObjectId(&quot;603379bdbaeb760a30bdfa6f&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1811&quot;,
 		&quot;loc&quot; : {
