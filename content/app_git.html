@@ -190,7 +190,10 @@
 
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
-        
+        <a class="dropdown-buttons"
+            href="../_sources/content/app_git.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
         <!-- Download raw file -->
         <a class="dropdown-buttons" href="../_sources/content/app_git.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
@@ -227,6 +230,23 @@
                     class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/rtavenar/mongo_book/main?urlpath=tree/docs/content/app_git.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
 
     </div>
 
@@ -375,21 +395,52 @@ graphiques telles que GitHub Desktop (voir <a class="reference internal" href="#
 <p>Lorsque l’on a modifié (=créé, modifié ou supprimé) un fichier et que l’on
 veut que les changements effectués sur ce fichier soient ajoutés au prochain
 <em>commit</em> que l’on va faire, on écrit :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add &lt;NOM_DU_FICHIER_MODIFIE&gt;
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">add</span> <span class="o">&lt;</span><span class="nx">NOM_DU_FICHIER_MODIFIE</span><span class="o">&gt;</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Code incomplete. Please enter valid and complete code.
+Continuation prompt functionality not implemented yet.
+Restarting mongo shell...
+</pre></div>
+</div>
+</div>
 </div>
 <p>Notez qu’il faudra ajouter les fichiers dont les modifications sont à prendre
 en compte avant chaque commit.</p>
 <p>Pour créer un <em>commit</em> à partir des fichiers précédemment ajoutés, on
 utilise ensuite la commande :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit -m <span class="s2">&quot;Ajouté une présentation de git dans le document&quot;</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">commit</span> <span class="o">-</span><span class="nx">m</span> <span class="s2">&quot;Ajouté une présentation de git dans le document&quot;</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:4
+</pre></div>
+</div>
+</div>
 </div>
 <p>Cela va donc créer un nouveau point d’enregistrement sur <strong>la version locale</strong>
 de notre dépôt.
 On peut s’en rendre compte avec la commande suivante :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">log</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:4
+</pre></div>
+</div>
+</div>
 </div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>commit 724ced693ff4823fe96721970c4a61f80472e122 (HEAD -&gt; main, origin/main)
 Author: Romain Tavenard &lt;romain.tavenard@univ-rennes2.fr&gt;
@@ -433,8 +484,18 @@ truc_super_chouette_avec_un_nom_plus_malin_que_ca
 <p>Ici, on voit que l’on est en train de travailler sur la branche <code class="docutils literal notranslate"><span class="pre">main</span></code>
 (c’est le sens du symbole <code class="docutils literal notranslate"><span class="pre">*</span></code>) et que deux autres branches co-existent.</p>
 <p>Si l’on souhaite “basculer” sur la branche <code class="docutils literal notranslate"><span class="pre">ajout_intro</span></code>, on fera :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout ajout_intro
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">checkout</span> <span class="nx">ajout_intro</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:4
+</pre></div>
+</div>
+</div>
 </div>
 <div class="tip admonition">
 <p class="admonition-title">Basculer sur une nouvelle branche</p>
@@ -467,16 +528,38 @@ Typiquement, dans notre cas, ce dépôt distant sera hébergé par GitHub (voir
 <a class="reference internal" href="#sec-github"><span class="std std-ref">plus bas</span></a>).</p>
 <p>La première étape sera donc de récupérer le code hébergé sur le dépôt distant
 pour créer votre dépôt local :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone &lt;LIEN_VERS_LE_DEPOT_DISTANT&gt; &lt;NOM_DU_REPERTOIRE_A_CREER&gt;
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">clone</span> <span class="o">&lt;</span><span class="nx">LIEN_VERS_LE_DEPOT_DISTANT</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nx">NOM_DU_REPERTOIRE_A_CREER</span><span class="o">&gt;</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Code incomplete. Please enter valid and complete code.
+Continuation prompt functionality not implemented yet.
+Restarting mongo shell...
+</pre></div>
+</div>
+</div>
 </div>
 <p>où <code class="docutils literal notranslate"><span class="pre">&lt;LIEN_VERS_LE_DEPOT_DISTANT&gt;</span></code> est une URL se terminant par <code class="docutils literal notranslate"><span class="pre">.git</span></code>
 (qui vous sera fournie par GitHub).</p>
 <p>Lorsque l’on souhaite envoyer nos modifications locales (celles correspondant
 au dernier commit enregistré sur la branche courante) vers le dépôt distant,
 on exécutera :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push origin &lt;NOM_DE_LA_BRANCHE_CIBLE_SUR_LE_DEPOT_DISTANT&gt;
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">push</span> <span class="nx">origin</span> <span class="o">&lt;</span><span class="nx">NOM_DE_LA_BRANCHE_CIBLE_SUR_LE_DEPOT_DISTANT</span><span class="o">&gt;</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Code incomplete. Please enter valid and complete code.
+Continuation prompt functionality not implemented yet.
+Restarting mongo shell...
+</pre></div>
+</div>
+</div>
 </div>
 <p>Dans la commande ci-dessus, <code class="docutils literal notranslate"><span class="pre">origin</span></code> est un nom permettant d’identifier
 le dépôt distant (il est courant de nommer ce dépôt <code class="docutils literal notranslate"><span class="pre">origin</span></code>) et le deuxième
@@ -487,8 +570,33 @@ pinceaux).</p>
 <p>De même, lorsque des modifications ont été apportées sur le dépôt distant
 et que vous souhaitez les incoporer à votre dépôt local, vous utiliserez la
 commande :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull origin &lt;NOM_DE_LA_BRANCHE_CIBLE_SUR_LE_DEPOT_DISTANT&gt;
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">git</span> <span class="nx">pull</span> <span class="nx">origin</span> <span class="o">&lt;</span><span class="nx">NOM_DE_LA_BRANCHE_CIBLE_SUR_LE_DEPOT_DISTANT</span><span class="o">&gt;</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---
+The server generated these startup warnings when booting: 
+        2021-02-22T08:22:28.654+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+        2021-02-22T08:22:29.453+00:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2021-02-22T08:22:29.453+00:00: /sys/kernel/mm/transparent_hugepage/enabled is &#39;always&#39;. We suggest setting it to &#39;never&#39;
+---
+---
+        Enable MongoDB&#39;s free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="la-gestion-des-conflits">
 <span id="sec-conflits"></span><h3>La gestion des conflits<a class="headerlink" href="#la-gestion-des-conflits" title="Permalink to this headline">¶</a></h3>
@@ -529,9 +637,6 @@ ne contienne qu’un fichier <code class="docutils literal notranslate"><span cl
 </pre></div>
 </div>
 <p>On souhaite se mettre à travailler dessus, et on crée pour cela une branche :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b super_modifs
-</pre></div>
-</div>
 <p>Dans cette branche, on modifie le contenu du fichier comme suit :</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Ceci est le seul et unique fichier de ce dépôt
 </pre></div>
@@ -545,9 +650,6 @@ pour obtenir :</p>
 </div>
 <p>Là encore, on commit notre changement, puis on essaie de merger le contenu de
 la branche <code class="docutils literal notranslate"><span class="pre">super_modifs</span></code> :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git merge super_modifs
-</pre></div>
-</div>
 <p>On obtient le message d’erreur suivant :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Auto</span><span class="o">-</span><span class="n">merging</span> <span class="n">texte</span><span class="o">.</span><span class="n">md</span>
 <span class="n">CONFLICT</span> <span class="p">(</span><span class="n">content</span><span class="p">):</span> <span class="n">Merge</span> <span class="n">conflict</span> <span class="ow">in</span> <span class="n">texte</span><span class="o">.</span><span class="n">md</span>
@@ -572,10 +674,6 @@ pour qu’il contienne :</p>
 </pre></div>
 </div>
 <p>Une fois cela fait, on commit le résultat et le tour est joué :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add texte.md
-git commit -m <span class="s2">&quot;Finalisation merge super_modifs&quot;</span>
-</pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -632,16 +730,16 @@ complet
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "imongo"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "imongo",
             path: "./content"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'imongo'</script>
 
               </div>
               
