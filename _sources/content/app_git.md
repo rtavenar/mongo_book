@@ -1,18 +1,3 @@
----
-jupytext:
-  cell_metadata_filter: -all
-  formats: md:myst
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.12
-    jupytext_version: 1.9.1
-kernelspec:
-  display_name: IMongo
-  language: ''
-  name: imongo
----
-
 (sec:git)=
 # Annexe B : Utilisation de `git`
 
@@ -79,8 +64,6 @@ Cette notion de branches permet notamment d'avoir plusieurs collaborateurs d'un
 même projet qui implémentent leurs modifications dans des branches séparées,
 lesquelles ne seront intégrées au projet que si le résultat est satisfaisant.
 
-+++
-
 ## Le logiciel `git`
 
 Pour l'édition collaborative de ce document, nous allons utiliser `git`,
@@ -107,7 +90,7 @@ Lorsque l'on a modifié (=créé, modifié ou supprimé) un fichier et que l'on
 veut que les changements effectués sur ce fichier soient ajoutés au prochain
 _commit_ que l'on va faire, on écrit :
 
-```{code-cell}
+```bash
 git add <NOM_DU_FICHIER_MODIFIE>
 ```
 
@@ -117,7 +100,7 @@ en compte avant chaque commit.
 Pour créer un _commit_ à partir des fichiers précédemment ajoutés, on
 utilise ensuite la commande :
 
-```{code-cell}
+```bash
 git commit -m "Ajouté une présentation de git dans le document"
 ```
 
@@ -125,7 +108,7 @@ Cela va donc créer un nouveau point d'enregistrement sur **la version locale**
 de notre dépôt.
 On peut s'en rendre compte avec la commande suivante :
 
-```{code-cell}
+```bash
 git log
 ```
 
@@ -181,7 +164,7 @@ Ici, on voit que l'on est en train de travailler sur la branche `main`
 
 Si l'on souhaite "basculer" sur la branche `ajout_intro`, on fera :
 
-```{code-cell}
+```bash
 git checkout ajout_intro
 ```
 
@@ -223,7 +206,7 @@ Typiquement, dans notre cas, ce dépôt distant sera hébergé par GitHub (voir
 La première étape sera donc de récupérer le code hébergé sur le dépôt distant
 pour créer votre dépôt local :
 
-```{code-cell}
+```bash
 git clone <LIEN_VERS_LE_DEPOT_DISTANT> <NOM_DU_REPERTOIRE_A_CREER>
 ```
 
@@ -234,7 +217,7 @@ Lorsque l'on souhaite envoyer nos modifications locales (celles correspondant
 au dernier commit enregistré sur la branche courante) vers le dépôt distant,
 on exécutera :
 
-```{code-cell}
+```bash
 git push origin <NOM_DE_LA_BRANCHE_CIBLE_SUR_LE_DEPOT_DISTANT>
 ```
 
@@ -249,7 +232,7 @@ De même, lorsque des modifications ont été apportées sur le dépôt distant
 et que vous souhaitez les incoporer à votre dépôt local, vous utiliserez la
 commande :
 
-```{code-cell}
+```bash
 git pull origin <NOM_DE_LA_BRANCHE_CIBLE_SUR_LE_DEPOT_DISTANT>
 ```
 
@@ -260,8 +243,6 @@ Lorsque plusieurs personnes travaillent sur un même projet, il se peut qu'elles
 modifient les mêmes fichiers. Tant qu'elles ne travaillent pas sur la même
 partie du fichier, `git` sera capable de faire une synthèse de leurs
 modifications automatiquement, lors des étapes de `merge` et de `pull`.
-
-+++
 
 Si par contre ces personnes
 modifient un même morceau d'un même fichier de deux manières différentes, qui ne
@@ -303,7 +284,7 @@ Ceci est le seul fichier de ce dépôt
 
 On souhaite se mettre à travailler dessus, et on crée pour cela une branche :
 
-```{code-cell}
+```bash
 git checkout -b super_modifs
 ```
 
@@ -326,7 +307,7 @@ Ceci est le seul fichier de ce super dépôt
 Là encore, on commit notre changement, puis on essaie de merger le contenu de
 la branche `super_modifs` :
 
-```{code-cell}
+```bash
 git merge super_modifs
 ```
 
@@ -363,7 +344,7 @@ Ceci est le seul et unique fichier de ce super dépôt
 
 Une fois cela fait, on commit le résultat et le tour est joué :
 
-```{code-cell}
+```bash
 git add texte.md
 git commit -m "Finalisation merge super_modifs"
 ```
