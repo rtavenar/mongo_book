@@ -13,6 +13,9 @@
   - file: content/05_agreg
   - file: content/06_modif
   - file: content/07_scripts
+    sections:
+      - file: content/07_scripts_py
+      - file: content/07_scripts_R
 
 - part: Annexes
   chapters:
