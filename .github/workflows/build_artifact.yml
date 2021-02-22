@@ -39,6 +39,7 @@ jobs:
 
     - name: Setup R-related packages
       run: |
+        sudo apt-get install libsasl2-dev
         pip install rpy2
         R -e 'install.packages("mongolite")'
 
