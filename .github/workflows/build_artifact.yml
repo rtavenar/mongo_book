@@ -31,13 +31,16 @@ jobs:
         python -m pip install -r requirements_imongo.txt
         pip install git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel --user
         python -m pip install jupyter-book
+        python -m pip install pymongo
 
-    # Install R (for the notebook on MongoBD integration in R)
-    - name: Install R
+    # Setup R (for the notebook on MongoBD integration in R)
+    - name: Setup R
+      uses: r-lib/actions/setup-r@v1
+
+    - name: Setup R-related packages
       run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        $CONDA/bin/conda install -c r r-essentials
         pip install rpy2
+        R -e 'install.packages("mongolite")'
 
     # Start a local MongoDB server
     - name: Start MongoDB

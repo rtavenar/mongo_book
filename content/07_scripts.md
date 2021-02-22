@@ -28,11 +28,10 @@ Petit exemple ici d'utilisation de `pymongo` :
 ```{code-cell} python3
 from pymongo import MongoClient
 
-client = MongoClient(host="localhost", port=27017)
+client = MongoClient(host="localhost", port=1234)
 db = client.food
 
-for doc in db.NYfood.find({"name": "/^A/"})[:10]:
-  print(doc)
+db.NYfood.find({"name": "/^A/"})
 ```
 
 
@@ -52,7 +51,10 @@ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/07_s
 %load_ext rpy2.ipython
 ```
 
-<!-- ```{code-cell} python3
+```{code-cell} python3
 %%R
-install.packages("mongolite")
-``` -->
+
+library(mongolite)
+coll <- mongo("NYfood", url = "mongodb://localhost:1234/food")
+print(coll)
+```
