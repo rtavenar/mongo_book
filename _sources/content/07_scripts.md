@@ -28,7 +28,7 @@ Petit exemple ici d'utilisation de `pymongo` :
 ```{code-cell} python3
 from pymongo import MongoClient
 
-client = MongoClient(host="localhost", port=1234)
+client = MongoClient(host="localhost", port=27107)
 db = client.food
 
 db.NYfood.find({"name": "/^A/"})
@@ -55,6 +55,6 @@ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/07_s
 %%R
 
 library(mongolite)
-coll <- mongo("NYfood", url = "mongodb://localhost:1234/food")
+coll <- mongo("NYfood", url = "mongodb://localhost:27107/food")
 print(coll)
 ```
