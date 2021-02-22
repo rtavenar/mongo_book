@@ -32,6 +32,13 @@ jobs:
         pip install git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel --user
         python -m pip install jupyter-book
 
+    # Install R (for the notebook on MongoBD integration in R)
+    - name: Install R
+      run: |
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+        $CONDA/bin/conda install -c r r-essentials
+        pip install rpy2
+
     # Start a local MongoDB server
     - name: Start MongoDB
       uses: supercharge/mongodb-github-action@1.3.0
