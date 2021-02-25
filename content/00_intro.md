@@ -34,5 +34,3 @@ est possible de faire, et faire le lien avec
 [la page source correspondante sur github](https://raw.githubusercontent.com/rtavenar/mongo_book/main/content/app_exemple.md) ;
 * ne surtout pas hésiter à poser des questions s'il y a des choses que vous
 n'arrivez pas à faire.
-
-Test Arthur ####
