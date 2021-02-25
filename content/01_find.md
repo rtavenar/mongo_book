@@ -15,7 +15,7 @@ kernelspec:
 
 # Premières requêtes
 
-* Auteurs/trices : **TODO**
+* Auteurs/trices : **Faisal JAYOUSI, Paul LANCELIN, Yolan PERONNET**
 
 Ce chapitre traite des points suivants :
 * Syntaxe de requêtes simples (syntaxe de `find`, opérateurs de comparaison, `distinct`, `count`, `sort`, `limit`)
