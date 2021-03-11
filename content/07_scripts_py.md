@@ -16,7 +16,7 @@ kernelspec:
 (sec:pymongo)=
 # Requêtes depuis Python : `pymongo`
 
-* Auteurs/trices : Pierre Cotais, Tom Houée, Florian Guillaume
+* Auteurs/trices : Pierre Cottais, Tom Houée, Florian Guillaume
 
 Comment faire pour effectuer les requêtes présentes dans les chapitres 1 à 6 avec `pymongo` ?
 
