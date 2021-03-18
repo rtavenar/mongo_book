@@ -15,7 +15,7 @@ kernelspec:
 
 # Les requêtes de modification
 
-* Auteurs/trices : **TODO**
+* Auteurs/trices : Rémi Leduc, Léo Rouger, Clément Caillard
 
 Ce chapitre traite des différentes requêtes de modification (insertion, modification, suppression)
 
