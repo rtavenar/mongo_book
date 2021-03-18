@@ -26,7 +26,7 @@ Cette section traite de :
 
 ## Successions d'étapes d'agrégation
 
-* Auteurs/trices : **TODO**
+* Auteurs/trices : Marine BINARD, Arthur CONAS, Yann CAUSEUR
 
 Cette section traite de :
 * successions d'étapes d'agrégation + unwind + project + sort + limit
