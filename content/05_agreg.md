@@ -17,7 +17,7 @@ kernelspec:
 
 ## Regroupements
 
-* Auteurs/trices : **TODO**
+* Auteurs/trices : Marine BINARD, Arthur CONAS, Yann CAUSEUR
 
 Cette section traite de :
   * somme, count, max, min, avec ou sans groupe
