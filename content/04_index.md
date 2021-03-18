@@ -15,7 +15,7 @@ kernelspec:
 
 # Les index
 
-* Auteurs/trices : **TODO**
+* Auteurs/trices : Adrien VIGUE, Etienne BARON, Camille MONOT
 
 Ce chapitre traite de :
 * Index + requêtes textuelles + requêtes géographiques
