@@ -31,7 +31,7 @@ On met en place des index à chaque fois qu'on s'attend à avoir beaucoup de req
 Par exemple, on souhaite récuperer les notes d'un étudiant à l'aide de son numéro étudiant. Il faudra alors mettre un index sur la clé "numéro étudiant" afin des réaliser des requetes efficaces pour retrouver toutes les informations de l'étudiant en fonction de son numéro.
 
 
-⚠️ **Attention :** On ne peut pas tout le temps utiliser des index. En effet,...
+⚠️ **Attention :** On ne peut pas toujours utiliser des index. En effet,...
 
 ## Syntaxe adaptée
 
