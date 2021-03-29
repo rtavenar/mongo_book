@@ -38,3 +38,6 @@ Par exemple, on souhaite récuperer les notes d'un étudiant à l'aide de son nu
 ```javascript
 db.collec.createIndex({"cle":1})
 ```
+On crée ici un index dans la collection 'collec' de la base de données courante 'db'. On donne ensuite le nom de la clé. Le ":1" signifie que l'index va trier les données dans l'ordre croissant.
+
+**A noter :** Si on avait mis une valeur négative à la place du 1, les données auraient été triées dans l'ordre décroissant. Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
