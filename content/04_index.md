@@ -35,4 +35,6 @@ Par exemple, on souhaite récuperer les notes d'un étudiant à l'aide de son nu
 
 ## Syntaxe adaptée
 
-Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/04_index.md`.
+```javascript
+db.collec.createIndex({"cle":1})
+```
