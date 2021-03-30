@@ -30,8 +30,10 @@ Les index prennent en charge l'exécution efficace des requêtes dans MongoDB. S
 On met en place des index à chaque fois qu'on s'attend à avoir beaucoup de requêtes sur une clé (resp. un ensemble de clés). 
 Par exemple, on souhaite récuperer les notes d'un étudiant à l'aide de son numéro étudiant. Il faudra alors mettre un index sur la clé "numéro étudiant" afin des réaliser des requetes efficaces pour retrouver toutes les informations de l'étudiant en fonction de son numéro.
 
+```{admonition} 
+⚠️ Attention : On ne peut pas toujours utiliser des index. En effet,...
+```
 ⚠️ __Attention :__ On ne peut pas toujours utiliser des index. En effet,...
-
 
 ## Syntaxe adaptée
 
@@ -40,4 +42,9 @@ db.collec.createIndex({"cle":1})
 ```
 On crée ici un index dans la collection 'collec' de la base de données courante 'db'. On donne ensuite le nom de la clé. Le ":1" signifie que l'index va trier les données dans l'ordre croissant.
 
-**A noter :** Si on avait mis une valeur négative à la place du 1, les données auraient été triées dans l'ordre décroissant. Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
+```{admonition} 
+✍ A noter : Si on avait mis une valeur négative à la place du 1, les données auraient été triées dans l'ordre décroissant. 
+Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
+```
+
+✍ **A noter :** Si on avait mis une valeur négative à la place du 1, les données auraient été triées dans l'ordre décroissant. Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
