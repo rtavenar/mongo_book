@@ -37,7 +37,7 @@ Par exemple, on souhaite récupérer les notes d'un étudiant à l'aide de son n
 chaque fois que vous rajoutez de nouvelles données, vous devez redéfinir vos index. Il n'est donc pas judicieux d'utiliser des 
 index sur une base où vous vous attendez à devoir faire des mises à jour régulières.
 ```
-
+(sec:exec)=
 ## Syntaxe adaptée
 
 * Création d'un index
@@ -48,7 +48,7 @@ db.collec.createIndex({"cle":1})
 On crée ici un index dans la collection 'collec' de la base de données courante 'db'. On donne ensuite le nom du champs sur lequel on va ensuite créer la clé. Le ":1" signifie que l'index va trier les données dans l'ordre croissant.
 
 Exemple :
-(sec:exec)=
+
 ```{code-cell}
 use food
 ```
