@@ -33,9 +33,8 @@ On met en place des index à chaque fois qu'on s'attend à avoir beaucoup de req
 Par exemple, on souhaite récupérer les notes d'un étudiant à l'aide de son numéro étudiant. Il faudra alors mettre un index sur la clé "numéro étudiant" afin des réaliser des requetes efficaces pour retrouver toutes les informations de l'étudiant en fonction de son numéro.
 
 ```{admonition} 
-⚠️ Attention : On ne peut pas toujours utiliser des index. 
-En effet, les index rendent la mise à jour de la base fastidieuse : à chaque fois que vous rajoutez de nouvelles données, 
-vous devez redéfinir vos index. Il n'est donc pas judicieux d'utiliser des index sur une base où vous vous attendez à devoir 
+⚠️ Attention : On ne peut pas toujours utiliser des index. En effet, les index rendent la mise à jour de la base fastidieuse : à chaque fois que vous rajoutez 
+de nouvelles données, vous devez redéfinir vos index. Il n'est donc pas judicieux d'utiliser des index sur une base où vous vous attendez à devoir 
 faire des mises à jour régulières.
 ```
 
