@@ -51,13 +51,10 @@ On crée ici un index dans la collection 'collec' de la base de données courant
 _Exemple :_
 
 ```{code-cell}
-
 use food
 ```
 
 ```{code-cell}
-:tags: [output_scroll]
-
 db.NYfood.createIndex({"borough" : 1})
 ```
 
@@ -69,7 +66,17 @@ Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
 ```
 * Récupération d'index
 
-parler de getIndexes + exemple 
+Lorsque l'on prend en main une nouvelle base mongoDB, il est judicieux de se renseigner sur les index déja crés, afin de construire les requêtes les plus optimisées possible. Pour cela, on utilise getIndexes :
+
+```javascript
+db.collec.getIndexes()
+```
+
+La syntaxe est très simple et limpide, et donc si l'on applique cette dernière à notre exemple :
+
+```{code-cell}
+db.NYfood.getIndexes()
+```
 
 * Opérateurs bénéficiant de l’index
 
