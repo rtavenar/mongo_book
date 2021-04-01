@@ -66,6 +66,9 @@ db.NYfood.createIndex({"borough" : 1})
 Si on avait mis une valeur négative à la place du 1, les données auraient été triées dans l'ordre décroissant. 
 Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
 ```
+* Récupération d'index
+
+parler de getIndexes
 * Opérateurs bénéficiant de l’index
 
 ## Index composés
