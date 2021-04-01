@@ -50,16 +50,10 @@ On crée ici un index dans la collection 'collec' de la base de données courant
 
 Exemple :
 
-````{tabbed} MongoDB
-```javascript
-use food 
-
-```
-```javascript
+```{code-cell}
+use food
 db.NYfood.createIndex({"borough" : 1})
-
 ```
-````
 
 ```{admonition} 
 ✍ À noter : Si on avait mis une valeur négative à la place du 1, les données auraient été triées dans l'ordre décroissant. 
