@@ -73,3 +73,4 @@ Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
 ## Index textuels
 
 ## Index géo-spatiaux
+fbfg
