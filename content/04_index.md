@@ -73,4 +73,10 @@ db.NYfood.createIndex({"borough" : 1})
 
 ## Index textuels
 
+* Création d'un index
+* Requêtes avancées
+
 ## Index géo-spatiaux
+
+* Création d'un index
+* Requêtes avancées
