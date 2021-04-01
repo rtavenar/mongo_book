@@ -51,7 +51,16 @@ Exemple :
 
 ```{code-cell}
 :tags: [output_scroll]
+
 use food
+```
+
+```{code-cell}
+:tags: [output_scroll]
+
+db.NYfood.find(
+    {"cuisine": "Chinese", "borough": "Bronx"}
+)
 ```
 
 ```{admonition} 
