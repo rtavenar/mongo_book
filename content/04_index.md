@@ -34,7 +34,8 @@ Par exemple, on souhaite récuperer les notes d'un étudiant à l'aide de son nu
 
 ```{admonition} 
 ⚠️ Attention : On ne peut pas toujours utiliser des index. 
-En effet, les index rendent la mise à jour de la base fastidieuse : à chaque fois que vous rajoutez de nouvelles données, vous devez redéfinir vos index.
+En effet, les index rendent la mise à jour de la base fastidieuse : à chaque fois que vous rajoutez de nouvelles données, 
+vous devez redéfinir vos index.
 Il n'est donc pas judicieux d'utiliser des index sur une base où vous vous attendez à devoir faire des mises à jour régulières.
 ```
 ⚠️ __Attention :__ On ne peut pas toujours utiliser des index. En effet,...
