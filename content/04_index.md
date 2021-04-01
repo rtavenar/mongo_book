@@ -37,7 +37,7 @@ Par exemple, on souhaite récupérer les notes d'un étudiant à l'aide de son n
 chaque fois que vous rajoutez de nouvelles données, vous devez redéfinir vos index. Il n'est donc pas judicieux d'utiliser des 
 index sur une base où vous vous attendez à devoir faire des mises à jour régulières.
 ```
-(sec:exec)=
+
 ## Syntaxe adaptée
 
 * Création d'un index
@@ -50,6 +50,7 @@ On crée ici un index dans la collection 'collec' de la base de données courant
 Exemple :
 
 ```{code-cell}
+:tags: [output_scroll]
 use food
 ```
 
