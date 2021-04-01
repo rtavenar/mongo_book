@@ -33,9 +33,9 @@ On met en place des index à chaque fois qu'on s'attend à avoir beaucoup de req
 Par exemple, on souhaite récupérer les notes d'un étudiant à l'aide de son numéro étudiant. Il faudra alors mettre un index sur la clé "numéro étudiant" afin des réaliser des requetes efficaces pour retrouver toutes les informations de l'étudiant en fonction de son numéro.
 
 ```{admonition} 
-⚠️ Attention : On ne peut pas toujours utiliser des index. En effet, les index rendent la mise à jour de la base fastidieuse : à chaque fois que vous rajoutez 
-de nouvelles données, vous devez redéfinir vos index. Il n'est donc pas judicieux d'utiliser des index sur une base où vous vous attendez à devoir 
-faire des mises à jour régulières.
+⚠️ Attention : On ne peut pas toujours utiliser des index. En effet, les index rendent la mise à jour de la base fastidieuse : à 
+chaque fois que vous rajoutez de nouvelles données, vous devez redéfinir vos index. Il n'est donc pas judicieux d'utiliser des 
+index sur une base où vous vous attendez à devoir faire des mises à jour régulières.
 ```
 
 ## Syntaxe adaptée
@@ -46,7 +46,7 @@ faire des mises à jour régulières.
 db.collec.createIndex({"cle":1})
 ```
 On crée ici un index dans la collection 'collec' de la base de données courante 'db'. On donne ensuite le nom du champs sur lequel on va ensuite créer la clé. Le ":1" signifie que l'index va trier les données dans l'ordre croissant.
-(sec:exec)=
+
 Exemple :
 
 ```{code-cell}
