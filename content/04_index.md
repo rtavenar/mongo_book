@@ -32,7 +32,7 @@ En bref, les index sont un moyen de trouver rapidement et efficacement du conten
 On met en place des index à chaque fois qu'on s'attend à avoir beaucoup de requêtes sur une clé (resp. un ensemble de clés). 
 Par exemple, on souhaite récupérer les notes d'un étudiant à l'aide de son numéro étudiant. Il faudra alors mettre un index sur la clé "numéro étudiant" afin des réaliser des requetes efficaces pour retrouver toutes les informations de l'étudiant en fonction de son numéro.
 
-```{admonition} ⚠️ Attention
+```{admonition} Attention
 :class: tip
 On ne peut pas toujours utiliser des index. En effet, les index rendent la mise à jour de la base fastidieuse : à chaque fois que vous
 rajoutez de nouvelles données, vous devez redéfinir vos index. Il n'est donc pas judicieux d'utiliser des index sur une base où vous vous
@@ -62,7 +62,7 @@ use food
 db.NYfood.createIndex({"borough" : 1})
 ```
 
-```{admonition} ✍ À noter
+```{admonition} À noter
 Si on avait mis une valeur négative à la place du 1, les données auraient été triées dans l'ordre décroissant. 
 Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
 ```
