@@ -80,6 +80,24 @@ db.NYfood.getIndexes()
 
 * Opérateurs bénéficiant de l’index
 
+Construire une requête mongoDB utilisant des index ne difèrent pas d'une requête n'en utilisant pas, toutefois, certains opérateurs logiques bénéficient tout particlulièrement de la présence d'un ou plusieurs index. Il est donc pertinent de construire des index si vous pensez utilisez ces opérateurs.
+
+_Exemple 1 : Opérateur égal (:, $eq)_
+
+```{code-cell}
+db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"})
+```
+
+On récupère les restaurants proposant de la cuisine chinoise dans le quartier de Brooklyn.
+
+_Exemple 2 : Opérateur infériorité/supériorité ($lt, $lte, $gt, $gte)_
+
+```{code-cell}
+db.users.find({"age": 20,"name": {$gte: "user100000", $lte:"user100000"}})
+```
+
+On récupère les utilisateurs de 20 ans et dont l'id est compris entre 10 000 et 100 000.
+
 ## Index composés
 
 ## Index textuels
