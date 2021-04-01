@@ -52,7 +52,6 @@ Exemple :
 
 ```{code-cell}
 use food
-db.NYfood.createIndex({"borough" : 1})
 ```
 
 ```{admonition} 
