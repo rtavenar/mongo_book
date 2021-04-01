@@ -31,4 +31,30 @@ Cette section traite de :
 Cette section traite de :
 * successions d'étapes d'agrégation + unwind + project + sort + limit
 
+Plan : 
+1/ Succession d'étapes d'agrégation
+-> comment construire ce type de requete
+-> quel ordre ?
+-> Comparaison au SQL
+2/ Unwind
+-> Pourquoi l'utiliser ?
+-> Comment ça fonctionne
+-> Exemple
+3/ Project
+-> Pourquoi l'utiliser ?
+-> Comment ça fonctionne
+-> Exemple
+4/ Sort
+-> Pourquoi l'utiliser ?
+-> Comment ça fonctionne
+-> Exemple
+5/ Limit
+-> Pourquoi l'utiliser ?
+-> Comment ça fonctionne
+-> Exemple
+6/ Match ?
+-> Pourquoi l'utiliser ?
+-> Comment ça fonctionne
+-> Exemple
+
 Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
