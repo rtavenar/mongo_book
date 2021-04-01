@@ -71,6 +71,9 @@ Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
 ## Index composés
 
 ## Index textuels
-
+* Création d'un index
+* Requêtes avancées
 ## Index géo-spatiaux
+* Création d'un index
+* Requêtes avancées
 test nouveau test
