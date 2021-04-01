@@ -47,4 +47,3 @@ On crée ici un index dans la collection 'collec' de la base de données courant
 Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
 ```
 
-✍ **A noter :** Si on avait mis une valeur négative à la place du 1, les données auraient été triées dans l'ordre décroissant. Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
