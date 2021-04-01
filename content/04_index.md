@@ -68,7 +68,8 @@ Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
 ```
 * Récupération d'index
 
-parler de getIndexes
+parler de getIndexes + exemple 
+
 * Opérateurs bénéficiant de l’index
 
 ## Index composés
