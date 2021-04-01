@@ -53,11 +53,11 @@ Exemple :
 ````{tabbed} MongoDB
 ```javascript
 use food 
-)
+
 ```
 ```javascript
 db.NYfood.createIndex({"borough" : 1})
-)
+
 ```
 ````
 
