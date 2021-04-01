@@ -66,7 +66,7 @@ Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
 ```
 * Récupération d'index
 
-Lorsque l'on prend en main une nouvelle base mongoDB, il est judicieux de se renseigner sur les index déja crés, afin de construire les requêtes les plus optimisées possible. Pour cela, on utilise getIndexes :
+Lorsque l'on prend en main une nouvelle base mongoDB, il est judicieux de se renseigner sur les index déja créés, afin de construire les requêtes les plus optimisées possible. Pour cela, on utilise getIndexes :
 
 ```javascript
 db.collec.getIndexes()
