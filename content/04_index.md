@@ -58,9 +58,7 @@ use food
 ```{code-cell}
 :tags: [output_scroll]
 
-db.NYfood.find(
-    {"cuisine": "Chinese", "borough": "Bronx"}
-)
+db.NYfood.createIndex({"borough" : 1})
 ```
 
 ```{admonition} 
