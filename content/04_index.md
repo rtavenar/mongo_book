@@ -34,9 +34,9 @@ Par exemple, on souhaite récupérer les notes d'un étudiant à l'aide de son n
 
 ```{admonition} Attention
 :class: tip
-On ne peut pas toujours utiliser des index. En effet, les index rendent la mise à jour de la base fastidieuse : à chaque fois que vous
-rajoutez de nouvelles données, vous devez redéfinir vos index. Il n'est donc pas judicieux d'utiliser des index sur une base où vous vous
-attendez à devoir faire des mises à jour régulières.
+On ne peut pas toujours utiliser des index. En effet, les index rendent la mise à jour de la base fastidieuse : à 
+chaque fois que vous rajoutez de nouvelles données, vous devez redéfinir vos index. Il n'est donc pas judicieux 
+d'utiliser des index sur une base où vous vous attendez à devoir faire des mises à jour régulières.
 ```
 
 ## Syntaxe adaptée
