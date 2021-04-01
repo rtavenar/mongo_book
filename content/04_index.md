@@ -41,6 +41,8 @@ faire des mises à jour régulières.
 
 ## Syntaxe adaptée
 
+* Création d'un index
+
 ```javascript
 db.collec.createIndex({"cle":1})
 ```
