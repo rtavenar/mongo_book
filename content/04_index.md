@@ -51,7 +51,6 @@ On crée ici un index dans la collection 'collec' de la base de données courant
 _Exemple :_
 
 ```{code-cell}
-:tags: [output_scroll]
 
 use food
 ```
@@ -61,6 +60,8 @@ use food
 
 db.NYfood.createIndex({"borough" : 1})
 ```
+
+Ici on crée un index "quartier" dans la collection NYfood de la base food. Le quartier étant une information importante du restaurant, il est judicieux de créer un index pour toutes les requêtes ultérieures. 
 
 ```{admonition} ✍ À noter
 Si on avait mis une valeur négative à la place du 1, les données auraient été triées dans l'ordre décroissant. 
