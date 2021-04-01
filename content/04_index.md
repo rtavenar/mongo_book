@@ -69,4 +69,8 @@ Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
 ```
 * Opérateurs bénéficiant de l’index
 
+## Index composés
+
 ## Index textuels
+
+## Index géo-spatiaux
