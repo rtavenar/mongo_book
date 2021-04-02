@@ -19,6 +19,12 @@ kernelspec:
 
 Ce chapitre traite des attributs de type liste et des différents types de requêtes que l'on peut vouloir faire sur de tels attributs
 
-Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/02_listes.md`.
+Les exemples pour cette partie concernent les listes de notes des élèves de la collection notes de la base de données etudiants.
 
-Ceci est un test.
+
+Lorsqu'une liste n'existe pas, la condition posée dessus est automatiquement vérifiée.
+
+Sans le $elemmatch, si les conditions sont vérifiées par la liste, c'est l'entièreté de la liste qui est retournée.
+Avec le $elemmatch, on regarde toutes les notes une par une et on décide à chque fois si elle valide nos conditions.
+
+Est-ce qu'on s'intéresse à la création de liste en mode création de variables ?
