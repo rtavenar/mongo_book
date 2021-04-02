@@ -104,13 +104,18 @@ On récupère les utilisateurs de 20 ans et dont l'id est compris entre 10 000 e
 * Création d'un index
 * Requêtes avancées
 ## Index géo-spatiaux
+
+Les index geo-spatiaux ...
 * Création d'un index
 
 ```javascript
 db.coll.createIndex({"att" : "2dsphere"})
 ```
 
-
+```javascript
+CrownHeights= {"type": "Point", "coordinates": [-73.923, 40.676]}
+db.NYfood.find({"address.loc" : {$near: {$geometry: CrownHeights}}})
+```
 
 * Requêtes avancées
 test nouveau test
