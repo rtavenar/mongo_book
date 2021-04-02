@@ -23,3 +23,5 @@ Ce chapitre traite des points suivants :
 Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/01_find.md`.
 
 Manon fait find
+
+Valentin fait les opérateurs
