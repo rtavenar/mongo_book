@@ -111,6 +111,8 @@ Les index geo-spatiaux ...
 ```javascript
 db.coll.createIndex({"att" : "2dsphere"})
 ```
+
+* Requêtes avancées
 ```javascript
 var ref = {"type": "Point", "coordinates": [longitude, latitude]}
 db.nomDeLaCollection.find({"clé": {$near : {$geometry : ref}}})
@@ -138,8 +140,5 @@ eastVillage= {"type" : "Polygon", "coordinates" : [[[-73.9917900, 40.7264100],
 db.NYfood.find({"address.loc": {$within : {$geometry : eastVillage}}})
 ```
 
-* Requêtes avancées
-test nouveau test
 
 
-Adrien Etienne
