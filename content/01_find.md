@@ -54,20 +54,66 @@ db.NYfood.find({"cuisine":"Bakery"})
 ```
 
 ````
- 
- 
- 
- 
- 
 
-## Les opérateurs
+## Opérateurs
 
 Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**
 
-### Les opérateurs de comparaison
+### Opérateurs de comparaison
 
-L'opérateur de comparaison, comme son l'indique, compare deux valeurs 
+L'opérateur de comparaison, comme son l'indique, compare deux valeurs.
 
 
 
-### Les opérateurs logiques
+### Opérateurs logiques
+
+Les opérateurs logiques englobent `and`, `or` et `nor`.
+
+#### Le `and` logique
+
+Pour faire une requête avec un `and` logique en MongoDB, il suffit de séparer par une virgule chaque condition : 
+
+MongoDB
+^^^
+```javascript
+db.t.find(
+    {"a": 1},
+    {"b": 5}
+)
+```
+
+---
+
+Équivalent SQL
+^^^
+```sql
+SELECT *
+FROM t
+WHERE a = 1 and b = 5
+```
+
+#### Le `or` logique
+
+Le `or` logique se construit de la manière suivane : `$or : [{condition 1}, ... , {condition i}]`. VOici un exemple faisant le parralèle entre le langage MongoDB et le langage SQL :
+
+MongoDB
+^^^
+```javascript
+db.t.find(
+    {$or : [
+      {"a": 1},
+      {"b": 5}
+      ]
+    }
+)
+```
+
+---
+
+SQL
+^^^
+```sql
+SELECT *
+FROM t
+WHERE a = 1 or b = 5
+```
