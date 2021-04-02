@@ -20,14 +20,18 @@ kernelspec:
 Ce chapitre traite des points suivants :
 * Syntaxe de requêtes simples (syntaxe de `find`, opérateurs de comparaison, `distinct`, `count`, `sort`, `limit`)
 
-## Syntaxe de find 
+Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/01_find.md`.
 
-## Opérateurs de comparaison
+Manon fait find
 
-## Distinct
+## Les opérateurs
 
-## Count
+Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**
 
-## Sort 
+### Les opérateurs de comparaison
 
-## Limit
+L'opérateur de comparaison, comme son l'indique, compare deux valeurs 
+
+
+
+### Les opérateurs logiques
