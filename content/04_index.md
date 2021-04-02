@@ -105,6 +105,13 @@ On récupère les utilisateurs de 20 ans et dont l'id est compris entre 10 000 e
 * Requêtes avancées
 ## Index géo-spatiaux
 * Création d'un index
+
+```javascript
+db.coll.createIndex({"att" : "2dsphere"})
+```
+
+
+
 * Requêtes avancées
 test nouveau test
 
