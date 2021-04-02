@@ -111,6 +111,10 @@ Les index geo-spatiaux ...
 ```javascript
 db.coll.createIndex({"att" : "2dsphere"})
 ```
+```javascript
+var ref = {"type": "Point", "coordinates": [longitude, latitude]}
+db.nomDeLaCollection.find({"clé": {$near : {$geometry : ref}}})
+```
 
 ```javascript
 CrownHeights= {"type": "Point", "coordinates": [-73.923, 40.676]}
