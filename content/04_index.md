@@ -115,6 +115,7 @@ db.coll.createIndex({"att" : "2dsphere"})
 var ref = {"type": "Point", "coordinates": [longitude, latitude]}
 db.nomDeLaCollection.find({"clé": {$near : {$geometry : ref}}})
 ```
+_Exemple :_
 ```{code-cell}
 var CrownHeights= {"type": "Point", "coordinates": [-73.923, 40.676]}
 db.NYfood.find({"address.loc" : {$near: {$geometry: CrownHeights}}})
@@ -125,7 +126,9 @@ var ref = {"type": "Polygon", "coordinates": [[[long1, lat1],
                                                  [long3, lat3],
                                                  [long4, lat4],
                                                  [long1, lat1]]]}
+db.nomDeLaCollection.find({"clé": {$within : {$geometry : ref}}})                                                 
 ```
+_Exemple :_
 ```{code-cell}
 eastVillage= {"type" : "Polygon", "coordinates" : [[[-73.9917900, 40.7264100],
                                                     [-73.9917900, 40.7321400],
