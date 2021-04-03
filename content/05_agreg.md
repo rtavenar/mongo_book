@@ -100,14 +100,14 @@ Avec cette requête je peux voir le quartier du restaurant, par ailleurs la vari
 -> Exemple
 
 ### Quelques requêtes pour tout comprendre
-`db.NYfood.aggregate([
+```db.NYfood.aggregate([
 
                         {$match: {"borough": "Brooklyn"}},
                         {$unwind: "$grades"},
                         {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
                         {$sort: {nb: -1}},
                         {$limit: 3}
-                      ]) `
+                      ]) ```
 
 Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par étape ici on a :
 
@@ -120,7 +120,7 @@ Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par é
 
 #### Résultat final : Les 3 notes les plus données dans les restaurants du quartier de Brooklyn
 
-` db.NYfood.aggregate([
+``` db.NYfood.aggregate([
 
                         {$project: {taille: {$size: "$grades"}}},
                         {$match :{taille:{$gt:2}}},
@@ -128,7 +128,7 @@ Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par é
                                   nb_min: {$min: "$taille"},
                                   nb_max: {$max: "$taille"}}
                         },         
-                      ])`
+                      ])```
 Dans cette deuxième requête, on montre bien ici qu'il n'y a pas d'ordre pré-défini d'étape, et ici le $match n'est ni au début de la requête, ni à la fin.
 
 Expliquons cette requête (qui n'a pas beaucoup d'intérêt pratique).
