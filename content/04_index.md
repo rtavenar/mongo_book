@@ -110,12 +110,16 @@ En plus d'une meilleure efficacité, cet index va permettre de trouver des élé
 
 * Création d'un index
 
-Pour créer un index géo-spatial il faut lui donner le type "2dsphere"
+Pour créer un index géo-spatial il faut lui donner le type "2dsphere" :
 ```javascript
 db.coll.createIndex({"att" : "2dsphere"})
 ```
 
 * Requêtes avancées
+
+Pour obtenir les éléments les plus proches d'un point on définit d'abord une variable de type "Point" avec ses coordonnées.
+Le mot-clé $near est nécessaire:
+
 ```javascript
 var ref = {"type": "Point", "coordinates": [longitude, latitude]}
 db.nomDeLaCollection.find({"clé": {$near : {$geometry : ref}}})
@@ -125,6 +129,11 @@ _Exemple :_
 var CrownHeights= {"type": "Point", "coordinates": [-73.923, 40.676]}
 db.NYfood.find({"address.loc" : {$near: {$geometry: CrownHeights}}})
 ```
+Si l'on veut trouver les éléments inclus dans un polygone la variable sera de type "Polygon" et aura plusieusrs couples de coordonnées.
+Pour que le polygone soit bien fermé, il faudra veiller à ce que les dernières coordonnées soit égales aux premières.
+
+Le mot-clé $within remplace ici $near :
+
 ```javascript
 var ref = {"type": "Polygon", "coordinates": [[[long1, lat1],
                                                  [long2, lat2],
