@@ -145,7 +145,7 @@ db.nomDeLaCollection.find({"clé": {$within : {$geometry : ref}}})
 ```
 _Exemple :_
 ```{code-cell}
-eastVillage= {"type" : "Polygon", "coordinates" : [[[-73.9917900, 40.7264100],
+var eastVillage= {"type" : "Polygon", "coordinates" : [[[-73.9917900, 40.7264100],
                                                     [-73.9917900, 40.7321400],
                                                     [-73.9829300, 40.7321400],
                                                     [-73.9829300, 40.7264100],
