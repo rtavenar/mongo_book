@@ -106,9 +106,10 @@ On récupère les utilisateurs de 20 ans et dont l'id est compris entre 10 000 e
 ## Index géo-spatiaux
 
 Avec des données géo-spatiales (longitude, latitude), il est possible de créer un index géo-spatial.
-En plus d'une meilleur efficacité, cet index va permettre de trouver des éléments de la base proches d'un point donné ou bien trouver des éléments inclus dans un polygone. 
+En plus d'une meilleure efficacité, cet index va permettre de trouver des éléments proches d'un point donné ou bien trouver des éléments inclus dans un polygone. 
 
 * Création d'un index
+
 Pour créer un index géo-spatial il faut lui donner le type "2dsphere"
 ```javascript
 db.coll.createIndex({"att" : "2dsphere"})
