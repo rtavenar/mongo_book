@@ -142,6 +142,21 @@ db.discours.find({"name" : /-.* /})
 
 
 * Création d'un index textuel
+
+Il existe deux manières de créer un index textuel, sur un attribut précis ou alors sur l'ensemble des attributs :
+
+_Pour un attribut précis, ici "cle" :_
+
+```javascript
+db.coll.createIndex({"cle" : "text"})
+```
+
+_Pour tous les attributs :_
+
+```javascript
+db.nomDeLaCollection.createIndex({"$**" : "text"})
+```
+
 * Requêtes avancées utilisant un index textuel
 
 
