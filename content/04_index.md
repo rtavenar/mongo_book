@@ -100,9 +100,52 @@ On récupère les utilisateurs de 20 ans et dont l'id est compris entre 10 000 e
 
 ## Index composés
 
-## Index textuels
-* Création d'un index
-* Requêtes avancées
+## Requêtes et Index textuels
+
+Lorsque l'on veut interroger notre base de données sur un champ de type "chaîne de caractères", deux méthodes s'offrent à nous : on peut utiliser soit des requêtes régulières, soit un index textuel qui a été créé sur le champ. L'avantage de la première méthode est une très grande précision, et on l'utilisera donc lorsque l'on recherchera du texte très précis, tandis que la seconde méthode utilise la puissance de l'index pour effectuer une recherche de type "moteur de recherche", renvoyant des résultats proches de ce qui a été demandé.
+
+* Requêtes textuelles sans index
+
+La forme la plus basique d'une requête textuelle est la suivante : 
+
+```javascript
+db.nomDeLaCollection.find({"cle": /exemple/})
+```
+
+Ici, "cle" désigne le champ dans lequel on souhaite rechercher et "exemple" la sous-chaîne que l'on recherche. Les // entourant la sous-chaîne sont en réalité une contrainte permettant d'affiner le résultat. Parmi les contraintes disponibles sur les requêtes textuelles, on peut citer :
+
+-> /exemple/ : on ne renvoie que les chaînes contenant la sous-chaîne "exemple".
+
+-> /exemple/i : pareil, mais sans se soucier dans la casse (majuscules/miniscules).
+
+-> /^exemple/ : que les sous-chaînes commençant par exemple.
+
+-> /exemple$/ : que les sous-chaînes finissant par exemple.
+
+-> /ex.mple/ : que les sous-chaînes contenant "ex", suivi d'un caractère quelconque ("." == "e" dans notre exemple), suivit de "mple".
+
+-> /ex.*le/ : que les sous-chaînes contenant "ex", suivi d'une série de caractères quelconque (".*" == "emp" dans notre exemple), suivit de "le".
+
+Une liste de toutes les contraintes existantes est disponible ici : https://en.wikipedia.org/wiki/Regular_expression#POSIX_basic_and_extended
+
+
+_Exemple 1 : Liste des discours pour lesquels l’orateur a un prénom qui commence par la lettre J :
+
+```{code-cell}
+db.discours.find({"name" : /^J/i})
+```
+  
+_Exemple 2 : Liste des discours pour lesquels l’orateur a un prénom composé. :
+
+```{code-cell}
+db.discours.find({"name" : /-.* /})
+```
+
+
+* Création d'un index textuel
+* Requêtes avancées utilisant un index textuel
+
+
 ## Index géo-spatiaux
 
 Avec des données géo-spatiales (longitude, latitude), il est possible de créer un index géo-spatial.
