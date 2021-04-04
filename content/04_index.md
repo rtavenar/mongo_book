@@ -128,8 +128,7 @@ Ici, "cle" désigne le champ dans lequel on souhaite rechercher et "exemple" la 
 
 Une liste de toutes les contraintes existantes est disponible ici : https://en.wikipedia.org/wiki/Regular_expression#POSIX_basic_and_extended.
 
-test 
-
+# test 
 _Exemple 1 : Liste des discours pour lesquels l’orateur a un prénom qui commence par la lettre J :
 
 ```{code-cell}
