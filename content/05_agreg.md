@@ -46,18 +46,41 @@ Il peut donc être intéressant d'éxécuter le code étape par étape pour savo
 Commençons par regarder ce que peut faire chaque étape.
 
 
-2/ Unwind
--> Pourquoi l'utiliser ?
--> Comment ça fonctionne
+2/ Unwind  
+-> Pourquoi l'utiliser ?  
+Il arrive que les documents de certaines collections possèdent pour attribut une liste. Lorsque l'on effectue une requête d'aggrégation il peut être nécéssaire d'agir non pas sur la liste mais sur chaque élement de la liste. Pour cela on utilise la commande **$unwid**. Elle permet pour chaque élément de la liste de dupliquer le document  pour chaque valeur de la liste. 
+-> Comment ça fonctionne  
+**Syntaxe** :
+```
+db.coll.aggregate( 
+  [
+   {$unwid : "$att"}}
+  ]
+)
+```
+En général un $unwid seul a peu d'intérêt, $att est une liste de taille 10 que la collection comporte 1000 individus, la requête d'exemple renvenra un résultat de 10 000 lignes (10 * 1000)
 -> Exemple
-
-3/ Project
--> Pourquoi l'utiliser ?
-Il peut arriver lors d'une requête d'aggrégation de vouloir créer de nouvelles variables par exemple, pour des calculs. La commande **$project** permet donc de créer de nouvelles variables. Néanmoins, il faut faire attention, lorsque l'on crée une nouvelle variable dans une requête d'aggrégation tout les attributs déja existants pour les documents d'une collection ne sont plus mémoriser. Donc, si on veut créer une nouvelle variable tout en gardant les déja existantes il faut le mentionner le **$project**. 
--> Comment ça fonctionne
-**Syntaxe** :  
 ```
 db.NYfood.aggregate( 
+  [
+   {$unwind :"$grades"},
+   {$group: {_id : '$grades.grade', 
+             n: {$sum:1}}
+    },
+]
+)
+
+```
+Voici un exemple concret d'utilisation d'un **$unwid**. Dans la requête on cherche à compter le nombre de A ayant été attribués à l'ensemble des restaurants de la collection, puis le nombre de B, C .... 
+Pour que cette requête fonction le $unwid est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter.  
+
+3/ Project  
+-> Pourquoi l'utiliser ?  
+Il peut arriver lors d'une requête d'aggrégation de vouloir créer de nouvelles variables par exemple, pour des calculs. La commande **$project** permet donc de créer de nouvelles variables. Néanmoins, il faut faire attention, lorsque l'on crée une nouvelle variable dans une requête d'aggrégation tout les attributs déja existants pour les documents d'une collection ne sont plus mémoriser. Donc, si on veut créer une nouvelle variable tout en gardant les déja existantes il faut le mentionner le **$project**. 
+-> Comment ça fonctionne  
+**Syntaxe** :  
+```
+db.coll.aggregate( 
   [
    {$project : {nom_nouv_att1 : val_att1, nom_nouv_att2 : val_att2, ... }}
   ]
@@ -84,7 +107,14 @@ db.NYfood.aggregate(
 )
 ```
 
-Avec cette requête je peux voir le quartier du restaurant, par ailleurs la variable borough a été renomé quartier
+Avec cette requête je peux voir le quartier du restaurant, par ailleurs la variable borough a été renomé quartier. Je peux également conserver cette variable sans la renomer avec cette syntaxe.
+```
+db.NYfood.aggregate( 
+  [
+   {$project: {"n_notes" : {$size : '$grades'}, borough : 1}}
+]
+)
+```
 
 4/ Sort
 -> Pourquoi l'utiliser ?
