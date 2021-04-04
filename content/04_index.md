@@ -128,7 +128,8 @@ Ici, "cle" désigne le champ dans lequel on souhaite rechercher et "exemple" la 
 
 Une liste de toutes les contraintes existantes est disponible ici : https://en.wikipedia.org/wiki/Regular_expression#POSIX_basic_and_extended.
 
-test ses grands morts
+test 
+
 _Exemple 1 : Liste des discours pour lesquels l’orateur a un prénom qui commence par la lettre J :
 
 ```{code-cell}
@@ -168,7 +169,7 @@ Le mot-clé $near est nécessaire:
 var ref = {"type": "Point", "coordinates": [longitude, latitude]}
 db.nomDeLaCollection.find({"clé": {$near : {$geometry : ref}}})
 ```
-_Exemple :_
+_Exemple 1 :_
 ```{code-cell}
 var CrownHeights= {"type": "Point", "coordinates": [-73.923, 40.676]}
 db.NYfood.find({"address.loc" : {$near: {$geometry: CrownHeights}}})
@@ -186,7 +187,7 @@ var ref = {"type": "Polygon", "coordinates": [[[long1, lat1],
                                                  [long1, lat1]]]}
 db.nomDeLaCollection.find({"clé": {$within : {$geometry : ref}}})                                                 
 ```
-_Exemple :_
+_Exemple 2 :_
 ```{code-cell}
 var eastVillage= {"type" : "Polygon", "coordinates" : [[[-73.9917900, 40.7264100],
                                                     [-73.9917900, 40.7321400],
