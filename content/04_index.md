@@ -124,7 +124,7 @@ Nous avons déjà vu un tel exemple, en effet si nous revenons un peu plus haut,
 db.users.find({"age": 20,"name": {$gte: "user100000", $lte:"user100000"}})
 ```
 
-Ici, on utilise bien l'index "age_1_name_1", car en filtrant les résultats en premier par l'age, la deuxième partie de la requête, portant sur le nom, est bien plus efficace car le champ de recherche est réduit grandement par la première partie.
+Ici, on utilise bien l'index "age_1_name_1", car en filtrant les résultats en premier par l'âge, la deuxième partie de la requête, portant sur le nom, est bien plus efficace, car le champ de recherche est réduit grandement par la première partie.
 
 ## Requêtes et Index textuels
 
@@ -157,6 +157,7 @@ Une liste de toutes les contraintes existantes est disponible ici : https://en.w
 _Exemple 1 : Liste des discours pour lesquels l’orateur a un prénom qui commence par la lettre J_
 
 ```{code-cell}
+use elections2007
 db.discours.find({"name" : /^J/i})
 ```
   
@@ -184,6 +185,45 @@ db.nomDeLaCollection.createIndex({"$**" : "text"})
 
 * Requêtes avancées utilisant un index textuel
 
+Pour effectuer un requête de type "moteur de recherche", on utilise la forme suivante :
+
+```javascript
+db.nomDeLaCollection.find({$text : {$search : "ma requête"}})
+```
+
+On remarque plusieurs choses : tout d'abord, il n'est pas nécessaire de préciser le ou les champ sur lequel on veut effectuer la recherche. Ce type de requête n'était possible que sur les champs avec un index textuel, c'est sur ces derniers que le langage va requêter (c'est le sens du "$text"). Ensuite, on remarque la présence de "$search", nécessaire pour ce type de requête.
+
+Par défaut, lorsque l’on effectue une requête contenant plusieurs termes, un OU logique est effectué : les résultats retournés sont ceux qui contiennent au moins l’un des termes. On peut également effectuer une requête impliquant une expression exacte, qui sera encadrée de guillemets échappés par un caractère "\" :
+
+```javascript
+db.nomDeLaCollection.find({$text : {$search : "\"ma requête\""}})
+```
+
+De plus, il est possible d'exclure des termes des résultats en utilisant "-", dans ce cas, un ET logique est effectué. Par exemple, dans la requête suivante, on souhaite les documents contenant "ma requête" et ne contenant pas "exemple" en même temps :
+
+```javascript
+db.nomDeLaCollection.find({$text : {$search : "ma requête -exemple"}})
+```
+
+Enfin, on peut classer les documents par pertinence par rapport à notre requête, en utilisant le score td-idf (plus d'informations disponibles ici : https://fr.wikipedia.org/wiki/TF-IDF) :
+
+```javascript
+db.nomDeLaCollection.find({$text: {$search: "ma requête"}},{"score": {$meta: "textScore"}}).sort({score: {$meta: "textScore"}})
+```
+
+Cette requête renvoie une liste des documents ordonnée par pertinence, si vous souhaitez juste afficher le score de chaque document, il suffit d'enlever ".sort({score: {$meta: "textScore"}})".
+
+_Exemple 1 : Liste des documents comportant le terme "famille" mais pas le terme "politique"._
+
+```{code-cell}
+db.discours.find({$text : {$search : "famille -politique"}})
+```
+
+_Exemple 2 : Liste ordonnée par pertinence des documents par rapport au terme "écologie"_ :
+
+```{code-cell}
+db.discours.find({$text: {$search: "écologie"}},{"name": true, "score": {$meta: "textScore"}}).sort({score: {$meta: "textScore"}})
+```
 
 ## Index géo-spatiaux
 
@@ -209,6 +249,7 @@ db.nomDeLaCollection.find({"clé": {$near : {$geometry : ref}}})
 ```
 _Exemple 1 :_
 ```{code-cell}
+use food
 var CrownHeights= {"type": "Point", "coordinates": [-73.923, 40.676]}
 db.NYfood.find({"address.loc" : {$near: {$geometry: CrownHeights}}})
 ```
