@@ -97,7 +97,7 @@ db.NYfood.aggregate(
 ]
 )
 ```
-Sur l’exemple ci-dessus on viens créer une varibale n_notes qui prend pour valeur la taille de la liste grades (qui contient les différentes attribuées au restaurant), on cherche donc ici à compter le nombre de notes attribué à chaque restaurant. Mais tous les autres attributs du restaurant sont effacés. Par la suite on ne pourra donc retrouver que le nombre de note attribué et non le quartier ou le type de restaurant. 
+Sur l’exemple ci-dessus on vient créer une varibale n_notes qui prend pour valeur la taille de la liste grades (qui contient les différentes attribuées au restaurant), on cherche donc ici à compter le nombre de notes attribué à chaque restaurant. Mais tous les autres attributs du restaurant sont effacés. Par la suite on ne pourra donc retrouver que le nombre de note attribué et non le quartier ou le type de restaurant. 
 Si je veux afficher le quartier en question je dois le préciser tel que :
 ```
 db.NYfood.aggregate( 
@@ -107,7 +107,7 @@ db.NYfood.aggregate(
 )
 ```
 
-Avec cette requête je peux voir le quartier du restaurant, par ailleurs la variable borough a été renomé quartier. Je peux également conserver cette variable sans la renomer avec cette syntaxe.
+Avec cette requête je peux voir le quartier du restaurant, par ailleurs la variable borough a été renommé quartier. Je peux également conserver cette variable sans la renomer avec cette syntaxe.
 ```
 db.NYfood.aggregate( 
   [
@@ -117,13 +117,75 @@ db.NYfood.aggregate(
 ```
 
 4/ Sort
+
 -> Pourquoi l'utiliser ?
+
+Comme dans la plus part des langages de bases de données, MongoDB ne stocke pas les documents dans une collection dans un ordre en particulier. C'est pourquoi l'étape 'sort' (tri en français) va permettre de trier l'ensemble de tous les documents d'entrée afin de les renvoyer dans l'ordre choisi par l'utlisateur. Nous pouvons les trier dans l'ordre croissant, décroissant, chronologique ou bien alphébétique selon le type du champ souhaitant être trié. 
+Il est possible de trier sur plusieurs champs à la fois, mais dans ce cas l'ordre de tri est évalué de gauche à droite. 
+Le '$sort' est finalement l'équivalent du order by en SQL.
+
 -> Comment ça fonctionne
--> Exemple
+
+Voici la syntaxe de base pour l'étape '$sort' :
+```
+db.collection.aggregate(
+	[
+		{ $sort: { <champ1>: <sort order>, <champ2>: <sort order> ... } }
+	]
+)
+```
+
+Le <sort order> peut prendre la valeur : 1 (croissant), -1 (décroissant) ou encore { $meta: "textScore" } (il s'agit d'unn tri de métadonnées textScore calculées dans l'ordre décroissant)
+
+-> Exemples
+
+Attention à bien prendre en compte le fait que lors du tri sur un champ contenant des valeurs en double (ou non unique), les documents contenant ces valeurs peuvent être renvoyés dans n'importe quel ordre.
+```
+db.NYfood.aggregate(
+   [
+     { $sort : { borough : 1} }
+   ]
+)
+```
+En effet, dans l'exemple ci-dessus, le champ quartier n'est pas un champ avec des valeurs uniques. Si un ordre de tri cohérent est souhaité, il est important d'au moins inclure un champ dans votre tri qui contient des valeurs uniques. Généralement, le moyen le plus simple de garantir cela consiste à inclure le champ _id dans la requête de tri.
+```
+db.NYfood.aggregate(
+   [
+     { $sort : { borough : 1, _id: 1 } }
+   ]
+)
+```
+Cette fois ci, la reqête affichera l'ensemble de la collection avec les noms de quartier affichés par ordre alphabétique. Les collections du quartier de "Bronx" seront les premières à être affichées, puis ensuite l'ordre par identifiant sera conservé lorsque le nom de quartier sera le même pour plusieurs collections.
+
+
 5/ Limit
 -> Pourquoi l'utiliser ?
+L'étape "$limit" va simplement permettre de limiter le nombre de documents voulant être affichés par la requête. Il n'y a pas grand intérêt à utiliser le limit tout seul. Généralement, il est utilisé avec l'étape sort vu précédemment.
+
 -> Comment ça fonctionne
+
+Voici la syntaxe de base pour l'étape '$limit' :
+```
+db.collection.aggregate(
+	[
+		{ $limit : 5 } 
+	]
+)
+```
+L'argument qui est pris par le $limit est toujours un entier positif, qui va déterminer le nombre de collections que l'on souhaite afficher.
+
 -> Exemple
+
+Dans cet exemple, on souhaite afficher les 3 quartiers possédant le plus de restaurants.
+```
+db.NYfood.aggregate([
+                        {$group: {_id: "$borough", nb: {$sum: 1}}},
+                        {$sort: {nb: -1}},
+                        {$limit: 3}
+					]) 
+```					  
+On remarque ici que nous ne pouvons pas utiliser l'étape '$limit' seul sans le sort. Nous avons d'abord besoin de trier le nombre de restaurants par ordre décroissant puis enfin préciser que nous souhaitons obtenir seulement les 3 premiers quartiers contenant le plus de restaurants.
+
 6/ Match ?
 -> Pourquoi l'utiliser ?
 -> Comment ça fonctionne
