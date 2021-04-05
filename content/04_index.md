@@ -111,8 +111,8 @@ db.nomDeLaCollection.createIndex({"cle1": 1, "cle2": 1}
 ```{admonition} ⚠️ Attention
 :class: tip
 L'ordre dans lequel vous déclarez vos champs à une importance capitale dans le résultat renvoyé par la requête. 
-Par exemple, l'index composé suivant : db.nomDeLaCollection.createIndex({"cle2": 1, "cle1": 1}, 
-ne correspond pas du tout à l'index vu juste au-dessus. 
+Par exemple, l'index composé suivant : db.nomDeLaCollection.createIndex({"cle2": 1, "cle1": 1}, ne correspond pas du tout
+à l'index vu juste au-dessus. 
 Les résultats renvoyés par une requête utilisant ces deux index seront donc totalement différents.
 ```
 
