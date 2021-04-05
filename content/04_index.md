@@ -116,6 +116,16 @@ Par exemple, l'index composé suivant : db.nomDeLaCollection.createIndex({"cle2"
 Les résultats renvoyés par une requête utilisant ces deux index seront donc totalement différents.
 ```
 
+* Exemple de requête utilisant un index composé
+
+Nous avons déjà vu un tel exemple, en effet si nous revenons un peu plus haut, nous avons déjà donné une requête de ce type :
+
+```javascript
+db.users.find({"age": 20,"name": {$gte: "user100000", $lte:"user100000"}})
+```
+
+Ici, on utilise bien l'index "age_1_name_1", car en filtrant les résultats en premier par l'age, la deuxième partie de la requête, portant sur le nom, est bien plus efficace car le champ de recherche est réduit grandement par la première partie.
+
 ## Requêtes et Index textuels
 
 Lorsque l'on veut interroger notre base de données sur un champ de type "chaîne de caractères", deux méthodes s'offrent à nous : on peut utiliser soit des requêtes régulières, soit un index textuel qui a été créé sur le champ. L'avantage de la première méthode est une très grande précision, et on l'utilisera donc lorsque l'on recherchera du texte très précis, tandis que la seconde méthode utilise la puissance de l'index pour effectuer une recherche de type "moteur de recherche", renvoyant des résultats proches de ce qui a été demandé.
