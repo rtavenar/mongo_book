@@ -73,6 +73,8 @@ Les différents opérateurs logiques en MongoDB sont : `and`, `or` et `nor`. Ces
 
 L'opérateur `and` renvoie les documents qui remplissent l'ensemble des conditions. Pour faire une requête avec un `and` logique en MongoDB, il suffit de séparer par une virgule chaque condition. L'exemple ci-dessous nous montre l'équivalence entre MongoDB et le langage SQL : 
 
+````{panels}
+
 MongoDB
 ^^^
 ```javascript
@@ -90,6 +92,8 @@ SELECT *
 FROM t
 WHERE a = 1 and b = 5
 ```
+
+````
 
 Le résultat de la requête sera les documents validant les deux conditions suivantes : `a` = **1** et `b` = **5**.
 
