@@ -61,30 +61,29 @@ Les opérateurs se séparent en deux grandes parties : les **opérateurs de comp
 
 ### Opérateurs de comparaison
 
-L'opérateur de comparaison, comme son l'indique, compare deux valeurs.
+L'opérateur de comparaison permet de ?????????
 
 
 
 ### Opérateurs logiques
 
-Les opérateurs logiques englobent `and`, `or` et `nor`.
+Les différents opérateurs logiques en MongoDB sont : `and`, `or` et `nor`. Ces opérateurs de tester plusieurs conditions simultanément
 
 #### `and` logique
 
-Pour faire une requête avec un `and` logique en MongoDB, il suffit de séparer par une virgule chaque condition : 
+L'opérateur `and` renvoie les documents qui remplissent l'ensemble des conditions. Pour faire une requête avec un `and` logique en MongoDB, il suffit de séparer par une virgule chaque condition. L'exemple ci-dessous nous montre l'équivalence entre MongoDB et le langage SQL : 
 
 MongoDB
 ^^^
 ```javascript
 db.t.find(
-    {"a": 1},
-    {"b": 5}
+    {"a": 1, "b": 5}
 )
 ```
 
 ---
 
-Équivalent SQL
+SQL
 ^^^
 ```sql
 SELECT *
@@ -92,9 +91,11 @@ FROM t
 WHERE a = 1 and b = 5
 ```
 
+Le résultat de la requête sera les documents validant les deux conditions suivantes : `a` = **1** et `b` = **5**.
+
 #### `or` logique
 
-Le `or` logique se construit de la manière suivane : `$or : [{condition 1}, ... , {condition i}]`. Voici un exemple faisant le parralèle entre le langage MongoDB et le langage SQL :
+L'opérateur `or` permet de renvoyer les documents qui remplissent au moins un des conditions de la requête. Le `or` logique se construit de la manière suivane : `$or : [{condition 1}, ... , {condition i}]`. Voici un exemple faisant le parralèle entre le langage MongoDB et le langage SQL :
 
 MongoDB
 ^^^
@@ -117,10 +118,11 @@ SELECT *
 FROM t
 WHERE a = 1 or b = 5
 ```
+Le résultat de la requête sera les documents validant au moins un des deux conditions suivantes : `a` = **1** ou `b` = **5**.
 
 #### `nor` logique
 
-L'opérateur `nor` permet de renvoyer les documents ne validant pas une liste de condition(s). Voici la syntaxe : 
+L'opérateur `nor` permet de renvoyer les documents ne validant pas une liste de condition(s). Voici sa syntaxe qui est très semblable à celle de `or` : 
 
 MongoDB
 ^^^
