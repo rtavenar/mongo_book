@@ -140,3 +140,4 @@ db.t.find(
 )
 ```
 Le résultat de cette requête sera l'ensemble des documents ne contenant pas la valeur **1** pour la variable `a` et **"blue"** pour la variable `b`.
+
