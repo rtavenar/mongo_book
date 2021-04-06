@@ -30,7 +30,7 @@ En bref, les index sont un moyen de trouver rapidement et efficacement du conten
 ## Quand les utiliser ?
 
 On met en place des index à chaque fois qu'on s'attend à avoir beaucoup de requêtes sur une clé (resp. un ensemble de clés). 
-Par exemple, on souhaite récupérer les notes d'un étudiant à l'aide de son numéro étudiant. Il faudra alors mettre un index sur la clé "numéro étudiant" afin des réaliser des requetes efficaces pour retrouver toutes les informations de l'étudiant en fonction de son numéro.
+Par exemple, on souhaite récupérer les notes d'un étudiant à l'aide de son numéro étudiant. Il faudra alors mettre un index sur la clé "numéro étudiant" afin de réaliser des requêtes efficaces pour retrouver toutes les informations de l'étudiant en fonction de son numéro.
 
 ```{admonition} ⚠️ Attention
 :class: tip
@@ -66,7 +66,7 @@ Le tri n'a cependant pas d'importance sur l'efficacité de la requête.
 ```
 * Récupération d'index
 
-Lorsque l'on prend en main une nouvelle base mongoDB, il est judicieux de se renseigner sur les index déja créés, afin de construire les requêtes les plus optimisées possible. Pour cela, on utilise getIndexes :
+Lorsque l'on prend en main une nouvelle base mongoDB, il est judicieux de se renseigner sur les index déjà créés, afin de construire les requêtes les plus optimisées possible. Pour cela, on utilise getIndexes :
 
 ```javascript
 db.collec.getIndexes()
@@ -80,7 +80,7 @@ db.NYfood.getIndexes()
 
 * Opérateurs bénéficiant de l’index
 
-Construire une requête mongoDB utilisant des index ne difèrent pas d'une requête n'en utilisant pas, toutefois, certains opérateurs logiques bénéficient tout particlulièrement de la présence d'un ou plusieurs index. Il est donc pertinent de construire des index si vous pensez utilisez ces opérateurs.
+Construire une requête mongoDB utilisant des index ne diffèrent pas d'une requête n'en utilisant pas, toutefois, certains opérateurs logiques bénéficient tout particulièrement de la présence d'un ou plusieurs index. Il est donc pertinent de construire des index si vous pensez utiliser ces opérateurs.
 
 _Exemple 1 : Opérateur égal (:, $eq)_
 
@@ -128,7 +128,7 @@ Ici, on utilise bien l'index "age_1_name_1", car en filtrant les résultats en p
 
 ## Requêtes et Index textuels
 
-Lorsque l'on veut interroger notre base de données sur un champ de type "chaîne de caractères", deux méthodes s'offrent à nous : on peut utiliser soit des requêtes régulières, soit un index textuel qui a été créé sur le champ. L'avantage de la première méthode est une très grande précision, et on l'utilisera donc lorsque l'on recherchera du texte très précis, tandis que la seconde méthode utilise la puissance de l'index pour effectuer une recherche de type "moteur de recherche", renvoyant des résultats proches de ce qui a été demandé.
+Lorsque l'on veut interroger notre base de données sur un champ de type "chaîne de caractères", deux méthodes s'offrent à nous : on peut utiliser soit des requêtes régulières, soit un index textuel qui a été créé sur-le-champ. L'avantage de la première méthode est une très grande précision, et on l'utilisera donc lorsque l'on recherchera du texte très précis, tandis que la seconde méthode utilise la puissance de l'index pour effectuer une recherche de type "moteur de recherche", renvoyant des résultats proches de ce qui a été demandé.
 
 * Requêtes textuelles sans index
 
