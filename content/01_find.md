@@ -69,7 +69,7 @@ L'opérateur de comparaison, comme son l'indique, compare deux valeurs.
 
 Les opérateurs logiques englobent `and`, `or` et `nor`.
 
-#### Le `and` logique
+#### `and` logique
 
 Pour faire une requête avec un `and` logique en MongoDB, il suffit de séparer par une virgule chaque condition : 
 
@@ -92,9 +92,9 @@ FROM t
 WHERE a = 1 and b = 5
 ```
 
-#### Le `or` logique
+#### `or` logique
 
-Le `or` logique se construit de la manière suivane : `$or : [{condition 1}, ... , {condition i}]`. VOici un exemple faisant le parralèle entre le langage MongoDB et le langage SQL :
+Le `or` logique se construit de la manière suivane : `$or : [{condition 1}, ... , {condition i}]`. Voici un exemple faisant le parralèle entre le langage MongoDB et le langage SQL :
 
 MongoDB
 ^^^
@@ -117,3 +117,20 @@ SELECT *
 FROM t
 WHERE a = 1 or b = 5
 ```
+
+#### `nor` logique
+
+L'opérateur `nor` permet de renvoyer les documents ne validant pas une liste de condition(s). Voici la syntaxe : 
+
+MongoDB
+^^^
+```javascript
+db.t.find(
+    {$nor : [
+      {"a": 1},
+      {"b": "blue"}
+      ]
+    }
+)
+```
+Le résultat de cette requête sera l'ensemble des documents ne contenant pas la valeur **1** pour la variable `a` et **"blue"** pour la variable `b`.
