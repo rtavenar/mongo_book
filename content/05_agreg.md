@@ -34,48 +34,13 @@ Les successions d'étapes d'agrégations vont permettre d'obtenir des requêtes 
 Contrairement à SQL où l'ordre est pré-défini (SELECT FROM WHERE ORDER BY), ici ce n'est pas le cas, il n'empêche que **l'ordre dans lequel on place
 nos étapes est crucial.**
 
-Nos étapes peuvent toutes être effectuées une à une et indépendamment. En fait, à l'intérieur de notre `db.collection.aggregate([])`, il y aura notre liste d'étapes,
+Nos étapes peuvent toutes être effectuées une à une et indépendamment. En fait, à l'intérieur de notre `db.coll.aggregate([])`, il y aura notre liste d'étapes,
 contenues dans des crochets et séparées par des virgules, qui s'effectueront sur les données que **l'étape d'avant aura rendu.**
 
 Il peut donc être intéressant d'éxécuter le code étape par étape pour savoir sur quelles données on travaille à un moment donné.
 
 Commençons par regarder ce que peut faire chaque étape.
 
-
-### <center> Unwind </center>
-
-***Pourquoi l'utiliser ?*** 
- 
-Il arrive que les documents de certaines collections possèdent pour attribut une liste. Lorsque l'on effectue une requête d'aggrégation il peut être nécéssaire d'agir non pas sur la liste mais sur chaque élement de la liste. Pour cela on utilise la commande `$unwid`. Elle permet pour chaque élément de la liste de dupliquer le document  pour chaque valeur de la liste. 
-
-***Comment ça fonctionne ?***
-
-**Syntaxe** :
-```{code-cell}
-db.collection.aggregate( 
-  [
-   {$unwid : "$att"}}
-  ]
-)
-```
-En général un `$unwid` seul a peu d'intérêt, `$att` est une liste de taille 10 que la collection comporte 1000 individus, la requête d'exemple renvenra un résultat de 10 000 lignes (10 * 1000)
-
-***Exemple***
-```{code-cell}
-db.NYfood.aggregate( 
-  [
-   {$unwind :"$grades"},
-   {$group: {_id : '$grades.grade', 
-             n: {$sum:1}}
-    },
-  ]
-)
-
-```
-Voici un exemple concret d'utilisation d'un `$unwid`. Dans la requête on cherche à compter le nombre de A ayant été attribués à l'ensemble des restaurants de la collection, puis le nombre de B, C .... 
-Pour que cette requête fonction le `$unwid` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter.  
-  
-Il n'existe pas réelement d'équivalent SQL au `$unwid`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
 
 ### <center> Project </center>
 ***Pourquoi l'utiliser ?***  
@@ -85,7 +50,7 @@ Il peut arriver lors d'une requête d'aggrégation de vouloir créer de nouvelle
 
 **Syntaxe** :  
 ```
-db.collection.aggregate( 
+db.coll.aggregate( 
   [
    {$project : {<nom_nouv_att1> : <val_att1>, <nom_nouv_att2> : <val_att2>, ... }}
   ]
@@ -103,7 +68,7 @@ db.NYfood.aggregate(
 )
 ```
 Sur l’exemple ci-dessus on vient créer une varibale n_notes qui prend pour valeur la taille de la liste grades (qui contient les différentes attribuées au restaurant), on cherche donc ici à compter le nombre de notes attribué à chaque restaurant. Mais tous les autres attributs du restaurant sont effacés. Par la suite on ne pourra donc retrouver que le nombre de note attribué et non le quartier ou le type de restaurant. 
-Si on veut afficher le quartier en question je dois le préciser tel que :
+Si on veut afficher le quartier en question on doit le préciser tel que :
 ```{code-cell}
 db.NYfood.aggregate( 
   [
@@ -133,9 +98,9 @@ Le `$sort` est finalement l'équivalent du order by en SQL.
 
 **Syntaxe** :  
 ```
-db.collection.aggregate(
+db.coll.aggregate(
 	[
-		{ $sort: {<champ1>: <sort order>, <champ2>: <sort order> ...}}
+		{$sort: {<champ1>: <sort order>, <champ2>: <sort order> ...}}
 	]
 )
 ```
@@ -172,7 +137,7 @@ L'étape `$limit` va simplement permettre de limiter le nombre de documents voul
 
 **Syntaxe** :  
 ```
-db.collection.aggregate(
+db.coll.aggregate(
 	[
 		{$limit : 5} 
 	]
@@ -220,6 +185,41 @@ Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par é
 * `$sort` : on trie le tableau eu à l'étape d'avant en fonction du nombre d'occurences de notes.
 * `$limit` : dans ce précédent tableau, on ne rend que les trois premiers résultats.
 
+
+### <center> Unwind </center>
+
+***Pourquoi l'utiliser ?*** 
+ 
+Il arrive que les documents de certaines collections possèdent pour attribut une liste. Lorsque l'on effectue une requête d'aggrégation il peut être nécéssaire d'agir non pas sur la liste mais sur chaque élement de la liste. Pour cela on utilise la commande `$unwid`. Elle permet pour chaque élément de la liste de dupliquer le document  pour chaque valeur de la liste. 
+
+***Comment ça fonctionne ?***
+
+**Syntaxe** :
+```{code-cell}
+db.coll.aggregate( 
+  [
+   {$unwid : "$att"}}
+  ]
+)
+```
+En général un `$unwid` seul a peu d'intérêt, `$att` est une liste de taille 10 que la collection comporte 1000 individus, la requête d'exemple renvenra un résultat de 10 000 lignes (10 * 1000)
+
+***Exemple***
+```{code-cell}
+db.NYfood.aggregate( 
+  [
+   {$unwind :"$grades"},
+   {$group: {_id : '$grades.grade', 
+             n: {$sum:1}}
+    },
+  ]
+)
+
+```
+Voici un exemple concret d'utilisation d'un `$unwid`. Dans la requête on cherche à compter le nombre de A ayant été attribués à l'ensemble des restaurants de la collection, puis le nombre de B, C .... 
+Pour que cette requête fonction le `$unwid` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter.  
+  
+Il n'existe pas réelement d'équivalent SQL au `$unwid`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
 
 #### Résultat final : Les 3 notes les plus données dans les restaurants du quartier de Brooklyn
 
