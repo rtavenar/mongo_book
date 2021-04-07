@@ -7,7 +7,7 @@ conn = new Mongo("localhost:" + port);
 db = conn.getDB("food");
 db.NYfood.createIndex({"address.loc": "2dsphere"})
 db.NYfood.createIndex({"$**": "text"})
-# db.NYfood.createIndex({"borough": 1})
+// db.NYfood.createIndex({"borough": 1})
 db.NYfood.createIndex({"cuisine": 1})
 
 db = conn.getDB("elections2007");
