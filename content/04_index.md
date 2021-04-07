@@ -44,7 +44,7 @@ où vous vous attendez à devoir faire des mises à jour régulières.
 * Création d'un index
 
 ```javascript
-db.`nomDeLaCollection`.createIndex({"cle":1})
+db.nomDeLaCollection.createIndex({"cle":1})
 ```
 On crée ici un index dans la collection 'collec' de la base de données courante 'db'. On donne ensuite le nom du champs sur lequel on va ensuite créer la clé. Le ":1" signifie que l'index va trier les données dans l'ordre croissant.
 
