@@ -233,7 +233,6 @@ db.nomDeLaCollection.find({"clé": {$near : {$geometry : ref}}})
 ```
 _Exemple 1 :_
 ```{code-cell}
-use food
 var CrownHeights= {"type": "Point", "coordinates": [-73.923, 40.676]}
 db.NYfood.find({"address.loc" : {$near: {$geometry: CrownHeights}}})
 ```
