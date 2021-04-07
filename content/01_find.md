@@ -63,7 +63,20 @@ Les opérateurs se séparent en deux grandes parties : les **opérateurs de comp
 
 L'opérateur de comparaison permet de ?????????
 
+On retrouve dans le tableau suivant l'ensemble des operaterus de comparaisons
 
+| Opérateur logique 	| Mot clé en MongoDB 	|
+|-	|-	|
+| = 	| $eq 	|
+| < 	| $lt 	|
+| > 	| $gt 	|
+| ≤ 	| $lte 	|
+| ≥ 	| $gte 	|
+| ∈ 	| $in 	|
+| ∉ 	| $nin 	|
+| négation 	| $not 	|
+| clé existante 	| $exists 	|
+| \|.\| 	| $size 	|
 
 ### Opérateurs logiques
 
@@ -101,6 +114,8 @@ Le résultat de la requête sera les documents validant les deux conditions suiv
 
 L'opérateur `or` permet de renvoyer les documents qui remplissent au moins un des conditions de la requête. Le `or` logique se construit de la manière suivane : `$or : [{condition 1}, ... , {condition i}]`. Voici un exemple faisant le parralèle entre le langage MongoDB et le langage SQL :
 
+````{panels}
+
 MongoDB
 ^^^
 ```javascript
@@ -122,11 +137,15 @@ SELECT *
 FROM t
 WHERE a = 1 or b = 5
 ```
+
+````
+
 Le résultat de la requête sera les documents validant au moins un des deux conditions suivantes : `a` = **1** ou `b` = **5**.
 
 #### `nor` logique
 
 L'opérateur `nor` permet de renvoyer les documents ne validant pas une liste de condition(s). Voici sa syntaxe qui est très semblable à celle de `or` : 
+
 
 MongoDB
 ^^^
