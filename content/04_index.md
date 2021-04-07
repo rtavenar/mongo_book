@@ -175,7 +175,7 @@ Enfin, on peut classer les documents par pertinence par rapport à notre requêt
 db.nomDeLaCollection.find({$text: {$search: "ma requête"}},{"score": {$meta: "textScore"}}).sort({score: {$meta: "textScore"}})
 ```
 
-Cette requête renvoie une liste des documents ordonnée par pertinence, si vous souhaitez juste afficher le score de chaque document, il suffit d'enlever ".sort({score: {$meta: "textScore"}})".
+Cette requête renvoie une liste des documents ordonnée par pertinence, si vous souhaitez juste afficher le score de chaque document, il suffit d'enlever `.sort({score: {$meta: "textScore"}})`.
 
 _Exemple 1 : Liste des documents comportant le terme "famille" mais pas le terme "politique"._
 
