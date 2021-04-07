@@ -98,6 +98,26 @@ db.users.find({"age": 20,"name": {$gte: "user100000", $lte:"user100000"}})
 
 On récupère les utilisateurs de 20 ans et dont l'id est compris entre 10 000 et 100 000.
 
+_Exemple 3 : différence d'exécution avec et sans index_
+
+Reprenons la requête vue à l'exemple 1, mais cette fois affichons son temps d'exécution :
+
+```{code-cell}
+db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"}).explain("executionStats")
+```
+
+Rajoutons maintenant l'index "cuisine" (l'index quartier ayant déjà été créé plus haut) :
+
+```{code-cell}
+db.NYfood.createIndex({"cuisine": 1})
+```
+
+On peut maintenant relancer la requête et observer la différence :
+
+```{code-cell}
+db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"}).explain("executionStats")
+```
+
 ## Index composés
 
 Il est également possible de créer des index non pas sur un mais sur plusieurs champs de la base de données, on appelle alors un tel index un "index composé". L'intérêt d'une telle pratique est de lier des champs entre eux et d'optimiser grandement des requêtes portant sur ces derniers. Si l'on s'attend à effectuer de telles requêtes, alors créer un index composé devient judicieux.
