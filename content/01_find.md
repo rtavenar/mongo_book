@@ -160,3 +160,32 @@ db.t.find(
 ```
 Le résultat de cette requête sera l'ensemble des documents ne contenant pas la valeur **1** pour la variable `a` et **"blue"** pour la variable `b`.
 
+## Syntaxe de `distinct`
+
+L'opérateur `distinct` permet ne renvoyer que les valeurs distinctes d'un champ ou d'une liste de conditions. C'est l'équivalent du `DISTINCT` en SQL.
+
+````{panels}
+
+MongoDB
+^^^
+```javascript
+db.nomDeLaCollection.distinct(
+    {"b": true}
+)
+```
+
+---
+
+Notation SQL
+^^^
+```sql
+SELECT DISTINCT(b)
+FROM nomDeLaCollection
+```
+
+````
+
+La requête ci-dessus permet de renvoyer tous les éléments distincts de `b` de la collection choisie. Si elle est bien formulée, on devrait obtenir tous les valeurs possibles du champ une fois au maximum.
+
+## Syntaxe de `count`
+
