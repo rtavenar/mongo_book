@@ -26,7 +26,7 @@ Cette section traite de :
 
 ## <center> Successions d'étapes d'agrégation </center>
 
-* Auteurs/trices : Marine BINARD, Arthur CONAS, Yann CAUSEUR
+* Auteurs/trices : Marine BINARD, Yann CAUSEUR, Arthur CONAS
 
 
 ### Introduction
@@ -68,12 +68,14 @@ db.NYfood.aggregate(
    {$group: {_id : '$grades.grade', 
              n: {$sum:1}}
     },
-]
+  ]
 )
 
 ```
 Voici un exemple concret d'utilisation d'un `$unwid`. Dans la requête on cherche à compter le nombre de A ayant été attribués à l'ensemble des restaurants de la collection, puis le nombre de B, C .... 
 Pour que cette requête fonction le `$unwid` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter.  
+  
+Il n'existe pas réelement d'équivalent SQL au `$unwid`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
 
 ### <center> Project </center>
 ***Pourquoi l'utiliser ?***  
@@ -85,7 +87,7 @@ Il peut arriver lors d'une requête d'aggrégation de vouloir créer de nouvelle
 ```
 db.collection.aggregate( 
   [
-   {$project : {nom_nouv_att1 : val_att1, nom_nouv_att2 : val_att2, ... }}
+   {$project : {<nom_nouv_att1> : <val_att1>, <nom_nouv_att2> : <val_att2>, ... }}
   ]
 )
 ```
@@ -93,7 +95,6 @@ db.collection.aggregate(
 Le fait de vouloir garder un attribut déja existant fonctionne de la même façon que la création, il faut donc renomer la variable existante.   
 
 ***Exemple :***  
-Exemple réalisé sur la collection **NYfood** :  
 ```{code-cell}
 db.NYfood.aggregate( 
   [
@@ -130,11 +131,11 @@ Le `$sort` est finalement l'équivalent du order by en SQL.
 
 ***Comment ça fonctionne ?***
 
-Voici la syntaxe de base pour l'étape `$sort` :
+**Syntaxe** :  
 ```
 db.collection.aggregate(
 	[
-		{ $sort: { <champ1>: <sort order>, <champ2>: <sort order> ... } }
+		{ $sort: {<champ1>: <sort order>, <champ2>: <sort order> ...}}
 	]
 )
 ```
@@ -147,7 +148,7 @@ Attention à bien prendre en compte le fait que lors du tri sur un champ contena
 ```{code-cell}
 db.NYfood.aggregate(
    [
-     { $sort : { borough : 1} }
+     {$sort : {borough : 1}}
    ]
 )
 ```
@@ -155,7 +156,7 @@ En effet, dans l'exemple ci-dessus, le champ quartier n'est pas un champ avec de
 ```{code-cell}
 db.NYfood.aggregate(
    [
-     { $sort : { borough : 1, _id: 1 } }
+     {$sort : {borough : 1, _id : 1}}
    ]
 )
 ```
@@ -169,11 +170,11 @@ L'étape `$limit` va simplement permettre de limiter le nombre de documents voul
 
 ***Comment ça fonctionne ?***
 
-Voici la syntaxe de base pour l'étape `$limit` :
+**Syntaxe** :  
 ```
 db.collection.aggregate(
 	[
-		{ $limit : 5 } 
+		{$limit : 5} 
 	]
 )
 ```
@@ -196,7 +197,8 @@ On remarque ici que nous ne pouvons pas utiliser l'étape `$limit` seul sans le 
 
 ***Comment ça fonctionne ?***
 
-***Exemple :***
+***Exemple :***  
+**Syntaxe** :  
 
 ### Quelques requêtes pour tout comprendre
 ```
@@ -242,9 +244,10 @@ Expliquons cette requête (qui n'a pas beaucoup d'intérêt pratique).
 à un restaurant. (Ayant sélectionné les individus supérieurs à deux, le minimum ne pouvait être que 3 ou plus.
 
 En SQL on aurait :
-
+``` {code-cell}
 SELECT COUNT(*) AS taille, MAX(taille),MIN(taille)
 FROM NYfood
 WHERE taille>=2
+```
 #### Résultat final : Le nombre minimum et maximum de notes attribuées aux restaurants ayant au moins deux notes.
 
