@@ -225,7 +225,7 @@ db.coll.createIndex({"att" : "2dsphere"})
 
 Pour obtenir les éléments les plus proches d'un point on définit d'abord une variable de type "Point" avec ses coordonnées.
 
-Le mot-clé $near est nécessaire:
+Le mot-clé `$near` est nécessaire:
 
 ```javascript
 var ref = {"type": "Point", "coordinates": [longitude, latitude]}
@@ -240,7 +240,7 @@ db.NYfood.find({"address.loc" : {$near: {$geometry: CrownHeights}}})
 Si l'on veut trouver les éléments inclus dans un polygone la variable sera de type "Polygon" et aura plusieurs couples de coordonnées.
 Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordonnées soient égales aux premières.
 
-Le mot-clé $within remplace ici $near :
+Le mot-clé `$within` remplace ici `$near` :
 
 ```javascript
 var ref = {"type": "Polygon", "coordinates": [[[long1, lat1],
