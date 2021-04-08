@@ -17,9 +17,9 @@ kernelspec:
 
 Dans un **système de base de données relationnelles**,les données sont stockées par ligne *(appelées n-uplets)* dans des tables *(également appelées relations)*. Le modèle de données relationnel est un modèle très structuré, comportant des attributs typés et des contraintes d'intégrité *(comme par exemple l'unicité des valeurs de la clé primaire)*. Il est nécessaire de faire des jointures sur plusieurs tables afin de tirer des informations pertinentes de la base.
 
-**Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.** On ne parle plus de tables, ni d'enregistrements mais de collections et de documents. Ce système de gestion de données nous évite de faire des jointures de tables car toutes les informations nécessaires sont stockées dans un même document.
+**Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.** On ne parle plus de tables, ni d'enregistrements mais de collections et de documents. Une collection est un ensemble de documents, c'est l'équivalent d'une table en relationnel. Un document est un enregistrement, une ligne dans le modèle de données relationnel. Ce système de gestion de données nous évite de faire des jointures de tables car toutes les informations nécessaires sont stockées dans un même document.
 
-Tout document appartient à une collection et a un champ appelé "_id" qui identifie le document dans la base de données. Prenons Voici un exemple de document : 
+Tout document appartient à une collection et a un champ appelé "_id" qui identifie le document dans la base de données. Prenons la la base de données étudiants. Voici un exemple de document : 
 
 ```javascript
 {
@@ -33,7 +33,9 @@ Tout document appartient à une collection et a un champ appelé "_id" qui ident
 }
 ```
 
-> Dans ce chapitre, nous étudierons **comment filtrer les données d'une base de données MongoDB avec la fonction find**. Ensuite nous regarderons comment effectuer des requêtes plus complexes, **impliquant des opérateurs de comparaison**. Quelques **méthodes utiles** pour des requêtes en MongoDB sont données à la fin de ce chapitre.
+On a une association de clés et de valeurs, un document est équivalent aux objets JSON. Pour effectuer des requêtes sur une base de données MongoDB, on utilise ces indications clés et valeurs. 
+
+> Dans ce chapitre, nous étudierons **comment interroger les données d'une base de données MongoDB avec la fonction find**. Ensuite nous regarderons comment effectuer des requêtes plus complexes, **impliquant des opérateurs de comparaison**. Quelques **méthodes utiles** pour des requêtes en MongoDB sont données à la fin de ce chapitre.
 
 Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
@@ -99,7 +101,7 @@ Les résultats que obtenus jusqu’à présent sont parfois assez indigestes, no
 
 <dl>
   <dt>Projection</dt>
-  <dd>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais     limiter les informations retournées en précisant les champs souhaités et en passant ce document comme deuxième argument de ma recherche find.</dd>
+  <dd>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais     limiter les informations retournées en passant ce sous-document comme deuxième argument de ma recherche find. C'est l'équivalent du "SELECT name" en SQL. Jusqu'ici, on utilisais le SELECT * (pour all).</dd>
 </dl>
 
 ```javascript
@@ -300,15 +302,15 @@ Le résultat de cette requête sera l'ensemble des documents ne contenant pas la
 
 ### Valeurs distinctes d'un champ : la méthode `distinct`
 
-L'opérateur `distinct` permet ne renvoyer que les valeurs distinctes d'un champ ou d'une liste de conditions. C'est l'équivalent du `DISTINCT` en SQL.
+L'opérateur `distinct` permet de ne renvoyer que les valeurs distinctes d'un champ ou d'une liste de conditions. C'est l'équivalent du `DISTINCT` en SQL.
 
 ````{panels}
 
 MongoDB
 ^^^
 ```javascript
-db.nomDeLaCollection.distinct(
-    {"b": true}
+db.collectionName.distinct(nom,
+    {...}
 )
 ```
 
@@ -317,8 +319,9 @@ db.nomDeLaCollection.distinct(
 Notation SQL
 ^^^
 ```sql
-SELECT DISTINCT(b)
-FROM nomDeLaCollection
+SELECT DISTINCT(champ)
+FROM collectionName
+WHERE ...
 ```
 
 ````
@@ -347,4 +350,10 @@ Bien entendu, les résultats seront différents car on n'a pas le même nombre d
 
 ### Trier la récupération des documents : la méthode `sort`
 
+On peut trier les résultats obtenus
+db.NYFood.find({}).sort("name":-1)
+
 ### Limiter la récupération des documents : la méthode `limit`
+
+On peut limiter le nombre de résultats obtenus
+db.NYfood.find({}).limit(2)
