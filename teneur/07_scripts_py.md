@@ -54,3 +54,8 @@ Remarque : elle est déjà incluse dans la distribution Anaconda.
 ```{code-cell}
 import pymongo 
 ```
+## Connexion serveur, base de données et collections <a id="partie2"></a>
+
+La premiere étape consiste a créer un connexion avec nos base de données sur le serveur de MongoDB. Pour effectuer cette connexion, nous devons utiliser une uri qui est une url. Il  existe différentes uri de connexion mais ici nous devons juste nous connecter à notre serveur local Mongodb. Pour voir les différents moyens de vous connecter a des serveur extérieur ou par exemple MongodbAtlas voir la page: 
+
+**https://docs.mongodb.com/manual/reference/connection-string/.**
