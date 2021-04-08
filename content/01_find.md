@@ -108,12 +108,13 @@ Les résultats que obtenus jusqu’à présent sont parfois assez indigestes, no
 
 <dl>
   <dt>Projection</dt>
-  <dd>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais     limiter les informations retournées en précisant comme deuxième argument de ma recherche find, la clé name avec la valeur true. C'est l'équivalent du "SELECT name" en SQL. Jusqu'ici, on utilisais le SELECT * (pour all).</dd>
+  <dd>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais     limiter les informations retournées en précisant comme deuxième argument de ma recherche find, la clé name avec la valeur true.</dd>
 </dl>
 
 ```javascript
 db.NYfood.find({"cuisine": "Bakery", "borough": "Bronx"}, {"name": true})
 ```
+> C'est l'équivalent du "SELECT name" en SQL. Jusqu'ici, on utilisais le "SELECT *" *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque attribut.
 
 ```{admonition} Embellissez les résultats de la fonction find ! 
 :class: tip
