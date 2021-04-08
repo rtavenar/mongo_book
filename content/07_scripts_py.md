@@ -284,7 +284,7 @@ Les index sont des structures de données spéciales  qui stockent une petite pa
 **Exemple:**
 
 ```{code-cell}
-db = client["food""]
+db = client["food"]
 coll = db["NYfood"]
 
 for k, v  in coll.index_information().items():
