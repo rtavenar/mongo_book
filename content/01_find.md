@@ -175,7 +175,9 @@ Le résultat de cette requête sera l'ensemble des documents ne contenant pas la
 
 ---
 
-## Valeurs distinctes d'un champ : la méthode `distinct`
+## Méthodes utiles pour des requêtes en MongoDB
+
+### Valeurs distinctes d'un champ : la méthode `distinct`
 
 L'opérateur `distinct` permet ne renvoyer que les valeurs distinctes d'un champ ou d'une liste de conditions. C'est l'équivalent du `DISTINCT` en SQL.
 
@@ -202,9 +204,7 @@ FROM nomDeLaCollection
 
 La requête ci-dessus permet de renvoyer tous les éléments distincts de `b` de la collection choisie. Si elle est bien formulée, on devrait obtenir tous les valeurs possibles du champ une fois au maximum.
 
----
-
-## Connaître le nombre de documents dans une collection : la méthode `count`
+### Connaître le nombre de documents dans une collection : la méthode `count`
 
 La fonction `count` permet de compter le nombre d'éléments ou de documents présents dans une collection. On peut l'utiliser directement sur la collection de base ou bien l'utiliser après avoir exécuter une requête.
 
