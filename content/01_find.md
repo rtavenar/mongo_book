@@ -370,5 +370,9 @@ On notera qu'il est impossible d'utiliser cette méthode sans faire une requête
 
 ### Limiter la récupération des documents : la méthode `limit`
 
-On peut limiter le nombre de résultats obtenus
-db.NYfood.find({}).limit(2)
+La méthode `limit` a pour but de limiter le nombre de documents affichés après une requête. On peut l'utiliser pour le nombre de résultats nécessaires, ce qui peut éviter des erreurs de chargement si la base est trop grande.
+
+Si l'on veut limiter l'affichage à deux documents, on écrit :
+```javascript
+db.collectionName.find({}).limit(2)
+```
