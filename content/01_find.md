@@ -77,7 +77,7 @@ db.collectionName.findOne({})
 
 > À noter : Dans les deuxièmes propositions, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au *document masque*. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner. 
 
-Si l’on souhaite fixer des contraintes sur les documents à retourner, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". Prenons ensuite comme exemple la **collection NYfood**. En utilisant la syntaxe précédente, on recherche les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*.     
+Si l’on souhaite fixer des contraintes sur les documents à retourner, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". En utilisant cette syntaxe, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*.     
 
 ````{tabbed} Syntaxe
 
@@ -96,6 +96,13 @@ db.NYfood.find(
 ```
 
 ````
+
+Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un restaurant, nous disposons d'un sous-document contenant à la fois les coordonnées GPS et l'adresse postale. Si l'on souhaite poser une condition sur une clé ou plusieurs clés de sous-document, on utilise alors la syntaxe suivante :
+
+```javascript
+db.NYfood.find({"adress.zipcode": "10462"})
+```
+où adress est le sous-document et zipcode la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est "10462".
 
 Les résultats que obtenus jusqu’à présent sont parfois assez indigestes, notamment parce que toutes les clés sont retournées pour tous les documents. Il est possible de limiter cela en spécifiant les clés à retourner comme second argument de find(). On appelle ça une **projection**.
 
@@ -370,9 +377,5 @@ On notera qu'il est impossible d'utiliser cette méthode sans faire une requête
 
 ### Limiter la récupération des documents : la méthode `limit`
 
-La méthode `limit` a pour but de limiter le nombre de documents affichés après une requête. On peut l'utiliser pour le nombre de résultats nécessaires, ce qui peut éviter des erreurs de chargement si la base est trop grande.
-
-Si l'on veut limiter l'affichage à deux documents, on écrit :
-```javascript
-db.collectionName.find({}).limit(2)
-```
+On peut limiter le nombre de résultats obtenus
+db.NYfood.find({}).limit(2)
