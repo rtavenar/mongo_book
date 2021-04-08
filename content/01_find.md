@@ -31,7 +31,7 @@ Auteurs/trices de cette partie : **Julie FRANCOISE, Manon MAHEO et Valentin PENI
 
 ---
 
-## Interrogation des données : filtrer les données avec la fonction `find`
+## Interrogation et filtrage des données : la fonction `find`
  
  ```{admonition} Remarque
 Toute commande sur la collection restaurants utilise le préfixe : "db.restaurants". Il suffira d’y associer la fonction souhaitée pour avoir un résultat.
