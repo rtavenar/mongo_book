@@ -41,4 +41,16 @@ output:
 4. [Exercices et corrections (si le tempxs)](#partie5)
 5. [Exportation au format JSON](#partie6)
 
+## Présentation et installation <a id="partie1"></a>
 
+PyMongo est une librairie Python contenant des outils pour travailler avec MongoDB et MongodbAtlas. PyMongo est maintenue par les développeurs de MongoDB officiel ce qui en fait la référence dans Python. Pour une documentation détaillée de la librairie, vous pouvez consultez la documentation :
+
+**https://pymongo.readthedocs.io/en/stable/**
+
+Pour importer la librairie nous pouvons le faire avec la commande ```pip install pymongo```, dans une console terminal tel Anaconda Prompt par exemple.
+
+Remarque : elle est déjà incluse dans la distribution Anaconda.
+
+```{code-cell}
+import pymongo 
+```
