@@ -80,13 +80,11 @@ Syntaxe: collectionName.find().pretty()
 
 ## Requêtes plus complexes en utilisant des opérateurs
 
-Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**
+Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**.
 
 ### Opérateurs de comparaison
 
-L'opérateur de comparaison permet de ?????????
-
-On retrouve dans le tableau suivant l'ensemble des operaterus de comparaisons
+L'opérateur de comparaison permet de comparer deux élements entre eux. Le tableau suivant l'ensemble des operateurs de comparaison : 
 
 | Opérateur logique 	| Mot clé en MongoDB 	|
 |-	|-	|
@@ -100,6 +98,81 @@ On retrouve dans le tableau suivant l'ensemble des operaterus de comparaisons
 | négation 	| $not 	|
 | clé existante 	| $exists 	|
 | \|.\| 	| $size 	|
+
+Les opérateurs `$eq`, `$lt`, `$gt`, `$lte`, `$gte` s'ulisent de la même façon en MongoDB. Ces opérateurs comparent la valeur d'une variable à une valeur fixe (nombre, booléen, chaine de caractères...).
+
+````{panels}
+
+MongoDB
+^^^
+```javascript
+db.t.find(
+    {"a": {$gte : 1}
+    }
+)
+```
+
+---
+
+SQL
+^^^
+```sql
+SELECT *
+FROM t
+WHERE a >= 1 
+```
+
+````
+
+Les opérateurs `$in` et `$nin` s'ulisent de la même façon en MongoDB. Ces opérateurs teste l'existence de la valeur d'une variable dans une liste. Sa façon de l'utiliser en MongoDB est la suivante : 
+
+````{panels}
+
+MongoDB
+^^^
+```javascript
+db.t.find(
+    {"a": { $in: ["chaine1", "chaine2"] }
+    }
+)
+```
+
+---
+
+SQL
+^^^
+```sql
+SELECT *
+FROM t
+WHERE a IN ("chaine1", "chaine2")
+```
+
+````
+
+L'opérateur `$exists` vérifie l'existence d'une clé dans un document. Sa syntaxe en MongoDB est : 
+
+MongoDB
+^^^
+```javascript
+db.t.find(
+    {"a": { $exists: true}
+    }
+)
+```
+Cette requête renvera donc les documents ayant le sous-document `a` existant.
+
+Enfin, l'opérateur `$size` permet des récuperer les documents avec des sous-documents d'une certaine taille. Sa syntaxe en MongoDB s'écrit comme suit :
+
+MongoDB
+^^^
+```javascript
+db.t.find(
+    {"a": { $size: 5}
+    }
+)
+```
+
+ Le résultat obtenu est l'ensemble des documents avec le sous-document `a` qui est de taille **5**.
 
 ### Opérateurs logiques
 
