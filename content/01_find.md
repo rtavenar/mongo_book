@@ -74,6 +74,8 @@ Le find() méthode donne une sortie désorganisée. MongoDB fournit pretty() com
 
 Syntaxe: collectionName.find().pretty()
 
++pretty+projection
+
 ---
 
 ## Requêtes plus complexes en utilisant des opérateurs
