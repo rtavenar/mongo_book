@@ -59,3 +59,26 @@ import pymongo
 La premiere étape consiste a créer un connexion avec nos base de données sur le serveur de MongoDB. Pour effectuer cette connexion, nous devons utiliser une uri qui est une url. Il  existe différentes uri de connexion mais ici nous devons juste nous connecter à notre serveur local Mongodb. Pour voir les différents moyens de vous connecter a des serveur extérieur ou par exemple MongodbAtlas voir la page: 
 
 **https://docs.mongodb.com/manual/reference/connection-string/.**
+
+Ainsi notre url de connexion est "mongodb://localhost:27017" avec mongodb:// qui est notre chaine de connexion, notre host: localHost, et notre port: 271017.  
+Pour utilser cette url nous utilisons la fonction MongoClient de pymongo qui nous fait notre connexion.
+
+```{code-cell}
+from pymongo  import MongoClient
+
+client = MongoClient(host="localhost", port=27017)
+
+# ou bien 
+
+db_uri = "mongodb://localhost:27017/"
+client = MongoClient(db_uri)
+
+# affichage un objet
+print(client)
+```
+```{code-cell}
+print(type(client))
+```
+
+Ainsi nous pouvons voir que la fonction créer un objet de class 'pymongo.mongo_client.MongoClient' ou nous retrouvons nos informations comme le host le port etc...
+
