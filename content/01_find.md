@@ -302,14 +302,14 @@ Le résultat de cette requête sera l'ensemble des documents ne contenant pas la
 
 ### Valeurs distinctes d'un champ : la méthode `distinct`
 
-L'opérateur `distinct` permet de ne renvoyer que les valeurs distinctes d'un champ ou d'une liste de conditions. C'est l'équivalent du `DISTINCT` en SQL.
+La méthode `distinct` permet de ne renvoyer que les valeurs distinctes d'un champ ou d'une liste de conditions. C'est l'équivalent du `DISTINCT` en SQL.
 
 ````{panels}
 
 MongoDB
 ^^^
 ```javascript
-db.collectionName.distinct(nom,
+db.collectionName.distinct(champ,
     {...}
 )
 ```
@@ -326,23 +326,23 @@ WHERE ...
 
 ````
 
-La requête ci-dessus permet de renvoyer tous les éléments distincts de `b` de la collection choisie. Si elle est bien formulée, on devrait obtenir tous les valeurs possibles du champ une fois au maximum.
+La requête ci-dessus permet de renvoyer tous les éléments distincts de `champ` de la collection choisie. Si elle est bien formulée, on devrait obtenir tous les valeurs possibles du champ une fois au maximum.
 
-### Connaître le nombre de documents dans une collection : la méthode `count`
+### Compter le nombre d'éléments : la méthode `count`
 
-La fonction `count` permet de compter le nombre d'éléments ou de documents présents dans une collection. On peut l'utiliser directement sur la collection de base ou bien l'utiliser après avoir exécuter une requête.
+La méthode `count` permet de compter le nombre d'éléments ou de documents présents dans une collection. On peut l'utiliser directement sur la collection de base ou bien l'utiliser après avoir exécuter une requête.
 
 ````{tabbed} Sur une collection sans requête
 
 ```javascript
-db.nomDeLaCollection.count()
+db.collectionName.count()
 ```
 ````
 
 ````{tabbed} Sur une collection après requête
 
 ```javascript
-db.nomDeLaCollection.find({"a": 1}).count()
+db.collectionName.find({"a": 1}).count()
 ```
 ````
 
@@ -350,8 +350,21 @@ Bien entendu, les résultats seront différents car on n'a pas le même nombre d
 
 ### Trier la récupération des documents : la méthode `sort`
 
-On peut trier les résultats obtenus
-db.NYFood.find({}).sort("name":-1)
+La méthode `sort` sert à trier, après avoir effectuer une requête, les documents ou les éléments de la base de données à partir d'un des champs. Pour choisir l'ordre, il suffit de mettre `1` pour trier dans un ordre croissant et `-1` pour trier dans un ordre décroissant.
+
+Voici comme ça se présente pour un tri par ordre croissant.
+```javascript
+db.collectionName.find().sort(
+  {"champ" : 1}
+)
+```
+
+Il est également possible de faire un tri sur plusieurs champs. On peut aussi mettre différents ordres, croissant ou déccroissant.
+```javascript
+db.collectionName.find().sort(
+  {"champ1" : 1, "champ2" : -1}
+)
+```
 
 ### Limiter la récupération des documents : la méthode `limit`
 
