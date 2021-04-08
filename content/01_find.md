@@ -324,6 +324,6 @@ db.nomDeLaCollection.find({"a": 1}).count()
 
 Bien entendu, les résultats seront différents car on n'a pas le même nombre de documents ou d'éléments avant et après une requête.
 
+### Trier la récupération des documents : la méthode `sort`
 
-
-+ SORT, LIMIT
+### Limiter la récupération des documents : la méthode `limit`
