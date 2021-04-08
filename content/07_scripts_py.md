@@ -298,15 +298,8 @@ db.NYfood.index_information()
 ```
 
 ```{code-cell}
-db.NYfood.drop_index("borough")
-```
-
-```{code-cell}
-db.NYfood.index_information() 
-```
-
-```{code-cell}
-db.NYfood.create_index("borough")
+# db.NYfood.drop_index("borough_1")
+# db.NYfood.create_index("borough_1")
 ```
 
 ### Les requêtes d'agrégation <a id="partie33"></a>
