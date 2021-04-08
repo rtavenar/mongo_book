@@ -41,23 +41,34 @@ Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
 ## Requêtes d'interrogation et de filtrage des données : la fonction `find`
 
-Pour interroger et filtrer les données, on utilise la fonction find. find()peut être utilisée pour récupérer tous les documents stockés dans une collection.
+Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction find.
  
  ```{admonition} Remarque
-Toute commande sur la collection restaurants utilise le préfixe : "db.restaurants". 
-Il suffira d’y associer la fonction souhaitée pour avoir un résultat.
+Toute commande sur une collection utilise le préfixe db : "db.collectionName". Il suffit d’y associer la fonction souhaitée pour avoir un résultat. 
+En l'occurence, ici on utilise la synthaxe suivante : db.collectionName.find() ou db.collectionName.find({}) pour récupérer tous les documents d'une base.
 ```
 
- Il existe en mongoDB deux types de requêtes simples, retournant respectivement toutes les occurences d'une collection ou la premiere 
- 
- tous les élements 
- db.NYfood.find() 
- ne retourne que le premier élément de la liste de résultats
- db.NYfood.findOne()
-Pour récupérer un seul document, MongoDB fournit le findOne() méthode. Il donne une sortie formatée.
-Syntaxe: collectionName.findOne()
+Il existe en mongoDB deux types de requêtes simples, retournant respectivement **toutes les occurences d'une collection** ou **seulement la première**. 
 
-lorsqu'on ajoute un {} vide entre parenthèses, pas de contrainte.
+````{panels}
+
+Retourner toutes les occurences
+^^^
+```javascript
+ db.NYfood.find() ou  db.NYfood.find({}) 
+```
+
+---
+
+Retourner uniquement la première occurence
+^^^
+```sql
+db.NYfood.findOne() ou db.NYfood.findOne({})
+```
+
+````
+
+Lorsqu'on ajoute un {} vide entre parenthèses, pas de contrainte.
 
 mais on peut aussi utiliser un document masque, si l'on souhaite fixer des contraintes sur les documents à retourner, pour cela
 il suffit de passer en argument d'une de ces fonctions un document masque contentant les valeurs souhaitées.
@@ -80,18 +91,17 @@ db.NYfood.find({"cuisine":"Bakery"})
 
 ````
 
-projection!!
+Projection
 
+La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement au titre du film, à son année de sortie et aux noms des acteurs, je vais limiter les informations retournées en précisant les champs souhaités dans un document JSON (toujours ce fameux JSON). Et, également passer ce document comme deuxième argument de ma recherche find.
 
-
-```{admonition} Embellissez la sortie de la fonction find ! 
+```{admonition} Embellissez les résultats de la fonction find ! 
 :class: tip
 
-Les résultats de la fonction find() peuvent apparaître désorganisés. MongoDB fournit pretty() qui affiche les résultats sous une forme plus lisible.
-La synthaxe est la suivante : collectionName.find().pretty().
+Les résultats de la fonction find() peuvent apparaître désorganisés. MongoDB fournit pretty() qui affiche les résultats sous une forme plus lisible. La synthaxe est la suivante : collectionName.find().pretty() 😉
 ```
 
-Pour plus de renseignements sur la fonction find(), consultez la documentation MongoDB [disponible ici](https://docs.mongodb.com/manual/reference/method/db.collection.find/).
+Pour plus de renseignements sur la **fonction find()**, consultez la documentation MongoDB [disponible ici](https://docs.mongodb.com/manual/reference/method/db.collection.find/).
 
 ---
 
