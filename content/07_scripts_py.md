@@ -234,7 +234,6 @@ from datetime import datetime
 date = datetime.strptime("2015-01-20", "%Y-%m-%d")
 
 db.NYfood.find({"grades.date": {"$gte": date}})
-
 ```
 
 
@@ -247,7 +246,6 @@ de sexe féminin ; dont le prénom commence par la lettre "M".
 Vue le nombre de conditions, nous décidons d'utiliser notre astuce pour rédiger cette requete.
 
 ```{code-cell}
-
 db = client["etudiants"]
 coll = db["notes"]
 
@@ -257,18 +255,16 @@ dico_cond2 = {}
 dico_cond1["sexe"] = "F"
 dico_cond2["nom"] = {"$gte" : "M", "$lt": "N"}
 
-l = [dico1,dico2]
+l = [dico_cond1,dico_cond2]
 cursor = coll.find({"$or": l })
-print(cursor[0])
-
+cursor = list(cursor)
 ```
 
 Forme classique: 
 ```{code-cell}
 cursorbis = coll.find({"$or": [{"sexe": "F"},
                        {"nom": {"$gte": "M", "$lt": "N"}}]})
-
-print(cursorbis[0])
+cursorbis = list(cursorbis)
 ```
 
 **Test :**
@@ -297,25 +293,20 @@ coll = db["NYfood"]
 
 for k, v  in coll.index_information().items():
     print("{}, {} \n".format(k, v))
-    
-    
 ```
 
 Ici, nous recupérons l'ensemble des index de la collection NYfood, nous supprimons l'index de la variable borough (quartier du restaurant), et nous le recréons.
 
 ```{code-cell}
 db.NYfood.index_information()
-    
 ```
 
 ```{code-cell}
 db.NYfood.drop_index("borough")
-
 ```
 
 ```{code-cell}
-db.NYfood.index_information()
-    
+db.NYfood.index_information() 
 ```
 
 ```{code-cell}
@@ -419,7 +410,7 @@ Remarque : si la collection NYfood n'existe pas encore dans la base de données.
 
 ## Exercices et corrections <a id="partie4"></a>
 
-1. Trouvez les restaurants qui n'ont recu que des notes égales à B.
+*Trouvez les restaurants qui n'ont recu que des notes égales à B.
 
 ````{tabbed} Python
 
@@ -449,7 +440,8 @@ db.NYfood.find({$nor: [{"grades.grade": {$exists: false}},
 ```
 
 ````
-2. On vous demande de conserver les quartiers ayant moins de 1000 restaurants.
+
+*On vous demande de conserver les quartiers ayant moins de 1000 restaurants.
 ````{tabbed} Python
 ```python
 dico_match = {"$match": {"borough": {"$ne": "Missing"}}}
@@ -480,7 +472,7 @@ nb_restos: {$sum:1}}},
 ````
 
 
-3. Trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
+*Trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
 ````{tabbed} Python
 ```python
 db.NYfood.find({"name": "/Pizza/"})
@@ -511,12 +503,9 @@ for elt in cursor:
     for grade in elt["grades"]:
         grade["date"] = grade["date"].strftime("%Y-%d-%m")
         
-
 dico = {"Bakery" : cursor}
-
 
 with open("Bakery", 'w', encoding='utf-8') as jsonFile:
     json.dump(dico, jsonFile, indent=4)
-
 ```
 
