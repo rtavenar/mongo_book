@@ -186,8 +186,9 @@ Ainsi, vue que notre réponse est un dictionnaire et que nous connaissons la str
 Ainsi, nous recupérons ci-dessous la localisation et les coordonées du premier individu issue de notre requette:
 
 ```{code-cell}
+cursor = db.NYfood.find({"cuisine": "Bakery"})
 cursor=list(cursor)
-print(cursor[0]["loc"]["coordinates"])
+print(cursor[0]["address"]["loc"]["coordinates"])
 ```
 
 De plus, pour utiliser certaine methode comme sort(), nous devons le mettre sous cette forme : 
@@ -207,7 +208,7 @@ Nous ne pouvons pas utiliser ces methodes a l'objet cursor car ces methodes vont
 
 **Exemples :**
 
-```{}
+```python
 db.NYfood.find({"cuisine": "Bakery"}).limit(2) # Affiche les deux premiers résultats
 db.NYfood.find({"cuisine": "Bakery"}).sort("name", -1)) # Trie les résultats par ordre décroissant par rapport à la variable name
 
@@ -383,7 +384,7 @@ Contrairement aux requêtes d'interrogation, les requêtes de modifications peuv
 |  replace_one() 	|   Remplacement d'un document	|
 
 
-```{}
+```{code-cell}
 db.NYfood.insert_one(
   {
 	"_id" : ObjectId("nouvel_id_resto"),
