@@ -189,3 +189,18 @@ La requête ci-dessus permet de renvoyer tous les éléments distincts de `b` de
 
 ## Syntaxe de `count`
 
+La fonction `count` permet de compter le nombre d'éléments ou de documents présents dans une collection. On peut l'utiliser directement sur la collection de base ou bien l'utiliser après avoir exécuter une requête.
+
+````{tabbed} Sur une collection sans requête
+```javascript
+db.nomDeLaCollection.count()
+```
+````
+
+````{tabbed} Sur une collection après requête
+```javascript
+db.nomDeLaCollection.find({"a": 1}).count()
+```
+````
+
+Bien entendu, les résultats seront différents car on n'a pas le même nombre de documents ou d'éléments avant et après une requête.
