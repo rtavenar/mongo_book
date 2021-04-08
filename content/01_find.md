@@ -28,22 +28,28 @@ Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 ---
 
 ## Requêtes d'interrogation et de filtrage des données : la fonction `find`
+
+Pour interroger et filtrer les données, on utilise la fonction find. find()peut être utilisée pour récupérer tous les documents stockés dans une collection.
  
  ```{admonition} Remarque
-Toute commande sur la collection restaurants utilise le préfixe : "db.restaurants". Il suffira d’y associer la fonction souhaitée pour avoir un résultat.
+Toute commande sur la collection restaurants utilise le préfixe : "db.restaurants". 
+Il suffira d’y associer la fonction souhaitée pour avoir un résultat.
 ```
- Pour filtrer les données, on utilise la fonction find. 
- 
+
  Il existe en mongoDB deux types de requêtes simples, retournant respectivement toutes les occurences d'une collection ou la premiere 
- tous les élements et aucune contrainte
+ 
+ tous les élements 
  db.NYfood.find() 
  ne retourne que le premier élément de la liste de résultats
  db.NYfood.findOne()
+Pour récupérer un seul document, MongoDB fournit le findOne() méthode. Il donne une sortie formatée.
+Syntaxe: collectionName.findOne()
 
 lorsqu'on ajoute un {} vide entre parenthèses, pas de contrainte.
 
 mais on peut aussi utiliser un document masque, si l'on souhaite fixer des contraintes sur les documents à retourner, pour cela
-il suddifit de passer en argument d'une de ces fonctions un document masque contentant les valeurs souhaitées.
+il suffit de passer en argument d'une de ces fonctions un document masque contentant les valeurs souhaitées.
+find({condition}) peut être utilisée pour récupérer uniquement les documents requis en fonction de certaines conditions de la collection. 
 
 Par exemple, la requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y".
 
@@ -62,19 +68,13 @@ db.NYfood.find({"cuisine":"Bakery"})
 
 ````
 
-find()peut être utilisée pour récupérer tous les documents stockés dans une collection.
-
-find({condition}) peut être utilisée pour récupérer uniquement les documents requis en fonction de certaines conditions de la collection. MongoDB fournit une liste de opérateurs de projection et de requête pour récupérer la valeur de type BSON.
-
-Pour récupérer un seul document, MongoDB fournit le findOne() méthode. Il donne une sortie formatée.
-Syntaxe: collectionName.findOne()
+projection!!
 
 Embellissez la sortie de récupération
 Le find() méthode donne une sortie désorganisée. MongoDB fournit pretty() commandes pour obtenir la sortie formatée.
-
 Syntaxe: collectionName.find().pretty()
++pretty
 
-+pretty+projection
 
 ---
 
