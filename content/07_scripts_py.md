@@ -171,9 +171,7 @@ for rep in cursor[:2]:
 Nous pouvons afficher l'ensemble des réponse mais cela peut demander beaucoup de memoire pour votre ordinateur en fonction de la requete demander. Pour se faire, on utilise la ligne suivante.
 
 
-```{code-cell,echo=FALSE}
-print(list(cursor))
-```
+```print(list(cursor))```
 
 
 Il est donc préférable d'afficher les premier resultats pour voir si votre requete est juste. 
@@ -188,7 +186,7 @@ Ainsi, vue que notre réponse est un dictionnaire et que nous connaissons la str
 Ainsi, nous recupérons ci-dessous la localisation et les coordonées du premier individu issue de notre requette:
 
 ```{code-cell}
-print(cursor[0]["loc"]["coordinates"])
+print(cursor[3]["loc"]["coordinates"])
 ```
 
 De plus, pour utiliser certaine methode comme sort(), nous devons le mettre sous cette forme : 
@@ -421,20 +419,9 @@ Remarque : si la collection NYfood n'existe pas encore dans la base de données.
 
 1. Trouvez les restaurants qui n'ont recu que des notes égales à B.
 
-````{tabbed} MongoDB
-
-```{code-cell,echo=FALSE}
-db.NYfood.find({$nor: [{"grades.grade": {$exists: false}},
-{"grades.grade": {$size: 0}},
-{"grades.grade": {$gt: "B"}},{"grades.grade": {$lt: "B"}}]})
-
-```
-
-````
-
 ````{tabbed} Python
 
-```{code-cell}
+```{}
 condi1 = {"grades.grade": {"$exists": False}}
 condi2 = {"grades.grade": {"$size": 0}}
 condi3 = {"grades.grade": {"$gt": "B"}}
@@ -450,10 +437,19 @@ print(list(cursor[:2]))
 ```
 
 ````
+````{tabbed} MongoDB
 
+```{}
+db.NYfood.find({$nor: [{"grades.grade": {$exists: false}},
+{"grades.grade": {$size: 0}},
+{"grades.grade": {$gt: "B"}},{"grades.grade": {$lt: "B"}}]})
+
+```
+
+````
 2. On vous demande de conserver les quartiers ayant moins de 1000 restaurants.
 ````{tabbed} Python
-```{code-cell}
+```{}
 dico_match = {"$match": {"borough": {"$ne": "Missing"}}}
 
 dico_group = {"$group": {"_id": "$borough", "nb_restos": {"$sum":1}}}
@@ -470,7 +466,7 @@ db.NYfood.aggregate(l)
 ````{tabbed} MongoDB
 
 
-```{code-cell}
+```{}
 db.NYfood.aggregate([
 {$match: {"borough": {$ne: "Missing"}}},
 {$group: {_id: "$borough",
@@ -484,14 +480,14 @@ nb_restos: {$sum:1}}},
 
 3. Trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
 ````{tabbed} Python
-```{code-cell}
+```{}
 db.NYfood.find({"name": "/Pizza/"})
 
 ```
 ````
 
 ````{tabbed} MongoDB
-```{code-cell}
+```{}
 db.NYfood.find({"name": /Pizza/})
 ```
 ````
