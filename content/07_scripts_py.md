@@ -211,7 +211,6 @@ Nous ne pouvons pas utiliser ces methodes a l'objet cursor car ces methodes vont
 ```python
 db.NYfood.find({"cuisine": "Bakery"}).limit(2) # Affiche les deux premiers résultats
 db.NYfood.find({"cuisine": "Bakery"}).sort("name", -1)) # Trie les résultats par ordre décroissant par rapport à la variable name
-
 ```
 ### Requetes simples et ses spécifictés <a id="partie31"></a>
 
@@ -258,6 +257,7 @@ dico_cond2["nom"] = {"$gte" : "M", "$lt": "N"}
 l = [dico_cond1,dico_cond2]
 cursor = coll.find({"$or": l })
 cursor = list(cursor)
+print(cursor[0])
 ```
 
 Forme classique: 
@@ -265,15 +265,8 @@ Forme classique:
 cursorbis = coll.find({"$or": [{"sexe": "F"},
                        {"nom": {"$gte": "M", "$lt": "N"}}]})
 cursorbis = list(cursorbis)
+print(cursorbis[0])
 ```
-
-**Test :**
-
-```{code-cell}
-print(cursor[0] == cursorbis[0])
-```
-
-L'égalité est bien vérifié.
 
 ### Les indexes <a id="partie32"></a>
 
