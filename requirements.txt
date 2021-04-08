@@ -1,3 +1,5 @@
 jupyter-book
 git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel
 pymongo
+matplotlib
+json
