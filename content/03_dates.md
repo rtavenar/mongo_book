@@ -30,9 +30,10 @@ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/03_d
 
 ## Transformation de formats
 
-```javascript
- $dateFromString
+### $dateFromString
 
+
+```javascript
  { $dateFromString: {
      dateString: <dateStringExpression>,
      format: <formatStringExpression>,
@@ -40,9 +41,12 @@ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/03_d
      onError: <onErrorExpression>,
      onNull: <onNullExpression>
 } }
+```
+#### Exemples
 
- $dateToString
+### $dateToString
 
+```javascript
  { $dateToString: {
     date: <dateExpression>,
     format: <formatString>,
@@ -50,6 +54,7 @@ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/03_d
     onNull: <expression>
 } }
 ```
+#### Exemples
 
 ## Exemples d'applications
 Utilisation d'un objet date au format string.
