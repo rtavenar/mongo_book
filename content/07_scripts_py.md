@@ -168,12 +168,6 @@ for rep in cursor[:2]:
   print(rep)
 ```
 
-Ou bien :
-
-```{code-cell}
-print(list(cursor[:2]))
-```
-
 Nous pouvons afficher l'ensemble des réponse mais cela peut demander beaucoup de memoire pour votre ordinateur en fonction de la requete demander. Pour se faire, on utilise la ligne suivante.
 
 
