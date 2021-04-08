@@ -423,3 +423,101 @@ db.NYfood.insert_one(
 
 Remarque : si la collection NYfood n'existe pas encore dans la base de données. Elle sera automatiquement créée lors de l'insertion d'un document dans cette nouvelle collection. La méthode ```db.create_collection()``` est donc facultative.
 
+## Exercices et corrections <a id="partie4"></a>
+
+1. Trouvez les restaurants qui n'ont recu que des notes égales à B.
+
+````{tabbed} MongoDB
+
+```
+db.NYfood.find({$nor: [{"grades.grade": {$exists: false}},
+{"grades.grade": {$size: 0}},
+{"grades.grade": {$gt: "B"}},{"grades.grade": {$lt: "B"}}]})
+
+```
+
+````
+
+````{tabbed} Python
+
+```{code-cell}
+condi1 = {"grades.grade": {"$exists": False}}
+condi2 = {"grades.grade": {"$size": 0}}
+condi3 = {"grades.grade": {"$gt": "B"}}
+condi4 = {"grades.grade": {"$lt": "B"}}
+
+l = [condi1, condi2, condi3, condi4]
+
+req = {"$nor": l }
+
+cursor = db.NYfood.find(req)
+
+print(list(cursor[:2]))
+```
+
+````
+
+2. On vous demande de conserver les quartiers ayant moins de 1000 restaurants.
+
+```{code-cell}
+dico_match = {"$match": {"borough": {"$ne": "Missing"}}}
+
+dico_group = {"$group": {"_id": "$borough", "nb_restos": {"$sum":1}}}
+
+dico_match2 = {"$match": {"nb_restos": {"$lt": 1000}}}
+dico_sort = {"$sort": {"nb_restos": -1}}
+
+l = [dico_match, dico_group, dico_match2, dico_sort]
+             
+db.NYfood.aggregate(l)
+```
+
+```{}
+db.NYfood.aggregate([
+{$match: {"borough": {$ne: "Missing"}}},
+{$group: {_id: "$borough",
+nb_restos: {$sum:1}}},
+{$match: {nb_restos: {$lt: 1000}}},
+{$sort: {"nb_restos": -1}}
+])
+```
+
+
+
+3. Trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
+
+```{code-cell}
+db.NYfood.find({"name": "/Pizza/"})
+
+```
+
+```{}
+db.NYfood.find({"name": /Pizza/})
+```
+
+## Exportation au format JSON <a id="partie5"></a>
+
+Les résultats obtenus après requete peuvent etre amené à etre conservé dans le but d'un projet ou d'un étude quelconque. Nous vous proposons d'enregistrer vos requetes sous la forme d'un format JSON.
+Remarque: le module JSON ne peut écrire dans un fichier avec des données de types classiques comme liste, dictionnaire, nombre, caractere . En l'occurrence, un identifiant qui aura une classe "ObjectID" ne pourra etre ecrit dans le fichier. De même pour les objets datetime. Nous nous devons donc de les convertir en chaine de caractère.
+
+```{code-cell}
+import json
+
+cursor = db.NYfood.find({"cuisine": "Bakery"})
+
+cursor = list(cursor[:10])
+
+for elt in cursor:
+    elt["_id"] = str(elt["_id"])
+    for grade in elt["grades"]:
+        grade["date"] = grade["date"].strftime("%Y-%d-%m")
+        
+
+dico = {"Bakery" : cursor}
+
+
+with open("Bakery", 'w', encoding='utf-8') as jsonFile:
+    json.dump(dico, jsonFile, indent=4)
+
+```
+
