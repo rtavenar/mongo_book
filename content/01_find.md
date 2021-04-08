@@ -46,7 +46,7 @@ Pour récupérer des documents stockés dans une collection, il est nécessaire 
  ```{admonition} Remarque
 Toute commande sur une collection intitulée collectionName utilise le préfixe db : "db.collectionName". Il suffit d’y associer la fonction souhaitée pour avoir un résultat. 
 
-En l'occurence, ici la synthaxe de données d'interrogation MongoDB est db.collectionName.find().
+En l'occurence, ici la syntaxe de données d'interrogation MongoDB est db.collectionName.find().
 ```
 
 En MongoDB, il existe deux types de requêtes simples, retournant respectivement **toutes les occurences d'une collection** ou **seulement la première**. 
@@ -75,37 +75,41 @@ db.collectionName.findOne({})
 
 > À noter : Dans les deuxièmes propositions, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au *document masque*. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner. 
 
-Si l’on souhaite fixer des contraintes sur les documents à retourner, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. Par exemple, la requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y".
+Si l’on souhaite fixer des contraintes sur les documents à retourner, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". Prenons ensuite comme exemple la **collection NYfood**. En utilisant la syntaxe précédente, on recherche les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*.     
+
+````{tabbed} Syntaxe
 
 ```javascript
 db.nomDeLaCollection.find({"x":"y"})
 ```
 
-Prenons comme exemple la base de données NYfood.   
-
-````{tabbed} Syntaxe
-
-```mongoDB
-db.nomDeLaCollection.find({"x":"y"})
-```
 ````
  
 ````{tabbed} Exemple sur la base de données NYfood
 
-```mongoDB
-db.NYfood.find({"cuisine":"Bakery"})
+```javascript
+db.NYfood.find(
+    {"cuisine": "Chinese", "borough": "Bronx"}
+)
 ```
 
 ````
 
-Projection
+Les résultats que obtenus jusqu’à présent sont parfois assez indigestes, notamment parce que toutes les clés sont retournées pour tous les documents. Il est possible de limiter cela en spécifiant les clés à retourner comme second argument de find(). On appelle ça une **projection**.
 
-La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement au titre du film, à son année de sortie et aux noms des acteurs, je vais limiter les informations retournées en précisant les champs souhaités dans un document JSON (toujours ce fameux JSON). Et, également passer ce document comme deuxième argument de ma recherche find.
+<dl>
+  <dt>Projection</dt>
+  <dd>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais     limiter les informations retournées en précisant les champs souhaités et en passant ce document comme deuxième argument de ma recherche find.</dd>
+</dl>
+
+```javascript
+db.NYfood.find({"cuisine": "Bakery", "borough": "Bronx"}, {"name": true})
+```
 
 ```{admonition} Embellissez les résultats de la fonction find ! 
 :class: tip
 
-Les résultats de la fonction find() peuvent apparaître désorganisés. MongoDB fournit pretty() qui affiche les résultats sous une forme plus lisible. La synthaxe est la suivante : collectionName.find().pretty() 😉
+Les résultats de la fonction find() peuvent apparaître désorganisés. MongoDB fournit pretty() qui affiche les résultats sous une forme plus lisible. La syntaxe est la suivante : collectionName.find().pretty() 😉
 ```
 
 Pour plus de renseignements sur la **fonction find()**, consultez la documentation MongoDB [disponible ici](https://docs.mongodb.com/manual/reference/method/db.collection.find/).
