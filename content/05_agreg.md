@@ -85,7 +85,14 @@ db.NYfood.aggregate(
 ]
 )
 ```
+***Traduction SQL :***
+L'équivalent en SQL de la commande '$project' les étapes `SELECT` et `AS` qui permettent de créer de nouvelles variables. Par contre, en SQL l'étape `AS` est facultative, la nouvelle variable prendra comme nom la formule du calcul. En MongoDB elle est obligatoire ! Si on ne précise pas le nom de la nouvelle variable cela affichera une erreur. Voici la traduction SQL  de l'exemple précédent :   
 
+ ```sql
+ SELECT borough, LENGTH(grades) AS "n_notes"
+ FROM NYfood 
+ ```
+ 
 ### <center> Sort </center>
 
 ***Pourquoi l'utiliser ?***
@@ -218,7 +225,7 @@ db.NYfood.aggregate(
 ```
 Voici un exemple concret d'utilisation d'un `$unwid`. Dans la requête on cherche à compter le nombre de A ayant été attribués à l'ensemble des restaurants de la collection, puis le nombre de B, C .... 
 Pour que cette requête fonction le `$unwid` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter.  
-  
+ ***Traduction SQL :*** 
 Il n'existe pas réelement d'équivalent SQL au `$unwid`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
 
 #### Résultat final : Les 3 notes les plus données dans les restaurants du quartier de Brooklyn
@@ -244,7 +251,7 @@ Expliquons cette requête (qui n'a pas beaucoup d'intérêt pratique).
 à un restaurant. (Ayant sélectionné les individus supérieurs à deux, le minimum ne pouvait être que 3 ou plus.
 
 En SQL on aurait :
-``` {code-cell}
+```sql
 SELECT COUNT(*) AS taille, MAX(taille),MIN(taille)
 FROM NYfood
 WHERE taille>=2
