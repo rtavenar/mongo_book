@@ -106,18 +106,18 @@ db.notes.find({"nom": {$gte: "M", $lt: "N"}})
 Cette requête, nous renvoie les nom dont la première lettre est >= à M, et <N. Les chaines de carractères renvoyés on été soumis à deux condition. 
 
 
-Avec les listes, c'est différent. Chacun des éléments est testé un à un, voyons le fonctionnement d'une requête sur une liste avec plusieurs conditions: 
+Avec les listes, c'est différent. Chacun des éléments est testé un à un, voyons le fonctionnement d'une requête sur une liste avec plusieurs conditions : 
 
 ```{code-cell}
 :tags: [output_scroll]
 
 db.notes.find({"notes": {$gt: 13, $lte: 10}})
 ```
-Cette requête, test pour chaque élément de la liste un à un : 
+Cette requête, teste pour chaque élément de la liste un à un : 
   - La condition $gt: 12;
   - La condition $lte: 10;  
   
-Si les conditions sont vérifiés aux moins une fois, la liste est renvoyée. 
+Si les conditions sont vérifiées aux moins une fois, la liste est renvoyée. 
 Ainsi, une liste "[11,11,12,8,3,18,15]" donne :  
 
   - [F,F,F,F,F,T,T] pour la première condition, 
