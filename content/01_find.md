@@ -82,11 +82,16 @@ db.NYfood.find({"cuisine":"Bakery"})
 
 projection!!
 
-Embellissez la sortie de récupération
-Le find() méthode donne une sortie désorganisée. MongoDB fournit pretty() commandes pour obtenir la sortie formatée.
-Syntaxe: collectionName.find().pretty()
-+pretty
 
+
+```{admonition} Embellissez la sortie de la fonction find ! 
+:class: tip
+
+Les résultats de la fonction find() peuvent apparaître désorganisés. MongoDB fournit pretty() qui affiche les résultats sous une forme plus lisible.
+La synthaxe est la suivante : collectionName.find().pretty().
+```
+
+Pour plus de renseignements sur la fonction find(), consultez la documentation MongoDB [disponible ici](https://docs.mongodb.com/manual/reference/method/db.collection.find/).
 
 ---
 
