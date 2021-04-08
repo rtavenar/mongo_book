@@ -44,37 +44,44 @@ Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction find.
  
  ```{admonition} Remarque
-Toute commande sur une collection utilise le préfixe db : "db.collectionName". Il suffit d’y associer la fonction souhaitée pour avoir un résultat. 
-En l'occurence, ici on utilise la synthaxe suivante : db.collectionName.find() ou db.collectionName.find({}) pour récupérer tous les documents d'une base.
+Toute commande sur une collection intitulée collectionName utilise le préfixe db : "db.collectionName". Il suffit d’y associer la fonction souhaitée pour avoir un résultat. 
+
+En l'occurence, ici la synthaxe de données d'interrogation MongoDB est db.collectionName.find().
 ```
 
-Il existe en mongoDB deux types de requêtes simples, retournant respectivement **toutes les occurences d'une collection** ou **seulement la première**. 
+En MongoDB, il existe deux types de requêtes simples, retournant respectivement **toutes les occurences d'une collection** ou **seulement la première**. 
 
 ````{panels}
 
-Retourner toutes les occurences
+Retourner toutes les occurences 
+d'une collection avec find()
 ^^^
 ```javascript
- db.NYfood.find() ou  db.NYfood.find({}) 
+ db.collectionName.find()
+ db.collectionName.find({}) 
 ```
 
 ---
 
 Retourner uniquement la première occurence
+de la liste de résultats avec findOne()
 ^^^
-```sql
-db.NYfood.findOne() ou db.NYfood.findOne({})
+```javascript
+db.collectionName.findOne()
+db.collectionName.findOne({})
 ```
 
 ````
 
-Lorsqu'on ajoute un {} vide entre parenthèses, pas de contrainte.
+> À noter : Dans les deuxièmes propositions, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au *document masque*. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner. 
 
-mais on peut aussi utiliser un document masque, si l'on souhaite fixer des contraintes sur les documents à retourner, pour cela
-il suffit de passer en argument d'une de ces fonctions un document masque contentant les valeurs souhaitées.
-find({condition}) peut être utilisée pour récupérer uniquement les documents requis en fonction de certaines conditions de la collection. 
+Si l’on souhaite fixer des contraintes sur les documents à retourner, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. Par exemple, la requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y".
 
-Par exemple, la requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y".
+```javascript
+db.nomDeLaCollection.find({"x":"y"})
+```
+
+Prenons comme exemple la base de données NYfood.   
 
 ````{tabbed} Syntaxe
 
