@@ -13,10 +13,6 @@ kernelspec:
   name: imongo
 ---
 
-(à retirer à la fin)
-Ce chapitre traite des points suivants :
-* Syntaxe de requêtes simples (syntaxe de `find`, opérateurs de comparaison, `distinct`, `count`, `sort`, `limit`)
-
 # Premières requêtes en MongoDB
 
 Dans un **système de base de données relationnelles** *(système qui utilise le langage SQL pour interroger les bases de données)* les données sont stockées par ligne *(appelées n-uplets)* dans des tables *(également appelées relations)*. Le modèle de données relationnel est un modèle très structuré, comportant des attributs typés et des contraintes d'intégrité *(comme par exemple l'unicité des valeurs de la clé primaire)*. Il est nécessaire de faire des jointures sur plusieurs tables afin de tirer des informations pertinentes de la base.
@@ -221,3 +217,7 @@ db.nomDeLaCollection.find({"a": 1}).count()
 ````
 
 Bien entendu, les résultats seront différents car on n'a pas le même nombre de documents ou d'éléments avant et après une requête.
+
+
+
++ SORT, LIMIT
