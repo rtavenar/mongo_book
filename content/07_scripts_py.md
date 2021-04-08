@@ -245,28 +245,31 @@ de sexe féminin ; dont le prénom commence par la lettre "M".
 Vue le nombre de conditions, nous décidons d'utiliser notre astuce pour rédiger cette requete.
 
 ```{code-cell}
-db = client["etudiants"]
-coll = db["notes"]
+db = client["food"]
+coll = db["NYfood"]
 
-dico_cond1 = {}
-dico_cond2 = {}
+dico_cond = {}
 
-dico_cond1["sexe"] = "F"
-dico_cond2["nom"] = {"$gte" : "M", "$lt": "N"}
+dico_cond["borough"] = "Manhattan"
+dico_cond["grades.grade"] = {"$gt": "A"}
 
-l = [dico_cond1,dico_cond2]
-cursor = coll.find({"$or": l })
+cursor = coll.find(dico_cond)
 cursor = list(cursor)
 print(cursor[0])
 ```
 
-Forme classique: 
+Forme plus brutale: 
 ```{code-cell}
-cursorbis = coll.find({"$or": [{"sexe": "F"},
-                       {"nom": {"$gte": "M", "$lt": "N"}}]})
+cursorbis = coll.find({'borough': 'Manhattan', 'grades.grade': {'$gt': 'A'}})
 cursorbis = list(cursorbis)
 print(cursorbis[0])
 ```
+
+Test :
+```{code-cell}
+print(cursorbis[0] == cursor[0])
+```
+
 
 ### Les indexes <a id="partie32"></a>
 
