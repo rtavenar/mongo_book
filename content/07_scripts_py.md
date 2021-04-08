@@ -375,4 +375,51 @@ plt.title("Number of times assigned to a note")
 plt.show()
     
 ```
+### Les modifications <a id="partie34"></a>
+
+Contrairement aux requêtes d'interrogation, les requêtes de modifications peuvent modifier la base de données.
+
+|Requete|Fonctionement|
+|--------|--------|
+|  insert_one()	|  Insertion d'un seul document  	|
+|  insert_many()   |	Insertion d'une liste de documents   |
+|  delete_one() 	|   Suppression d'un document	|
+|  delete_many() 	|   Suppression d'une liste de documents	|
+|  update_one() 	|   Modification d'un document	|
+|  update_many() 	|   Modification d'une liste de documents	|
+|  replace_one() 	|   Remplacement d'un document	|
+
+
+```{}
+db.NYfood.insert_one(
+  {
+	"_id" : ObjectId("nouvel_id_resto"),
+	"address" : {
+    	"building" : "3",
+    	"loc" : {
+        	"type" : "Point",
+        	"coordinates" : [
+            	-1.6773,
+            	48.111
+        	]
+    	},
+    	"street" : "Rue du Vau Saint-Germainl",
+    	"zipcode" : "35000"
+	},
+	"borough" : "KilKenny's Pub",
+	"cuisine" : "Bar, Pub",
+	"grades" : [
+    	{
+        	"date" : ISODate("2021-04-08T00:00:00.000Z"),
+        	"grade" : "A",
+        	"score" : 9
+    	}
+	],
+	"name" : "KilKenny's Pub",
+	"restaurant_id" : "99999999"
+}
+)
+```
+
+Remarque : si la collection NYfood n'existe pas encore dans la base de données. Elle sera automatiquement créée lors de l'insertion d'un document dans cette nouvelle collection. La méthode ```db.create_collection()``` est donc facultative.
 
