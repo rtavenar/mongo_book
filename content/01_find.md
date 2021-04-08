@@ -19,15 +19,13 @@ Ce chapitre traite des points suivants :
 
 # Premières requêtes en MongoDB
 
-Dans un **système de base de données relationnelles** *(système qui utilise le langage SQL pour interroger les bases de données)* les données sont stockées par ligne *(appelées n-uplets)* dans des tables *(également appelées relations)*. Le modèle de données relationnel est un modèle très structuré, comportant des attributs typés (les colonnes ont un type) et des contraintes d'intégrité (comme l'unicité des valeurs de la clé primaire). Il est aussi nécessaire de faire des jointures sur plusieurs tables afin de tirer des informations pertinentes de la base.
+Dans un **système de base de données relationnelles** *(système qui utilise le langage SQL pour interroger les bases de données)* les données sont stockées par ligne *(appelées n-uplets)* dans des tables *(également appelées relations)*. Le modèle de données relationnel est un modèle très structuré, comportant des attributs typés et des contraintes d'intégrité *(comme par exemple l'unicité des valeurs de la clé primaire)*. Il est nécessaire de faire des jointures sur plusieurs tables afin de tirer des informations pertinentes de la base.
 
-> **Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.**
+**Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.** On ne parle plus de tables, ni d'enregistrements mais de collections et de documents. Ce système de gestion de données nous évite de faire des jointures de tables car toutes les informations propres à une certaine donnée sont stockées dans un même document.
 
-On ne parle plus de tables, ni d'enregistrements mais de collections et de documents. Ce système de gestion de données nous évite de faire des jointures de tables car toutes les informations propres à un certain donnée sont stockées dans un même document.
+Dans ce chapitre, nous étudierons **comment filtrer les données d'une base de données MongoDB avec la fonction find**. Ensuite nous regarderons comment effectuer des requêtes plus complexes, **impliquant des opérateurs de comparaison**. Quelques **méthodes utiles** pour des requêtes en MongoDB sont données à la fin de ce chapitre.
 
-Dans ce chapitre, nous étudierons **comment filtrer les données d'une base de données MongoDB**. Ensuite nous regarderons comment effectuer des requêtes plus complexes, **impliquant des opérateurs de comparaison**. Quelques **méthodes** utiles pour des requêtes en MongoDB sont données à la fin de ce chapitre.
-
-Auteurs/trices de ce chapitre : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
+Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
 ---
 
