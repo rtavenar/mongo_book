@@ -186,7 +186,8 @@ Ainsi, vue que notre réponse est un dictionnaire et que nous connaissons la str
 Ainsi, nous recupérons ci-dessous la localisation et les coordonées du premier individu issue de notre requette:
 
 ```{code-cell}
-print(cursor[3]["loc"]["coordinates"])
+cursor=list(cursor)
+print(cursor[0]["loc"]["coordinates"])
 ```
 
 De plus, pour utiliser certaine methode comme sort(), nous devons le mettre sous cette forme : 
@@ -421,7 +422,7 @@ Remarque : si la collection NYfood n'existe pas encore dans la base de données.
 
 ````{tabbed} Python
 
-```{}
+```python
 condi1 = {"grades.grade": {"$exists": False}}
 condi2 = {"grades.grade": {"$size": 0}}
 condi3 = {"grades.grade": {"$gt": "B"}}
@@ -439,7 +440,7 @@ print(list(cursor[:2]))
 ````
 ````{tabbed} MongoDB
 
-```{}
+```javascript
 db.NYfood.find({$nor: [{"grades.grade": {$exists: false}},
 {"grades.grade": {$size: 0}},
 {"grades.grade": {$gt: "B"}},{"grades.grade": {$lt: "B"}}]})
@@ -449,7 +450,7 @@ db.NYfood.find({$nor: [{"grades.grade": {$exists: false}},
 ````
 2. On vous demande de conserver les quartiers ayant moins de 1000 restaurants.
 ````{tabbed} Python
-```{}
+```python
 dico_match = {"$match": {"borough": {"$ne": "Missing"}}}
 
 dico_group = {"$group": {"_id": "$borough", "nb_restos": {"$sum":1}}}
@@ -466,7 +467,7 @@ db.NYfood.aggregate(l)
 ````{tabbed} MongoDB
 
 
-```{}
+```javascript
 db.NYfood.aggregate([
 {$match: {"borough": {$ne: "Missing"}}},
 {$group: {_id: "$borough",
@@ -480,14 +481,14 @@ nb_restos: {$sum:1}}},
 
 3. Trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
 ````{tabbed} Python
-```{}
+```python
 db.NYfood.find({"name": "/Pizza/"})
 
 ```
 ````
 
 ````{tabbed} MongoDB
-```{}
+```javascript
 db.NYfood.find({"name": /Pizza/})
 ```
 ````
