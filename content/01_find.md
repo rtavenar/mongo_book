@@ -366,6 +366,8 @@ db.collectionName.find().sort(
 )
 ```
 
+On notera qu'il est impossible d'utiliser cette méthode sans faire une requête `find` au préalable qu'elle soit vide ou non.
+
 ### Limiter la récupération des documents : la méthode `limit`
 
 On peut limiter le nombre de résultats obtenus
