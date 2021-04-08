@@ -285,4 +285,47 @@ print(cursor[0] == cursorbis[0])
 
 L'égalité est bien vérifié.
 
+### Les indexes <a id="partie32"></a>
+
+Les index sont des structures de données spéciales  qui stockent une petite partie de l'ensemble de données de la collection sous une forme facile à parcourir. L'index stocke la valeur d'un champ spécifique ou d'un ensemble de champs, triés par la valeur du champ.
+
+|Requete|Fonctionement|
+|--------|--------|
+|    index_information()    |  Pour obtenir la liste des indexs de la collection      |
+|    create_index()   |    Créeation d'un index   |
+|  drop_index()     | Suppression d'un index      |
+
+**Exemple:**
+
+```{code-cell}
+db = client["food""]
+coll = db["NYfood"]
+
+for k, v  in coll.index_information().items():
+    print("{}, {} \n".format(k, v))
+    
+    
+```
+
+Ici, nous recupérons l'ensemble des index de la collection NYfood, nous supprimons l'index de la variable borough (quartier du restaurant), et nous le recréons.
+
+```{code-cell}
+db.NYfood.index_information()
+    
+```
+
+```{code-cell}
+db.NYfood.drop_index("borough")
+
+```
+
+```{code-cell}
+db.NYfood.index_information()
+    
+```
+
+```{code-cell}
+db.NYfood.create_index("borough")
+```
+
 
