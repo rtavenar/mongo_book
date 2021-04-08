@@ -219,5 +219,70 @@ db.NYfood.find({"cuisine": "Bakery"}).limit(2) # Affiche les deux premiers résu
 db.NYfood.find({"cuisine": "Bakery"}).sort("name", -1)) # Trie les résultats par ordre décroissant par rapport à la variable name
 
 ```
+### Requetes simples et ses spécifictés <a id="partie31"></a>
+
+
+L'utilisation de pymongo implique l'utilisation de certaines specificités, deux principalement, qui marquent une différence avec MongoDb.
+
+Premièrement, nous avons une specifité avec les opérateurs et les noms qui doivent être toujours dans des guillemets comme ```$gte```.
+
+```{code-cell}
+db.NYfood.find({"name": {"$gte" : "Y"}})
+```
+
+En ce qui concerne les dates, on utilise le module datetime et pymongo va de lui meme effectuer la conversion au format "date" de MongoDb.
+
+Par exemple,la requete suivante affiche la liste des restaurants ayant au moins une note postérieure au 20 janvier 2015
+
+```{code-cell}
+from datetime import datetime
+
+date = datetime.strptime("2015-01-20", "%Y-%m-%d")
+
+db.NYfood.find({"grades.date": {"$gte": date}})
+
+```
+
+
+**Astuce**
+
+Dans le but de rendre nos requetes plus lisible, il est possible de créer des variables python qui correspondent aux conditions que nous utilisons pour nos requetes.
+ 
+Par exemple, nous voulons afficher la liste des étudiants qui vérifient l’une des deux conditions suivantes :
+de sexe féminin ; dont le prénom commence par la lettre "M".
+Vue le nombre de conditions, nous décidons d'utiliser notre astuce pour rédiger cette requete.
+
+```{code-cell}
+
+db = client["etudiants"]
+coll = db["notes"]
+
+dico_cond1 = {}
+dico_cond2 = {}
+
+dico_cond1["sexe"] = "F"
+dico_cond2["nom"] = {"$gte" : "M", "$lt": "N"}
+
+l = [dico1,dico2]
+cursor = coll.find({"$or": l })
+print(cursor[0])
+
+```
+
+Forme classique: 
+```{code-cell}
+cursorbis = coll.find({"$or": [{"sexe": "F"},
+                       {"nom": {"$gte": "M", "$lt": "N"}}]})
+
+print(cursorbis[0])
+```
+
+**Test :**
+
+```{code-cell}
+print(cursor[0] == cursorbis[0])
+```
+
+L'égalité est bien vérifié.
 
 
