@@ -29,7 +29,7 @@ Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
 ---
 
-## Interrogation et filtrage des données : la fonction `find`
+## Requêtes d'interrogation et de filtrage des données : la fonction `find`
  
  ```{admonition} Remarque
 Toute commande sur la collection restaurants utilise le préfixe : "db.restaurants". Il suffira d’y associer la fonction souhaitée pour avoir un résultat.
@@ -66,7 +66,7 @@ db.NYfood.find({"cuisine":"Bakery"})
 
 ---
 
-## Effectuer des requêtes plus complexes impliquant des opérateurs
+## Effectuer des requêtes plus complexes en utilisant les opérateurs
 
 Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**
 
