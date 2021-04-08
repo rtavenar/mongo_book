@@ -17,7 +17,7 @@ kernelspec:
 
 ## Regroupements
 
-* Auteurs/trices : **TODO**
+* Auteurs/trices : Salomé Vavasseur, Jeremy Castrique, Dimitri Nojac
 
 Cette section traite de :
   * somme, count, max, min, avec ou sans groupe
@@ -26,7 +26,7 @@ Cette section traite de :
 
 ## Successions d'étapes d'agrégation
 
-* Auteurs/trices : **TODO**
+* Auteurs/trices : Marine BINARD, Arthur CONAS, Yann CAUSEUR
 
 Cette section traite de :
 * successions d'étapes d'agrégation + unwind + project + sort + limit
