@@ -21,6 +21,36 @@ Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates)
 
 Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/03_dates.md`.
 
+
+## Qu'est-ce qu'une date dans MONGODB
+
+### les différents formats
+
+### créations annexes
+
+## Transformation de formats
+
+```javascript
+ $dateFromString
+
+ { $dateFromString: {
+     dateString: <dateStringExpression>,
+     format: <formatStringExpression>,
+     timezone: <tzExpression>,
+     onError: <onErrorExpression>,
+     onNull: <onNullExpression>
+} }
+
+ $dateToString
+
+ { $dateToString: {
+    date: <dateExpression>,
+    format: <formatString>,
+    timezone: <tzExpression>,
+    onNull: <expression>
+} }
+```
+
 ## Exemples d'applications
 Utilisation d'un objet date au format string.
 
