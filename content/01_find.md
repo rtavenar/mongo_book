@@ -62,6 +62,18 @@ db.NYfood.find({"cuisine":"Bakery"})
 
 ````
 
+find()peut être utilisée pour récupérer tous les documents stockés dans une collection.
+
+find({condition}) peut être utilisée pour récupérer uniquement les documents requis en fonction de certaines conditions de la collection. MongoDB fournit une liste de opérateurs de projection et de requête pour récupérer la valeur de type BSON.
+
+Pour récupérer un seul document, MongoDB fournit le findOne() méthode. Il donne une sortie formatée.
+Syntaxe: collectionName.findOne()
+
+Embellissez la sortie de récupération
+Le find() méthode donne une sortie désorganisée. MongoDB fournit pretty() commandes pour obtenir la sortie formatée.
+
+Syntaxe: collectionName.find().pretty()
+
 ---
 
 ## Requêtes plus complexes en utilisant des opérateurs
