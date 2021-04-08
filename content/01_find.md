@@ -66,7 +66,7 @@ db.NYfood.find({"cuisine":"Bakery"})
 
 ---
 
-## Effectuer des requêtes plus complexes en utilisant les opérateurs
+## Effectuer des requêtes plus complexes en utilisant des opérateurs
 
 Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**
 
