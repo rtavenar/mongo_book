@@ -33,13 +33,13 @@ output:
 
 1. [Présentation et installation](#partie1)
 2. [Connexion serveur, base de données et collections](#partie2)
-3. [Requetes](#partie4)
-  3.1. [Requetes simple et ces spécifictés](#partie41)
-  3.2. [Les Indexes](#partie42)
-  3.3. [Requetes aggrégation](#partie43)
-  3.4. [Requetes modifications](#partie44)
-4. [Exercices et corrections (si le temp)](#partie5)
-5. [Exportation au format JSON](#partie6)
+3. [Requetes](#partie3)  
+  3.1. [Requetes simple et ces spécifictés](#partie31)  
+  3.2. [Les Indexes](#partie32)  
+  3.3. [Requetes aggrégation](#partie33)  
+  3.4. [Requetes modifications](#partie34)  
+4. [Exercices et corrections (si le temp)](#partie4)
+5. [Exportation au format JSON](#partie5)
 
 ## Présentation et installation <a id="partie1"></a>
 
@@ -171,7 +171,7 @@ for rep in cursor[:2]:
 Nous pouvons afficher l'ensemble des réponse mais cela peut demander beaucoup de memoire pour votre ordinateur en fonction de la requete demander. Pour se faire, on utilise la ligne suivante.
 
 
-```{}
+```{code-cell,echo=FALSE}
 print(list(cursor))
 ```
 
@@ -423,7 +423,7 @@ Remarque : si la collection NYfood n'existe pas encore dans la base de données.
 
 ````{tabbed} MongoDB
 
-```
+```{code-cell,echo=FALSE}
 db.NYfood.find({$nor: [{"grades.grade": {$exists: false}},
 {"grades.grade": {$size: 0}},
 {"grades.grade": {$gt: "B"}},{"grades.grade": {$lt: "B"}}]})
@@ -452,7 +452,7 @@ print(list(cursor[:2]))
 ````
 
 2. On vous demande de conserver les quartiers ayant moins de 1000 restaurants.
-
+````{tabbed} Python
 ```{code-cell}
 dico_match = {"$match": {"borough": {"$ne": "Missing"}}}
 
@@ -465,8 +465,12 @@ l = [dico_match, dico_group, dico_match2, dico_sort]
              
 db.NYfood.aggregate(l)
 ```
+````
 
-```{}
+````{tabbed} MongoDB
+
+
+```{code-cell}
 db.NYfood.aggregate([
 {$match: {"borough": {$ne: "Missing"}}},
 {$group: {_id: "$borough",
@@ -475,19 +479,22 @@ nb_restos: {$sum:1}}},
 {$sort: {"nb_restos": -1}}
 ])
 ```
-
+````
 
 
 3. Trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
-
+````{tabbed} Python
 ```{code-cell}
 db.NYfood.find({"name": "/Pizza/"})
 
 ```
+````
 
-```{}
+````{tabbed} MongoDB
+```{code-cell}
 db.NYfood.find({"name": /Pizza/})
 ```
+````
 
 ## Exportation au format JSON <a id="partie5"></a>
 
