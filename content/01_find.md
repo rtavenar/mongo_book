@@ -25,7 +25,7 @@ Dans un **système de base de données relationnelles** *(système qui utilise l
 
 On ne parle plus de tables, ni d'enregistrements mais de collections et de documents. Ce système de gestion de données nous évite de faire des jointures de tables car toutes les informations propres à un certain donnée sont stockées dans un même document.
 
-Dans cette partie, nous étudierons comment filtrer les données d'une base de données MongoDB. Ensuite nous regarderons comment effectuer des requêtes plus complexes, impliquant des opérateurs de comparaison. Quelques méthodes .
+Dans cette partie, nous étudierons comment filtrer les données d'une base de données MongoDB. Ensuite nous regarderons comment effectuer des requêtes plus complexes, impliquant des opérateurs de comparaison. Quelques méthodes utiles pour des requêtes en MongoDB sont données à la fin de cette partie.
 
 Auteurs/trices de cette partie : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
