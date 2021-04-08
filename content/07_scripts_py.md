@@ -130,3 +130,94 @@ db.list_collection_names()
 En résumer, le package pymongo vous permet d'utiliser trois types d'objets via votre IDE python : les clients, les base de données et les collections. Ces objets vont avoir des méthodes attitrés nous permettant d'effectuer des requetes, nous les détaillerons dans la suite du cours.
 
 Remarque: Vous pouvez remarquer que cela fonction comme un dictionnaire python. Toutefois, si votre base contient des caractère spéciaux, espace ou autre on vous conseille la première écriture : db["NYfood"].
+
+
+## Requetes <a id="partie3"></a>
+
+Maintenant que nous avons fait nos connexions,il nous reste a voir comment effectuer des requetes.
+
+**Fonctionnement :**
+
+Le fonctionement est le meme que sur l'interface MongoDb:
+
+**Syntax : db.nomDeLaCollection.requete() ou Client["BasedeDonnee"]["Collection"].requete()**
+
+|Requete|Fonctionement|
+|------|--------|
+|    find()    |    Recherche tous les individus selon les critères indiqués    |
+|    find_one()   |    Affiche le premier individu correspondant aux critères indiqués    |
+
+Mais le resultat est différent, il nous renvoie un objet de type "cursor". En effet, le module pymongo ne stockera pas les résulats dans une liste par soucis de mémoire : 
+
+Par exemple, ici nous reccuperons toutes les boulangeries de la collection.
+
+```{code-cell}
+db.NYfood.find({"cuisine": "Bakery"})
+```
+
+Pour Acceder au contenu de la requete, il nous faut parcourir l'objet renvoyé par la requete, comme un objet itérable classique:
+
+On affiche les deux premiers individus issue de la requete.
+
+```{code-cell}
+cursor = db.NYfood.find({"cuisine": "Bakery"})
+
+# afficher les 2 premiers individus
+
+for rep in cursor[:2]:    
+  print(rep)
+```
+
+Ou bien :
+
+```{code-cell}
+print(list(cursor[:2]))
+```
+
+Nous pouvons afficher l'ensemble des réponse mais cela peut demander beaucoup de memoire pour votre ordinateur en fonction de la requete demander. Pour se faire, on utilise la ligne suivante.
+
+
+```{}
+print(list(cursor))
+```
+
+
+Il est donc préférable d'afficher les premier resultats pour voir si votre requete est juste. 
+
+Si nous ne voulons afficher que le premier individu conrrespondant aux critères indiqués, ici nous demandons la première boulangerie de la collection:
+
+```{code-cell}
+db.NYfood.find_one({"cuisine": "Bakery"})
+```
+
+Ainsi, vue que notre réponse est un dictionnaire et que nous connaissons la structure alors nous pouvons aller chercher les informations qui nous intérresse.
+Ainsi, nous recupérons ci-dessous la localisation et les coordonées du premier individu issue de notre requette:
+
+```{code-cell}
+print(cursor[0]["loc"]["coordinates"])
+```
+
+De plus, pour utiliser certaine methode comme sort(), nous devons le mettre sous cette forme : 
+
+**Syntax : BasedeDonnee.Collection.requetes().methode()**
+
+Nous ne pouvons pas utiliser ces methodes a l'objet cursor car ces methodes vont partie intégrante de la requete.
+
+|Méthodes Python|Fonctionalité|
+|------|----------|
+|    sort()    |    Trie les individus    |
+|    count()   |    Compte le nombre d'individu issue de la requete    |
+|    limit()    |    Affiche les n premiers individus souhaités    |
+|    explain()    |    Permet d’obtenir un certain nombre d’informations sur le déroulement d’une requête |
+|    distinct()    |    Supprime les doublons    |
+    
+
+**Exemples :**
+
+```{}
+db.NYfood.find({"cuisine": "Bakery"}).limit(2) # Affiche les deux premiers résultats
+db.NYfood.find({"cuisine": "Bakery"}).sort("name", -1)) # Trie les résultats par ordre décroissant par rapport à la variable name
+
+```
+
+
