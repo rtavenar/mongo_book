@@ -328,4 +328,51 @@ db.NYfood.index_information()
 db.NYfood.create_index("borough")
 ```
 
+### Les requêtes d'agrégation <a id="partie33"></a>
+
+Les requêtes d'agrégation ont pour but de faire des calculs simples (agrégats) sur toute la collection ou seulement sur certains groupes. Pour ce faire, on utilise la méthode Python  ```aggregate()``` .
+
+Dans l'exemple ci-dessous, on souhaite compter le nombre de restaurants dans la collection en les regroupant par quartier.
+```{code-cell}
+# aggrégation
+cursor_agreg = coll.aggregate([
+  {"$group": {"_id": "$borough",
+              "nb_restos": {"$sum": 1}}
+  }
+])
+
+# affichage
+for agreg in cursor_agreg:
+    print(agreg["nb_restos"], "restaurants dans le quartier", agreg["_id"])
+```
+
+Ici, l'opérateur ```$group``` regroupe les documents selon la valeur de la variable *borough* (quartier) de façon équivalente au GROUP BY en SQL.
+
+**Bonus, exemple d'utilsation du resultat d'une aggregation** 
+ 
+```{code-cell}
+import matplotlib.pyplot as plt
+
+cursor.agrr = client.food.NYfood.aggregate([
+                                              {"$unwind": "$grades"},
+                                              {"$group": {_id: "$grades.grade", nb: {"$sum": 1}}}
+                                            ])
+
+# exploitation du resultat                                  
+l_nb = []
+l_grade = []
+for obj in cursor.agrr :
+    l_nb.append(obj["nb"])
+    l_grade.append(obj["_id"])
+
+
+plt.figure(figsize = (10, 5))
+
+plt.bar(l_grade, l_nb, color ='blue', width = 0.4)
+plt.xlabel("Note")
+plt.ylabel("Count")
+plt.title("Number of times assigned to a note")
+plt.show()
+    
+```
 
