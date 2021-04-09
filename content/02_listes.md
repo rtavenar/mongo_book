@@ -90,9 +90,9 @@ Il faut donc retirer les étudiants qui ont une liste _notes_ vide mais aussi ce
 ```{code-cell}
 db.notes.find(
     {$nor: 
-        [{"notes": {$lt: 12}},               /*1ère condition : on retire ceux qui ont des notes en dessous de 12*/
-        {"notes": {$size: 0}},               /*2ème condition : on retire ceux qui n'ont pas de notes*/
-        {"notes": {$exists: false}}]         /*3ème condition : on retire les documents ne possédant pas de liste "notes"*/
+        [{"notes": {$exists: false}},         /*1ère condition : on retire les documents ne possédant pas de liste "notes"*/
+        {"notes": {$lt: 12}},                 /*2ème condition : on retire ceux qui ont des notes en dessous de 12*/
+        {"notes": {$size: 0}}]                /*3ème condition : on retire ceux qui n'ont pas de notes*/
     }
 )
 ```
@@ -128,14 +128,14 @@ Cette requête teste pour chaque élément de la liste un à un :
   - La condition <math>></math> 13;
   - La condition <math>≤</math> 10;  
   
-Si chacune des conditions est vérifiée aux moins une fois, la liste complète est renvoyée. En clair, si au moins un élément de la liste est <math>></math> 13 et au moins un élément est <math>≤</math> 10, les conditions sont considérées comme validées.
+Si chacune des conditions est vérifiée au moins une fois, la liste complète est renvoyée. En clair, si au moins un élément de la liste est <math>></math> 13 et au moins un élément est <math>≤</math> 10, les conditions sont considérées comme validées.
 
 Ainsi, à la liste "[1,5,7,10,12,14,3]" correspond :  
   - [F,F,F,F,F,T,F] pour la première condition
   - [T,T,T,T,F,F,T] pour la seconde
-Les conditions sont toutes respectés au moins une fois, la liste complète est donc renvoyée. 
+Les conditions sont toutes respectées au moins une fois, la liste complète est donc renvoyée. 
 
-Ainsi, nous ne testons pas simultanément les deux conditions sur chaques nombres. Aucun nombre x ne vérifie x<math>></math> 12 et x <math>≤</math> 10. Cela est contre-intuitif, il faut faire attention.
+Ainsi, nous ne testons pas simultanément les deux conditions sur chaque nombre. Aucun nombre x ne vérifie x<math>></math> 12 et x <math>≤</math> 10. Cela est contre-intuitif, il faut faire attention.
 
 Mais alors, comment pouvons-nous justement tester une double condition sur chaque élement de la liste ? Pour cela, nous allons faire appel à l'opérateur _$elemMatch_.
 
@@ -170,17 +170,17 @@ db.notes.find(
     }
 )
 ```
-Attention : on renvoie ici bien les listes dont **au moins une valeur** vérifie l'ensemble des conditions ! Les notes validant les deux conditions sont 10, 11 et 12. Par exemple, la liste [1,3,8,11,15] sera retournée mais la liste [1,3,8,15] ne le sera pas.
+Attention : on renvoie bien ici les listes dont **au moins une valeur** vérifie l'ensemble des conditions ! Les notes validant les deux conditions sont 10, 11 et 12. Par exemple, la liste [1,3,8,11,15] sera retournée mais la liste [1,3,8,15] ne le sera pas.
 
 Comment obtenir les étudiants dont **toutes** les notes vérifient les conditions simultanement ? Cela est réalisable grâce à l'opérateur _$nor_ vu plus tôt :
 
 ```{code-cell}
 db.notes.find(
     {$nor: 
-        [{"notes": {$lte: 9}},                /*1ère condition : on retire les étudiants qui ont des notes en dessous de 10*/
-        {"notes": {$gte: 13}},                /*2ème condition : on retire ceux qui ont des notes au dessus de 12*/
-        {"notes": {$size: 0}},                /*3ème condition : on retire ceux qui n'ont pas de notes*/
-        {"notes": {$exists: false}}]          /*4ème condition : on retire les documents ne possédant pas de liste "notes"*/
+        [{"notes": {$exists: false}},         /*1ère condition : on retire les documents ne possédant pas de liste "notes"*/
+        {"notes": {$size: 0}},                /*2ème condition : on retire ceux qui n'ont pas de notes*/
+        {"notes": {$lte: 9}},                 /*3ème condition : on retire les étudiants qui ont des notes en dessous de 10*/
+        {"notes": {$gte: 13}}]                /*4ème condition : on retire ceux qui ont des notes au dessus de 12*/
     }
 )
 ```
@@ -201,13 +201,3 @@ Avec _$elemMatch_, on regarde tous les éléments de la liste un par un et on re
 > Utilisation de l'opérateur _$nor_.
 
 Avec _$nor_, on liste les conditions que nous ne souhaitons pas retourner. Ainsi, on ne récupère pas les éléments qui valident des conditions. Il faut notamment penser à retirer les éléments vides avec _{$size: 0}_ et les éléments inexistants avec _{$exists: false}_.
-
-## Notes / Brouillon :
-
-Lorsqu'une liste n'existe pas, la condition posée dessus est automatiquement vérifiée.
-
-
-Parler de l'attribut $size pour les listes  
-Est-ce qu'on s'intéresse à la création de liste en mode création de variables ?
-
-
