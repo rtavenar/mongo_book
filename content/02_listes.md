@@ -23,6 +23,10 @@ En MongoDB, un document est composé de couples clé/valeur. Une clé peut être
  
 Les exemples pour cette partie concernent les listes de notes des élèves de la collection notes de la base de données _etudiants_.
 
+```{code-cell, echo=FALSE}
+use etudiants
+```
+
 Exemple : on veut connaitre les notes de l'étudiant Paul et les sortir sous forme de liste.
 
 ```{code-cell}
@@ -91,13 +95,10 @@ Cette fois ci, c'est bon, on ne retourne plus que 2 étudiants qui n'ont que des
 (sec:exec)=
 ## Particularité du travail sur des listes 
 
-  Lorsque nous faisons des requêtes sur un attribut d'autre type qu'une liste, un seul élement est soumis à l'ensemble de nos conditions.
+Lorsque nous faisons des requêtes sur un attribut d'autre type qu'une liste, un seul élement est soumis à l'ensemble de nos conditions.
 Par exemple, la clé "nom" renvoie une chaine de carractère, qui est un élément unique, cet élément est soumis à nos deux conditions. Nous voulons les nom
 qui commencent par la lettre M:
 
-```{code-cell, echo=FALSE}
-use etudiants
-```
 ```{code-cell}
 :tags: [output_scroll]
 
@@ -106,7 +107,7 @@ db.notes.find({"nom": {$gte: "M", $lt: "N"}})
 Cette requête, nous renvoie les noms dont la première lettre est <math>≥</math> à M, et <math><</math>N. Les chaînes de caractères renvoyés on été soumis à deux conditions. 
 
 
-  Avec les listes, c'est différent. Chacun des éléments sont testés un à un, voyons le fonctionnement d'une requête sur une liste avec plusieurs conditions : 
+Avec les listes, c'est différent. Chacun des éléments sont testés un à un, voyons le fonctionnement d'une requête sur une liste avec plusieurs conditions : 
 
 ```{code-cell}
 :tags: [output_scroll]
@@ -134,7 +135,7 @@ Testez votre intuition! D'après vous, que resortiras cette requête?
 ```{code-cell}
 db.notes.find({"notes": { $elemMatch: {$gt: 13, $lte: 10}}})
 ```
-Bon, normalement vous avez eux des indices, contrairement à la requête précedante, cette requête test les élement un à un ainsi, pour la même liste, aucun élement un à un ne vérifie ces deux conditions, la liste n'est pas renvoyée. 
+Normalement, vous avez eux des indices, contrairement à la requête précedante, cette requête test les élement un à un ainsi, pour la même liste, aucun élement un à un ne vérifie ces deux conditions, la liste n'est pas renvoyée. 
 
 Exemple avec des conditions plausibles : 
 ```{code-cell}
