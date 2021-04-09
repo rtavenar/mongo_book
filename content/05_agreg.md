@@ -124,6 +124,14 @@ db.NYfood.aggregate(
    ]
 )
 ```
+***Traduction SQL :***
+
+```sql
+SELECT borough
+FROM NYfood 
+ORDER BY borough
+```
+
 En effet, dans l'exemple ci-dessus, le champ quartier n'est pas un champ avec des valeurs uniques. Si un ordre de tri cohérent est souhaité, il est important d'au moins inclure un champ dans votre tri qui contient des valeurs uniques. Généralement, le moyen le plus simple de garantir cela consiste à inclure le champ _id dans la requête de tri.
 ```{code-cell}
 db.NYfood.aggregate(
@@ -134,6 +142,13 @@ db.NYfood.aggregate(
 ```
 Cette fois ci, la reqête affichera l'ensemble de la collection avec les noms de quartier affichés par ordre alphabétique. Les collections du quartier de "Bronx" seront les premières à être affichées, puis ensuite l'ordre par identifiant sera conservé lorsque le nom de quartier sera le même pour plusieurs collections.
 
+***Traduction SQL :***
+ 
+```sql
+SELECT borough
+FROM NYfood 
+ORDER BY borough, _id
+```
 
 ### <center> Limit </center>
 ***Pourquoi l'utiliser ?***
@@ -163,12 +178,25 @@ db.NYfood.aggregate([
 					]) 
 ```					  
 On remarque ici que nous ne pouvons pas utiliser l'étape `$limit` seul sans le sort. Nous avons d'abord besoin de trier le nombre de restaurants par ordre décroissant puis enfin préciser que nous souhaitons obtenir seulement les 3 premiers quartiers contenant le plus de restaurants.
+***Traduction SQL :***
 
+<<<<<<< Updated upstream
 ### <center> Match  </center>
 ***Pourquoi l'utiliser ***
 
 `$match` peut être utilisé comme un filtre, avec une condition. On pourrait le mettre n'importe où dans notre requête mais il est particulierement intéressant en début ou en fin de requête.
 
+=======
+```sql
+SELECT count(borough)
+FROM NYfood 
+ORDER BY count(borough) desc
+limit 3
+```
+
+### <center> Match </center>
+***Pourquoi l'utiliser ?***
+>>>>>>> Stashed changes
 
 ***Comment ça fonctionne ?***
 
@@ -197,6 +225,7 @@ db.NYfood.aggregate(
 ``` 
 Ici le premier `match` sert comme un `WHERE`, et le deuxième comme un `HAVING` en SQL.
 
+<<<<<<< Updated upstream
 Traduction en SQL :
 
 ```SQL
@@ -206,6 +235,28 @@ WHERE Borough='Brooklyn'
 GROUP BY grade
 HAVING n > 1000
 ``` 
+=======
+### Quelques requêtes pour tout comprendre
+```
+db.NYfood.aggregate([
+
+                        {$match: {"borough": "Brooklyn"}},
+                        {$unwind: "$grades"},
+                        {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
+                        {$sort: {nb: -1}},
+                        {$limit: 3}
+                      ]) 
+```
+
+Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par étape ici on a :
+
+* `$match` : on rend un tableau avec uniquement des restaurants de brooklyn.
+* `$unwind` : on sépare les individus du tableau rendu par l'étape précédente par leur notes.
+* `$group` : on regroupe par notes le tableau obtenu.
+* `$sort` : on trie le tableau eu à l'étape d'avant en fonction du nombre d'occurences de notes.
+* `$limit` : dans ce précédent tableau, on ne rend que les trois premiers résultats.
+
+>>>>>>> Stashed changes
 
 ### <center> Unwind </center>
 
@@ -241,27 +292,6 @@ Voici un exemple concret d'utilisation d'un `$unwid`. Dans la requête on cherch
 Pour que cette requête fonction le `$unwid` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter.  
  ***Traduction SQL :*** 
 Il n'existe pas réelement d'équivalent SQL au `$unwid`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
-
-
-### Quelques requêtes pour tout comprendre
-```
-db.NYfood.aggregate([
-
-                        {$match: {"borough": "Brooklyn"}},
-                        {$unwind: "$grades"},
-                        {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
-                        {$sort: {nb: -1}},
-                        {$limit: 3}
-                      ]) 
-```
-
-Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par étape ici on a :
-
-* `$match` : on rend un tableau avec uniquement des restaurants de brooklyn.
-* `$unwind` : on sépare les individus du tableau rendu par l'étape précédente par leur notes.
-* `$group` : on regroupe par notes le tableau obtenu.
-* `$sort` : on trie le tableau eu à l'étape d'avant en fonction du nombre d'occurences de notes.
-* `$limit` : dans ce précédent tableau, on ne rend que les trois premiers résultats.
 
 #### Résultat final : Les 3 notes les plus données dans les restaurants du quartier de Brooklyn
 
