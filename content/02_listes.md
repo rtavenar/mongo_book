@@ -187,16 +187,19 @@ db.notes.find(
 
 ## Récapitulatif
 
-⋅⋅* _Je souhaite que **toutes les conditions** soient vérifiées **au moins une fois** par les éléments de ma liste, comment faire ?_
-> Code "classique"
+- _Je souhaite que **toutes les conditions** soient vérifiées **au moins une fois** par les éléments de ma liste, comment faire ?_
+> Code "classique".
+
 Sans _$elemMatch_, si les conditions sont vérifiées une à une, que ce soit par un élément de la liste ou grâce à plusieurs éléments distincts, alors le document est retourné.
 
-⋅⋅* _Je souhaite que **toutes les conditions** soient **simultanement** vérifiées par **au moins un élément** de ma liste, comment faire ?_
-> Utilisation de l'opérateur _$elemMtach_
+- _Je souhaite que **toutes les conditions** soient **simultanement** vérifiées par **au moins un élément** de ma liste, comment faire ?_
+> Utilisation de l'opérateur _$elemMtach_.
+
 Avec _$elemMatch_, on regarde tous les éléments de la liste un par un et on retourne le document si et seulement si au moins un élément est capable de vérifier toutes les conditions à lui tout seul.
 
-⋅⋅* _Je souhaite que **toutes les conditions** soient vérifiées par **tous les éléments** de ma liste, comment faire ?_
-> Utilisation de l'opérateur _$nor_
+- _Je souhaite que **toutes les conditions** soient vérifiées par **tous les éléments** de ma liste, comment faire ?_
+> Utilisation de l'opérateur _$nor_.
+
 Avec _$nor_, on liste les conditions que nous ne souhaitons pas retourner. Ainsi, on ne récupère pas les éléments qui valident des conditions. Il faut notamment penser à retirer les éléments vides avec _{$size: 0}_ et les éléments inexistants avec _{$exists: false}_.
 
 ## Notes / Brouillon :
