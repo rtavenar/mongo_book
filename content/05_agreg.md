@@ -164,14 +164,48 @@ db.NYfood.aggregate([
 ```					  
 On remarque ici que nous ne pouvons pas utiliser l'étape `$limit` seul sans le sort. Nous avons d'abord besoin de trier le nombre de restaurants par ordre décroissant puis enfin préciser que nous souhaitons obtenir seulement les 3 premiers quartiers contenant le plus de restaurants.
 
-### <center> Match ? </center>
-***Pourquoi l'utiliser ?***
+### <center> Match  </center>
+***Pourquoi l'utiliser ***
+
+`$match` peut être utilisé comme un filtre, avec une condition. On pourrait le mettre n'importe où dans notre requête mais il est particulierement intéressant en début ou en fin de requête.
+
 
 ***Comment ça fonctionne ?***
 
-***Exemple :***  
-**Syntaxe** :  
+**Syntaxe** : 
+```
+db.coll.aggregate( 
+  [
+   {$match: {'condition': 'attribute'}}
+  ]
+)
+``` 
 
+***Exemple :***  
+```{code-cell}
+db.NYfood.aggregate( 
+  [  
+  {$match: {"borough": 'Brooklyn'}},
+   {$unwind: "$grades"},
+   {$group : {_id: "$grades.grade",
+       n:{$sum:1}
+            }
+          },
+    {$match:{n:{$gt:1000}}},
+]
+)
+``` 
+Ici le premier `match` sert comme un `WHERE`, et le deuxième comme un `HAVING` en SQL.
+
+Traduction en SQL :
+
+```SQL
+SELECT COUNT(grade) as n
+FROM NYfood
+WHERE Borough='Brooklyn'
+GROUP BY grade
+HAVING n > 1000
+``` 
 
 ### <center> Unwind </center>
 
