@@ -91,11 +91,11 @@ Cette fois ci, c'est bon, on ne retourne plus que 2 étudiants qui n'ont que des
 (sec:exec)=
 ## Particularité du travail sur des listes 
 
-Lorsque nous faisons des requêtes sur un attribut d'autre type qu'une liste, un seul élement est soumis à l'ensemble de nos conditions.
+  Lorsque nous faisons des requêtes sur un attribut d'autre type qu'une liste, un seul élement est soumis à l'ensemble de nos conditions.
 Par exemple, la clé "nom" renvoie une chaine de carractère, qui est un élément unique, cet élément est soumis à nos deux conditions. Nous voulons les nom
 qui commencent par la lettre M:
 
-```{code-cell}
+```{code-cell, echo=FALSE}
 use etudiants
 ```
 ```{code-cell}
@@ -103,10 +103,10 @@ use etudiants
 
 db.notes.find({"nom": {$gte: "M", $lt: "N"}})
 ```
-Cette requête, nous renvoie les nom dont la première lettre est >= à M, et <N. Les chaines de carractères renvoyés on été soumis à deux condition. 
+Cette requête, nous renvoie les nom dont la première lettre est <math>≥</math> à M, et <math><</math>N. Les chaines de carractères renvoyés on été soumis à deux conditions. 
 
 
-Avec les listes, c'est différent. Chacun des éléments est testé un à un, voyons le fonctionnement d'une requête sur une liste avec plusieurs conditions : 
+  Avec les listes, c'est différent. Chacun des éléments est testé un à un, voyons le fonctionnement d'une requête sur une liste avec plusieurs conditions : 
 
 ```{code-cell}
 :tags: [output_scroll]
@@ -114,16 +114,36 @@ Avec les listes, c'est différent. Chacun des éléments est testé un à un, vo
 db.notes.find({"notes": {$gt: 13, $lte: 10}})
 ```
 Cette requête, teste pour chaque élément de la liste un à un : 
-  - La condition $gt: 12;
-  - La condition $lte: 10;  
+  - La condition <math>></math> 13;
+  - La condition <math>≤</math> 10;  
   
 Si les conditions sont vérifiées aux moins une fois, la liste est renvoyée. 
-Ainsi, une liste "[11,11,12,8,3,18,15]" donne :  
+Ainsi, la liste "[1,5,7,10,12,14,3]" renvoie pour ces conditions :  
 
-  - [F,F,F,F,F,T,T] pour la première condition, 
-  - [F,F,F,T,T,F,F] pour la seconde.
-Les conditions sont toutes respectés au moin une fois, la liste est renvoyée.  
-  
+  - [F,F,F,F,F,T,F] pour la première condition, 
+  - [T,T,T,T,F,F,T] pour la seconde.
+Les conditions sont toutes respectés au moin une fois, la liste est renvoyée. 
+
+Ainsi vous l'aurez compris, nous ne teston pas simultanément les deux conditions sur chaques nombres, aucun nombre ne vérifie x<math>></math> 12 et x <math>≤</math> 10. Cela est contre-intuitif, il faut faire attention. 
+
+Mais alors comment pouvons nous justement tester une double condition sur chaque élements de la liste? Pour cela, nous allons faire appel à $elemmatch!
+
+## $elemmatch. 
+
+Testez votre intuition! D'après vous, que resortiras cette requête? 
+```{code-cell}
+db.notes.find({"notes": {$gt: 13, $lte: 10}})
+```
+Bon, normalement vous avez eux des indices, contrairement à la requête précedante, cette requête test les élement un à un ainsi, pour la même liste, aucun élement 1 à un ne vérifie ces deux conditions, la liste n'est pas renvoyée. 
+
+Exemple avec des conditions plausibles : 
+```{code-cell}
+:tags: [output_scroll]
+db.notes.find({"notes": { $elemMatch: {$gt: 9, $lte: 13}}})
+```
+Ainsi, pour la première liste resortie, [10,12] les conditions donnent [T,T], la liste possède au moins une valeur qui vérifie l'ensemble des conditions, elle est renvoyée. 
+
+
 
 ## Notes / Brouillon :
 
@@ -132,5 +152,5 @@ Lorsqu'une liste n'existe pas, la condition posée dessus est automatiquement v�
 Sans le $elemmatch, si les conditions sont vérifiées une à une, que ce soit par un élément de la liste ou grâce à plusieurs éléments distincts, alors le document est retourné.
 Avec le $elemmatch, on regarde toutes les notes une par une et on ne retourne le document si et seulement si un élément de la liste est capable de vérifier toutes les conditions à lui tout seul.
 
-Parler de l'attribut $size pour les listes
+Parler de l'attribut $size pour les listes  
 Est-ce qu'on s'intéresse à la création de liste en mode création de variables ?
