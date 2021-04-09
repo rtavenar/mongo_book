@@ -44,7 +44,7 @@ Commençons par regarder ce que peut faire chaque étape.
 
 ### <center> Project </center>
 ***Pourquoi l'utiliser ?***  
-Il peut arriver lors d'une requête d'aggrégation de vouloir créer de nouvelles variables par exemple, pour des calculs. La commande `$project` permet donc de créer de nouvelles variables. Néanmoins, il faut faire attention, lorsque l'on crée une nouvelle variable dans une requête d'aggrégation tout les attributs déja existants pour les documents d'une collection ne sont plus mémoriser. Donc, si on veut créer une nouvelle variable tout en gardant les déja existantes il faut le mentionner le `$project`. 
+Il peut arriver lors d'une requête d'agrégation de vouloir créer de nouvelles variables par exemple, pour des calculs. La commande `$project` permet donc de créer de nouvelles variables. Néanmoins, il faut faire attention, lorsque l'on crée une nouvelle variable dans une requête d'agrégation tout les attributs déjà existants pour les documents d'une collection ne sont plus mémoriser. Donc, si on veut créer une nouvelle variable tout en gardant les déjà existantes il faut le mentionner le `$project`. 
 
 ***Comment ça fonctionne ?*** 
 
@@ -57,7 +57,7 @@ db.coll.aggregate(
 )
 ```
 
-Le fait de vouloir garder un attribut déja existant fonctionne de la même façon que la création, il faut donc renomer la variable existante.   
+Le fait de vouloir garder un attribut déjà existant fonctionne de la même façon que la création, il faut donc renommer la variable existante.   
 
 ***Exemple :***  
 ```{code-cell}
@@ -67,7 +67,7 @@ db.NYfood.aggregate(
 ]
 )
 ```
-Sur l’exemple ci-dessus on vient créer une varibale n_notes qui prend pour valeur la taille de la liste grades (qui contient les différentes attribuées au restaurant), on cherche donc ici à compter le nombre de notes attribué à chaque restaurant. Mais tous les autres attributs du restaurant sont effacés. Par la suite on ne pourra donc retrouver que le nombre de note attribué et non le quartier ou le type de restaurant. 
+Sur l’exemple ci-dessus on vient créer une variable n_notes qui prend pour valeur la taille de la liste grades (qui contient les différentes attribuées au restaurant), on cherche donc ici à compter le nombre de notes attribué à chaque restaurant. Mais tous les autres attributs du restaurant sont effacés. Par la suite on ne pourra donc retrouver que le nombre de note attribué et non le quartier ou le type de restaurant. 
 Si on veut afficher le quartier en question on doit le préciser tel que :
 ```{code-cell}
 db.NYfood.aggregate( 
@@ -89,7 +89,7 @@ db.NYfood.aggregate(
 L'équivalent en SQL de la commande '$project' les étapes `SELECT` et `AS` qui permettent de créer de nouvelles variables. Par contre, en SQL l'étape `AS` est facultative, la nouvelle variable prendra comme nom la formule du calcul. En MongoDB elle est obligatoire ! Si on ne précise pas le nom de la nouvelle variable cela affichera une erreur. Voici la traduction SQL  de l'exemple précédent :   
 
  ```sql
- SELECT borough, LENGTH(grades) AS "n_notes"
+ SELECT borough, COUNT(grades) AS "n_notes"
  FROM NYfood 
  ```
  
@@ -97,9 +97,9 @@ L'équivalent en SQL de la commande '$project' les étapes `SELECT` et `AS` qui 
 
 ***Pourquoi l'utiliser ?***
 
-Comme dans la plus part des langages de bases de données, MongoDB ne stocke pas les documents dans une collection dans un ordre en particulier. C'est pourquoi l'étape 'sort' (tri en français) va permettre de trier l'ensemble de tous les documents d'entrée afin de les renvoyer dans l'ordre choisi par l'utlisateur. Nous pouvons les trier dans l'ordre croissant, décroissant, chronologique ou bien alphébétique selon le type du champ souhaitant être trié. 
+Comme dans la plus part des langages de bases de données, MongoDB ne stocke pas les documents dans une collection dans un ordre en particulier. C'est pourquoi l'étape 'sort' (tri en français) va permettre de trier l'ensemble de tous les documents d'entrée afin de les renvoyer dans l'ordre choisi par l'utilisateur. Nous pouvons les trier dans l'ordre croissant, décroissant, chronologique ou bien alphabétique selon le type du champ souhaitant être trié. 
 Il est possible de trier sur plusieurs champs à la fois, mais dans ce cas l'ordre de tri est évalué de gauche à droite. 
-Le `$sort` est finalement l'équivalent du order by en SQL.
+Le `$sort` est finalement l'équivalent du `ORDER BY en SQL.
 
 ***Comment ça fonctionne ?***
 
