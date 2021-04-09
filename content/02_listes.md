@@ -103,10 +103,10 @@ use etudiants
 
 db.notes.find({"nom": {$gte: "M", $lt: "N"}})
 ```
-Cette requête, nous renvoie les nom dont la première lettre est <math>≥</math> à M, et <math><</math>N. Les chaines de carractères renvoyés on été soumis à deux conditions. 
+Cette requête, nous renvoie les noms dont la première lettre est <math>≥</math> à M, et <math><</math>N. Les chaînes de caractères renvoyés on été soumis à deux conditions. 
 
 
-  Avec les listes, c'est différent. Chacun des éléments est testé un à un, voyons le fonctionnement d'une requête sur une liste avec plusieurs conditions : 
+  Avec les listes, c'est différent. Chacun des éléments sont testés un à un, voyons le fonctionnement d'une requête sur une liste avec plusieurs conditions : 
 
 ```{code-cell}
 :tags: [output_scroll]
@@ -124,17 +124,17 @@ Ainsi, la liste "[1,5,7,10,12,14,3]" renvoie pour ces conditions :
   - [T,T,T,T,F,F,T] pour la seconde.
 Les conditions sont toutes respectés au moin une fois, la liste est renvoyée. 
 
-Ainsi vous l'aurez compris, nous ne teston pas simultanément les deux conditions sur chaques nombres, aucun nombre ne vérifie x<math>></math> 12 et x <math>≤</math> 10. Cela est contre-intuitif, il faut faire attention. 
+Ainsi vous l'aurez compris, nous ne testons pas simultanément les deux conditions sur chaques nombres, aucun nombre ne vérifie x<math>></math> 12 et x <math>≤</math> 10. Cela est contre-intuitif, il faut faire attention. 
 
-Mais alors comment pouvons nous justement tester une double condition sur chaque élements de la liste? Pour cela, nous allons faire appel à $elemmatch!
+Mais alors comment pouvons nous justement tester une double condition sur chaque élements de la liste? Pour cela, nous allons faire appel à $elemMatch!
 
-## $elemmatch. 
+## $elemMatch. 
 
 Testez votre intuition! D'après vous, que resortiras cette requête? 
 ```{code-cell}
-db.notes.find({"notes": {$gt: 13, $lte: 10}})
+db.notes.find({"notes": { $elemMatch: {$gt: 13, $lte: 10}}})
 ```
-Bon, normalement vous avez eux des indices, contrairement à la requête précedante, cette requête test les élement un à un ainsi, pour la même liste, aucun élement 1 à un ne vérifie ces deux conditions, la liste n'est pas renvoyée. 
+Bon, normalement vous avez eux des indices, contrairement à la requête précedante, cette requête test les élement un à un ainsi, pour la même liste, aucun élement un à un ne vérifie ces deux conditions, la liste n'est pas renvoyée. 
 
 Exemple avec des conditions plausibles : 
 ```{code-cell}
