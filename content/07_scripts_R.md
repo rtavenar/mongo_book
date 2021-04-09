@@ -63,7 +63,7 @@ library(mongolite)
 Après avoir chargé les packages nécessaires dans votre environnement R, vous pourrez vous connecter à une collection d'une base de données présente sur un serveur MongoDB à partir d'un lien URI, du nom de la base de données, et du nom de la collection à laquelle on souhaite accéder. Pour ce faire, il suffit d'utiliser la fonction *mongo()* de la librairie *mongolite* de la manière suivante :
 
 ```r
-coll = mongo(collection="ma_collection", db="ma_BDD",
+coll <- mongo(collection="ma_collection", db="ma_BDD",
             url="mon_uri",
             verbose=TRUE)
 ```
