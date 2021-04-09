@@ -172,26 +172,6 @@ On remarque ici que nous ne pouvons pas utiliser l'étape `$limit` seul sans le 
 ***Exemple :***  
 **Syntaxe** :  
 
-### Quelques requêtes pour tout comprendre
-```
-db.NYfood.aggregate([
-
-                        {$match: {"borough": "Brooklyn"}},
-                        {$unwind: "$grades"},
-                        {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
-                        {$sort: {nb: -1}},
-                        {$limit: 3}
-                      ]) 
-```
-
-Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par étape ici on a :
-
-* `$match` : on rend un tableau avec uniquement des restaurants de brooklyn.
-* `$unwind` : on sépare les individus du tableau rendu par l'étape précédente par leur notes.
-* `$group` : on regroupe par notes le tableau obtenu.
-* `$sort` : on trie le tableau eu à l'étape d'avant en fonction du nombre d'occurences de notes.
-* `$limit` : dans ce précédent tableau, on ne rend que les trois premiers résultats.
-
 
 ### <center> Unwind </center>
 
@@ -227,6 +207,27 @@ Voici un exemple concret d'utilisation d'un `$unwid`. Dans la requête on cherch
 Pour que cette requête fonction le `$unwid` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter.  
  ***Traduction SQL :*** 
 Il n'existe pas réelement d'équivalent SQL au `$unwid`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
+
+
+### Quelques requêtes pour tout comprendre
+```
+db.NYfood.aggregate([
+
+                        {$match: {"borough": "Brooklyn"}},
+                        {$unwind: "$grades"},
+                        {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
+                        {$sort: {nb: -1}},
+                        {$limit: 3}
+                      ]) 
+```
+
+Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par étape ici on a :
+
+* `$match` : on rend un tableau avec uniquement des restaurants de brooklyn.
+* `$unwind` : on sépare les individus du tableau rendu par l'étape précédente par leur notes.
+* `$group` : on regroupe par notes le tableau obtenu.
+* `$sort` : on trie le tableau eu à l'étape d'avant en fonction du nombre d'occurences de notes.
+* `$limit` : dans ce précédent tableau, on ne rend que les trois premiers résultats.
 
 #### Résultat final : Les 3 notes les plus données dans les restaurants du quartier de Brooklyn
 
