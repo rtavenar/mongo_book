@@ -31,7 +31,7 @@ Cette section traite de :
 
 ### Introduction
 Les successions d'étapes d'agrégations vont permettre d'obtenir des requêtes proches de ce qu'on peut trouver en SQL.
-Contrairement à SQL où l'ordre est pré-défini (SELECT FROM WHERE ORDER BY), ici ce n'est pas le cas, il n'empêche que **l'ordre dans lequel on place
+Contrairement à SQL où l'ordre est pré-défini (`SELECT FROM WHERE ORDER BY`), ici ce n'est pas le cas, il n'empêche que **l'ordre dans lequel on place
 nos étapes est crucial.**
 
 Nos étapes peuvent toutes être effectuées une à une et indépendamment. En fait, à l'intérieur de notre `db.coll.aggregate([])`, il y aura notre liste d'étapes,
@@ -44,7 +44,9 @@ Commençons par regarder ce que peut faire chaque étape.
 
 ### <center> Project </center>
 ***Pourquoi l'utiliser ?***  
-Il peut arriver lors d'une requête d'agrégation de vouloir créer de nouvelles variables par exemple, pour des calculs. La commande `$project` permet donc de créer de nouvelles variables. Néanmoins, il faut faire attention, lorsque l'on crée une nouvelle variable dans une requête d'agrégation tout les attributs déjà existants pour les documents d'une collection ne sont plus mémoriser. Donc, si on veut créer une nouvelle variable tout en gardant les déjà existantes il faut le mentionner le `$project`. 
+Il peut arriver lors d'une requête d'agrégation de vouloir créer de nouvelles variables par exemple, pour des calculs. La commande `$project` permet donc de créer de nouvelles variables. Néanmoins, il faut faire attention, 
+lorsque l'on crée une nouvelle variable dans une requête d'agrégation,
+ tous les attributs déjà existants pour les documents d'une collection ne sont plus mémorisés. Donc, si on veut créer une nouvelle variable tout en gardant celles déjà existantes il faut le mentionner le `$project`. 
 
 ***Comment ça fonctionne ?*** 
 
@@ -64,29 +66,42 @@ Le fait de vouloir garder un attribut déjà existant fonctionne de la même fa�
 db.NYfood.aggregate( 
   [
    {$project: {"n_notes" : {$size : '$grades'}}}
-]
+  ]
 )
 ```
-Sur l’exemple ci-dessus on vient créer une variable n_notes qui prend pour valeur la taille de la liste grades (qui contient les différentes attribuées au restaurant), on cherche donc ici à compter le nombre de notes attribué à chaque restaurant. Mais tous les autres attributs du restaurant sont effacés. Par la suite on ne pourra donc retrouver que le nombre de note attribué et non le quartier ou le type de restaurant. 
-Si on veut afficher le quartier en question on doit le préciser tel que :
+Sur l’exemple ci-dessus on vient créer une variable n_notes qui prend pour valeur la taille de la liste `grades` 
+(qui contient les différentes notes attribuées au restaurant), 
+on cherche donc ici à compter le nombre de notes attribué à chaque restaurant.
+ Mais tous les autres attributs du restaurant sont effacés. Par la suite,
+ on ne pourra donc retrouver que le nombre de notes attribué et non le quartier 
+ ou le type de restaurant. 
+Si on veut afficher le quartier en question, on doit le préciser tel que :
 ```{code-cell}
 db.NYfood.aggregate( 
   [
    {$project: {"n_notes" : {$size : '$grades'}, quartier :'$borough'}}
-]
+  ]
 )
 ```
 
-Avec cette requête je peux voir le quartier du restaurant, par ailleurs la variable `borough` a été renommé `quartier`. Je peux également conserver cette variable sans la renommer avec cette syntaxe.
+Avec cette requête on peut voir le quartier du restaurant, par ailleurs la variable `borough` 
+a été renommé `quartier`. Je peux également conserver cette 
+variable sans la renommer avec cette syntaxe.
 ```{code-cell}
 db.NYfood.aggregate( 
   [
    {$project: {"n_notes" : {$size : '$grades'}, borough : 1}}
-]
+  ]
 )
 ```
 ***Traduction SQL :***
-L'équivalent en SQL de la commande '$project' les étapes `SELECT` et `AS` qui permettent de créer de nouvelles variables. Par contre, en SQL l'étape `AS` est facultative, la nouvelle variable prendra comme nom la formule du calcul. En MongoDB elle est obligatoire ! Si on ne précise pas le nom de la nouvelle variable cela affichera une erreur. Voici la traduction SQL  de l'exemple précédent :   
+
+L'équivalent en SQL de la commande `$project` sont les étapes `SELECT` et `AS` qui 
+permettent de créer de nouvelles variables. Par contre, en SQL 
+l'étape `AS` est facultative, la nouvelle variable prendra 
+comme nom la formule du calcul. En MongoDB elle est obligatoire ! 
+Si on ne précise pas le nom de la nouvelle variable cela affichera 
+une erreur. Voici la traduction SQL  de l'exemple précédent :   
 
  ```sql
  SELECT borough, COUNT(grades) AS "n_notes"
@@ -97,9 +112,14 @@ L'équivalent en SQL de la commande '$project' les étapes `SELECT` et `AS` qui 
 
 ***Pourquoi l'utiliser ?***
 
-Comme dans la plus part des langages de bases de données, MongoDB ne stocke pas les documents dans une collection dans un ordre en particulier. C'est pourquoi l'étape 'sort' (tri en français) va permettre de trier l'ensemble de tous les documents d'entrée afin de les renvoyer dans l'ordre choisi par l'utilisateur. Nous pouvons les trier dans l'ordre croissant, décroissant, chronologique ou bien alphabétique selon le type du champ souhaitant être trié. 
+Comme dans la plus part des langages de bases de données, MongoDB ne stocke pas les documents dans une collection dans un ordre 
+en particulier. C'est pourquoi l'étape `sort` (tri en français) va permettre
+ de trier l'ensemble de tous les documents d'entrée afin de les renvoyer dans
+ l'ordre choisi par l'utilisateur. Nous pouvons les trier dans l'ordre croissant,
+ décroissant, chronologique ou bien alphabétique selon le type du champ
+ souhaitant être trié. 
 Il est possible de trier sur plusieurs champs à la fois, mais dans ce cas l'ordre de tri est évalué de gauche à droite. 
-Le `$sort` est finalement l'équivalent du `ORDER BY en SQL.
+Le `$sort` est finalement l'équivalent du `ORDER BY` en SQL.
 
 ***Comment ça fonctionne ?***
 
@@ -112,11 +132,14 @@ db.coll.aggregate(
 )
 ```
 
-Le `<sort order>` peut prendre la valeur : 1 (croissant), -1 (décroissant) ou encore `{ $meta: "textScore" }`(il s'agit d'un tri de métadonnées textScore calculées dans l'ordre décroissant)
+Le `<sort order>` peut prendre la valeur : 1 (croissant), -1 (décroissant) ou encore `{$meta: "textScore"}`(il s'agit d'un tri de métadonnées textScore calculées dans l'ordre décroissant)
 
 ***Exemples :***
 
-Attention à bien prendre en compte le fait que lors du tri sur un champ contenant des valeurs en double (ou non unique), les documents contenant ces valeurs peuvent être renvoyés dans n'importe quel ordre.
+Attention à bien prendre en compte le fait que lors du 
+tri sur un champ contenant des valeurs en double (ou non unique),
+ les documents contenant ces valeurs peuvent être renvoyés dans 
+ n'importe quel ordre.
 ```{code-cell}
 db.NYfood.aggregate(
    [
@@ -132,7 +155,12 @@ FROM NYfood
 ORDER BY borough
 ```
 
-En effet, dans l'exemple ci-dessus, le champ quartier n'est pas un champ avec des valeurs uniques. Si un ordre de tri cohérent est souhaité, il est important d'au moins inclure un champ dans votre tri qui contient des valeurs uniques. Généralement, le moyen le plus simple de garantir cela consiste à inclure le champ _id dans la requête de tri.
+En effet, dans l'exemple ci-dessus, le champ quartier n'est 
+pas un champ avec des valeurs uniques. Si un ordre de tri 
+cohérent est souhaité, il est important d'au moins inclure 
+un champ dans votre tri qui contient des valeurs uniques. 
+Généralement, le moyen le plus simple de garantir cela consiste 
+à inclure le champ _id dans la requête de tri.
 ```{code-cell}
 db.NYfood.aggregate(
    [
@@ -140,7 +168,12 @@ db.NYfood.aggregate(
    ]
 )
 ```
-Cette fois ci, la reqête affichera l'ensemble de la collection avec les noms de quartier affichés par ordre alphabétique. Les collections du quartier de "Bronx" seront les premières à être affichées, puis ensuite l'ordre par identifiant sera conservé lorsque le nom de quartier sera le même pour plusieurs collections.
+Cette fois ci, la requête affichera l'ensemble 
+de la collection avec les noms de quartier 
+affichés par ordre alphabétique. Les collections 
+du quartier de "Bronx" seront les premières à être affichées, 
+puis ensuite l'ordre par identifiant sera conservé 
+lorsque le nom de quartier sera le même pour plusieurs collections.
 
 ***Traduction SQL :***
  
@@ -153,7 +186,11 @@ ORDER BY borough, _id
 ### <center> Limit </center>
 ***Pourquoi l'utiliser ?***
 
-L'étape `$limit` va simplement permettre de limiter le nombre de documents voulant être affichés par la requête. Il n'y a pas grand intérêt à utiliser le limit tout seul. Généralement, il est utilisé avec l'étape sort vu précédemment.
+L'étape `$limit` va simplement permettre de 
+limiter le nombre de documents voulant être 
+affichés par la requête. Il n'y a pas grand 
+intérêt à utiliser le limit tout seul. Généralement, 
+il est utilisé avec l'étape `$sort` vu précédemment.
 
 ***Comment ça fonctionne ?***
 
@@ -165,11 +202,14 @@ db.coll.aggregate(
 	]
 )
 ```
-L'argument qui est pris par le `$limit` est toujours un entier positif, qui va déterminer le nombre de collections que l'on souhaite afficher.
+L'argument qui est pris par le `$limit` est toujours
+ un entier positif, qui va déterminer le nombre 
+ de collections que l'on souhaite afficher.
 
 ***Exemple***
 
-Dans cet exemple, on souhaite afficher les 3 quartiers possédant le plus de restaurants.
+Dans cet exemple, on souhaite afficher les 3 quartiers 
+possédant le plus de restaurants.
 ```{code-cell}
 db.NYfood.aggregate([
                         {$group: {_id: "$borough", nb: {$sum: 1}}},
@@ -177,16 +217,14 @@ db.NYfood.aggregate([
                         {$limit: 3}
 					]) 
 ```					  
-On remarque ici que nous ne pouvons pas utiliser l'étape `$limit` seul sans le sort. Nous avons d'abord besoin de trier le nombre de restaurants par ordre décroissant puis enfin préciser que nous souhaitons obtenir seulement les 3 premiers quartiers contenant le plus de restaurants.
+On remarque ici que nous ne pouvons pas utiliser 
+l'étape `$limit` seul sans le sort.
+ Nous avons d'abord besoin de trier le nombre 
+ de restaurants par ordre décroissant puis enfin  
+ préciser que nous souhaitons obtenir seulement les 
+ 3 premiers quartiers contenant le plus de restaurants.
+ 
 ***Traduction SQL :***
-
-<<<<<<< Updated upstream
-### <center> Match  </center>
-***Pourquoi l'utiliser ***
-
-`$match` peut être utilisé comme un filtre, avec une condition. On pourrait le mettre n'importe où dans notre requête mais il est particulierement intéressant en début ou en fin de requête.
-
-=======
 ```sql
 SELECT count(borough)
 FROM NYfood 
@@ -194,9 +232,12 @@ ORDER BY count(borough) desc
 limit 3
 ```
 
-### <center> Match </center>
-***Pourquoi l'utiliser ?***
->>>>>>> Stashed changes
+### <center> Match  </center>
+
+***Pourquoi l'utiliser***
+
+`$match` peut être utilisé comme un filtre, avec une condition. On pourrait le mettre n'importe où dans notre requête mais il est particulierement intéressant en début ou en fin de requête.
+
 
 ***Comment ça fonctionne ?***
 
@@ -220,13 +261,11 @@ db.NYfood.aggregate(
             }
           },
     {$match:{n:{$gt:1000}}},
-]
+  ]
 )
 ``` 
-Ici le premier `match` sert comme un `WHERE`, et le deuxième comme un `HAVING` en SQL.
 
-<<<<<<< Updated upstream
-Traduction en SQL :
+
 
 ```SQL
 SELECT COUNT(grade) as n
@@ -235,28 +274,8 @@ WHERE Borough='Brooklyn'
 GROUP BY grade
 HAVING n > 1000
 ``` 
-=======
-### Quelques requêtes pour tout comprendre
-```
-db.NYfood.aggregate([
-
-                        {$match: {"borough": "Brooklyn"}},
-                        {$unwind: "$grades"},
-                        {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
-                        {$sort: {nb: -1}},
-                        {$limit: 3}
-                      ]) 
-```
-
-Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par étape ici on a :
-
-* `$match` : on rend un tableau avec uniquement des restaurants de brooklyn.
-* `$unwind` : on sépare les individus du tableau rendu par l'étape précédente par leur notes.
-* `$group` : on regroupe par notes le tableau obtenu.
-* `$sort` : on trie le tableau eu à l'étape d'avant en fonction du nombre d'occurences de notes.
-* `$limit` : dans ce précédent tableau, on ne rend que les trois premiers résultats.
-
->>>>>>> Stashed changes
+Ici le premier `match` sert comme un `WHERE`, 
+et le deuxième comme un `HAVING` en SQL.
 
 ### <center> Unwind </center>
 
@@ -289,9 +308,34 @@ db.NYfood.aggregate(
 
 ```
 Voici un exemple concret d'utilisation d'un `$unwid`. Dans la requête on cherche à compter le nombre de A ayant été attribués à l'ensemble des restaurants de la collection, puis le nombre de B, C .... 
-Pour que cette requête fonction le `$unwid` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter.  
+Pour que cette requête fonction le `$unwid` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter. 
+ 
  ***Traduction SQL :*** 
+ 
 Il n'existe pas réelement d'équivalent SQL au `$unwid`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
+
+### Quelques requêtes pour tout comprendre
+```
+db.NYfood.aggregate([
+
+                        {$match: {"borough": "Brooklyn"}},
+                        {$unwind: "$grades"},
+                        {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
+                        {$sort: {nb: -1}},
+                        {$limit: 3}
+                      ]) 
+```
+
+Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par étape ici on a :
+
+* `$match` : on rend un tableau avec uniquement des restaurants de brooklyn.
+* `$unwind` : on sépare les individus du tableau rendu par l'étape précédente par leur notes.
+* `$group` : on regroupe par notes le tableau obtenu.
+* `$sort` : on trie le tableau eu à l'étape d'avant en fonction du nombre d'occurences de notes.
+* `$limit` : dans ce précédent tableau, on ne rend que les trois premiers résultats.
+
+
+
 
 #### Résultat final : Les 3 notes les plus données dans les restaurants du quartier de Brooklyn
 
