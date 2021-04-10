@@ -44,8 +44,7 @@ Vous pouvez également installer la version de développement, qui contient les 
 devtools::install_github("jeroen/mongolite")
 ```
 
-```{admonition} Astuce
-:class: tip
+```{admonition} Remarque
 
  L'installation et le chargement du package devtools au préalable sera nécessaire pour cette dernière exécution.
 ```
@@ -195,7 +194,7 @@ data <- coll$find(query = '{"cuisine":"Chinese", "borough":"Brooklyn"}',
                   fields = '{"name": true, "_id":false}',
                   sort = '{"name":-1}',
                   limit = 5)
-print(data)
+data
 ```
 
 ````
@@ -203,17 +202,17 @@ print(data)
 ````{tabbed} Équivalent MongoDB
 
 ```javascript
-db.NYfood.find({"cuisine":"Chinese", "borough":"Brooklyn"}, {"name":true, "_id":false}).sort({"name":-1}).limit(5)
+db.NYfood.find({"cuisine":"Chinese", "borough":"Brooklyn"}, 
+{"name":true, "_id":false}).sort({"name":-1}).limit(5)
 ```
 
 ````
----
 
-Rappelons que le tri par toute variable autre que l'identifiant peut être relativement lent, surtout lorsque la collection est de taille importante car seul l'identifiant est indexé. En ajoutant un index, le champ est pré-trié et son tri est presque immédiat. Pour ajouter un index avec *mongolite*, il suffit de le déclarer avec la méthode index(add='{"variable":1}').
+Rappelons que le tri par toute variable autre que l'identifiant peut être relativement lent, surtout lorsque la collection est de taille importante car seul l'identifiant est indexé. En ajoutant un index, le champ est pré-trié et son tri est presque immédiat. Pour ajouter un index avec *mongolite*, il suffit de le déclarer avec la méthode *index(add='{"variable":1}')*.
 
 **Exemple :**
 
-Créer un index sur le champs "name" :
+Créer un index sur le champs *name* :
 
 ````{tabbed} Mongolite
 
@@ -230,9 +229,8 @@ db.NYfood.createIndex({"name": 1}
 ```
 
 ````
----
 
-Il est aussi possible de faire des requêtes textuelles avec mongolite. Toutefois attention, cela se fait obligatoirement à l'aide de l'opérateur $regex. En effet, avec *mongolite* on ne peut pas faire de requêtes textuelles à l'aide d'expressions régulières car le package permettant de convertir une chaîne de caractères en fichier JSON dans R ne connait pas les expressions régulières. Hormis ce détail, la syntaxe entre simples *quotes* est la même que pour les requêtes textuelles en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/04_index.html)).
+Il est aussi possible de faire des requêtes textuelles avec mongolite. Toutefois attention, cela se fait obligatoirement à l'aide de l'opérateur *$regex*. En effet, avec *mongolite* on ne peut pas faire de requêtes textuelles à l'aide d'expressions régulières car le package permettant de convertir une chaîne de caractères en fichier JSON dans R ne connait pas les expressions régulières. Hormis ce détail, la syntaxe entre simples *quotes* est la même que pour les requêtes textuelles en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/04_index.html)).
 
 Ainsi, pour afficher les restaurants de Manhattan dont le nom commence par la lettre 'A' par exemple, la requête adaptée est :
 
@@ -295,12 +293,16 @@ it
 Affichons par exemple les 5 premières lignes :
 
 ```{code-cell} R
+:tags: [output_scroll]
+
 it$batch(5)
 ```
 
 L'affichage avec la méthode batch, qui est essentiellement des listes imbriquées, n'est pas toujours facile à visualiser et nous pouvons décider de stocker le résultat dans un dataframe pour mieux le visualiser ; cela se fait avec la méthode *page()*. Par exemple, pour stocker les 5 premières lignes dans un dataframe :
 
 ```{code-cell} R
+:tags: [output_scroll]
+
 df <- it$page(5)
 df
 ```
@@ -320,6 +322,8 @@ Le traitement des dates avec *mongolite* mérite une attention particulière. En
 Prenons un exemple en affichant la liste des restaurants ayant eu au moins une note postérieure au 20 janvier 2015 :
 
 ```{code-cell} R
+:tags: [output_scroll]
+
 q <- '{"grades.date": {"$gte": {"$date": "2015-01-20T00:00:00Z"}}}'
 data <- coll$find(q)
 data
