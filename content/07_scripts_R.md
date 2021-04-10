@@ -58,7 +58,7 @@ library(mongolite)
 
 ### Connexion à une collection d'une base de données présente sur un serveur MongoDB
 
-Après avoir chargé les packages nécessaires dans votre environnement R, vous pourrez vous connecter à une collection d'une base de données présente sur un serveur MongoDB à partir d'un lien URI, du nom de la base de données, et du nom de la collection à laquelle on souhaite accéder. Pour ce faire, il suffit d'utiliser la fonction *mongo()* de la librairie *mongolite* de la manière suivante :
+Après avoir chargé les packages nécessaires dans votre environnement R, vous pourrez vous connecter à une collection d'une base de données présente sur un serveur MongoDB à partir d'un lien URI, du nom de la base de données, et du nom de la collection à laquelle vous souhaitez accéder. Pour ce faire, il suffit d'utiliser la fonction *mongo()* de la librairie *mongolite* de la manière suivante :
 
 ```r
 coll <- mongo(collection="ma_collection", db="ma_BDD",
@@ -83,7 +83,7 @@ La fonction mongo() prend obligatoirement en entrée le nom d'une collection d'u
 
 L'adresse URI à spécifier dans le paramètre URL définit l'adresse du serveur et des options de connexion supplémentaires. Parmi ces options, nous pouvons notamment retrouver des mots de passe que nous vous conseillons, à l'opposé de ce qui a été fait ce tutoriel pour des fins pédagogiques, de lire dans des fichiers externes afin d'en préserver leur confidentialité. Afin d'obtenir plus de précisions sur le format exact de l'URI attendu (authentification, tunnel SSH, options SSL et options de réplique), nous vous renvoyons à la [documentation](https://jeroen.github.io/mongolite/connecting-to-mongodb.html).
 ```
-Pour ce qui est de sa sortie, la fonction mongo() renvoie un objet propre à sa librairie mère, une "Mongo collection", qui, comme nous l'avons vu précédemment, pointe sur une collection d'une base de données. Regardons de plus près à quoi correspond ce type d'objet sur un exemple concret. Ici nous nous connectons à la collection "NYfood" d'une base de données "food" contenant de nombreuses informations sur les restaurants de New-York. 
+Pour ce qui est de sa sortie, la fonction *mongo()* renvoie un objet propre à sa librairie mère, une *Mongo collection*, qui, comme nous l'avons vu précédemment, pointe sur une collection d'une base de données. Regardons de plus près à quoi correspond ce type d'objet sur un exemple concret. Ici nous nous connectons à la collection "NYfood" d'une base de données "food" contenant de nombreuses informations sur les restaurants de New-York. 
 
 ```{code-cell} R
 library(mongolite)
@@ -91,7 +91,7 @@ coll <- mongo(collection="NYfood", db="food",url = "mongodb://localhost:27017/fo
 coll
 ```
 
-Nous constatons alors que la "Mongo collection" est un environnement contenant les informations de la collection "NYfood" avec lequel nous pouvons intéragir via de nombreuses méthodes. Chacune de ces méthodes s'appliquera sur une "Mongo collection" à l'aide d'un "$" et permettra d'effectuer l'équivalent d'une requête MondoDB sur une collection. Par exemple, pour faire une simple requête find en NoSQL récupérant tous les documents d'une collection, il suffira d'écrire :
+Nous constatons alors que la *Mongo collection* est un environnement contenant les informations de la collection "NYfood" avec lequel nous pouvons intéragir via de nombreuses méthodes. Chacune de ces méthodes s'appliquera sur une *Mongo collection* à l'aide d'un "$" et permettra d'effectuer l'équivalent d'une requête MondoDB sur une collection. Par exemple, pour faire une simple requête find en *NoSQL* récupérant tous les documents d'une collection, il suffira d'écrire :
 
 ```r
 coll$find()
@@ -103,7 +103,7 @@ Ou encore pour affichez la liste des index de la collection NYfood, il suffira d
 coll$index()
 ```
 
-L'objet des prochaines sections de ce chapitre sera alors d'explorer ces différentes méthodes et de voir les requêtes auxquelles elles sont équivelentes en NoSQL. Nous reviendrons notamment sur les objets renvoyés par ces différentes méthodes. Toutefois, nous pouvons d'ores et déjà remarquer qu'une méthode "find" renvoie la collection complète dans un "data frame" ce qui, dans des cas de grands volumes de données, pourrait entrainer des saturations de mémoire de votre machine. Nous verrons par la suite que pour s'affranchir de ce problème, nous pourrons utiliser une méthode "iterate", similaire à la méthode "find", renvoyant non plus un "data frame", mais un "Mongo iterator". Un "Mongo iterator" est un objet propre à *mongolite* permettant de ne pas stocker explicitement en mémoire le résultat d'une requête mais d'en conserver un itérateur.
+L'objet des prochaines sections de ce chapitre sera alors d'explorer ces différentes méthodes et de voir leurs requêtes équivalentes en NoSQL. Nous reviendrons notamment sur les objets renvoyés par ces différentes méthodes. Toutefois, nous pouvons d'ores et déjà remarquer qu'une méthode *find()* renvoie la collection complète dans un *dataframe* ce qui, dans des cas de grands volumes de données, pourrait entrainer des saturations de mémoire de votre machine. Nous verrons par la suite que pour s'affranchir de ce problème, nous pourrons utiliser une méthode *iterate()*, similaire à la méthode *find()*, renvoyant non plus un *dataframe*, mais un *Mongo iterator*. Un *Mongo iterator* est un objet propre à *mongolite* permettant de ne pas stocker explicitement en mémoire le résultat d'une requête mais d'en conserver un itérateur.
 
 ## Requêtes de données
 
@@ -111,7 +111,7 @@ L'objet des prochaines sections de ce chapitre sera alors d'explorer ces différ
 
 ### Méthode count
 
-Tout comme le *.count()* en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/01_find.html)), la méthode count() nous permet de calculer le nombre de résultats d'une collection, ou encore le nombre de résultats d'une certaine requête. Cette méthode n'a qu'un seul argument (query) et sa valeur par défaut est "{}". Elle renvoie un entier.
+Tout comme le *.count()* en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/01_find.html)), la méthode *count()* nous permet de calculer le nombre de résultats d'une collection, ou encore le nombre de résultats d'une certaine requête. Cette méthode n'a qu'un seul argument (query) et sa valeur par défaut est "{}". Elle renvoie un entier.
 
 **Exemples :**
 
@@ -164,15 +164,15 @@ db.NYfood.find({"cuisine":"Chinese"})
 
 La méthode *find()* permet, à l'instar du *.find* en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/01_find.html)), d'interroger une collection en filtrant les documents et les champs. De plus, cette méthode intègre la possibilité de limiter, trier et skiper les documents d'un résultat. Autrement dit, cette méthode comprends en ses arguments le *.limit*, le *.sort* et le *.skip* de MongoDB. Présentons alors les 5 arguments de cette méthode : 
 
-1. query : correspond à la requête de filtrage des documents passée en premier agument d'un *.find* en MongoDB ; '{}' est la valeur par défaut
-2. fields : correspond à la requête de filtrage des champs passée en second argument d'un *.find* en MongoDB
-3. sort : correspond à la requête de tri passée argument d'un *.sort* en MongoDB
-4. limit : correspond à la requête de limitation du nombre de documents retournées, passée en argument d'un *.limit* en MongoDB
-5. skip : correspond à la requête de choix d'une ligne de départ des documents retournées, passée en argument d'un *.skip* en MongoDB
+- query : correspond à la requête de filtrage des documents passée en premier agument d'un *.find* en MongoDB ; '{}' est la valeur par défaut
+- fields : correspond à la requête de filtrage des champs passée en second argument d'un *.find* en MongoDB
+- sort : correspond à la requête de tri passée argument d'un *.sort* en MongoDB
+- limit : correspond à la requête de limitation du nombre de documents retournées, passée en argument d'un *.limit* en MongoDB
+- skip : correspond à la requête de choix d'une ligne de départ des documents retournées, passée en argument d'un *.skip* en MongoDB
 
 Comme nous avons pu l'énoncer précedémment, cette méthode stocke le résultat dans un dataframe sous R, prenant ainsi de la place en mémoire. Cette prise de place en mémoire peut être problématique, c'est pourquoi nous verrons par la suite l'intérêt de la méthode *iterate()* et de l'objet *Mongo iterator* qu'elle renvoie.
 
-**Exemples :**
+**Exemple :**
 
 Regardons les 5 premières lignes du dataframe contenant les noms des restaurants chinois à Brooklyn triés par ordre alphabétique inverse (i.e, de Z à A) :
 
@@ -185,6 +185,8 @@ data <- coll$find(query = '{"cuisine":"Chinese", "borough":"Brooklyn"}',
                   limit = 5)
 print(data)
 ```
+
+L'équivalent en MongoDB est le suivant :
 
 ````{tabbed} Mongolite
 
@@ -205,9 +207,13 @@ db.NYfood.find({"cuisine":"Chinese", "borough":"Brooklyn"}, {"name":true, "_id":
 ```
 
 ````
+---
 
 Rappelons que le tri par toute variable autre que l'identifiant peut être relativement lent, surtout lorsque la collection est de taille importante car seul l'identifiant est indexé. En ajoutant un index, le champ est pré-trié et son tri est presque immédiat. Pour ajouter un index avec *mongolite*, il suffit de le déclarer avec la méthode index(add='{"variable":1}').
 
+**Exemple :**
+
+Créer un index sur le champs "name" :
 
 ````{tabbed} Mongolite
 
@@ -224,6 +230,7 @@ db.NYfood.createIndex({"name": 1}
 ```
 
 ````
+---
 
 Il est aussi possible de faire des requêtes textuelles avec mongolite. Toutefois attention, cela se fait obligatoirement à l'aide de l'opérateur $regex. En effet, avec *mongolite* on ne peut pas faire de requêtes textuelles à l'aide d'expressions régulières car le package permettant de convertir une chaîne de caractères en fichier JSON dans R ne connait pas les expressions régulières. Hormis ce détail, la syntaxe entre simples *quotes* est la même que pour les requêtes textuelles en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/04_index.html)).
 
@@ -261,20 +268,22 @@ db.NYfood.find({"borough": "Manhattan", "name": /^A/i })
 Comme en NoSQL, l'accent circonflèxe sert à préciser que seulement les chaînes commençant par la lettre A seront acceptées. L'opérateur *"$options":"i"* précise que la casse n'est pas importante (i.e, la chaine "abc" sera jugée acceptable).
 ```
 
+---
+
 Pour ce qui est des requêtes géospatiales, la syntaxe entre simples *quotes* est la même que pour les requêtes textuelles en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/04_index.html)).
 
 ### Méthode iterate
 
 Nous avons vu précedemment que le renvoi d'une requête dans un dataframe R à l'aide de la méthode *find()* pouvait être problématique pour de grands volumes de données. La méthode *iterate()* permet de s'affranchir de ce problème. Celle-ci fonctionne exactement de la même manière que la méthode *find()* mais renvoie le résultat d'une requête non pas dans un dataframe mais dans un objet propre à *mongolite*, un *Mongo iterator*. Cet objet va permettre de ne pas stocker toutes les documents de la requête en mémoire mais de les lire un par un. Pour ce faire, il existe 4 méthodes applicables à un *Mongo iterator* :
 
-1. batch(n) : permet de parcourir n documents à la fois
-2. json() : retourne les résultats de la requête dans un format JSON
-3. one() : permet de parcourir un document à la fois
-4. page() : retourne les résultats de la requête sous forme de dataframe
+- batch(n) : permet de parcourir n documents à la fois
+- json() : retourne les résultats de la requête dans un format JSON
+- one() : permet de parcourir un document à la fois
+- page() : retourne les résultats de la requête sous forme de dataframe
 
 Lorsque l'itérateur a épuisé tous les résultats de la collection, il retourne la valeur vide (NULL).
 
-**Exemples :**
+**Exemple :**
 
 La création d'un itérateur sur l'ensemble de la collection NYfood se fait comme ci-dessous :
 
@@ -305,6 +314,8 @@ Le traitement des dates avec *mongolite* mérite une attention particulière. En
 ```javascript
 { "$date" : "AAAA-MM-JJThh:mm:ssZ" }
 ```
+
+**Exemple :**
 
 Prenons un exemple en affichant la liste des restaurants ayant eu au moins une note postérieure au 20 janvier 2015 :
 
@@ -337,7 +348,9 @@ db.NYfood.find({"grades.date":{$gte: date}})
 
 ## Aggrégations
 
-Nous nous proposons dans ce paragraphe de traiter de la méthode *aggregate()* de mongolite qui permet d'éxécuter, à l'instar de d'un *.aggregate* en MongoDB, une pipeline d'aggrégation qui n'est rien d'autre qu'une succession de plusieurs étapes d'aggrégation. La méthode *aggregate()* prend comme argument une liste de dictionnaires que l'on met entre simples *quotes*. La syntaxe a utiliser pour cette liste de dictionnaires est la même que pour le *.aggregate* de MongoDB (nous vous renvoyer au chapitre sur [les requêtes d'aggrégations](https://rtavenar.github.io/mongo_book/content/05_agreg.html) pour plus de précisions). Tout comme la méthode *find()*, la méthode aggregate renvoie un dataframe.
+Nous nous proposons dans ce paragraphe de traiter de la méthode *aggregate()* de mongolite qui permet d'éxécuter, à l'instar de d'un *.aggregate* en MongoDB, une pipeline d'aggrégation qui n'est rien d'autre qu'une succession de plusieurs étapes d'aggrégation. La méthode *aggregate()* prend comme argument une liste de dictionnaires que l'on met entre simples *quotes*. La syntaxe a utiliser pour cette liste de dictionnaires est la même que pour le *.aggregate* de MongoDB (nous vous renvoyons au chapitre sur [les requêtes d'aggrégations](https://rtavenar.github.io/mongo_book/content/05_agreg.html) pour plus de précisions). Tout comme la méthode *find()*, la méthode aggregate renvoie un *dataframe*.
+
+**Exemple :**
 
 Prenons un exemple : dans la collection NYfood, le pipeline ci-dessous retourne le nombre de restaurants par arrondissement (borough).
 
