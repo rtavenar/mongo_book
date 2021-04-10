@@ -28,9 +28,7 @@ Les packages binaires de mongolite peuvent être installés directement depuis l
 
 ---
 
-**Tools -> Install Packages... -> mongolite -> Install**
-
-*Insérer images*
+**Tools -> Install Packages -> mongolite -> Install**
 
 ---
 
@@ -107,3 +105,38 @@ coll$index()
 
 L'objet des prochaines sections de ce chapitre sera alors d'explorer ces différentes méthodes et de voir les requêtes auxquelles elles sont équivelentes en NoSQL. Nous reviendrons notamment sur les objets renvoyés par ces différentes méthodes. Toutefois, nous pouvons d'ores et déjà remarquer qu'une méthode "find" renvoie la collection complète dans un "data frame" ce qui, dans des cas de grands volumes de données, pourrait entrainer des saturations de mémoire de votre machine. Nous verrons par la suite que pour s'affranchir de ce problème, nous pourrons utiliser une méthode "iterate", similaire à la méthode "find", renvoyant non plus un "data frame", mais un "Mongo iterator". Un "Mongo iterator" est un objet propre à mongolite permettant de ne pas stocker explicitement en mémoire le résultat d'une requête mais d'en conserver un itérateur.
 
+## Requêtes de données
+
+### Méthode count
+
+### Méthode find
+
+### Méthode iterate
+
+### Méthode distinct
+
+### Sélectionner par date
+
+Le traitement des dates avec *mongolite* mérite une attention particulière. En effet, lorsque l'on souhaite intéragir avec une collection sur un champ de type *date*, la synthaxe sera relativement différente de celle que l'on peut utiliser en *MongoDB* ou avec *pymongo*. En raison de la classe d'une requête en mongolite (chaîne de caractère), on ne pourra pas utiliser d'objet R spécifique aux dates (comme les datetimes en python par exemple). Ainsi, toutes les dates définies dans une requête en mongolite devront être spécifiées dans un format purement JSON intégrant un opérateur *$date* et une synthaxe UTC. Concrètement, ce format sera du type : 
+
+```javascript
+{ "$date" : "AAAA-MM-JJThh:mm:ssZ" }
+```
+
+Prenons un exemple :
+
+## Aggrégations
+
+## Manipulation de données
+
+### Méthode insert
+
+### Méthode update
+
+### Méthode remove
+
+## Import et export de données
+
+### La méthode import
+
+### La méthode export
