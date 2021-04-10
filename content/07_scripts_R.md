@@ -182,7 +182,7 @@ data <- coll$find(query = '{"cuisine":"Chinese", "borough":"Brooklyn"}',
                   fields = '{"name": true, "_id":false}',
                   sort = '{"name":-1}',
                   limit = 5)
-print(data)
+data
 ```
 
 L'équivalent en MongoDB est le suivant :
@@ -232,13 +232,13 @@ db.NYfood.createIndex({"name": 1}
 
 Il est aussi possible de faire des requêtes textuelles avec mongolite. Toutefois attention, cela se fait obligatoirement à l'aide de l'opérateur *$regex*. En effet, avec *mongolite* on ne peut pas faire de requêtes textuelles à l'aide d'expressions régulières car le package permettant de convertir une chaîne de caractères en fichier JSON dans R ne connait pas les expressions régulières. Hormis ce détail, la syntaxe entre simples *quotes* est la même que pour les requêtes textuelles en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/04_index.html)).
 
-Ainsi, pour afficher les restaurants de Manhattan dont le nom commence par la lettre 'A' par exemple, la requête adaptée est :
+Ainsi, pour afficher les 10 premiers restaurants de Manhattan dont le nom commence par la lettre 'A' par exemple, la requête adaptée est :
 
 ```{code-cell} R
 :tags: [output_scroll]
 
 q = '{"borough": "Manhattan", "name": {"$regex": "^A", "$options":"i"}}'
-coll$find(query = q)
+coll$find(query = q, limit=10)
 
 ```
 Notons alors l'équivalent possible en MongoDB : 
@@ -247,7 +247,7 @@ Notons alors l'équivalent possible en MongoDB :
 
 ```r
 q = '{"borough": "Manhattan", "name": {"$regex": "^A", "$options":"i"}}'
-coll$find(query = q)
+coll$find(query = q, limit=10)
 ```
 
 ````
@@ -255,7 +255,7 @@ coll$find(query = q)
 ````{tabbed} Équivalent MongoDB
 
 ```javascript
-db.NYfood.find({"borough": "Manhattan", "name": /^A/i })
+db.NYfood.find({"borough": "Manhattan", "name": /^A/i }).limit(10)
 ```
 
 ````
@@ -319,13 +319,13 @@ Le traitement des dates avec *mongolite* mérite une attention particulière. En
 
 **Exemple :**
 
-Prenons un exemple en affichant la liste des restaurants ayant eu au moins une note postérieure au 20 janvier 2015 :
+Prenons un exemple en affichant la liste des 10 premiers restaurants ayant eu au moins une note postérieure au 20 janvier 2015 :
 
 ```{code-cell} R
 :tags: [output_scroll]
 
 q <- '{"grades.date": {"$gte": {"$date": "2015-01-20T00:00:00Z"}}}'
-data <- coll$find(q)
+data <- coll$find(q, limit=10)
 data
 ```
 
@@ -335,7 +335,7 @@ Nous pouvons noter l'équivalent en MongoDB :
 
 ```r
 q <- '{"grades.date": {"$gte": {"$date": "2015-01-20T00:00:00Z"}}}'
-data <- coll$find(q)
+data <- coll$find(q, limit=10)
 data
 ```
 
@@ -345,7 +345,7 @@ data
 
 ```javascript
 date = new Date("2015-01-20")
-db.NYfood.find({"grades.date":{$gte: date}})
+db.NYfood.find({"grades.date":{$gte: date}}).limit(10)
 ```
 
 ````
