@@ -143,7 +143,7 @@ L'opérateur de comparaison permet de comparer deux élements entre eux. Le tabl
 | ≥ 	| $gte 	|
 | ∈ 	| $in 	|
 | ∉ 	| $nin 	|
-| négation 	| $not 	|
+| négation 	| $ne 	|
 | clé existante 	| $exists 	|
 | \|.\| 	| $size 	|
 
@@ -219,7 +219,7 @@ Le résultat obtenu est l'ensemble des documents avec le sous-document `a` qui e
 
 ### Opérateurs logiques
 
-Les différents opérateurs logiques en MongoDB sont : `and`, `or` et `nor`. Ces opérateurs de tester plusieurs conditions simultanément.
+Les différents opérateurs logiques en MongoDB sont : `and`, `or`, `not` et `nor`. Ces opérateurs de tester plusieurs conditions simultanément.
 
 #### `and` logique
 
@@ -295,6 +295,8 @@ db.t.find(
 )
 ```
 Le résultat de cette requête sera l'ensemble des documents ne contenant pas la valeur **1** pour la variable `a` et **"blue"** pour la variable `b`.
+
+https://docs.mongodb.com/manual/reference/operator/query/
 
 ---
 
