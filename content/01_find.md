@@ -77,7 +77,7 @@ db.collectionName.findOne({})
 
 > À noter : Dans les deuxièmes propositions, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au *document masque*. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner. 
 
-Si l’on souhaite fixer des contraintes sur les documents à retourner, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". En utilisant cette syntaxe, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*.     
+Si l’on souhaite fixer des contraintes sur les documents à retourner, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". En utilisant cette syntaxe, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*. Dans cet exemple sur la base de données NYfood, la virgule représente un ET logique entre les contraintes.     
 
 ````{tabbed} Syntaxe
 
