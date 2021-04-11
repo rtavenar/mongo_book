@@ -199,8 +199,6 @@ WHERE a IN ("chaine1", "chaine2")
 
 L'opérateur `$exists` vérifie l'existence d'une clé dans un document. Sa syntaxe en MongoDB est : 
 
-MongoDB
-^^^
 ```javascript
 db.t.find(
     {"a": { $exists: true}
@@ -211,16 +209,13 @@ Cette requête renvera donc les documents ayant le sous-document `a` existant.
 
 Enfin, l'opérateur `$size` permet des récuperer les documents avec des sous-documents d'une certaine taille. Sa syntaxe en MongoDB s'écrit comme suit :
 
-MongoDB
-^^^
 ```javascript
 db.t.find(
     {"a": { $size: 5}
     }
 )
 ```
-
- Le résultat obtenu est l'ensemble des documents avec le sous-document `a` qui est de taille **5**.
+Le résultat obtenu est l'ensemble des documents avec le sous-document `a` qui est de taille **5**.
 
 ### Opérateurs logiques
 
@@ -290,9 +285,6 @@ Le résultat de la requête sera les documents validant au moins un des deux con
 
 L'opérateur `nor` permet de renvoyer les documents ne validant pas une liste de condition(s). Voici sa syntaxe qui est très semblable à celle de `or` : 
 
-
-MongoDB
-^^^
 ```javascript
 db.t.find(
     {$nor : [
