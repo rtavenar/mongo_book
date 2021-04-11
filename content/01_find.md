@@ -132,7 +132,7 @@ Les opérateurs se séparent en deux grandes parties : les **opérateurs de comp
 
 ### Opérateurs de comparaison
 
-L'opérateur de comparaison permet de comparer deux élements entre eux. Le tableau suivant l'ensemble des operateurs de comparaison : 
+L'opérateur de comparaison permet de comparer deux élements entre eux. Le tableau suivant l'ensemble des opérateurs de comparaison : 
 
 | Opérateur logique 	| Mot clé en MongoDB 	|
 |-	|-	|
@@ -147,7 +147,7 @@ L'opérateur de comparaison permet de comparer deux élements entre eux. Le tabl
 | clé existante 	| $exists 	|
 | \|.\| 	| $size 	|
 
-Les opérateurs `$eq`, `$lt`, `$gt`, `$lte`, `$gte` s'ulisent de la même façon en MongoDB. Ces opérateurs comparent la valeur d'une variable à une valeur fixe (nombre, booléen, chaine de caractères...).
+Les opérateurs `$eq`, `$lt`, `$gt`, `$lte`, `$gte` s'utilisent de la même façon en MongoDB. Ces opérateurs comparent la valeur d'une variable à une valeur fixe (nombre, booléen, chaine de caractères...).
 
 ````{panels}
 
@@ -219,7 +219,7 @@ Le résultat obtenu est l'ensemble des documents avec le sous-document `a` qui e
 
 ### Opérateurs logiques
 
-Les différents opérateurs logiques en MongoDB sont : `and`, `or` et `nor`. Ces opérateurs de tester plusieurs conditions simultanément
+Les différents opérateurs logiques en MongoDB sont : `and`, `or` et `nor`. Ces opérateurs de tester plusieurs conditions simultanément.
 
 #### `and` logique
 
