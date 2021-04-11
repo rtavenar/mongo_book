@@ -35,7 +35,7 @@ Tout document appartient à une collection et a un champ appelé "_id" qui ident
 
 On a une association de clés et de valeurs, un document est équivalent aux objets JSON. Pour effectuer des requêtes sur une base de données MongoDB, on utilise ces indications clés et valeurs. 
 
-Dans ce chapitre, nous étudierons **[comment interroger les données d'une base de données MongoDB avec la fonction find](#find)**. Ensuite nous regarderons comment effectuer des requêtes plus complexes, **impliquant des opérateurs de comparaison**. Quelques **méthodes utiles** pour des requêtes en MongoDB sont données à la fin de ce chapitre.
+Dans ce chapitre, nous étudierons [comment interroger les données d'une base de données MongoDB avec la fonction find](#find). Ensuite nous regarderons comment effectuer des requêtes plus complexes, **impliquant des opérateurs de comparaison**. Quelques **méthodes utiles** pour des requêtes en MongoDB sont données à la fin de ce chapitre.
 
 Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
