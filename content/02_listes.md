@@ -35,6 +35,30 @@ Afin de mieux appréhender les listes en MongoDB, nous allons suivre un exemple 
 
 > Remarque : les notes sont implémentées sous forme de liste dans la base de données (attribut _notes_). Parmi les 7 étudiants, un ne possède pas d'attribut _notes_ et un autre à ce même attribut vide (liste contenant 0 élément). Nous allons donc traiter ces cas particuliers.
 
+#### Opérateur $size
+Introduisons tout d'abord un élément utile pour comprendre le fonctionnement des listes : l'opérateur _$size_. Il renvoie les documents dont la taille (nombre d'éléments de la liste) vérifie la condition donnée.
+```{code-cell}
+db.notes.find(
+    {"notes": {$size: 2}}                     /*Listes de 2 éléments*/
+)
+```
+Attention, cet opérateur n'est pas compatible avec les intervalles de valeurs. On ne peut pas écrire le code suivant (qui renvoie une erreur) :
+```{code-cell}
+db.notes.find(
+    {"notes": {$size: {$lte: 2}}}             /*Ne fonctionne pas !!!*/
+)
+```
+Il faudra plutôt écrire :
+```{code-cell}
+db.notes.find(
+    {$or : 
+        [{"notes": {$size: 2}},
+        {"notes": {$size: 1}},
+        {"notes": {$size: 0}}]
+    }
+)
+```
+
 Exemple : on veut connaitre les notes de l'étudiant nommé Paul.
 
 ```{code-cell}
