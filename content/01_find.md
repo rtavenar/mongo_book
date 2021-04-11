@@ -33,9 +33,9 @@ Tout document appartient à une collection et a un champ appelé "_id" qui ident
 }
 ```
 
-On a une association de clés et de valeurs, un document est équivalent aux objets JSON. Pour effectuer des requêtes sur une base de données MongoDB, on utilise ces indications clés et valeurs. 
+On a une association de clés et de valeurs, un document est équivalent aux objets JSON. Dans ce document, on a accès au nom de l'étudiant, à ses notes *(c'est une **liste de valeurs**, ce type d'attribut n'étant pas disponible dans le modèle relationnel)*, et à son sexe. L'étudiant représenté par ce document, est identifié à l'aide d'une clé "_id". Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs. 
 
-Dans ce chapitre, nous étudierons [comment interroger les données d'une base de données MongoDB avec la fonction find](#find). Ensuite nous regarderons comment effectuer des [requêtes plus complexes, impliquant des opérateurs de comparaison](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB sont données à la fin de ce chapitre.
+Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Ensuite nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB sont données à la fin de ce chapitre.
 
 Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
@@ -97,7 +97,7 @@ db.NYfood.find(
 
 ````
 
-Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un restaurant, nous disposons d'un sous-document contenant à la fois les coordonnées GPS et l'adresse postale. Si l'on souhaite poser une condition sur une clé ou plusieurs clés de sous-document, on utilise alors la syntaxe suivante :
+Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un restaurant, nous disposons d'un **sous-document** contenant à la fois les coordonnées GPS et l'adresse postale. Si l'on souhaite **poser une condition sur une clé ou plusieurs clés de sous-document**, on utilise alors la syntaxe suivante :
 
 ```javascript
 db.NYfood.find({"adress.zipcode": "10462"})
@@ -114,7 +114,7 @@ Les résultats que obtenus jusqu’à présent sont parfois assez indigestes, no
 ```javascript
 db.NYfood.find({"cuisine": "Bakery", "borough": "Bronx"}, {"name": true})
 ```
-> C'est l'équivalent du "SELECT name" en SQL. Jusqu'ici, on utilisais le "SELECT *" *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque attribut.
+> C'est l'équivalent du "SELECT name" en SQL. Jusqu'ici, on utilisais le "SELECT *" *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque clé ou de chaque attribut.
 
 ```{admonition} Embellissez les résultats de la fonction find ! 
 :class: tip
@@ -378,5 +378,8 @@ On notera qu'il est impossible d'utiliser cette méthode sans faire une requête
 
 ### Limiter la récupération des documents : la méthode `limit`
 
-On peut limiter le nombre de résultats obtenus
+On également limiter le nombre de résultats obtenus avec la méthode limit.
+
+```javascript
 db.NYfood.find({}).limit(2)
+```
