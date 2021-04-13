@@ -44,7 +44,8 @@ jobs:
         R -e 'install.packages("mongolite")'
         R -e 'install.packages("IRkernel")'
         R -e 'IRkernel::installspec()'
-        R -e 'devtools::install_github("IRkernel/repr")'
+        R -e 'install.packages("devtools")'
+        R -e 'library(devtools); devtools::install_github("IRkernel/repr")'
 
     # Start a local MongoDB server
     - name: Start MongoDB
