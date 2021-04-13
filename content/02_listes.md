@@ -25,7 +25,7 @@ En MongoDB, un document est composé de couples clé/valeur. Une clé peut être
  
 Les exemples pour cette partie concernent les listes de notes des élèves de la collection `notes` de la base de données `etudiants`.
 
-```{code-cell, echo=FALSE}
+```{code-cell}
 use etudiants
 ```
 
@@ -35,7 +35,7 @@ Afin de mieux appréhender les listes en MongoDB, nous allons suivre un exemple 
 
 > Remarque : les notes sont implémentées sous forme de liste dans la base de données (attribut _notes_). Parmi les 7 étudiants, un ne possède pas d'attribut _notes_ et un autre à ce même attribut vide (liste contenant 0 élément). Nous allons donc traiter ces cas particuliers.
 
-#### Opérateur $size
+### Opérateur $size
 Introduisons tout d'abord un élément utile pour comprendre le fonctionnement des listes : l'opérateur _$size_. Il renvoie les documents dont la taille (nombre d'éléments de la liste) vérifie la condition donnée.
 ```{code-cell}
 db.notes.find(
