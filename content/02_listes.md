@@ -161,7 +161,7 @@ Les conditions sont toutes respectées au moins une fois, la liste complète est
 
 Ainsi, nous ne testons pas simultanément les deux conditions sur chaque nombre. Aucun nombre x ne vérifie x<math>></math> 12 et x <math>≤</math> 10. Cela est contre-intuitif, il faut faire attention.
 
-Mais alors, comment pouvons-nous justement tester une double condition sur chaque élement de la liste ? Pour cela, nous allons faire appel à l'opérateur _$elemMatch_.
+Mais alors, comment pouvons-nous justement tester une double condition sur chaque élement de la liste ? Pour cela, nous allons faire appel à l'opérateur `$elemMatch`.
 
 ## Opérateur $elemMatch
 
