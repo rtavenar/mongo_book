@@ -238,8 +238,8 @@ Ainsi, pour afficher les 10 premiers restaurants de Manhattan dont le nom commen
 :tags: [output_scroll]
 
 q = '{"borough": "Manhattan", "name": {"$regex": "^A", "$options":"i"}}'
-coll$find(query = q, limit=10)
-
+res <- coll$find(query = q, limit=10)
+print(res)
 ```
 Notons alors l'équivalent possible en MongoDB : 
 
