@@ -40,6 +40,7 @@ jobs:
     - name: Setup R-related packages
       run: |
         sudo apt-get install libsasl2-dev
+        sudo apt install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
         R -e 'install.packages("mongolite")'
         R -e 'install.packages("IRkernel")'
         R -e 'IRkernel::installspec()'
