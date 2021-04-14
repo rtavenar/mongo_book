@@ -71,3 +71,26 @@ Exemple d'une requête simple dans la db `food`. On veut récupérer la liste de
 madate = new Date("<YYYY-mm-dd>")
 db.NYfood.find({"grades.date": {$gt : madate}})
 ```
+Utilisation d'un objet date dans une requête d'égalité.
+
+Exemple d'une requête simple dans la base de donnée `etudiants`. On veut récupérer les étudiants nés le 13 février 1995. Il est important d'utiliser l'encadrement. En effet, lors de la création d'une date, la précision est à la seconde près. 
+La requête suivante nous renvoie donc les étudiants nés le 13 février 1995 à 00 heures, 00 minutes et 00 secondes.
+```{code-cell}
+use etudiants
+```
+```{code-cell}
+:tags: [output_scroll]
+
+db.notes.find(
+    {"ddn": new Date("1995-02-13")}
+)
+```
+Pour avoir les étudiants nés le 13 février 1995, nous utiliserions la requête suivante :
+```{code-cell}
+:tags: [output_scroll]
+
+db.notes.find(
+    {"ddn": {$gte: new Date("1995-02-13"),
+             $lt: new Date("1995-02-14")}}
+)
+```
