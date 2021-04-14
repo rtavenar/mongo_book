@@ -100,12 +100,3 @@ db.NYfood.find(
     {"grades.date": {$gt: madate}}
 )
 ```
-Pour obtenir les restaurants qui ont eu une note qui leur a été attribué entre deux dates, , nous utiliserions l'opérateur `$elemMatch`.
-```javascript
-madateinf = new Date("2014-01-01")
-madatesup = new Date("2015-01-01")
-db.NYfood.find(
-    {"grades.date": {$elemMatch: {$gte: madateinf,
-                                 $lt: madatesup}}}
-)
-```
