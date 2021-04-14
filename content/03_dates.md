@@ -57,40 +57,55 @@ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/03_d
 #### Exemples
 
 ## Exemples d'applications
-Utilisation d'un objet date au format string.
+#### Utilisation d'un objet date au format string.
 
 Exemple d'une requête simple. On veut récupérer la liste des individus dont l'attribut date est supérieur à une date créée.
 ```javascript
 madate = "<YYYY-mm-dd>"
 db.coll.find({"varDateString" : {$gt : madate}})
 ```
-Utilisation d'un objet date au format Date.
+#### Utilisation d'un objet date au format Date.
 
 Exemple d'une requête simple dans la db `food`. On veut récupérer la liste des restaurants dont la date de la note est supérieure à une date créée.
 ```javascript
 madate = new Date("<YYYY-mm-dd>")
 db.NYfood.find({"grades.date": {$gt : madate}})
 ```
-Utilisation d'un objet date dans une requête d'égalité.
+#### Utilisation d'un objet date dans une requête d'égalité.
 
 Exemple d'une requête simple dans la base de donnée `etudiants`. On veut récupérer les étudiants nés le 13 février 1995. Il est important d'utiliser l'encadrement. En effet, lors de la création d'une date, la précision est à la seconde près. 
 La requête suivante nous renvoie donc les étudiants nés le 13 février 1995 à 00 heures, 00 minutes et 00 secondes.
-```{code-cell}
-use etudiants
-```
-```{code-cell}
-:tags: [output_scroll]
-
+```javascript
+madate = new Date("1995-02-13")
 db.notes.find(
-    {"ddn": new Date("1995-02-13")}
+    {"ddn": madate}
 )
 ```
 Pour avoir les étudiants nés le 13 février 1995, nous utiliserions la requête suivante :
-```{code-cell}
-:tags: [output_scroll]
-
+```javascript
+madateinf = new Date("1995-02-13")
+madatesup = new Date("1995-02-14")
 db.notes.find(
-    {"ddn": {$gte: new Date("1995-02-13"),
-             $lt: new Date("1995-02-14")}}
+    {"ddn": {$gte: madateinf,
+             $lt: madatesup}}
+)
+```
+
+#### Utilisation d'un objet date dans une liste.
+
+Exemple d'une requête où l'attribut `date` de type date est inclus dans la liste `grades` dans la base de donnée `etudiants`. La requête suivante nous retourne les restaurants possédant au moins une note attribué après le 5 octobre 2014.
+```javascript
+madate = new Date("2014-10-05")
+db.NYfood.find(
+    {"grades.date": {$gt: madate}}
+)
+```
+Pour obtenir les restaurants qui ont eu une note qui leur a été attribué entre deux dates, , nous utiliserions l'opérateur `$elemMatch`.
+```javascript
+madateinf = new Date("2014-01-01")
+madatesup = new Date("2015-01-01")
+db.NYfood.find(
+    {"grades.date": {$elemMatch: {$gte: madateinf,
+                                 $lt: madatesup}}}
 )
 ```
