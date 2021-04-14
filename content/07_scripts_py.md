@@ -237,7 +237,7 @@ print(cursor[0])
 
 Forme plus brutale: 
 ```{code-cell}
-cursorbis = coll.find({$or: [{"borough": "Manhattan"}, 
+cursorbis = coll.find({"$or": [{"borough": "Manhattan"}, 
 			     {"cuisine": "Bakery", "borough": "Bronx", "name": {"$gte": "P", "$lt": "Q"}}
 			     ]})
 cursorbis = list(cursorbis)
