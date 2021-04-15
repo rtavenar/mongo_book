@@ -24,7 +24,7 @@ Cette section traite de :
 
   Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
 
-## <center> Successions d'étapes d'agrégation </center>
+##  Successions d'étapes d'agrégation 
 
 * Auteurs/trices : Marine BINARD, Yann CAUSEUR, Arthur CONAS
 
@@ -54,7 +54,7 @@ lorsque l'on crée une nouvelle variable dans une requête d'agrégation,
 ```
 db.coll.aggregate( 
   [
-   {$project : {<nom_nouv_att1> : <val_att1>, <nom_nouv_att2> : <val_att2>, ... }}
+    {$project : {<nom_nouv_att1> : <val_att1>, <nom_nouv_att2> : <val_att2>, ... }}
   ]
 )
 ```
@@ -65,7 +65,7 @@ Le fait de vouloir garder un attribut déjà existant fonctionne de la même fa�
 ```{code-cell}
 db.NYfood.aggregate( 
   [
-   {$project: {"n_notes" : {$size : '$grades'}}}
+    {$project: {"n_notes" : {$size : '$grades'}}}
   ]
 )
 ```
@@ -79,7 +79,7 @@ Si on veut afficher le quartier en question, on doit le préciser tel que :
 ```{code-cell}
 db.NYfood.aggregate( 
   [
-   {$project: {"n_notes" : {$size : '$grades'}, quartier :'$borough'}}
+    {$project: {"n_notes" : {$size : '$grades'}, quartier :'$borough'}}
   ]
 )
 ```
@@ -90,7 +90,7 @@ variable sans la renommer avec cette syntaxe.
 ```{code-cell}
 db.NYfood.aggregate( 
   [
-   {$project: {"n_notes" : {$size : '$grades'}, borough : 1}}
+    {$project: {"n_notes" : {$size : '$grades'}, borough : 1}}
   ]
 )
 ```
@@ -127,7 +127,7 @@ Le `$sort` est finalement l'équivalent du `ORDER BY` en SQL.
 ```
 db.coll.aggregate(
 	[
-		{$sort: {<champ1>: <sort order>, <champ2>: <sort order> ...}}
+	 {$sort: {<champ1>: <sort order>, <champ2>: <sort order> ...}}
 	]
 )
 ```
@@ -143,7 +143,7 @@ tri sur un champ contenant des valeurs en double (ou non unique),
 ```{code-cell}
 db.NYfood.aggregate(
    [
-     {$sort : {borough : 1}}
+	 {$sort : {borough : 1}}
    ]
 )
 ```
@@ -198,7 +198,7 @@ il est utilisé avec l'étape `$sort` vu précédemment.
 ```
 db.coll.aggregate(
 	[
-		{$limit : 5} 
+	 {$limit : 5} 
 	]
 )
 ```
@@ -211,11 +211,13 @@ L'argument qui est pris par le `$limit` est toujours
 Dans cet exemple, on souhaite afficher les 3 quartiers 
 possédant le plus de restaurants.
 ```{code-cell}
-db.NYfood.aggregate([
-                        {$group: {_id: "$borough", nb: {$sum: 1}}},
-                        {$sort: {nb: -1}},
-                        {$limit: 3}
-					]) 
+db.NYfood.aggregate(
+	[
+     {$group: {_id: "$borough", nb: {$sum: 1}}},
+     {$sort: {nb: -1}},
+     {$limit: 3}
+	]
+) 
 ```					  
 On remarque ici que nous ne pouvons pas utiliser 
 l'étape `$limit` seul sans le sort.
@@ -242,19 +244,14 @@ limit 3
 ***Comment ça fonctionne ?***
 
 **Syntaxe** : 
-```
-db.coll.aggregate( 
-  [
-   {$match: {'condition': 'attribute'}}
-  ]
-)
-``` 
+
+Le `$match` est un requête du type de celles qu'on passe à `find`.
 
 ***Exemple :***  
 ```{code-cell}
 db.NYfood.aggregate( 
   [  
-  {$match: {"borough": 'Brooklyn'}},
+   {$match: {"borough": 'Brooklyn'}},
    {$unwind: "$grades"},
    {$group : {_id: "$grades.grade",
        n:{$sum:1}
@@ -286,7 +283,7 @@ Il arrive que les documents de certaines collections possèdent pour attribut un
 ***Comment ça fonctionne ?***
 
 **Syntaxe** :
-```{code-cell}
+```
 db.coll.aggregate( 
   [
    {$unwid : "$att"}}
@@ -316,14 +313,16 @@ Il n'existe pas réelement d'équivalent SQL au `$unwid`. Néanmoins il se rappr
 
 ### Quelques requêtes pour tout comprendre
 ```
-db.NYfood.aggregate([
+db.NYfood.aggregate(
+	[
 
-                        {$match: {"borough": "Brooklyn"}},
-                        {$unwind: "$grades"},
-                        {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
-                        {$sort: {nb: -1}},
-                        {$limit: 3}
-                      ]) 
+     {$match: {"borough": "Brooklyn"}},
+     {$unwind: "$grades"},
+     {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
+     {$sort: {nb: -1}},
+     {$limit: 3}
+    ]
+) 
 ```
 
 Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par étape ici on a :
@@ -337,18 +336,20 @@ Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par é
 
 
 
-#### Résultat final : Les 3 notes les plus données dans les restaurants du quartier de Brooklyn
+**Résultat final : Les 3 notes les plus données dans les restaurants du quartier de Brooklyn**
 
 ``` {code-cell}
- db.NYfood.aggregate([
+ db.NYfood.aggregate(
+	[
 
-                        {$project: {taille: {$size: "$grades"}}},
-                        {$match :{taille:{$gt:2}}},
-                        {$group: {_id: null,
-                                  nb_min: {$min: "$taille"},
-                                  nb_max: {$max: "$taille"}}
+     {$project: {taille: {$size: "$grades"}}},
+     {$match :{taille:{$gt:2}}},
+     {$group: {_id: null,
+      nb_min: {$min: "$taille"},
+      nb_max: {$max: "$taille"}}
                         },         
-                      ]) 
+    ]
+) 
 ```
 Dans cette deuxième requête, on montre bien ici qu'il n'y a pas d'ordre pré-défini d'étape, et ici le `$match` n'est ni au début de la requête, ni à la fin.
 
@@ -365,5 +366,5 @@ SELECT COUNT(*) AS taille, MAX(taille),MIN(taille)
 FROM NYfood
 WHERE taille>=2
 ```
-#### Résultat final : Le nombre minimum et maximum de notes attribuées aux restaurants ayant au moins deux notes.
+**Résultat final : Le nombre minimum et maximum de notes attribuées aux restaurants ayant au moins deux notes.**
 
