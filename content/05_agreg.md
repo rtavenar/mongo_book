@@ -63,6 +63,11 @@ Le fait de vouloir garder un attribut déjà existant fonctionne de la même fa�
 
 ***Exemple :***  
 ```{code-cell}
+use food
+```
+
+
+```{code-cell}
 db.NYfood.aggregate( 
   [
     {$project: {"n_notes" : {$size : '$grades'}}}
