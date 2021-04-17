@@ -304,7 +304,7 @@ L'affichage avec la méthode batch, qui est essentiellement des listes imbriqué
 :tags: [output_scroll]
 
 df <- it$page(5)
-df
+print(df)
 ```
 
 ### Méthode distinct
@@ -326,7 +326,7 @@ Prenons un exemple en affichant la liste des 10 premiers restaurants ayant eu au
 
 q <- '{"grades.date": {"$gte": {"$date": "2015-01-20T00:00:00Z"}}}'
 data <- coll$find(q, limit=10)
-data
+print(data)
 ```
 
 Nous pouvons noter l'équivalent en MongoDB :
