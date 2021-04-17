@@ -100,3 +100,13 @@ db.NYfood.find(
     {"grades.date": {$gt: madate}}
 )
 ```
+Pour avoir les restaurants qui ont obtenu au moins une notes au mois de novembre 2014, nous utiliserions l'opérateur `$elemMatch`. Attention à donner l'attribut de type liste, ici `grades`, avant l'opérateur et à spécifier l'attribut de type date, `date`, dans `$elemMatch`.
+```javascript
+madate1 = new Date("2014-11-01")
+madate2 = new Date("2014-12-01")
+db.NYfood.find(
+    {"grades": {$elemMatch: {"date": {$gte: madate1,$lt: madate2}}
+               }
+    }
+)
+```
