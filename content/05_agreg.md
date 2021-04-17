@@ -106,11 +106,18 @@ permettent de créer de nouvelles variables. Par contre, en SQL
 l'étape `AS` est facultative, la nouvelle variable prendra 
 comme nom la formule du calcul. En MongoDB elle est obligatoire ! 
 Si on ne précise pas le nom de la nouvelle variable cela affichera 
-une erreur. Voici la traduction SQL  de l'exemple précédent :   
+une erreur. Pour la traduction SQL de l'exemple précédent il convient de faire attention, 
+pour rappel, les listes n'existent pas en SQL ! D'ou la nécessité 
+dans certain moment de faire des calculs verticaux, ce qui n'est pas nécéssaire.
+Dans notre cas, en SQL l'attribut `grades` serait une table à part entière (avec toutes les notes `grade` une clé étrangère faisant référence au restaurant)
+Il faudrait donc faire une jointure sur celle-ci puis grouper par restaurant (en imaginant qu'il existe un ID pour chaque restaurant)
+L'exemple serait donc:   
 
  ```sql
- SELECT borough, COUNT(grades) AS "n_notes"
- FROM NYfood 
+ SELECT borough
+ FROM NYfood NATURAL JOIN grades
+ GROUP BY restoID
+ HAVING COUNT(grade) AS "n_notes"
  ```
  
 ### <center> Sort </center>
@@ -283,7 +290,7 @@ et le deuxième comme un `HAVING` en SQL.
 
 ***Pourquoi l'utiliser ?*** 
  
-Il arrive que les documents de certaines collections possèdent pour attribut une liste. Lorsque l'on effectue une requête d'aggrégation il peut être nécéssaire d'agir non pas sur la liste mais sur chaque élement de la liste. Pour cela on utilise la commande `$unwid`. Elle permet pour chaque élément de la liste de dupliquer le document  pour chaque valeur de la liste. 
+Il arrive que les documents de certaines collections possèdent pour attribut une liste. Lorsque l'on effectue une requête d'agrégation il peut être nécéssaire d'agir non pas sur la liste mais sur chaque élément de la liste. Pour cela on utilise la commande `$unwind`. Elle permet pour chaque élément de la liste de dupliquer le document  pour chaque valeur de la liste. 
 
 ***Comment ça fonctionne ?***
 
@@ -291,11 +298,11 @@ Il arrive que les documents de certaines collections possèdent pour attribut un
 ```
 db.coll.aggregate( 
   [
-   {$unwid : "$att"}}
+   {$unwind : "$att"}}
   ]
 )
 ```
-En général un `$unwid` seul a peu d'intérêt, `$att` est une liste de taille 10 que la collection comporte 1000 individus, la requête d'exemple renvenra un résultat de 10 000 lignes (10 * 1000)
+En général un `$unwid` seul a peu d'intérêt, `$att` est une liste de taille 10 que la collection comporte 1000 individus, la requête d'exemple renverra un résultat de 10 000 lignes (10 * 1000)
 
 ***Exemple***
 ```{code-cell}
@@ -309,12 +316,12 @@ db.NYfood.aggregate(
 )
 
 ```
-Voici un exemple concret d'utilisation d'un `$unwid`. Dans la requête on cherche à compter le nombre de A ayant été attribués à l'ensemble des restaurants de la collection, puis le nombre de B, C .... 
-Pour que cette requête fonction le `$unwid` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter. 
+Voici un exemple concret d'utilisation d'un `$unwind`. Dans la requête on cherche à compter le nombre de A ayant été attribués à l'ensemble des restaurants de la collection, puis le nombre de B, C .... 
+Pour que cette requête fonction le `$unwind` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter. 
  
  ***Traduction SQL :*** 
  
-Il n'existe pas réelement d'équivalent SQL au `$unwid`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
+Il n'existe pas réellement d'équivalent SQL au `$unwind`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
 
 ### Quelques requêtes pour tout comprendre
 ```
@@ -330,7 +337,7 @@ db.NYfood.aggregate(
 ) 
 ```
 
-Trouver un équivalent ici en SQL paraît compliqué avec le unwind, mais par étape ici on a :
+Trouver un équivalent ici en SQL paraît compliqué avec le `$unwind, mais par étape ici on a :
 
 * `$match` : on rend un tableau avec uniquement des restaurants de brooklyn.
 * `$unwind` : on sépare les individus du tableau rendu par l'étape précédente par leur notes.
