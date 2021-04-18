@@ -60,7 +60,7 @@ La première étape consiste a créer une connexion avec nos bases de données s
 Ainsi notre URL de connexion est "mongodb://localhost:27017" avec notre :
 * chaine de connexion : mongodb://
 * host: localHost
-* port: 271017.  
+* port: 27017.  
 
 Pour utilser cette URL nous utilisons la fonction MongoClient de pymongo qui nous fait notre connexion.
 ```{code-cell}
@@ -372,7 +372,29 @@ db.NYfood.insert_one(
 
 Remarque : Si la collection *NYfood* n'existe pas encore dans la base de données. Elle sera automatiquement créée lors de l'insertion d'un document dans cette nouvelle collection. La méthode ```db.create_collection()``` est donc facultative.
 
-## Exercices et corrections <a id="partie4"></a>
+## Exportation au format JSON <a id="partie4"></a>
+Les résultats obtenus après une requête peuvent être conservé dans le but d'un projet ou d'une étude quelconque. Ainsi, nous vous proposons d'enregistrer vos requêtes sous la forme d'un format JSON.
+
+Remarque: le module JSON ne peut écrire dans un fichier avec des données de types classiques comme liste, dictionnaire, nombre, caractère . En l'occurrence, un identifiant qui aura une classe "ObjectID" ne pourra être écrit dans le fichier directement, de même pour les objets ```datetime```. Nous nous devons donc de les convertir en chaine de caractère au préalable.
+```{code-cell}
+import json
+
+cursor = db.NYfood.find({"cuisine": "Bakery"})
+
+cursor = list(cursor[:10])
+
+for elt in cursor:
+    elt["_id"] = str(elt["_id"])
+    for grade in elt["grades"]:
+        grade["date"] = grade["date"].strftime("%Y-%d-%m")
+        
+dico = {"Bakery" : cursor}
+
+with open("Bakery", 'w', encoding='utf-8') as jsonFile:
+    json.dump(dico, jsonFile, indent=4)
+```
+
+## Exercices et corrections <a id="partie5"></a>
 Trouvez les restaurants qui n'ont recu que des notes égales à B.
 
 ````{tabbed} Python
@@ -447,25 +469,3 @@ cursor = list(cursor)
 db.NYfood.find({"name": /Pizza/})
 ```
 ````
-
-## Exportation au format JSON <a id="partie5"></a>
-Les résultats obtenus après une requête peuvent être conservé dans le but d'un projet ou d'une étude quelconque. Ainsi, nous vous proposons d'enregistrer vos requêtes sous la forme d'un format JSON.
-
-Remarque: le module JSON ne peut écrire dans un fichier avec des données de types classiques comme liste, dictionnaire, nombre, caractère . En l'occurrence, un identifiant qui aura une classe "ObjectID" ne pourra être écrit dans le fichier directement, de même pour les objets ```datetime```. Nous nous devons donc de les convertir en chaine de caractère au préalable.
-```{code-cell}
-import json
-
-cursor = db.NYfood.find({"cuisine": "Bakery"})
-
-cursor = list(cursor[:10])
-
-for elt in cursor:
-    elt["_id"] = str(elt["_id"])
-    for grade in elt["grades"]:
-        grade["date"] = grade["date"].strftime("%Y-%d-%m")
-        
-dico = {"Bakery" : cursor}
-
-with open("Bakery", 'w', encoding='utf-8') as jsonFile:
-    json.dump(dico, jsonFile, indent=4)
-```
