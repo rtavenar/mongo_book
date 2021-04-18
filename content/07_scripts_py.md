@@ -38,15 +38,15 @@ output:
   3.2. [Les Index](#partie32)  
   3.3. [Requête d'aggrégation](#partie33)  
   3.4. [Requête de modifications](#partie34)  
-4. [Exercices et corrections (si le temp)](#partie4)
-5. [Exportation au format JSON](#partie5)
+4. [Exportation au format JSON](#partie4)  
+5. [Exercices et corrections](#partie5)
 
 ## Présentation et installation <a id="partie1"></a>
 PyMongo est une librairie Python contenant des outils pour travailler avec MongoDB et MongodbAtlas. PyMongo est maintenue par les développeurs de MongoDB officiel ce qui en fait la référence dans Python. Pour une documentation détaillée de la librairie, vous pouvez consulter la documentation :
 
 **https://pymongo.readthedocs.io/en/stable/**
 
-Pour importer la librairie, nous pouvons le faire avec la commande ```pip install pymongo```, dans un terminal tel Anaconda Prompt par exemple.
+Pour importer la librairie, nous pouvons le faire avec la commande ```pip install pymongo```, dans un terminal tel Anaconda Prompt par exemple.   
 Remarque : elle est déjà incluse dans la distribution Anaconda.
 ```{code-cell}
 import pymongo 
@@ -125,20 +125,21 @@ En résumer, le package pymongo vous permet d'utiliser trois types d'objets via 
 
 Remarque: Vous pouvez remarquer que cela fonction comme un dictionnaire python. Toutefois, si votre base contient des caractères spéciaux, espace ou autre on vous conseille la première écriture : Client["BasedeDonnee"]["Collection"].
 
-## Requetes <a id="partie3"></a>
+## Requêtes <a id="partie3"></a>
 Maintenant que nous avons fait nos connexions, il nous reste à voir comment effectuer des requêtes.
 
 **Fonctionnement :**
 Le fonctionement est le même que sur l'interface MongoDb:
 
-**Syntax : db.nomDeLaCollection.requete() ou Client["BasedeDonnee"]["Collection"].requete()**
+**Syntax : BasedeDonne.nomDeLaCollection.requete() ou Client["BasedeDonnee"]["Collection"].requete()**
 
-|Requete|Fonctionement|
+|Requête|Fonctionement|
 |------|--------|
 |    find()    |    Recherche tous les individus selon les critères indiqués    |
 |    find_one()   |    Affiche le premier individu correspondant aux critères indiqués    |
 
 Mais le résultat est différent, il nous renvoie un objet de type "Cursor". En effet, le module pymongo ne stockera pas les résultats dans une liste par souci de mémoire : 
+
 Par exemple, ici nous réccupérons toutes les boulangeries de la collection *NYfood*.
 ```{code-cell}
 db.NYfood.find({"cuisine": "Bakery"})
@@ -173,7 +174,9 @@ print(cursor[0]["address"]["loc"]["coordinates"])
 ```
 
 De plus, pour utiliser certaines méthodes sur nos requêtes comme sort(), c'est sensiblement la même syntaxe que Mongodb:
+
 **Syntax : Client.BasedeDonnee.Collection.requetes().methode() ou Client["BasedeDonnee"]["Collection"].requete().methode()**
+
 Mais nous ne pouvons pas utiliser ces méthodes à l'objet *Cursor* car ces méthodes font partie intégrante de la requête.
 
 |Méthodes Python|Fonctionalité|
@@ -191,15 +194,16 @@ db.NYfood.find({"cuisine": "Bakery"}).sort("name", -1)) # Trie les résultats pa
 db.NYfood.find({"cuisine": "Bakery"}).limit(2).explain("executionStats") # Affiche les informations 
 db.NYfood.distinct("grades.grade", {"cuisine": "Bakery"}) #  liste des notes attribuées aux boulangeries
 ```
-### Requetes simples et ses spécifictés <a id="partie31"></a>
-L'utilisation de pymongo implique l'utilisation de certaines specificités, deux principalement qui marquent une différence avec MongoDb.
-Premièrement, nous avons une spécifité avec les opérateurs et les noms qui doivent être toujours dans des guillemets comme ```$gte```.
+### Requêtes simples et ses spécifictés <a id="partie31"></a>
+L'utilisation de pymongo implique l'utilisation de certaines spécificités, deux principalement qui marquent une différence avec MongoDb.
+Premièrement, nous avons une spécifité avec les opérateurs et les noms qui doivent toujours être dans des guillemets comme ```$gte```.
+
 Exemple:
 ```{code-cell}
 db.NYfood.find({"name": {"$gte" : "Y"}})
 ```
 
-La deuxième spécificité concerne les dates, on utilise le module datetime et pymongo va de lui même effectuer la conversion au format "date" de MongoDb.
+La deuxième spécificité concerne les dates, on utilise le module ```datetime``` et pymongo va de lui même effectuer la conversion au format "date de MongoDb".
 Exemple, liste des restaurants ayant au moins une note postérieure au 20 janvier 2015
 ```{code-cell}
 from datetime import datetime
@@ -209,7 +213,8 @@ date = datetime.strptime("2015-01-20", "%Y-%m-%d")
 db.NYfood.find({"grades.date": {"$gte": date}})
 ```
 
-**Astuce**
+**Astuce :**
+
 Dans le but de rendre nos requêtes plus lisible, il est possible de créer des variables python qui correspondent aux conditions que nous utilisons pour nos requêtes.
 Par exemple, nous voulons afficher la liste des restaurants qui vérifient l’une des ces conditions suivantes :
 * le restaurant appartient aux quartiers de "Manhattan"
@@ -246,7 +251,6 @@ print(cursorbis[0])
 
 De plus, nous pouvons remarquer que ce sont deux objets *Cursor* différents, mais qu'ils ont bien le même contenu.
 ```{code-cell}
-print(cursorbis == cursor)
 print(cursorbis[0] == cursor[0])
 ```
 
@@ -260,6 +264,7 @@ Les index sont des structures de données spéciales qui stockent une petite par
 |  drop_index()     | Suppression d'un index      |
 
 **Exemple:**
+
 L'ensemble des index de la collection NYfood:
 ```{code-cell}
 db = client["food"]
@@ -269,6 +274,7 @@ for k, v  in coll.index_information().items():
     print("{}, {} \n".format(k, v))
 ```
 
+Exemple de suppression ou de création d'un index :
 ```python
 db.NYfood.drop_index("borough_1")
 db.NYfood.create_index("borough_1")
@@ -292,7 +298,8 @@ for agreg in cursor_agreg:
 ```
 
 **Bonus, exemple d'utilsation du resultat d'une aggregation** 
-La méthode aggregate nous permets de faire des calculs, des regroupement, etc... Mais on a envie d'exploiter ce résultat en créant un graphique ou en le stockant dans un fichier à part par exemple et c'est possible.
+
+La méthode aggregate nous permets de faire des calculs, des regroupement, etc... Mais on a envie d'exploiter ce résultat en créant un graphique ou en le stockant dans un fichier.
 Création d'un graphique montrant pour chaque valeur possible de note, le nombre de fois qu’elle a été attribuée.
 ```python
 import matplotlib.pyplot as plt
@@ -319,7 +326,7 @@ plt.show()
 ```
 
 ### Les modifications <a id="partie34"></a>
-Contrairement aux requêtes d'interrogation, les requêtes de modifications peuvent modifier la base de données.Avec la librairie pymongo l'ecriture est la mêm qu'en MongoDB.
+Contrairement aux requêtes d'interrogation, les requêtes de modifications peuvent modifier la base de données. Avec la librairie pymongo l'écriture est la même qu'en MongoDB.
 
 |Requete|Fonctionement|
 |--------|--------|
@@ -331,6 +338,7 @@ Contrairement aux requêtes d'interrogation, les requêtes de modifications peuv
 |  update_many() 	|   Modification d'une liste de documents	|
 |  replace_one() 	|   Remplacement d'un document	|
 
+Exemple d'insertion d'un document dans la collection *NYfood* :
 ```python
 db.NYfood.insert_one(
   {
@@ -362,10 +370,10 @@ db.NYfood.insert_one(
 )
 ```
 
-Remarque : si la collection NYfood n'existe pas encore dans la base de données. Elle sera automatiquement créée lors de l'insertion d'un document dans cette nouvelle collection. La méthode ```db.create_collection()``` est donc facultative.
+Remarque : Si la collection *NYfood* n'existe pas encore dans la base de données. Elle sera automatiquement créée lors de l'insertion d'un document dans cette nouvelle collection. La méthode ```db.create_collection()``` est donc facultative.
 
 ## Exercices et corrections <a id="partie4"></a>
-*Trouvez les restaurants qui n'ont recu que des notes égales à B.
+Trouvez les restaurants qui n'ont recu que des notes égales à B.
 
 ````{tabbed} Python
 
@@ -381,7 +389,7 @@ req = {"$nor": l }
 
 cursor = db.NYfood.find(req)
 
-print(list(cursor[:2]))
+reponse = list(cursor)
 ```
 
 ````
@@ -408,7 +416,7 @@ dico_sort = {"$sort": {"nb_restos": -1}}
 
 l = [dico_match, dico_group, dico_match2, dico_sort]
              
-db.NYfood.aggregate(l)
+cursor.aggr = db.NYfood.aggregate(l)
 ```
 ````
 
@@ -418,8 +426,7 @@ db.NYfood.aggregate(l)
 ```javascript
 db.NYfood.aggregate([
 {$match: {"borough": {$ne: "Missing"}}},
-{$group: {_id: "$borough",
-nb_restos: {$sum:1}}},
+{$group: {_id: "$borough", nb_restos: {$sum:1}}},
 {$match: {nb_restos: {$lt: 1000}}},
 {$sort: {"nb_restos": -1}}
 ])
@@ -430,8 +437,8 @@ nb_restos: {$sum:1}}},
 Trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
 ````{tabbed} Python
 ```python
-db.NYfood.find({"name": "/Pizza/"})
-
+cursor = db.NYfood.find({"name": "/Pizza/"})
+cursor = list(cursor)
 ```
 ````
 
@@ -444,7 +451,7 @@ db.NYfood.find({"name": /Pizza/})
 ## Exportation au format JSON <a id="partie5"></a>
 Les résultats obtenus après une requête peuvent être conservé dans le but d'un projet ou d'une étude quelconque. Ainsi, nous vous proposons d'enregistrer vos requêtes sous la forme d'un format JSON.
 
-Remarque: le module JSON ne peut écrire dans un fichier avec des données de types classiques comme liste, dictionnaire, nombre, caractère . En l'occurrence, un identifiant qui aura une classe "ObjectID" ne pourra être écrit dans le fichier directement. De même pour les objets datetime. Nous nous devons donc de les convertir en chaine de caractère au préalable.
+Remarque: le module JSON ne peut écrire dans un fichier avec des données de types classiques comme liste, dictionnaire, nombre, caractère . En l'occurrence, un identifiant qui aura une classe "ObjectID" ne pourra être écrit dans le fichier directement, de même pour les objets ```datetime```. Nous nous devons donc de les convertir en chaine de caractère au préalable.
 ```{code-cell}
 import json
 
