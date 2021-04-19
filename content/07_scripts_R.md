@@ -16,7 +16,7 @@ kernelspec:
 (sec:mongolite)=
 # Requêtes depuis R : `mongolite`
 
-* Auteurs/trices : **TODO**
+* Auteurs/trices : **Yolan PERONNET, Faisal JAYOUZI, Paul LANCELIN**
 
 Comment faire pour effectuer les requêtes présentes dans les chapitres 1 à 6 avec `mongolite` ?
 
