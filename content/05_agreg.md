@@ -324,10 +324,41 @@ Pour que cette requête fonction le `$unwind` est obligatoire sinon on considèr
 Il n'existe pas réellement d'équivalent SQL au `$unwind`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
 
 ### Quelques requêtes pour tout comprendre
+Afin d'illustrer le fonctionnement pas à pas, découpons une requête en détail.
+Pour cet exemple on veut  **les 3 notes les plus données dans les restaurants du quartier de Brooklyn**.
+La première étape naturelle est de sélectionner les restaurants présents uniquement dans le quartier de Brooklyn.
+Pour cela on utilise `$match`, qui retourne uniquement les restaurants de Brooklyn.
 ```
 db.NYfood.aggregate(
 	[
+     {$match: {"borough": "Brooklyn"}},
+    	]
+) 
+```
+Dans un second temps, il faut voir que pour récupérer les différentes valeurs de note il faut que j'accède à chaque élément de la liste et non la liste entière. Pour y accéder j'utilise la commande `$unwind`, qui rendra donc à cette étape tous les restaurants de Brooklyn associé à une note qu'il obtenu (Attention, cela retourne beaucoup de résultat : nombre de restaurant * nombre de note)
 
+```
+db.NYfood.aggregate(
+	[
+     {$match: {"borough": "Brooklyn"}},
+     {$unwind: "$grades"},
+    ]
+) 
+```
+Ensuite, pour savoir quelle note a été la plus attribuée il faut grouper par chaque valeur de note. On utilise donc un `$group` sur l'attribut `$grades.grade$ (accessible grâce a `$unwind`). Puis on décide de compter le nombre d'itération de chaque note stocké dans la variable `nb`. Cette étape nous retourne donc le nombre de fois ou chaque note a été attribuée à un restaurant.
+```
+db.NYfood.aggregate(
+	[
+     {$match: {"borough": "Brooklyn"}},
+     {$unwind: "$grades"},
+     {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
+    ]
+) 
+```
+Nous sommes donc tout proche du résultat espéré. Il reste maintenant à trier les résultats par ordre décroissant, afin d'avoir les notes les plus données au début : `{$sort: {nb: -1}}`.  Mais comme l'énoncé le précise on souhaite afficher uniquement les 3 notes les plus données, étant donné que les notes sont triées il faut seulement préciser : `{$limit: 3}`.
+```
+db.NYfood.aggregate(
+	[
      {$match: {"borough": "Brooklyn"}},
      {$unwind: "$grades"},
      {$group: {_id: "$grades.grade", nb: {$sum: 1}}},
@@ -336,19 +367,7 @@ db.NYfood.aggregate(
     ]
 ) 
 ```
-
-Trouver un équivalent ici en SQL paraît compliqué avec le `$unwind, mais par étape ici on a :
-
-* `$match` : on rend un tableau avec uniquement des restaurants de brooklyn.
-* `$unwind` : on sépare les individus du tableau rendu par l'étape précédente par leur notes.
-* `$group` : on regroupe par notes le tableau obtenu.
-* `$sort` : on trie le tableau eu à l'étape d'avant en fonction du nombre d'occurences de notes.
-* `$limit` : dans ce précédent tableau, on ne rend que les trois premiers résultats.
-
-
-
-
-**Résultat final : Les 3 notes les plus données dans les restaurants du quartier de Brooklyn**
+On obtient bien avec cette requête les 3 notes les plus attribuées aux restaurants de Brooklyn !
 
 ``` {code-cell}
  db.NYfood.aggregate(
