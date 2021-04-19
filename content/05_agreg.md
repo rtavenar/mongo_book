@@ -42,7 +42,24 @@ MongoDB
   
 **exemple de requête avec regroupement**
 
-=======
+Pour sélectionner certains individus, il faut filtrer sur l'id.
+
+Sur la base de NYfood, on peut notamment filtrer par quartier.
+
+Voici un exemple de requête :
+
+db.NYfood.aggregate(
+[
+  {$group:
+    {
+    _id: "$borough",
+    nb: {$sum: 1}
+    }
+  }
+]
+)
+
+Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
 
 
 **opérateur $sum**
