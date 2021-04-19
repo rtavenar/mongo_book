@@ -29,6 +29,22 @@ Les requêtes de regroupement vont permettre d'effectuer des opérations d'accum
   
   Je refais un test
 
+Regardons une requête simple :
+
+db.NYfood.aggregate(
+      [{$group:{
+          _id: null,
+          nb: {$sum: 1}
+          }
+        }
+       ]
+)
+
+On utilise la fonction aggregate.
+Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
+Dans notre cas, on choisit tout les individus. On le note id: null
+On créé notre variable qu'on appelle nb qui va faire la somme de tout les individus.
+
 ## Successions d'étapes d'agrégation
 
 * Auteurs/trices : Marine BINARD, Arthur CONAS, Yann CAUSEUR
