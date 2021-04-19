@@ -28,9 +28,8 @@ Les requêtes de regroupement vont permettre d'effectuer des opérations d'accum
 **exemple de requête sans regroupement**
 SQL
 
-SELECT SUM(att)
-
-As nb FROM t
+`SELECT SUM(att)
+As nb FROM t`
 
 MongoDB
 
