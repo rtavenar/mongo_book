@@ -23,8 +23,8 @@ kernelspec:
 Dans cette partie, nous allons étudier **les regroupements dans les requêtes d'aggrégation**. Dans un premier temps, nous étudierons ce qu'est l'étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l'aide des 4 d'opérateurs qui sont : ** $sum, $max, $min, $count**. 
   * somme, count, max, min, avec ou sans groupe
 
-Les requêtes de regroupement vont permettre d'effectuer des opérations d'accumulation sur des documents regroupés. 
-test
+Les requêtes de regroupement vont permettre d'effectuer des opérations d'accumulation sur des documents regroupés. Il est l'équivalent de l'opérateur GROUP BY en SQL.
+
   Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
   
   Je refais un test
