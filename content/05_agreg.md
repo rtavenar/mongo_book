@@ -19,6 +19,8 @@ kernelspec:
 
 * Auteurs/trices : Salomé Vavasseur, Jeremy Castrique, Dimitri Nojac
 
+on va voir si ça donne quelque chose
+
 Cette section traite de :
   * somme, count, max, min, avec ou sans groupe
 
