@@ -40,6 +40,7 @@ db.coll.aggregate([
   }
 ])
   
+**exemple de requête avec regroupement**
 
 =======
 
