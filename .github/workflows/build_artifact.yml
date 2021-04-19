@@ -31,6 +31,7 @@ jobs:
         python -m pip install -r requirements_imongo.txt
         pip install git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel --user
         python -m pip install jupyter-book
+        python -m pip install -r requirements.txt
         python -m pip install pymongo
 
     # Setup R (for the notebook on MongoBD integration in R)
