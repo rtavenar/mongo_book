@@ -110,3 +110,20 @@ db.NYfood.find(
     }
 )
 ```
+
+#### Utilisation d'un objet date dans un aggregate
+
+Il est possible d'accéder aux attributs années, mois, jours,... d'une date. Ceci est très utile pour les requêtes d'aggrégations.
+
+Exemple d'une requête de regroupement par le mois et l'années. Nous voulons afficher mois par mois le nombre de stations de métros dans la base `keolis`.
+```javascript
+db.metro.aggregate([
+                        {$group:
+                            {_id: {month: {$month: "$lastCheckDate"},
+                                   year: {$year: "$lastCheckDate"}},
+                                   nb: {$sum: 1}
+                            }
+                        }
+                      ])
+
+``` 
