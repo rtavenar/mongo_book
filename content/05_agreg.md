@@ -20,10 +20,11 @@ kernelspec:
 
 * Auteurs/trices : **CASTRIQUE Jérémy, NOJAC Dimitri, VAVASSEUR Salomé**
 
-Dans cette partie, nous allons étudier **les regroupements dans les requêtes d'aggrégation**. Dans un premier temps, nous étudierons ce qu'est l'étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l'aide des 4 d'opérateurs qui sont : ** $sum, $max, $min, $count**. 
+Dans cette partie, nous allons étudier **les regroupements dans les requêtes d'aggrégation**. Dans un premier temps, nous étudierons ce qu'est l'étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l'aide des 4 d'opérateurs qui sont : **$sum, $max, $min, $count**. 
   * somme, count, max, min, avec ou sans groupe
 
 Les requêtes de regroupement vont permettre d'effectuer des opérations d'accumulation sur des documents regroupés. Il est l'équivalent de l'opérateur GROUP BY en SQL.
+
 
 SQL
 
@@ -40,7 +41,10 @@ db.coll.aggregate([
 ])
   
 
+=======
 
+
+**opérateur $sum**
 Regardons une requête simple :
 
 db.NYfood.aggregate(
