@@ -21,12 +21,12 @@ kernelspec:
 
 Cette section traite de :
   * somme, count, max, min, avec ou sans groupe
-
+test
   Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
 
 ## Successions d'étapes d'agrégation
 
-* Auteurs/trices : **TODO**
+* Auteurs/trices : Marine BINARD, Arthur CONAS, Yann CAUSEUR
 
 Cette section traite de :
 * successions d'étapes d'agrégation + unwind + project + sort + limit
