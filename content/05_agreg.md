@@ -34,9 +34,9 @@ As nb FROM t
 
 MongoDB
 
-`èdb.coll.aggregate([
+`db.coll.aggregate([
   {$group:
-    {_id: null,
+    {_id: null, 
     nb: {$sum: "$att"}}
   }
 ])`
