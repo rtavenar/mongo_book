@@ -32,5 +32,5 @@ Cette section traite de :
 
 Cette section traite de :
 * successions d'étapes d'agrégation + unwind + project + sort + limit
-
+;
 Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
