@@ -19,7 +19,7 @@ kernelspec:
 
 * Auteurs/trices : Salomé Vavasseur, Jeremy Castrique, Dimitri Nojac
 
-Cette section traite de :
+Dans cette partie, nous allons étudier **les regroupements dans les requêtes d'aggrégation**. Dans un premier temps, nous étudierons ce qu'est l'étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l'aide des 4 d'opérateurs qui sont : ** $sum, $max, $min, $count**. 
   * somme, count, max, min, avec ou sans groupe
 test
   Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
