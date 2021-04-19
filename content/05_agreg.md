@@ -26,6 +26,24 @@ Dans cette partie, nous allons étudier **les regroupements dans les requêtes d
 Les requêtes de regroupement vont permettre d'effectuer des opérations d'accumulation sur des documents regroupés. Il est l'équivalent de l'opérateur GROUP BY en SQL.
 
 
+SQL
+
+SELECT SUM(att)
+As nb FROM t
+
+MongoDB
+
+db.coll.aggregate([
+  {$group:
+    {_id: null,
+    nb: {$sum: "$att"}}
+  }
+])
+  
+
+=======
+
+
 **opérateur $sum**
 Regardons une requête simple :
 
@@ -42,6 +60,8 @@ On utilise la fonction aggregate.
 Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
 Dans notre cas, on choisit tout les individus. On le note id: null
 On créé notre variable qu'on appelle nb qui va faire la somme de tout les individus.
+
+ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
 
 ## Successions d'étapes d'agrégation
 
