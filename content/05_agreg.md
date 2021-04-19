@@ -29,16 +29,17 @@ Les requêtes de regroupement vont permettre d'effectuer des opérations d'accum
 SQL
 
 SELECT SUM(att)
+
 As nb FROM t
 
 MongoDB
 
-db.coll.aggregate([
+`èdb.coll.aggregate([
   {$group:
     {_id: null,
     nb: {$sum: "$att"}}
   }
-])
+])`
   
 **exemple de requête avec regroupement**
 
