@@ -283,8 +283,14 @@ WHERE Borough='Brooklyn'
 GROUP BY grade
 HAVING n > 1000
 ``` 
-Ici le premier `match` sert comme un `WHERE`, 
+Ici le premier `$match` sert comme un `WHERE`, 
 et le deuxième comme un `HAVING` en SQL.
+
+Dans tous les cas, le `$match` fait une sélection sur le jeu de données en fonction d'une condition, au moment où il est placé.
+
+Si le `$match` est au début, il fera une sélection sur l'ensemble des données (ici `NYfood`) mais n'aura pas accès aux opérations qui sont effectuées après (comme le `$group` dans notre cas).
+C'est pour cela qu'on utilise aussi le `$match` plus tard, pour avoir accès aux données créées avec nos bouts de requêtes précédents, ce qui permet ici d'avoir accès au `n`.
+Cependant, ce dernier `$match` n'a pas accès à toute la base de données `NYfood` et n'agit que sur les résultats des requêtes précédentes.
 
 ### <center> Unwind </center>
 
