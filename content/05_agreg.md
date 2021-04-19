@@ -53,6 +53,7 @@ Sur la base de NYfood, on peut notamment filtrer par quartier.
 
 Voici un exemple de requête :
 
+```javascript
 db.NYfood.aggregate(
 [
   {$group:
@@ -63,6 +64,7 @@ db.NYfood.aggregate(
   }
 ]
 )
+```
 
 Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
 
