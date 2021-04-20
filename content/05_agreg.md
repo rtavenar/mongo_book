@@ -53,16 +53,6 @@ Sur la base de NYfood, on peut notamment filtrer par quartier.
 
 Voici un exemple de requête :
 
-
-En SQL
-
-```sql
-SELECT SUM(att) as nb
-FROM t
-GROUP BY borough
-```
-
-En MongoDB
 ```javascript
 db.NYfood.aggregate(
 [
@@ -79,42 +69,55 @@ db.NYfood.aggregate(
 Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
 
 
-Dans la suite, nous allons traîter de différents opérateurs possibles à faire avec ou sans regroupement :
-
-* $sum
-* $count
-* $min / $max
-
-
 **opérateur $sum**
+Regardons une requête simple :
 
-L'opérateur $sum permet de calculer la somme d'un attribut ou d'additionner les valeurs d'un attribu.
-
-Regardons une requête simple sans regroupement :
-
-On utilise la fonction aggregate.
-Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
-On se place dans la collection notes de la base étudiants.
-Ici, on choisit tout les individus. On le note id: null
-On créé notre variable qu'on appelle nb_etud qui va faire la somme de tout les individus et calculer le nombre d'étudiants.
-
-```javascript
-db.notes.aggregate(
+db.NYfood.aggregate(
       [{$group:{
           _id: null,
-          nb_etud: {$sum: 1}
+          nb: {$sum: 1}
           }
         }
        ]
 )
+
+On utilise la fonction aggregate.
+Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
+Dans notre cas, on choisit tout les individus. On le note id: null
+On créé notre variable qu'on appelle nb qui va faire la somme de tout les individus.
+
+ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
+
+
+## Opérateurs $min et $max
+
+Pour cette partie on se basera sur cette collection pour les exemples :
+
+```javascript
+{ "_id" : 1, "objet" : "a", "prix" : 10, "quantité" : 2},
+{ "_id" : 2, "objet" : "b", "prix" : 20, "quantité" : 1},
+{ "_id" : 3, "objet" : "c", "prix" : 5, "quantité" : 5},
+{ "_id" : 4, "objet" : "a", "prix" : 10, "quantité" : 10},
+{ "_id" : 5, "objet" : "c", "prix" : 5, "quantité" : 10}
 ```
 
-Son équivalent en SQL est :
+Nous allons nous intéresser aux opérateurs **$min** et **$max** au sein de l'opéarteur **$group**,
+il peut aussi l'être dans l'opérateur **$project** que nous verrons en deuxième partie de chapitre
 
-```sql
-SELECT COUNT(*) as nb_etud
-FROM notes
+### Sans regroupement
 
+
+**$min** et **$max** s'ils utilisés sans regroupement retournent respectivement la valeur minimale et la valeur maximale 
+de l'attribut sur lequel ils sont appliqués et ceci sur tous les documents
+
+_Exemple :_
+
+```javascript
+db.ventes.aggregate([
+	{$group: {_id:null,
+                  prix_max: {$max: "$prix"},
+                  prix_min: {$min: "$prix"}}}
+])
 ```
 Dans cet exemple, nous avons compté le nombre d'individus sans sélection.
 
@@ -228,8 +231,72 @@ $count: "NB_+10"
 
 
 
+```{admonition} Titre
+:class: tip
 
- Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
+Ne pas oublier le "$" dans les attributs entre guillemets à droite des deux points pour bien faire référence à l'attribut
+et non à une chaîne de caractères.
+```
+
+Cette requête renvoie la valeur maximale puis minimale que prend la variable **prix** sur tous les documents :
+
+```javascript
+{
+    "_id" : null,
+    "prix_max" : 20.0,
+    "prix_min" : 5.0
+}
+```
+
+### Avec regroupement
+
+
+On peut aussi réaliser un regroupement et ainsi **$min** et **$max** renvoient toujours la valeur minimale et la valeur maximale
+de l'attribut sur laquelle ils sont appliqués, mais en étant appliqués sur les documents de l'ensemble de documents qui partagent la même clé de regroupement
+
+_Exemple :_
+
+```javascript
+db.ventes.aggregate([
+	{$group: {_id:"$objet",
+                  quantité_max: {$max: "$quantité"},
+                  quantité_min: {$min: "$quantité"}}}
+])
+```
+On groupe à l'aide de la clé **"$objet"**,
+on renvoie donc la valeur maximale puis minimale que prend la variable **quantité** pour chaque **objet** différent :
+
+```javascript
+{
+    "_id" : "a",
+    "quantité_max" : 10.0,
+    "quantité_min" : 2.0
+}
+
+/* 2 */
+{
+    "_id" : "b",
+    "quantité_max" : 1.0,
+    "quantité_min" : 1.0
+}
+
+/* 3 */
+{
+    "_id" : "c",
+    "quantité_max" : 10.0,
+    "quantité_min" : 5.0
+}
+```
+
+```{admonition} Titre
+
+Si certains documents ont une valeur de type null ou qui n'existe pas pour l'attribut sur lequel on applique $min ou $max,
+les opérateurs ne prennent pas en compte les valeurs de type null ou manquantes pour le calcul.
+Si tous les documents ont une valeur de type null ou qui n'existe pas, les opérateurs renvoient null pour la valeur minimale
+ou la valeur maximale.
+
+```
+
 
 ## Successions d'étapes d'agrégation
 
