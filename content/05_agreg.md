@@ -25,7 +25,7 @@ Dans cette partie, nous allons étudier **les regroupements dans les requêtes d
 
 Les requêtes de regroupement vont permettre d'effectuer des opérations d'accumulation sur des documents regroupés. Il est l'équivalent de l'opérateur GROUP BY en SQL.
 
-**exemple de requête sans regroupement**
+## exemple de requête sans regroupement
 
 SQL
 
@@ -45,7 +45,7 @@ db.coll.aggregate([
 ])
 ```
   
-**exemple de requête avec regroupement**
+## exemple de requête avec regroupement
 
 Pour sélectionner certains individus, il faut filtrer sur l'id.
 
