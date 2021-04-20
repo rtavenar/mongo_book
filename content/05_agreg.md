@@ -89,36 +89,7 @@ On créé notre variable qu'on appelle nb qui va faire la somme de tout les indi
  Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
 
 
-## Opérateurs $min et $max
 
-Pour cette partie on se basera sur cette collection pour les exemples :
-
-```javascript
-{ "_id" : 1, "objet" : "a", "prix" : 10, "quantité" : 2},
-{ "_id" : 2, "objet" : "b", "prix" : 20, "quantité" : 1},
-{ "_id" : 3, "objet" : "c", "prix" : 5, "quantité" : 5},
-{ "_id" : 4, "objet" : "a", "prix" : 10, "quantité" : 10},
-{ "_id" : 5, "objet" : "c", "prix" : 5, "quantité" : 10}
-```
-
-Nous allons nous intéresser aux opérateurs **$min** et **$max** au sein de l'opéarteur **$group**,
-il peut aussi l'être dans l'opérateur **$project** que nous verrons en deuxième partie de chapitre
-
-### Sans regroupement
-
-
-**$min** et **$max** s'ils utilisés sans regroupement retournent respectivement la valeur minimale et la valeur maximale 
-de l'attribut sur lequel ils sont appliqués et ceci sur tous les documents
-
-_Exemple :_
-
-```javascript
-db.ventes.aggregate([
-	{$group: {_id:null,
-                  prix_max: {$max: "$prix"},
-                  prix_min: {$min: "$prix"}}}
-])
-```
 Dans cet exemple, nous avons compté le nombre d'individus sans sélection.
 
 En pratique, cela n'a pas forcément beaucoup d'intérêt.
@@ -230,6 +201,36 @@ $count: "NB_+10"
 )
 
 
+## Opérateurs $min et $max
+
+Pour cette partie on se basera sur cette collection pour les exemples :
+
+```javascript
+{ "_id" : 1, "objet" : "a", "prix" : 10, "quantité" : 2},
+{ "_id" : 2, "objet" : "b", "prix" : 20, "quantité" : 1},
+{ "_id" : 3, "objet" : "c", "prix" : 5, "quantité" : 5},
+{ "_id" : 4, "objet" : "a", "prix" : 10, "quantité" : 10},
+{ "_id" : 5, "objet" : "c", "prix" : 5, "quantité" : 10}
+```
+
+Nous allons nous intéresser aux opérateurs **$min** et **$max** au sein de l'opéarteur **$group**,
+il peut aussi l'être dans l'opérateur **$project** que nous verrons en deuxième partie de chapitre
+
+### Sans regroupement
+
+
+**$min** et **$max** s'ils utilisés sans regroupement retournent respectivement la valeur minimale et la valeur maximale 
+de l'attribut sur lequel ils sont appliqués et ceci sur tous les documents
+
+_Exemple :_
+
+```javascript
+db.ventes.aggregate([
+	{$group: {_id:null,
+                  prix_max: {$max: "$prix"},
+                  prix_min: {$min: "$prix"}}}
+])
+```
 
 ```{admonition} Titre
 :class: tip
