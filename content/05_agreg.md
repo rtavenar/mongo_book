@@ -198,6 +198,37 @@ AS duree_tot FROM t
 GROUP BY genre
 ```
 
+db.notes.aggregate(
+
+[
+
+{
+
+$match: {
+
+"notes": {
+
+$gt: 10
+
+}
+
+}
+
+},
+
+{
+
+$count: "NB_+10"
+
+}
+
+]
+
+)
+
+
+
+
  Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
 
 ## Successions d'étapes d'agrégation
