@@ -175,6 +175,7 @@ AS duree_tot FROM t
 GROUP BY genre
 ```
 
+## opérateur $count
 db.notes.aggregate(
 
 [
