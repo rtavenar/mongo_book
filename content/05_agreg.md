@@ -116,7 +116,87 @@ SELECT COUNT(*) as nb_etud
 FROM notes
 
 ```
+Dans cet exemple, nous avons compté le nombre d'individus sans sélection.
 
+En pratique, cela n'a pas forcément beaucoup d'intérêt.
+
+Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondant à un critère. Pour cela, nous allons regarder avec une requête de regroupement.
+
+Toujours dans la collection notes e la base étudiants, on cherche à connaitre le nombre détudiantes et d'étudiants. Pour cela, on va effectuer un regroupement sur l'attribu sexe.
+
+```javascript
+db.notes.aggregate(
+      [{$group:{
+          _id: "$sexe",
+          nb_etud: {$sum: 1}
+          }
+        }
+       ]
+)
+```
+
+On obtient donc 2 listes diférentes:
+* une contenant F et 2
+* l'autre contenant M et 5
+
+Il y a donc eu un comptage du nombre d'étudiants en fonction de la variable sexe.
+
+L'équivalent en SQL est :
+
+```sql
+SELECT COUNT(*) AS nb_etud
+FROM notes
+GROUP BY sexe
+```
+
+Jusqu'ici, nous avons compté le nombre d'individus grâce à l'attribu **$sum**, mais celui ci permet aussi **d'additionner des variables**.
+
+On se place maintenant dans la collection cesars2016 de la base cinema.
+
+```javascript
+db.cesars2016.aggregate(
+[
+{$group:
+{
+_id: null,
+duree_tot: {$sum: "$durée"}
+}
+}
+]
+)
+```
+
+Ici, on calcule la somme des durées des films de la base.
+
+Son équivalent en SQL est :
+
+```sql
+SELECT SUM(durée)
+AS duree_tot FROM t
+```
+
+Si on veut sélectionner les sommes des durées de films par genre, il suffit de rajouter un regroupement comme le suivant :
+
+```javascript
+db.cesars2016.aggregate(
+[
+{$group:
+{
+_id: "$genre",
+nb: {$sum: "$durée"}
+}
+}
+]
+)
+```
+
+Dont l'équivalent en SQL est :
+
+```sql
+SELECT SUM(durée)
+AS duree_tot FROM t
+GROUP BY genre
+```
 
  Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
 
