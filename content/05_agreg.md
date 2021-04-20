@@ -86,6 +86,37 @@ Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut f
 Dans notre cas, on choisit tout les individus. On le note id: null
 On créé notre variable qu'on appelle nb qui va faire la somme de tout les individus.
 
+db.notes.aggregate(
+
+[
+
+{
+
+$match: {
+
+"notes": {
+
+$gt: 10
+
+}
+
+}
+
+},
+
+{
+
+$count: "NB_+10"
+
+}
+
+]
+
+)
+
+
+
+
  Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
 
 ## Successions d'étapes d'agrégation
