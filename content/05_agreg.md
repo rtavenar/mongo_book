@@ -69,7 +69,10 @@ db.NYfood.aggregate(
 Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
 
 
-**opérateur $sum**
+## opérateur $sum
+
+### Comptage du nombre d'individus 
+#### Sans regroupement
 Regardons une requête simple :
 
 db.NYfood.aggregate(
@@ -86,9 +89,6 @@ Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut f
 Dans notre cas, on choisit tout les individus. On le note id: null
 On créé notre variable qu'on appelle nb qui va faire la somme de tout les individus.
 
- Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
-
-
 
 Dans cet exemple, nous avons compté le nombre d'individus sans sélection.
 
@@ -96,6 +96,7 @@ En pratique, cela n'a pas forcément beaucoup d'intérêt.
 
 Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondant à un critère. Pour cela, nous allons regarder avec une requête de regroupement.
 
+#### Avec regroupement
 Toujours dans la collection notes e la base étudiants, on cherche à connaitre le nombre détudiantes et d'étudiants. Pour cela, on va effectuer un regroupement sur l'attribu sexe.
 
 ```javascript
@@ -122,7 +123,8 @@ SELECT COUNT(*) AS nb_etud
 FROM notes
 GROUP BY sexe
 ```
-
+### Additionner des variables
+#### Sans regroupement
 Jusqu'ici, nous avons compté le nombre d'individus grâce à l'attribu **$sum**, mais celui ci permet aussi **d'additionner des variables**.
 
 On se place maintenant dans la collection cesars2016 de la base cinema.
@@ -149,6 +151,7 @@ SELECT SUM(durée)
 AS duree_tot FROM t
 ```
 
+#### Avec regroupement
 Si on veut sélectionner les sommes des durées de films par genre, il suffit de rajouter un regroupement comme le suivant :
 
 ```javascript
