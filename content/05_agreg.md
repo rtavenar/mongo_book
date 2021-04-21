@@ -20,12 +20,12 @@ kernelspec:
 
 * Auteurs/trices : **CASTRIQUE Jérémy, NOJAC Dimitri, VAVASSEUR Salomé**
 
-Dans cette partie, nous allons étudier **les regroupements dans les requêtes d'aggrégation**. Dans un premier temps, nous étudierons ce qu'est l'étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l'aide des 4 d'opérateurs qui sont : **$sum, $max, $min, $count**. 
+Dans cette partie, nous allons étudier **les regroupements dans les requêtes d'aggrégation**. Dans un premier temps, nous étudierons ce qu'est l'étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l'aide des 4 d'opérateurs qui sont : **sum, max, min, count**. 
   * somme, count, max, min, avec ou sans groupe
 
 Les requêtes de regroupement vont permettre d'effectuer des opérations d'accumulation sur des documents regroupés. Il est l'équivalent de l'opérateur GROUP BY en SQL.
 
-## exemple de requête sans regroupement
+**Exemple de requête sans regroupement**
 
 SQL
 
@@ -45,7 +45,7 @@ db.coll.aggregate([
 ])
 ```
   
-## exemple de requête avec regroupement
+**Exemple de requête avec regroupement**
 
 Pour sélectionner certains individus, il faut filtrer sur l'id.
 
@@ -69,10 +69,10 @@ db.NYfood.aggregate(
 Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
 
 
-## opérateur $sum
+### opérateur $sum
 
-### Comptage du nombre d'individus 
-#### Sans regroupement
+#### Comptage du nombre d'individus 
+##### Sans regroupement
 Regardons une requête simple :
 
 db.NYfood.aggregate(
@@ -96,7 +96,7 @@ En pratique, cela n'a pas forcément beaucoup d'intérêt.
 
 Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondant à un critère. Pour cela, nous allons regarder avec une requête de regroupement.
 
-#### Avec regroupement
+##### Avec regroupement
 Toujours dans la collection notes e la base étudiants, on cherche à connaitre le nombre détudiantes et d'étudiants. Pour cela, on va effectuer un regroupement sur l'attribu sexe.
 
 ```javascript
@@ -123,8 +123,8 @@ SELECT COUNT(*) AS nb_etud
 FROM notes
 GROUP BY sexe
 ```
-### Additionner des variables
-#### Sans regroupement
+#### Additionner des variables
+##### Sans regroupement
 Jusqu'ici, nous avons compté le nombre d'individus grâce à l'attribu **$sum**, mais celui ci permet aussi **d'additionner des variables**.
 
 On se place maintenant dans la collection cesars2016 de la base cinema.
@@ -147,11 +147,11 @@ Ici, on calcule la somme des durées des films de la base.
 Son équivalent en SQL est :
 
 ```sql
-SELECT SUM(durée)
-AS duree_tot FROM t
+SELECT SUM(durée) AS duree_tot 
+FROM t
 ```
 
-#### Avec regroupement
+##### Avec regroupement
 Si on veut sélectionner les sommes des durées de films par genre, il suffit de rajouter un regroupement comme le suivant :
 
 ```javascript
@@ -170,12 +170,12 @@ nb: {$sum: "$durée"}
 Dont l'équivalent en SQL est :
 
 ```sql
-SELECT SUM(durée)
-AS duree_tot FROM t
+SELECT SUM(durée) AS duree_tot 
+FROM t
 GROUP BY genre
 ```
 
-## opérateur $count
+### opérateur $count
 db.notes.aggregate(
 
 [
@@ -205,7 +205,7 @@ $count: "NB_+10"
 )
 
 
-## Opérateurs $min et $max
+### Opérateurs min et max
 
 Pour cette partie on se basera sur cette collection pour les exemples :
 
@@ -217,13 +217,13 @@ Pour cette partie on se basera sur cette collection pour les exemples :
 { "_id" : 5, "objet" : "c", "prix" : 5, "quantité" : 10}
 ```
 
-Nous allons nous intéresser aux opérateurs **$min** et **$max** au sein de l'opéarteur **$group**,
-ils peuvent aussi être utilisés dans l'opérateur **$project** que nous verrons en deuxième partie de chapitre.
+Nous allons nous intéresser aux opérateurs **min** et **max** au sein de l'opéarteur **group**,
+ils peuvent aussi être utilisés dans l'opérateur **project** que nous verrons en deuxième partie de chapitre.
 
-### Sans regroupement
+#### Sans regroupement
 
 
-**$min** et **$max** s'ils sont utilisés sans regroupement retournent respectivement la valeur minimale et la valeur maximale 
+**min** et **max** s'ils sont utilisés sans regroupement retournent respectivement la valeur minimale et la valeur maximale 
 de l'attribut sur lequel ils sont appliqués et ceci sur tous les documents.
 
 _Exemple :_
@@ -247,7 +247,7 @@ FROM ventes
 ```
 ````
 
-```{admonition} Titre
+```{admonition} Attention
 :class: tip
 
 Ne pas oublier le "$" dans les attributs entre guillemets à droite des deux points pour bien faire référence à l'attribut
@@ -264,10 +264,10 @@ Cette requête renvoie la valeur maximale puis minimale que prend la variable **
 }
 ```
 
-### Avec regroupement
+#### Avec regroupement
 
 
-On peut aussi réaliser un regroupement et ainsi **$min** et **$max** renvoient toujours la valeur minimale et la valeur maximale
+On peut aussi réaliser un regroupement et ainsi **min** et **max** renvoient toujours la valeur minimale et la valeur maximale
 de l'attribut sur lequel ils sont appliqués, mais cette fois-ci en étant appliqués sur les documents de l'ensemble de documents qui partagent la même clé de regroupement.
 
 _Exemple :_
@@ -292,7 +292,7 @@ GROUP BY quantité
 ```
 ````
 
-On groupe à l'aide de la clé **"$objet"**,
+On groupe à l'aide de la clé **"objet"**,
 on renvoie donc la valeur maximale puis minimale que prend la variable **quantité** pour chaque **objet** différent :
 
 ```javascript
@@ -317,9 +317,9 @@ on renvoie donc la valeur maximale puis minimale que prend la variable **quantit
 }
 ```
 
-```{admonition} Titre
+```{admonition} Null ou inexistant
 
-Si certains documents ont une valeur de type null ou qui n'existe pas pour l'attribut sur lequel on applique $min ou $max,
+Si certains documents ont une valeur de type null ou qui n'existe pas pour l'attribut sur lequel on applique **min** ou **max**,
 les opérateurs ne prennent pas en compte les valeurs de type null ou manquantes pour le calcul.
 Si tous les documents ont une valeur de type null ou qui n'existe pas, les opérateurs renvoient null pour la valeur minimale
 ou la valeur maximale.
