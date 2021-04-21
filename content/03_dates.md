@@ -32,11 +32,21 @@ Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates)
 
 Ci-dessous un récapitulatif des formats disponible
 
-| Titre 1       |     Titre 2     |        Titre 3 |
+| abbreviation       |     Description     |        Valeurs possibles |
 | :------------ | :-------------: | -------------: |
-| Colonne       |     Colonne     |        Colonne |
-| Alignée à     |   Alignée au    |      Alignée à |
-| Gauche        |     Centre      |         Droite |
+| %d       |     jour du mois     |        01-31 |
+| %G     |   Année dans le format ISO 8601    |      0000-9999 |
+| %H        |     Heure      |         00-23 |
+| %L        |     Miliseconde      |         000-999 |
+| %m        |     Mois      |         01-12 |
+| %M        |     Minute      |         00-59 |
+| %S        |     Seconde      |         00-60 |
+| %u        |     jour par rapport à la semaine      |         1-7 (Lundi-Dimanche) |
+| %v        |     Semaine      |         1-53 |
+| %Y        |     année      |         0000-9999 |
+| %z        |     décalage temporel par rapport à UTC      |         +/-[hh][mm] |
+| %Z        |     décalage temporel converti en minutes      |         +/-mmm |
+| %%        |     afficher le caractère pourcentage      |         % |
 
 ### $dateFromString
 
