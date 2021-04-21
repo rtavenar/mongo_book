@@ -303,6 +303,8 @@ ou la valeur maximale.
 ```
 
 
+  Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
+
 ## Successions d'étapes d'agrégation
 
 * Auteurs/trices : Marine BINARD, Arthur CONAS, Yann CAUSEUR
