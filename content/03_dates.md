@@ -32,10 +32,11 @@ Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates)
 
 Ci-dessous un récapitulatif des formats disponible
 
-<tr><td>%d</td></tr>
-<tr><td>%d</td></tr>
-<tr><td>%d</td></tr>
-<tr><td>%d</td></tr>
+| Titre 1       |     Titre 2     |        Titre 3 |
+| :------------ | :-------------: | -------------: |
+| Colonne       |     Colonne     |        Colonne |
+| Alignée à     |   Alignée au    |      Alignée à |
+| Gauche        |     Centre      |         Droite |
 
 ### $dateFromString
 
