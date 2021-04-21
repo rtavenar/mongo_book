@@ -67,7 +67,8 @@ La méthode prend en argument :
 * la date en format texte (Obligatoire)
 * Le format
 * Le fuseau horaire
-* Une gestion potentielle des erreurs ou des nulles. 
+* Une gestion potentielle des erreurs
++ une gestion potentielle des valeurs nulles
 
 
 #### Exemples
@@ -85,6 +86,13 @@ On retrouve la méthode inverse avec des arguments similaires.
     onNull: <expression>
 } }
 ```
+La méthode prend en argument : 
+
+* la date en format texte (Obligatoire)
+* Le format
+* Le fuseau horaire
+* Une gestion potentielle des valeurs nulles
+
 #### Exemples
 
 ## Exemples d'applications
