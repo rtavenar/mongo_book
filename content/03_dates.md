@@ -63,6 +63,7 @@ Ci-dessous un récapitulatif des formats disponibles
 La méthode $datefromstring permet de convertir une chaine de caractère représentant une date en objet date pour pouvoir effectuer des calculs et comparaison dessus.
 
 La méthode prend en argument : 
+
 *la date en format texte (Obligatoire)
 *Le format
 *Le fuseau horaire
