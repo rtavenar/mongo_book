@@ -17,9 +17,7 @@ kernelspec:
 
 * Auteurs/trices : **HAMELIN Marine, GARY Gaston, RALIN Kévin, ABOULKACEM Zakaria**
 
-Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates) et des différents types de requêtes que l'on peut vouloir faire sur de tels attributs
-
-Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/03_dates.md`.
+Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates) et des différents types de requêtes que l'on peut vouloir faire sur de tels attributs;
 
 
 ## Qu'est-ce qu'une date dans MONGODB
@@ -29,6 +27,15 @@ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/03_d
 ### créations annexes
 
 ## Transformation de formats
+
+### présentation des formats
+
+Ci-dessous un récapitulatif des formats disponible
+
+<tr><td>%d</td></tr>
+<tr><td>%d</td></tr>
+<tr><td>%d</td></tr>
+<tr><td>%d</td></tr>
 
 ### $dateFromString
 
@@ -42,9 +49,21 @@ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/03_d
      onNull: <onNullExpression>
 } }
 ```
+La méthode $datefromstring permet de convertir une chaine de caractère représentant une date en objet date pour pouvoir effectuer des calculs et comparaison dessus.
+
+La méthode prend en argument : 
+*la date en format texte (Obligatoire)
+*Le format
+*Le fuseau horaire
+*Une gestion potentielle des erreurs ou des nulles. 
+
+
 #### Exemples
 
 ### $dateToString
+
+On retrouve la méthode inverse avec des arguments similaires.
+
 
 ```javascript
  { $dateToString: {
