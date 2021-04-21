@@ -22,7 +22,7 @@ Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates)
 
 ## Qu'est-ce qu'une date dans MONGODB
 
-### les différents formats
+### les différents objets Date
 
 ### créations annexes
 
@@ -30,7 +30,7 @@ Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates)
 
 ### présentation des formats
 
-Ci-dessous un récapitulatif des formats disponible
+Ci-dessous un récapitulatif des formats disponibles
 
 | abbreviation       |     Description     |        Valeurs possibles |
 | :------------ | :-------------: | -------------: |
