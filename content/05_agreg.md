@@ -218,13 +218,13 @@ Pour cette partie on se basera sur cette collection pour les exemples :
 ```
 
 Nous allons nous intéresser aux opérateurs **$min** et **$max** au sein de l'opéarteur **$group**,
-il peut aussi l'être dans l'opérateur **$project** que nous verrons en deuxième partie de chapitre
+ils peuvent aussi être utilisés dans l'opérateur **$project** que nous verrons en deuxième partie de chapitre.
 
 ### Sans regroupement
 
 
-**$min** et **$max** s'ils utilisés sans regroupement retournent respectivement la valeur minimale et la valeur maximale 
-de l'attribut sur lequel ils sont appliqués et ceci sur tous les documents
+**$min** et **$max** s'ils sont utilisés sans regroupement retournent respectivement la valeur minimale et la valeur maximale 
+de l'attribut sur lequel ils sont appliqués et ceci sur tous les documents.
 
 _Exemple :_
 
@@ -257,7 +257,7 @@ Cette requête renvoie la valeur maximale puis minimale que prend la variable **
 
 
 On peut aussi réaliser un regroupement et ainsi **$min** et **$max** renvoient toujours la valeur minimale et la valeur maximale
-de l'attribut sur laquelle ils sont appliqués, mais en étant appliqués sur les documents de l'ensemble de documents qui partagent la même clé de regroupement
+de l'attribut sur lequel ils sont appliqués, mais cette fois-ci en étant appliqués sur les documents de l'ensemble de documents qui partagent la même clé de regroupement.
 
 _Exemple :_
 
@@ -309,5 +309,5 @@ ou la valeur maximale.
 
 Cette section traite de :
 * successions d'étapes d'agrégation + unwind + project + sort + limit
-;
+
 Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
