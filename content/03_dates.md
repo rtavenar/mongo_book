@@ -64,10 +64,10 @@ La méthode $datefromstring permet de convertir une chaine de caractère représ
 
 La méthode prend en argument : 
 
-*la date en format texte (Obligatoire)
-*Le format
-*Le fuseau horaire
-*Une gestion potentielle des erreurs ou des nulles. 
+* la date en format texte (Obligatoire)
+* Le format
+* Le fuseau horaire
+* Une gestion potentielle des erreurs ou des nulles. 
 
 
 #### Exemples
