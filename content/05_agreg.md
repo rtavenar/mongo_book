@@ -228,6 +228,8 @@ de l'attribut sur lequel ils sont appliqués et ceci sur tous les documents.
 
 _Exemple :_
 
+````{tabbed} MongoDB
+
 ```javascript
 db.ventes.aggregate([
 	{$group: {_id:null,
@@ -235,6 +237,15 @@ db.ventes.aggregate([
                   prix_min: {$min: "$prix"}}}
 ])
 ```
+````
+
+````{tabbed} Équivalent SQL
+
+```sql
+SELECT MAX(prix) as "prix max", MIN(prix) as "prix min"
+FROM ventes
+```
+````
 
 ```{admonition} Titre
 :class: tip
@@ -261,6 +272,8 @@ de l'attribut sur lequel ils sont appliqués, mais cette fois-ci en étant appli
 
 _Exemple :_
 
+````{tabbed} MongoDB
+
 ```javascript
 db.ventes.aggregate([
 	{$group: {_id:"$objet",
@@ -268,6 +281,17 @@ db.ventes.aggregate([
                   quantité_min: {$min: "$quantité"}}}
 ])
 ```
+````
+
+````{tabbed} Équivalent SQL
+
+```sql
+SELECT MAX(prix) as "prix max", MIN(prix) as "prix min"
+FROM ventes
+GROUP BY quantité
+```
+````
+
 On groupe à l'aide de la clé **"$objet"**,
 on renvoie donc la valeur maximale puis minimale que prend la variable **quantité** pour chaque **objet** différent :
 
