@@ -431,15 +431,13 @@ test$drop()
 test$insert(iris)
 ```
 
-````{admonition} Remarque
+```{admonition} Remarque
 En pratique, c'est l'inverse de *mongo$find()* qui converti la collection en Data Frame.  
+```
 
 ```{code-cell} R
 test$find(limit = 3)
 ```
-````
-
-
 
 Il est également possible d'insérer directement des données à partir d'une chaîne de caractère JSON. Cette méthode nécessite un vecteur de caractères où chaque élément est une chaîne JSON valide.  
 
@@ -453,9 +451,33 @@ individus$insert(str)
 individus$find(query = '{}', fields = '{}')
 ```
 
+Nous pouvons également noter l'équivalent en MongoDB :
+
+````{tabbed} Mongolite
+
+```r
+individus <- mongo("individus")
+individus$insert(c('{"prenom" : "yolan"}' , '{"prenom": "paul", "age" : 22}', '{"prenom": "faisal"}'))
+```
+
+````
+
+````{tabbed} Équivalent MongoDB
+
+```javascript
+db.createCollection("individus")
+db.individus.insert([
+{"prenom" : "yolan"}',
+{"prenom": "paul", "age" : 22},
+{"prenom": "faisal"}
+])
+```
+
+````
+
 ### Méthode remove
 
-La même syntaxe que nous utilisons dans find() pour sélectionner les enregistrements à lire, peut également être utilisée pour sélectionner les enregistrements à supprimer :  
+La même syntaxe que nous utilisons dans *find()* pour sélectionner les enregistrements à lire, peut également être utilisée pour sélectionner les enregistrements à supprimer :  
 
 ```{code-cell} R
 test$count()
@@ -464,6 +486,21 @@ test$count()
 test$remove('{"Species" : "setosa"}')
 test$count()
 ```
+Nous pouvons noter l'équivalent en MongoDB :
+
+````{tabbed} Mongolite
+```r
+test$remove('{"Species" : "setosa"}')
+```
+````
+````{tabbed} Équivalent MongoDB
+
+```javascript
+db.test.remove(
+{"Species" : "setosa"}
+)
+```
+````
 
 Utilisez l'option just_one pour supprimer un seul enregistrement :
 
@@ -472,23 +509,41 @@ test$remove('{"Sepal_Length" : {"$lte" : 5}}', just_one = TRUE)
 test$count()
 ```
 
-Pour supprimer tous les enregistrements de la collection (mais pas la collection elle-même) :  
+Pour supprimer tous les documents de la collection (mais pas la collection elle-même) :  
 
 ```{code-cell} R
 test$remove('{}')
 test$count()
 ```
 
-La méthode *drop()* supprime une collection entière. Cela inclut toutes les données, ainsi que les métadonnées telles que les indices de la collection.  
+La méthode *drop()* supprime une collection entière. Cela inclut toutes les documents, ainsi que les métadonnées telles que les index de la collection.  
 
 ```{code-cell} R
 test$drop()
 ```
+Nous pouvons également noter l'équivalent en MongoDB :
+
+````{tabbed} Mongolite
+```r
+test$drop()
+```
+````
+````{tabbed} Équivalent MongoDB
+
+```javascript
+db.test.drop()
+```
+````
 
 
 ### Méthodes update/upsert
 
 Pour modifier des enregistrements existants, utilisez l'opérateur update() :  
+
+**Remplacement d'un document :**  
+  
+  
+**Modification d'un document :**  
 
 ```{code-cell} R
 individus$find()
@@ -498,29 +553,133 @@ individus$find()
 individus$update('{"prenom":"yolan"}', '{"$set":{"age": 21}}')
 ```
 
-```{code-cell R
+```{code-cell} R
 individus$find()
 ```
 
+Nous pouvons également noter l'équivalent en MongoDB :
+
+````{tabbed} Mongolite
+
+```r
+individus$update('{"prenom":"yolan"}', '{"$set":{"age": 21}}')
+```
+
+````
+
+````{tabbed} Équivalent MongoDB
+
+```javascript
+db.individus.update(
+{"prenom" : "yolan"},
+{$set: {"age" : 21}}
+)
+```
+
+````
+  
+**Mise à jour de plusieurs documents :**  
+  
 Par défaut, la méthode *update()* met à jour un seul document. Pour mettre à jour plusieurs documents, utilisez l'option *multi* de la méthode *update()*.  
 
 ```{code-cell} R
 individus$update('{}', '{"$set":{"booleen_age": false}}', multiple = TRUE)
+```
+```{code-cell} R
 individus$update('{"age" : {"$gte" : 0}}', '{"$set":{"booleen_age": true}}', multiple = TRUE)
+```
+
+```{code-cell} R
 individus$find()
 ```
+Nous pouvons également noter l'équivalent en MongoDB :
+
+````{tabbed} Mongolite
+
+```r
+individus$update('{}', '{"$set":{"booleen_age": false}}', multiple = TRUE)
+
+individus$update('{"age" : {"$gte" : 0}}', '{"$set":{"booleen_age": true}}', multiple = TRUE)
+```
+
+````
+
+````{tabbed} Équivalent MongoDB
+
+```javascript
+db.individus.update(
+{},
+{$set: {"booleen_age": false}},
+{multi: true}
+)
+
+db.individus.update(
+{"age" : {"$gte" : 0}},
+{$set: {"booleen_age": true}},
+{multi: true}
+)
+```
+
+````
+  
+**Modification avec création d'un document si besoin :**   
   
 Si aucun document ne correspond à la condition de mise à jour, le comportement par défaut de la méthode de mise à jour est de ne rien faire. En spécifiant l'option *upsert* à true, l'opération de mise à jour met à jour le ou les documents correspondants ou insère un nouveau document si aucun document correspondant n'existe.  
  
 ```{code-cell} R
 individus$update('{"prenom":"malo"}', '{"$set":{"age": 22}}', upsert = TRUE)
+```
+
+```{code-cell} R
 individus$find()
 ```
+  
+ Nous pouvons également noter l'équivalent en MongoDB :
+
+````{tabbed} Mongolite
+
+```r
+individus$update('{"prenom":"malo"}', '{"$set":{"age": 22}}', upsert = TRUE)
+```
+
+````
+
+````{tabbed} Équivalent MongoDB
+
+```javascript
+db.individus.update(
+{"prenom":"malo"},
+{$set: {"age": 22}},
+{upsert: true}
+)
+```
+
+````
 
 
 
 ## Import et export de données
 
-### La méthode import
+### La méthode export/import JSON
+
+```{code-cell} R
+individus$export(stdout())
+```
+
+```{code-cell} R
+dmd$export(file("dump.json"))
+```
+```{code-cell} R
+individus$drop()
+individus$count()
+```
+
+```{code-cell} R
+individus$import(file("dump.json"))
+individus$count()
+```
+
+
+
 
 ### La méthode export
