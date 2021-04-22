@@ -30,12 +30,12 @@ Cette section traite de :
 
 
 ### Introduction
-Les successions d'étapes d'agrégations vont permettre d'obtenir des requêtes proches de ce qu'on peut trouver en SQL.
-Contrairement à SQL où l'ordre est pré-défini (`SELECT FROM WHERE ORDER BY`), ici ce n'est pas le cas, il n'empêche que **l'ordre dans lequel on place
+Les successions d'étapes d'agrégation vont permettre d'obtenir des requêtes proches de ce qu'on peut trouver en SQL.
+Contrairement à SQL où l'ordre est pré-défini (`SELECT FROM WHERE ORDER BY`), ici ce n'est pas le cas. Il n'empêche que **l'ordre dans lequel on place
 nos étapes est crucial.**
 
 Nos étapes peuvent toutes être effectuées une à une et indépendamment. En fait, à l'intérieur de notre `db.coll.aggregate([])`, il y aura notre liste d'étapes,
-contenues dans des crochets et séparées par des virgules, qui s'effectueront sur les données que **l'étape d'avant aura rendu.**
+contenues dans des crochets et séparées par des virgules, qui s'effectueront sur les données que **l'étape d'avant aura rendue.**
 
 Il peut donc être intéressant d'éxécuter le code étape par étape pour savoir sur quelles données on travaille à un moment donné.
 
@@ -45,8 +45,8 @@ Commençons par regarder ce que peut faire chaque étape.
 ### <center> Project </center>
 ***Pourquoi l'utiliser ?***  
 Il peut arriver lors d'une requête d'agrégation de vouloir créer de nouvelles variables par exemple, pour des calculs. La commande `$project` permet donc de créer de nouvelles variables. Néanmoins, il faut faire attention, 
-lorsque l'on crée une nouvelle variable dans une requête d'agrégation,
- tous les attributs déjà existants pour les documents d'une collection ne sont plus mémorisés. Donc, si on veut créer une nouvelle variable tout en gardant celles déjà existantes il faut le mentionner le `$project`. 
+lorsque l'on crée une nouvelle variable dans une requête d'agrégation.
+ Tous les attributs déjà existants pour les documents d'une collection ne sont plus mémorisés. Donc, si on veut créer une nouvelle variable, tout en gardant celles déjà existantes, il faut le mentionner dans le `$project`. 
 
 ***Comment ça fonctionne ?*** 
 
@@ -74,9 +74,9 @@ db.NYfood.aggregate(
   ]
 )
 ```
-Sur l’exemple ci-dessus on vient créer une variable n_notes qui prend pour valeur la taille de la liste `grades` 
-(qui contient les différentes notes attribuées au restaurant), 
-on cherche donc ici à compter le nombre de notes attribué à chaque restaurant.
+Sur l’exemple ci-dessus, on vient créer une variable n_notes qui prend pour valeur la taille de la liste `grades` 
+(qui contient les différentes notes attribuées aux restaurants).
+On cherche donc, ici, à compter le nombre de notes attribué à chaque restaurant.
  Mais tous les autres attributs du restaurant sont effacés. Par la suite,
  on ne pourra donc retrouver que le nombre de notes attribué et non le quartier 
  ou le type de restaurant. 
@@ -89,8 +89,8 @@ db.NYfood.aggregate(
 )
 ```
 
-Avec cette requête on peut voir le quartier du restaurant, par ailleurs la variable `borough` 
-a été renommé `quartier`. Je peux également conserver cette 
+Avec cette requête, on peut voir le quartier du restaurant. Par ailleurs, la variable `borough` 
+a été renommée `quartier`. On peut également conserver cette 
 variable sans la renommer avec cette syntaxe.
 ```{code-cell}
 db.NYfood.aggregate( 
@@ -101,15 +101,15 @@ db.NYfood.aggregate(
 ```
 ***Traduction SQL :***
 
-L'équivalent en SQL de la commande `$project` sont les étapes `SELECT` et `AS` qui 
-permettent de créer de nouvelles variables. Par contre, en SQL 
+L'équivalent en SQL de la commande `$project` est l'étape `SELECT` et `AS` qui 
+permettent de créer de nouvelles variables. Par contre, en SQL,
 l'étape `AS` est facultative, la nouvelle variable prendra 
-comme nom la formule du calcul. En MongoDB elle est obligatoire ! 
-Si on ne précise pas le nom de la nouvelle variable cela affichera 
-une erreur. Pour la traduction SQL de l'exemple précédent il convient de faire attention, 
-pour rappel, les listes n'existent pas en SQL ! D'ou la nécessité 
-dans certain moment de faire des calculs verticaux, ce qui n'est pas nécéssaire.
-Dans notre cas, en SQL l'attribut `grades` serait une table à part entière (avec toutes les notes `grade` une clé étrangère faisant référence au restaurant)
+comme nom la formule du calcul. En MongoDB, elle est obligatoire ! 
+Si on ne précise pas le nom de la nouvelle variable, cela affichera 
+une erreur. Pour la traduction SQL de l'exemple précédent, il convient de faire attention.
+Pour rappel, les listes n'existent pas en SQL ! D'où la nécessité
+dans certains moments de faire des calculs verticaux, ce qui n'est pas nécéssaire.
+Dans notre cas, en SQL l'attribut `grades` serait une table à part entière (avec toutes les notes `grade`, une clé étrangère faisant référence au restaurant)
 Il faudrait donc faire une jointure sur celle-ci puis grouper par restaurant (en imaginant qu'il existe un ID pour chaque restaurant)
 L'exemple serait donc:   
 
@@ -144,7 +144,7 @@ db.coll.aggregate(
 )
 ```
 
-Le `<sort order>` peut prendre la valeur : 1 (croissant), -1 (décroissant) ou encore `{$meta: "textScore"}`(il s'agit d'un tri de métadonnées textScore calculées dans l'ordre décroissant)
+Le `<sort order>` peut prendre la valeur : 1 (croissant), -1 (décroissant) ou encore `{$meta: "textScore"}`(il s'agit d'un tri de métadonnées textScore calculées dans l'ordre décroissant).
 
 ***Exemples :***
 
@@ -242,16 +242,16 @@ l'étape `$limit` seul sans le sort.
 ```sql
 SELECT count(borough)
 FROM NYfood 
-group by borough
+GROUP BY borough
 ORDER BY count(borough) desc
-limit 3
+LIMIT 3
 ```
 
 ### <center> Match  </center>
 
 ***Pourquoi l'utiliser***
 
-`$match` peut être utilisé comme un filtre, avec une condition. On pourrait le mettre n'importe où dans notre requête mais il est particulierement intéressant en début ou en fin de requête.
+`$match` peut être utilisé comme un filtre, avec une condition. On pourrait le mettre n'importe où dans notre requête mais il est particulièrement intéressant en début ou en fin de requête.
 
 
 ***Comment ça fonctionne ?***
@@ -297,7 +297,7 @@ Cependant, ce dernier `$match` n'a pas accès à toute la base de données `NYfo
 
 ***Pourquoi l'utiliser ?*** 
  
-Il arrive que les documents de certaines collections possèdent pour attribut une liste. Lorsque l'on effectue une requête d'agrégation il peut être nécéssaire d'agir non pas sur la liste mais sur chaque élément de la liste. Pour cela on utilise la commande `$unwind`. Elle permet pour chaque élément de la liste de dupliquer le document  pour chaque valeur de la liste. 
+Il arrive que les documents de certaines collections possèdent pour attribut une liste. Lorsque l'on effectue une requête d'agrégation, il peut être nécéssaire d'agir non pas sur la liste mais sur chaque élément de la liste. Pour cela, on utilise la commande `$unwind`. Elle permet, pour chaque élément de la liste, de dupliquer le document pour chaque valeur de la liste. 
 
 ***Comment ça fonctionne ?***
 
@@ -309,7 +309,7 @@ db.coll.aggregate(
   ]
 )
 ```
-En général un `$unwid` seul a peu d'intérêt, `$att` est une liste de taille 10 que la collection comporte 1000 individus, la requête d'exemple renverra un résultat de 10 000 lignes (10 * 1000)
+En général, un `$unwid` seul n'a peu d'intérêt.`$att` est une liste de taille 10 que la collection comporte 1000 individus, la requête d'exemple renverra un résultat de 10 000 lignes (10 * 1000)
 
 ***Exemple***
 ```{code-cell}
@@ -323,16 +323,16 @@ db.NYfood.aggregate(
 )
 
 ```
-Voici un exemple concret d'utilisation d'un `$unwind`. Dans la requête on cherche à compter le nombre de A ayant été attribués à l'ensemble des restaurants de la collection, puis le nombre de B, C .... 
-Pour que cette requête fonction le `$unwind` est obligatoire sinon on considère la liste entière des notes et ne peux donc pas compter. 
+Voici un exemple concret d'utilisation d'un `$unwind`. Dans la requête, on cherche à compter le nombre de A ayant été attribués à l'ensemble des restaurants de la collection, puis le nombre de B, C .... 
+Pour que cette requête fonctionne, le `$unwind` est obligatoire, sinon on considère la liste entière des notes et on ne peut donc pas compter. 
  
  ***Traduction SQL :*** 
  
-Il n'existe pas réellement d'équivalent SQL au `$unwind`. Néanmoins il se rapproche d'une opération de jointure sans aucun filtre.
+Il n'existe pas réellement d'équivalent SQL au `$unwind`. Néanmoins, il se rapproche d'une opération de jointure sans aucun filtre.
 
 ### Quelques requêtes pour tout comprendre
 Afin d'illustrer le fonctionnement pas à pas, découpons une requête en détail.
-Pour cet exemple on veut  **les 3 notes les plus données dans les restaurants du quartier de Brooklyn**.
+Pour cet exemple, on veut  **les 3 notes les plus données dans les restaurants du quartier de Brooklyn**.
 La première étape naturelle est de sélectionner les restaurants présents uniquement dans le quartier de Brooklyn.
 Pour cela on utilise `$match`, qui retourne uniquement les restaurants de Brooklyn.
 ```
@@ -342,7 +342,7 @@ db.NYfood.aggregate(
     	]
 ) 
 ```
-Dans un second temps, il faut voir que pour récupérer les différentes valeurs de note il faut que j'accède à chaque élément de la liste et non la liste entière. Pour y accéder j'utilise la commande `$unwind`, qui rendra donc à cette étape tous les restaurants de Brooklyn associé à une note qu'il obtenu (Attention, cela retourne beaucoup de résultat : nombre de restaurant * nombre de note)
+Dans un second temps, il faut voir que pour récupérer les différentes valeurs de notes, il faut acceder à chaque élément de la liste et non la liste entière. Pour y accéder, il faut utiliser la commande `$unwind`, qui rendra donc à cette étape tous les restaurants de Brooklyn associés à une note qu'il a obtenu (Attention, cela retourne beaucoup de résultats : nombre de restaurants * nombre de notes)
 
 ```
 db.NYfood.aggregate(
@@ -352,7 +352,7 @@ db.NYfood.aggregate(
     ]
 ) 
 ```
-Ensuite, pour savoir quelle note a été la plus attribuée il faut grouper par chaque valeur de note. On utilise donc un `$group` sur l'attribut `$grades.grade$ (accessible grâce a `$unwind`). Puis on décide de compter le nombre d'itération de chaque note stocké dans la variable `nb`. Cette étape nous retourne donc le nombre de fois ou chaque note a été attribuée à un restaurant.
+Ensuite, pour savoir quelle note a été la plus attribuée, il faut grouper pour chaque valeur de note. On utilise donc un `$group` sur l'attribut `$grades.grade$ (accessible grâce a `$unwind`). Puis, on décide de compter le nombre d'itérations de chaque note stockée dans la variable `nb`. Cette étape nous retourne donc le nombre de fois où chaque note a été attribuée à un restaurant.
 ```
 db.NYfood.aggregate(
 	[
@@ -362,7 +362,7 @@ db.NYfood.aggregate(
     ]
 ) 
 ```
-Nous sommes donc tout proche du résultat espéré. Il reste maintenant à trier les résultats par ordre décroissant, afin d'avoir les notes les plus données au début : `{$sort: {nb: -1}}`.  Mais comme l'énoncé le précise on souhaite afficher uniquement les 3 notes les plus données, étant donné que les notes sont triées il faut seulement préciser : `{$limit: 3}`.
+Nous sommes donc tout proches du résultat espéré. Il reste maintenant à trier les résultats par ordre décroissant, afin d'avoir les notes les plus données au début : `{$sort: {nb: -1}}`. Mais comme l'énoncé le précise, on souhaite afficher uniquement les 3 notes les plus données. Etant donné que les notes sont triées, il faut seulement préciser : `{$limit: 3}`.
 ```
 db.NYfood.aggregate(
 	[
@@ -374,7 +374,7 @@ db.NYfood.aggregate(
     ]
 ) 
 ```
-On obtient bien avec cette requête les 3 notes les plus attribuées aux restaurants de Brooklyn !
+On obtient bien, avec cette requête, les 3 notes les plus attribuées aux restaurants de Brooklyn !
 
 ``` {code-cell}
  db.NYfood.aggregate(
@@ -398,11 +398,11 @@ Expliquons cette requête (qui n'a pas beaucoup d'intérêt pratique).
 * `$group` : Sur le résultat de la requête précédente, on groupe tout les restaurants (_id : null), et on regarde le nombre minimum et maximum de notes attribuées
 à un restaurant. (Ayant sélectionné les individus supérieurs à deux, le minimum ne pouvait être que 3 ou plus.
 
-En SQL on aurait :
+En SQL, on aurait :
 ```sql
 SELECT COUNT(*) AS taille, MAX(taille),MIN(taille)
 FROM NYfood
 WHERE taille>=2
 ```
-**Résultat final : Le nombre minimum et maximum de notes attribuées aux restaurants ayant au moins deux notes.**
+**Résultat final : Le nombre minimum et maximum de notes attribué aux restaurants ayant au moins deux notes.**
 
