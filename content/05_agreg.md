@@ -176,34 +176,33 @@ GROUP BY genre
 ```
 
 ### opérateur $count
+
+L'opérateur **count** renvoie le nombre de documents présents dans l'aggrégation.
+
+Dans cet exemple, on assigne à la valeure NB_+10 le nombre de documents ayant eu des notes supérieurs à 10. :
+
+```javascript
 db.notes.aggregate(
-
 [
-
-{
-
-$match: {
-
-"notes": {
-
-$gt: 10
-
-}
-
-}
-
-},
-
-{
-
-$count: "NB_+10"
-
-}
-
+	{
+	$match: {
+		"notes": {
+			$gt: 10
+			}
+		}
+	},
+	{
+	$count: "NB_+10"
+	}
 ]
-
 )
+```
 
+L'opérateur **match** exclu les documents qui possèdent une note <10. 
+L'opérateur **count** va donc agir sur les documents ayant des notes supérieurs ou égales à 10.
+L'opérateur **count** assigne à la valeure NB_+10 le nombre de documents.
+
+Au final, l'opérateur **count** est un équivalent aux opérateurs **group** avec **sum** et **project** (opérateur vu plus tard dans le chapitre).
 
 ### Opérateurs min et max
 
