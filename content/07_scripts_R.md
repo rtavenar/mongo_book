@@ -457,7 +457,7 @@ Nous pouvons également noter l'équivalent en MongoDB :
 
 ```r
 individus <- mongo("individus")
-individus$insert(c('{"prenom" : "yolan"}' , '{"prenom": "paul", "age" : 22}', '{"prenom": "faisal"}'))
+individus$insert(c('{"prenom" : "yolan"}' , '{"prenom": "paule", "age" : 22}', '{"prenom": "faisal"}'))
 ```
 
 ````
