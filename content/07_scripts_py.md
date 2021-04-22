@@ -56,6 +56,8 @@ import pymongo
 Cette librairie est déjà incluse dans la distribution Anaconda.
 ```
 
+
+
 ## Connexion serveur, base de données et collections <a id="partie2"></a>
 La première étape consiste à créer une connexion avec nos bases de données sur le serveur de MongoDB. Pour effectuer cette connexion, nous devons utiliser une URI qui est un URL. Il  existe différentes URI de connexion, mais ici, nous devons juste nous connecter à notre serveur local MongoDB. Pour voir les différents moyens de vous connecter à des serveurs extérieurs comme par exemple MongodbAtlas, voir la page : 
 
@@ -138,6 +140,8 @@ En résumé, le package `pymongo` vous permet d'utiliser trois types d'objets vi
 Cela fonctionne comme un dictionnaire Python. Toutefois, si votre base contient des caractères spéciaux, espace ou autre, on vous conseille la première écriture : `Client["BasedeDonnee"]["Collection"]`.
 ```
 
+
+
 ## Requêtes <a id="partie3"></a>
 Maintenant que nous avons fait nos connexions, il nous reste à voir comment effectuer des requêtes.
 
@@ -192,6 +196,7 @@ print(cursor[0]["address"]["loc"]["coordinates"])
 ```
 
 **Methodes :**
+
 De plus, pour utiliser certaines méthodes sur nos requêtes comme `sort()`, c'est sensiblement la même syntaxe que MongoDB :
 
 ```{admonition} Syntax méthode
@@ -211,6 +216,7 @@ Cependant, nous ne pouvons pas utiliser ces méthodes à l'objet `Cursor` car ce
 |    explain()    |    Permet d’obtenir un certain nombre d’informations sur le déroulement d’une requête |
 |    distinct()    |    Suppression des doublons    |
     
+
 **Exemples :**
 ```python
 db.NYfood.find({"cuisine": "Bakery"}).limit(2) # Affiche les deux premiers résultats
@@ -218,6 +224,8 @@ db.NYfood.find({"cuisine": "Bakery"}).sort("name", -1)) # Trie les résultats pa
 db.NYfood.find({"cuisine": "Bakery"}).limit(2).explain("executionStats") # Affiche les informations 
 db.NYfood.distinct("grades.grade", {"cuisine": "Bakery"}) #  liste des notes attribuées aux boulangeries
 ```
+
+
 
 ### Requêtes simples et ses spécifictés <a id="partie31"></a>
 L'utilisation de `pymongo` implique l'utilisation de certaines spécificités, deux principalement qui marquent une différence avec MongoDB.
@@ -237,6 +245,7 @@ date = datetime.strptime("2015-01-20", "%Y-%m-%d")
 
 db.NYfood.find({"grades.date": {"$gte": date}})
 ```
+
 
 **Astuce :**
 
@@ -282,6 +291,7 @@ De plus, nous pouvons remarquer que ce sont deux listes `Cursor`, on peut donc t
 print(cursorbis == cursor)
 ```
 
+
 ### Les index <a id="partie32"></a>
 Les index sont des structures de données spéciales qui stockent une petite partie de l'ensemble de données de la collection sous une forme facile à parcourir. L'index stocke la valeur d'un champ spécifique ou d'un ensemble de champs, triés par la valeur du champ. Ainsi, l'utilisation avec `pymongo` est la même qu'en mongoDB.
 
@@ -315,6 +325,7 @@ db.NYfood.drop_index("borough_1")
 db.NYfood.create_index("borough_1")
 ```
 
+
 ### Les requêtes d'agrégation <a id="partie33"></a>
 Les requêtes d'agrégation ont pour but de faire des calculs simples (agrégats) sur toute la collection ou seulement sur certains groupes. Pour ce faire, on utilise la méthode ```aggregate()``` .
 
@@ -338,6 +349,7 @@ cursor_agreg = coll.aggregate([
 for agreg in cursor_agreg:
     print(agreg["nb_restos"], "restaurants dans le quartier", agreg["_id"])
 ```
+
 
 **Bonus, exemple d'utilisation du résultat d'une agrégation** 
 
@@ -367,9 +379,9 @@ plt.title("Number of times assigned to a note")
 plt.show()
 ```
 
+
 ### Les modifications <a id="partie34"></a>
 Contrairement aux requêtes d'interrogation, les requêtes de modification peuvent modifier la base de données. Avec la librairie `pymongo` l'écriture est la même qu'en MongoDB.
-
 
 ```{admonition} Syntax de requête de modifications
 :class: tip
@@ -387,6 +399,8 @@ Contrairement aux requêtes d'interrogation, les requêtes de modification peuve
 |  update_one() 	|   Modification d'un document	|
 |  update_many() 	|   Modification d'une liste de documents	|
 |  replace_one() 	|   Remplacement d'un document	|
+
+
 
 Exemple d'insertion d'un document dans la collection `NYfood` :
 ```python
@@ -448,6 +462,7 @@ dico = {"Bakery" : cursor}
 with open("Bakery", 'w', encoding='utf-8') as jsonFile:
     json.dump(dico, jsonFile, indent=4)
 ```
+
 
 ### Exercices et corrections <a id="partie42"></a>
 Ici nous restons dans la base `food` :
