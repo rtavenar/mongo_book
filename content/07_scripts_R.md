@@ -410,6 +410,7 @@ En pratique, c'est l'inverse de *mongo$find()* qui converti la collection en Dat
 ```{code-cell} R
 test$find(limit = 3)
 ```
+```
 
 Il est également possible d'insérer directement des données à partir d'une chaîne de caractère JSON. Cette méthode nécessite un vecteur de caractères où chaque élément est une chaîne JSON valide.  
 
@@ -424,6 +425,39 @@ subjects$find(query = '{}', fields = '{}')
 ```
 
 ### Méthode remove
+
+La même syntaxe que nous utilisons dans find() pour sélectionner les enregistrements à lire, peut également être utilisée pour sélectionner les enregistrements à supprimer :  
+
+```{code-cell} R
+test$count()
+```
+```{code-cell} R
+test$remove('{"Species" : "setosa"}')
+test$count()
+```
+
+Utilisez l'option just_one pour supprimer un seul enregistrement :
+
+```{code-cell} R
+test$remove('{"Sepal_Length" : {"$lte" : 5}}', just_one = TRUE)
+test$count()
+```
+
+Pour supprimer tous les enregistrements de la collection (mais pas la collection elle-même) :  
+
+```{code-cell} R
+test$remove('{}')
+test$count()
+```
+
+La méthode *drop()* supprime une collection entière. Cela inclut toutes les données, ainsi que les métadonnées telles que les indices de la collection.  
+
+```{code-cell} R
+test$drop()
+```
+
+
+
 
 
 
