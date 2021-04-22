@@ -440,6 +440,7 @@ test$find(limit = 3)
 ```
 
 Il est également possible d'insérer directement des données à partir d'une chaîne de caractère JSON. Cette méthode nécessite un vecteur de caractères où chaque élément est une chaîne JSON valide.  
+A noter qu'ici la méthode *insert()* crée la collection "individus" car cette dernière n'existe pas.  
 
 ```{code-cell} R
 individus <- mongo("individus")
