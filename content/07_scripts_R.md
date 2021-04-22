@@ -443,7 +443,7 @@ Il est également possible d'insérer directement des données à partir d'une c
 
 ```{code-cell} R
 individus <- mongo("individus")
-str <- c('{"prenom" : "yolan"}' , '{"prenom": "paul", "age" : 22}', '{"prenom": "faisal"}')
+str <- c('{"prenom" : "yolan"}' , '{"prenom": "paule", "age" : 22}', '{"prenom": "faisal"}')
 individus$insert(str)
 ```
  
@@ -762,7 +762,7 @@ Cet exercice reprend l'exemple de carthographie avec leaflet de François-Xavier
 **Question 1 :**
   
 
-```{code-cell} R
+```r
 req = '[{"$group":{"_id":"$borough","nb_restos":{"$sum":1}}}]' 
 df <- coll$aggregate(pipeline=req) 
 df
@@ -772,7 +772,7 @@ df
 
 **Question 2 :**
   
-```{code-cell} R
+```r
 library(tidyverse)
 
 df %>%
@@ -786,7 +786,7 @@ df %>%
   
 **Question 1 :**
   
-```{code-cell} R
+```r
 restos.coord = coll$aggregate(
   '[
     { "$project": { 
@@ -802,7 +802,7 @@ head(restos.coord)
   
 **Question 2 :**
 
-```{code-cell} R
+```r
 library(leaflet)
 
 leaflet(restos.coord) %>%
@@ -812,7 +812,7 @@ leaflet(restos.coord) %>%
   
 **Question 3 :**
   
-```{code-cell} R
+```r
 pal = colorFactor("Accent", restos.coord$borough)
 leaflet(restos.coord) %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
