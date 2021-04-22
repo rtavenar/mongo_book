@@ -62,7 +62,7 @@ db.coll.aggregate([
   
 **Exemple de requête avec regroupement**
 
-Pour sélectionner certains individus, il faut filtrer sur l'id.
+Pour sélectionner certains individus, il faut filtrer sur l'identifiant.
 
 Sur la base de NYfood, on peut notamment filtrer par quartier.
 
@@ -96,7 +96,7 @@ Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu
 
 ### opérateur $sum
 
-L'opérateur $sum permet de calculer et de retourner les sommes de variables numériques. /!\ Il ne prend pas en compte les variables non numériques.
+L'opérateur `$sum` permet de calculer et de retourner les sommes de variables numériques. /!\ Il ne prend pas en compte les variables non numériques.
 
 **syntaxe**
 
@@ -140,7 +140,7 @@ FROM NYfood
 
 On utilise la fonction aggregate.
 Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
-Dans notre cas, on choisit tout les individus. On le note id: null
+Dans notre cas, on choisit tout les individus. On le note `id: null`.
 On créé notre variable qu'on appelle nb qui va faire la somme de tout les individus.
 
 
@@ -179,7 +179,7 @@ GROUP BY sexe
 ```
 #### Additionner des variables
 ##### Sans regroupement
-Jusqu'ici, nous avons compté le nombre d'individus grâce à l'attribu **$sum**, mais celui ci permet aussi **d'additionner des variables**.
+Jusqu'ici, nous avons compté le nombre d'individus grâce à l'attribu `$sum`, mais celui ci permet aussi `d'additionner des variables`.
 
 On se place maintenant dans la collection cesars2016 de la base cinema.
 
@@ -231,7 +231,11 @@ GROUP BY genre
 
 ### opérateur $count
 
-L'opérateur **count** renvoie le nombre de documents présents dans l'aggrégation.
+L'opérateur `$count` renvoie le nombre de documents présents dans l'aggrégation.
+
+**syntaxe**
+
+A remplir par Jeremy
 
 Dans cet exemple, on assigne à la valeur NB_+10 le nombre de documents ayant eu au moins une note supérieure à 10. :
 
@@ -252,11 +256,11 @@ db.notes.aggregate(
 )
 ```
 
-L'opérateur **match** exclu les documents qui possèdent une note <10. 
-L'opérateur **count** va donc agir sur les documents ayant des notes supérieurs ou égales à 10.
-L'opérateur **count** assigne à la valeur NB_+10 le nombre de documents.
+L'opérateur `$match` exclu les documents qui possèdent une note <10. 
+L'opérateur `$count` va donc agir sur les documents ayant des notes supérieurs ou égales à 10 grâce à l'opérateur `$gt` (plus grand que) et va assigner
+à la valeur NB_+10 le nombre de documents répondant au critère.
 
-Au final, l'opérateur **count** est un équivalent aux opérateurs **$group** avec **$sum** et **$project** (opérateur vu plus tard dans le chapitre).
+Au final, l'opérateur `$count` est un équivalent aux opérateurs `$group` avec `$sum` et `$project` (opérateur vu plus tard dans le chapitre).
 
 ### Opérateurs $min et $max
 
@@ -270,13 +274,14 @@ Pour cette partie on se basera sur cette collection pour les exemples :
 { "_id" : 5, "objet" : "c", "prix" : 5, "quantité" : 10}
 ```
 
-Nous allons nous intéresser aux opérateurs **min** et **max** au sein de l'opéarteur **group**,
-ils peuvent aussi être utilisés dans l'opérateur **project** que nous verrons en deuxième partie de chapitre.
+Nous allons nous intéresser aux opérateurs `$min` et `$max` au sein de l'opéarteur `$group`,
+ils peuvent aussi être utilisés dans l'opérateur `$project` que nous verrons en deuxième partie de chapitre.
+En SQL, les équivalents sont les opérateurs `MIN`et `MAX.
 
 #### Sans regroupement
 
 
-**min** et **max** s'ils sont utilisés sans regroupement retournent respectivement la valeur minimale et la valeur maximale 
+`$min` et `$max` s'ils sont utilisés sans regroupement retournent respectivement la valeur minimale et la valeur maximale 
 de l'attribut sur lequel ils sont appliqués et ceci sur tous les documents.
 
 _Exemple :_
@@ -307,7 +312,7 @@ Ne pas oublier le "$" dans les attributs entre guillemets à droite des deux poi
 et non à une chaîne de caractères.
 ```
 
-Cette requête renvoie la valeur maximale puis minimale que prend la variable **prix** sur tous les documents :
+Cette requête renvoie la valeur maximale puis minimale que prend la variable `$prix` sur tous les documents :
 
 ```{code-cell}
 {
@@ -320,7 +325,7 @@ Cette requête renvoie la valeur maximale puis minimale que prend la variable **
 #### Avec regroupement
 
 
-On peut aussi réaliser un regroupement et ainsi **min** et **max** renvoient toujours la valeur minimale et la valeur maximale
+On peut aussi réaliser un regroupement et ainsi `$min` et `$max` renvoient toujours la valeur minimale et la valeur maximale
 de l'attribut sur lequel ils sont appliqués, mais cette fois-ci en étant appliqués sur les documents de l'ensemble de documents qui partagent la même clé de regroupement.
 
 _Exemple :_
@@ -345,8 +350,8 @@ GROUP BY quantité
 ```
 ````
 
-On groupe à l'aide de la clé **"objet"**,
-on renvoie donc la valeur maximale puis minimale que prend la variable **quantité** pour chaque **objet** différent :
+On groupe à l'aide de la clé `"objet"`,
+on renvoie donc la valeur maximale puis minimale que prend la variable `quantité` pour chaque `objet` différent :
 
 ```{code-cell}
 {
@@ -372,7 +377,7 @@ on renvoie donc la valeur maximale puis minimale que prend la variable **quantit
 
 ```{admonition} Null ou inexistant
 
-Si certains documents ont une valeur de type null ou qui n'existe pas pour l'attribut sur lequel on applique **min** ou **max**,
+Si certains documents ont une valeur de type null ou qui n'existe pas pour l'attribut sur lequel on applique `$min` ou `$max`,
 les opérateurs ne prennent pas en compte les valeurs de type null ou manquantes pour le calcul.
 Si tous les documents ont une valeur de type null ou qui n'existe pas, les opérateurs renvoient null pour la valeur minimale
 ou la valeur maximale.
