@@ -40,6 +40,7 @@ db.coll.aggregate([
 ])
 ```
 
+Les équivalents en SQL de l'opérateur $sum sont `COUNT(*)` ou bien `SUM` qui permettent de compter le nombre de variables.
 **Exemple de requête sans regroupement**
 
 SQL
