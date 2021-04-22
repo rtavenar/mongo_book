@@ -409,7 +409,6 @@ En pratique, c'est l'inverse de *mongo$find()* qui converti la collection en Dat
 ```{code-cell}
 test$find(limit = 3)
 ```
-```
 
 Il est également possible d'insérer directement des données à partir d'une chaîne de caractère JSON. Cette méthode nécessite un vecteur de caractères où chaque élément est une chaîne JSON valide.  
 
