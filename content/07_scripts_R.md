@@ -538,7 +538,7 @@ db.test.drop()
 
 ### Méthodes update/upsert
 
-Pour modifier des enregistrements existants, utilisez l'opérateur update() :  
+Pour modifier des enregistrements existants, utilisez l'opérateur *update()* :  
 
 **Remplacement d'un document :**  
   
@@ -660,14 +660,14 @@ db.individus.update(
 
 ## Import et export de données
 
-### La méthode export/import JSON
+### La méthode export/import pour JSON
 
 ```{code-cell} R
 individus$export(stdout())
 ```
 
 ```{code-cell} R
-dmd$export(file("dump.json"))
+individus$export(file("individus.json"))
 ```
 ```{code-cell} R
 individus$drop()
@@ -679,7 +679,63 @@ individus$import(file("dump.json"))
 individus$count()
 ```
 
+### Autres formats d'export (jsonlite/bjson/...)
+Pour ces autres formats ou package concernant les méthodes import()* et *export()*, nous vous renvoyons [à la page de Jeroen Ooms](https://jeroen.github.io/mongolite/import-export.html).  
+
+## Exercice final
+
+Cet exercice est reprend l'exemple de carthographie avec leaflet de François-Xavier Jollois, disponible [en cliquant ici.](https://fxjollois.github.io/cours-2017-2018/du-abd-r/connexion-r-mongodb.html#un_peu_de_cartographie_avec_leaflet)  
+  
+### Consignes
+
+1. A l'aide d'une requête d'aggrégation, récupérer le nom, le quartier, la longitude et la latitude des restaurant new-yorkais de la collection NYfood.
+2. Afficher les différents restaurants sur la carte du monde. Que constatez vous ?
+3. Réaliser une carte des restaurants new-yorkais en ajoutant une couleur en fonction du quartier.  
+
+### Correction
+
+**Question 1 :**
+  
+```{code-cell} R
+mdb = mongo(collection="NYfood", db="food",
+            url="mongodb://localhost:27017/food",
+            verbose=TRUE)
+            
+
+restos.coord = mdb$aggregate(
+  '[
+    { "$project": { 
+        "name": 1, 
+        "borough": 1, 
+        "lng": { "$arrayElemAt": ["$address.loc.coordinates", 0]}, 
+        "lat": { "$arrayElemAt": ["$address.loc.coordinates", 1]} 
+    }}
+]')
+```
+  
+**Question 2 :**
+
+```{code-cell} R
+library(leaflet)
+
+leaflet(restos.coord) %>%
+  addTiles() %>%
+  addCircles(lng = ~lng, lat = ~lat)
+```
+  
+**Question 3 :**
+  
+```{code-cell} R
+pal = colorFactor("Accent", restos.coord$borough)
+leaflet(restos.coord) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  setView(lng  = -73.9,
+          lat  =  40.7,
+          zoom =  10) %>%
+  addCircles(lng = ~lng, lat = ~lat, color = ~pal(borough)) %>%
+  addLegend(pal = pal, values = ~borough, opacity = 1, 
+            title = "Quartier")
+```
 
 
 
-### La méthode export
