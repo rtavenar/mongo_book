@@ -315,7 +315,7 @@ Tout comme le *.distinct()* en MongoDB ([plus de précisions ici](https://rtaven
 Affichez la liste des notes existant dans la base :  
 
 ```{code-cell} R
-mdb$distinct(key = "grades.grade")
+coll$distinct(key = "grades.grade")
 ```
 
 Nous pouvons également noter l'équivalent en MongoDB :
@@ -323,7 +323,7 @@ Nous pouvons également noter l'équivalent en MongoDB :
 ````{tabbed} Mongolite
 
 ```r
-mdb$distinct(key = "grades.grade")
+coll$distinct(key = "grades.grade")
 ```
 
 ````
@@ -450,7 +450,7 @@ individus$insert(str)
 ```
  
 ```{code-cell} R
-subjects$find(query = '{}', fields = '{}')
+individus$find(query = '{}', fields = '{}')
 ```
 
 ### Méthode remove
