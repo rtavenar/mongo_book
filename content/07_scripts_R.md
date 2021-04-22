@@ -561,7 +561,7 @@ individus$find()
 ```
 
 ```{code-cell} R
-individus$update('{"prenom":"paule"}', '{"prenom": "paul"}}')
+individus$update('{"prenom":"paule"}', '{"prenom": "paul"}')
 ```
 
 ```{code-cell} R
