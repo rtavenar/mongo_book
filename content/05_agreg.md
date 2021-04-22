@@ -235,7 +235,7 @@ L'opérateur `$count` renvoie le nombre de documents présents dans l'aggrégati
 
 **syntaxe**
 
-A remplir par Jeremy
+**A remplir par Jeremy**
 
 Dans cet exemple, on assigne à la valeur NB_+10 le nombre de documents ayant eu au moins une note supérieure à 10. :
 
