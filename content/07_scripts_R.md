@@ -422,7 +422,7 @@ it$page(2)
 ## Manipulation de données
 
 ### Méthode insert
-La méthode *insert()* permet, à l'instar du *.insert* en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/06_modif.html)), d'ajouter des données à une collection.  
+La méthode *insert()* permet, à l'instar du *.insert* en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/06_modif.html)), d'ajouter des données à une collection. 
 La méthode la plus simple, est d'insérer des données à partir d'un data frame R. Les colonnes du data frame seront automatiquement transformées en clées d'enregistrement JSON.  
   
  ```{code-cell} R
@@ -440,10 +440,11 @@ test$find(limit = 3)
 ```
 
 Il est également possible d'insérer directement des données à partir d'une chaîne de caractère JSON. Cette méthode nécessite un vecteur de caractères où chaque élément est une chaîne JSON valide.  
+A noter qu'ici la méthode *insert()* crée la collection "individus" car cette dernière n'existe pas.  
 
 ```{code-cell} R
 individus <- mongo("individus")
-str <- c('{"prenom" : "yolan"}' , '{"prenom": "paule", "age" : 22}', '{"prenom": "faisal"}')
+str <- c('{"prenom" : "yolan"}' , '{"prenom": "paul", "age" : 22}', '{"prenom": "faisal"}')
 individus$insert(str)
 ```
  
@@ -457,7 +458,7 @@ Nous pouvons également noter l'équivalent en MongoDB :
 
 ```r
 individus <- mongo("individus")
-individus$insert(c('{"prenom" : "yolan"}' , '{"prenom": "paule", "age" : 22}', '{"prenom": "faisal"}'))
+individus$insert(c('{"prenom" : "yolan"}' , '{"prenom": "paul", "age" : 22}', '{"prenom": "faisal"}'))
 ```
 
 ````
@@ -467,8 +468,8 @@ individus$insert(c('{"prenom" : "yolan"}' , '{"prenom": "paule", "age" : 22}', '
 ```javascript
 db.createCollection("individus")
 db.individus.insert([
-{"prenom" : "yolan", "age" : 22}',
-{"prenom": "paule", "age" : 22},
+{"prenom" : "yolan"}',
+{"prenom": "paul", "age" : 22},
 {"prenom": "faisal"}
 ])
 ```
@@ -528,6 +529,8 @@ test$remove('{}')
 ```javascript
 db.test.remove({})
 ```
+````
+
 
 
 La méthode *drop()* supprime une collection entière. Cela inclut toutes les documents, ainsi que les métadonnées telles que les index de la collection.  
@@ -535,7 +538,8 @@ La méthode *drop()* supprime une collection entière. Cela inclut toutes les do
 ```{code-cell} R
 test$drop()
 ```
-Nous pouvons également noter l'équivalent en MongoDB :
+
+Nous pouvons noter l'équivalent en MongoDB :
 
 ````{tabbed} Mongolite
 ```r
@@ -554,43 +558,6 @@ db.test.drop()
 
 Pour modifier des enregistrements existants, utilisez l'opérateur *update()* :  
 
-**Remplacement d'un document :**  
-  
-```{code-cell} R
-individus$find()
-```
-
-```{code-cell} R
-individus$update('{"prenom":"paule"}', '{"prenom": "paul"}')
-```
-
-```{code-cell} R
-individus$find()
-```
-  
-On voit ici que le document est remplacé, cela supprime tous les autres champs (pour le document remplacé) s’ils existent. Ici age est supprimé.  
-  
-Nous pouvons noter l'équivalent en MongoDB :
-
-````{tabbed} Mongolite
-
-```r
-individus$update('{"prenom":"paule"}', '{"prenom": "paul"}')
-```
-
-````
-
-````{tabbed} Équivalent MongoDB
-
-```javascript
-db.individus.update(
-{"prenom" : "paule"},
-{"prenom" : "paul"}
-)
-```
-
-````
-
 **Modification d'un document :**  
 
 ```{code-cell} R
@@ -598,7 +565,7 @@ individus$find()
 ```
 
 ```{code-cell} R
-individus$update('{"prenom":"faisal"}', '{"$set":{"age": 22}}')
+individus$update('{"prenom":"yolan"}', '{"$set":{"age": 22}}')
 ```
 
 ```{code-cell} R
@@ -610,7 +577,7 @@ Nous pouvons noter l'équivalent en MongoDB :
 ````{tabbed} Mongolite
 
 ```r
-individus$update('{"prenom":"faisal"}', '{"$set":{"age": 21}}')
+individus$update('{"prenom":"yolan"}', '{"$set":{"age": 22}}')
 ```
 
 ````
@@ -620,7 +587,7 @@ individus$update('{"prenom":"faisal"}', '{"$set":{"age": 21}}')
 ```javascript
 db.individus.update(
 {"prenom" : "yolan"},
-{$set: {"age" : 21}}
+{$set: {"age" : 22}}
 )
 ```
 
@@ -823,6 +790,3 @@ leaflet(restos.coord) %>%
   addLegend(pal = pal, values = ~borough, opacity = 1, 
             title = "Quartier")
 ```
-
-
-
