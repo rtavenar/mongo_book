@@ -701,10 +701,6 @@ Cet exercice reprend l'exemple de carthographie avec leaflet de François-Xavier
 
 ### Correction
 
-```{code-cell} R
-bdd2 = coll$find('{}')
-head(bdd2)
-```
   
 **Exercice 1 :**
   
@@ -712,6 +708,8 @@ head(bdd2)
   
 
 ```{code-cell} R
+library(tidyverse)
+
 req = '[{"$group":{"_id":"$borough","nb_restos":{"$sum":1}}}]' 
 df <- coll$aggregate(pipeline=req) 
 df
