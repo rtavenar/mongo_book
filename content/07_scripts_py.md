@@ -46,14 +46,18 @@ PyMongo est une librairie Python contenant des outils pour travailler avec Mongo
 
 **https://pymongo.readthedocs.io/en/stable/**
 
-Pour installer la librairie, nous pouvons le faire avec la commande ```pip install pymongo```, dans un terminal tel Anaconda Prompt par exemple.   
-Remarque : elle est déjà incluse dans la distribution Anaconda.
+Pour installer la librairie, nous pouvons le faire avec la commande `pip install pymongo`, dans un terminal tel que Anaconda Prompt par exemple.   
+
 ```{code-cell}
 import pymongo 
 ```
 
+```{admonition} Remarque
+Cette librairie est déjà incluse dans la distribution Anaconda.
+```
+
 ## Connexion serveur, base de données et collections <a id="partie2"></a>
-La première étape consiste à créer une connexion avec nos bases de données sur le serveur de MongoDB. Pour effectuer cette connexion, nous devons utiliser une URI qui est un URL. Il  existe différentes URI de connexion, mais ici, nous devons juste nous connecter à notre serveur local MongoDB. Pour voir les différents moyens de vous connecter à des serveurs extérieurs ou par exemple MongodbAtlas, voir la page : 
+La première étape consiste à créer une connexion avec nos bases de données sur le serveur de MongoDB. Pour effectuer cette connexion, nous devons utiliser une URI qui est un URL. Il  existe différentes URI de connexion, mais ici, nous devons juste nous connecter à notre serveur local MongoDB. Pour voir les différents moyens de vous connecter à des serveurs extérieurs comme par exemple MongodbAtlas, voir la page : 
 
 **https://docs.mongodb.com/manual/reference/connection-string/.**
 
@@ -62,8 +66,9 @@ Ainsi notre URL de connexion est "mongodb://localhost:27017" avec notre :
 * host: localHost
 * port: 27017.  
 
-Pour utilser cette URL nous utilisons la classe MongoClient de pymongo qui nous fait notre connexion.
+Pour utiliser cette URL nous utilisons la classe MongoClient de pymongo qui nous fait notre connexion.
 ```{code-cell}
+# import de notre Classe MongoClient
 from pymongo  import MongoClient
 
 client = MongoClient(host="localhost", port=27017)
@@ -83,7 +88,12 @@ print(type(client))
 Ainsi, nous pouvons voir que la fonction créer un objet de class `pymongo.mongo_client.MongoClient` où nous retrouvons nos informations comme le host le port, etc...
 La deuxième étape consiste à nous connecter à notre base de données et nos collections, nous prendons ici l'exemple de la base de données `food`:
 
-**Syntax : Client.BasedeDonnee.Collection ou Client["BasedeDonnee"]["Collection"]**
+```{admonition} Syntax
+:class: tip
+
+-Client.BasedeDonnee.Collection 
+-Client["BasedeDonnee"]["Collection"]
+```
 
 ```{code-cell}
 db_name = "food"
@@ -123,7 +133,10 @@ db.list_collection_names()
 
 En résumé, le package `pymongo` vous permet d'utiliser trois types d'objets via votre IDE python : les clients, les bases de données et les collections. Ces objets vont avoir des méthodes attitrées nous permettant d'effectuer des requêtes, nous les détaillerons dans la suite du cours.
 
-Remarque: Cela fonctionne comme un dictionnaire Python. Toutefois, si votre base contient des caractères spéciaux, espace ou autre, on vous conseille la première écriture : `Client["BasedeDonnee"]["Collection"]`.
+```{admonition} Remarque
+
+Cela fonctionne comme un dictionnaire Python. Toutefois, si votre base contient des caractères spéciaux, espace ou autre, on vous conseille la première écriture : `Client["BasedeDonnee"]["Collection"]`.
+```
 
 ## Requêtes <a id="partie3"></a>
 Maintenant que nous avons fait nos connexions, il nous reste à voir comment effectuer des requêtes.
@@ -131,7 +144,12 @@ Maintenant que nous avons fait nos connexions, il nous reste à voir comment eff
 **Fonctionnement :**
 Le fonctionement est le même que sur l'interface MongoDB:
 
-**Syntax : BasedeDonne.nomDeLaCollection.requete() ou Client["BasedeDonnee"]["Collection"].requete()**
+```{admonition} Syntax requête
+:class: tip
+
+ -Client.BasedeDonne.nomDeLaCollection.requete() 
+ -Client["BasedeDonnee"]["Collection"].requete()
+```
 
 |Requête|Fonctionement|
 |------|--------|
@@ -173,9 +191,15 @@ cursor=list(cursor)
 print(cursor[0]["address"]["loc"]["coordinates"])
 ```
 
+**Methodes :**
 De plus, pour utiliser certaines méthodes sur nos requêtes comme `sort()`, c'est sensiblement la même syntaxe que MongoDB :
 
-**Syntax : Client.BasedeDonnee.Collection.requetes().methode() ou Client["BasedeDonnee"]["Collection"].requete().methode()**
+```{admonition} Syntax méthode
+:class: tip
+
+-Client.BasedeDonnee.Collection.requetes().methode() 
+-Client["BasedeDonnee"]["Collection"].requete().methode()
+```
 
 Cependant, nous ne pouvons pas utiliser ces méthodes à l'objet `Cursor` car ces méthodes font partie intégrante de la requête.
 
@@ -194,9 +218,10 @@ db.NYfood.find({"cuisine": "Bakery"}).sort("name", -1)) # Trie les résultats pa
 db.NYfood.find({"cuisine": "Bakery"}).limit(2).explain("executionStats") # Affiche les informations 
 db.NYfood.distinct("grades.grade", {"cuisine": "Bakery"}) #  liste des notes attribuées aux boulangeries
 ```
+
 ### Requêtes simples et ses spécifictés <a id="partie31"></a>
 L'utilisation de `pymongo` implique l'utilisation de certaines spécificités, deux principalement qui marquent une différence avec MongoDB.
-Premièrement, nous avons une spécificité avec les opérateurs et les noms qui doivent toujours être entre guillemets comme ```$gte```.
+Premièrement, nous avons une spécificité avec les opérateurs et les noms qui doivent toujours être entre guillemets comme par exemple ```$gte```.
 
 Exemple :
 ```{code-cell}
@@ -224,14 +249,17 @@ Par exemple, nous voulons afficher la liste des restaurants qui vérifient l’u
 db = client["food"]
 coll = db["NYfood"]
 
+# première condition
 dico_cond1 = {}
 dico_cond1["borough"] = "Manhattan"
 
+# deuxième condition
 dico_cond2 = {}
 dico_cond2["borough"] = "Bronx"
 dico_cond2["cuisine"] = "Bakery"
 dico_cond2["name"] = {"$gte": "P", "$lt": "Q"}
 
+# Notre requête final
 req = {}
 req["$or"] = [dico_cond1, dico_cond2]
 
@@ -251,11 +279,18 @@ print(cursorbis[0])
 
 De plus, nous pouvons remarquer que ce sont deux listes `Cursor`, on peut donc tester l'égalité de leur contenu.
 ```{code-cell}
-print(cursorbis[0] == cursor[0])
+print(cursorbis == cursor)
 ```
 
 ### Les index <a id="partie32"></a>
 Les index sont des structures de données spéciales qui stockent une petite partie de l'ensemble de données de la collection sous une forme facile à parcourir. L'index stocke la valeur d'un champ spécifique ou d'un ensemble de champs, triés par la valeur du champ. Ainsi, l'utilisation avec `pymongo` est la même qu'en mongoDB.
+
+```{admonition} Syntax de requête d'index
+:class: tip
+
+-Client.BasedeDonnee.Collection.requeteIndex() 
+-Client["BasedeDonnee"]["Collection"].requeteIndex()
+```
 
 |Requete|Fonctionement|
 |--------|--------|
@@ -283,6 +318,13 @@ db.NYfood.create_index("borough_1")
 ### Les requêtes d'agrégation <a id="partie33"></a>
 Les requêtes d'agrégation ont pour but de faire des calculs simples (agrégats) sur toute la collection ou seulement sur certains groupes. Pour ce faire, on utilise la méthode ```aggregate()``` .
 
+```{admonition} Syntax de la requête d'aggregation
+:class: tip
+
+-Client.BasedeDonnee.Collection.aggregate() 
+-Client["BasedeDonnee"]["Collection"].aggregate()
+```
+
 Dans l'exemple ci-dessous, on souhaite compter le nombre de restaurants dans la collection en les regroupant par quartier.
 ```{code-cell}
 # aggrégation
@@ -301,7 +343,7 @@ for agreg in cursor_agreg:
 
 La méthode `aggregate` nous permets de faire des calculs, des regroupement, etc... Mais on a envie d'exploiter ce résultat en créant un graphique ou en le stockant dans un fichier.  
 Création d'un graphique montrant, pour chaque valeur possible de note, le nombre de fois qu’elle a été attribuée.
-```python
+```{code-cell}
 import matplotlib.pyplot as plt
 
 cursor.agrr = client.food.NYfood.aggregate([
@@ -328,6 +370,14 @@ plt.show()
 ### Les modifications <a id="partie34"></a>
 Contrairement aux requêtes d'interrogation, les requêtes de modification peuvent modifier la base de données. Avec la librairie `pymongo` l'écriture est la même qu'en MongoDB.
 
+
+```{admonition} Syntax de requête de modifications
+:class: tip
+
+-Client.BasedeDonnee.Collection.requeteModification() 
+-Client["BasedeDonnee"]["Collection"].requeteModification()
+```
+
 |Requete|Fonctionement|
 |--------|--------|
 |  insert_one()	|  Insertion d'un seul document  	|
@@ -338,7 +388,7 @@ Contrairement aux requêtes d'interrogation, les requêtes de modification peuve
 |  update_many() 	|   Modification d'une liste de documents	|
 |  replace_one() 	|   Remplacement d'un document	|
 
-Exemple d'insertion d'un document dans la collection *NYfood* :
+Exemple d'insertion d'un document dans la collection `NYfood` :
 ```python
 db.NYfood.insert_one(
   {
@@ -370,7 +420,10 @@ db.NYfood.insert_one(
 )
 ```
 
-Remarque : Si la collection `NYfood` n'existe pas encore dans la base de données, elle sera automatiquement créée lors de l'insertion d'un document dans cette nouvelle collection. La méthode ```db.create_collection()``` est donc facultative.
+```{admonition} Remarque
+
+ Si la collection `NYfood` n'existe pas encore dans la base de données, elle sera automatiquement créée lors de l'insertion d'un document dans cette nouvelle collection. La méthode ```db.create_collection()``` est donc facultative.
+```
 
 
 ## Pour aller plus loin... <a id="partie4"></a>
@@ -397,11 +450,16 @@ with open("Bakery", 'w', encoding='utf-8') as jsonFile:
 ```
 
 ### Exercices et corrections <a id="partie42"></a>
-Trouvez les restaurants qui n'ont reçu que des notes égales à B.
+Ici nous restons dans la base `food` :
+```python
+db = client["food"]
+```
 
+Dans la collection `NYfood`, trouvez les restaurants qui n'ont reçu que des notes égales à B.
 ````{tabbed} Python
 
 ```python
+# Création de nos conditions
 condi1 = {"grades.grade": {"$exists": False}}
 condi2 = {"grades.grade": {"$size": 0}}
 condi3 = {"grades.grade": {"$gt": "B"}}
@@ -409,6 +467,7 @@ condi4 = {"grades.grade": {"$lt": "B"}}
 
 l = [condi1, condi2, condi3, condi4]
 
+# Notre requête
 req = {"$nor": l }
 
 cursor = db.NYfood.find(req)
@@ -420,27 +479,32 @@ reponse = list(cursor)
 ````{tabbed} MongoDB
 
 ```javascript
-db.NYfood.find({$nor: [{"grades.grade": {$exists: false}},
-{"grades.grade": {$size: 0}},
-{"grades.grade": {$gt: "B"}},{"grades.grade": {$lt: "B"}}]})
+db.NYfood.find({$nor: [
+			 {"grades.grade": {$exists: false}},
+			 {"grades.grade": {$size: 0}},
+			 {"grades.grade": {$gt: "B"}},
+			 {"grades.grade": {$lt: "B"}}
+			]
+		})
 
 ```
 
 ````
 
-On vous demande de conserver les quartiers ayant moins de 1000 restaurants.
+Dans la collection `NYfood`, on vous demande de conserver les quartiers ayant moins de 1000 restaurants.
 ````{tabbed} Python
 ```python
+# Création de nos conditions dans le aggregate
 dico_match = {"$match": {"borough": {"$ne": "Missing"}}}
-
 dico_group = {"$group": {"_id": "$borough", "nb_restos": {"$sum":1}}}
-
 dico_match2 = {"$match": {"nb_restos": {"$lt": 1000}}}
 dico_sort = {"$sort": {"nb_restos": -1}}
 
 l = [dico_match, dico_group, dico_match2, dico_sort]
-             
+
+# Notre requête
 cursor.aggr = db.NYfood.aggregate(l)
+reponse = list(cursor.aggr)
 ```
 ````
 
@@ -449,20 +513,21 @@ cursor.aggr = db.NYfood.aggregate(l)
 
 ```javascript
 db.NYfood.aggregate([
-{$match: {"borough": {$ne: "Missing"}}},
-{$group: {_id: "$borough", nb_restos: {$sum:1}}},
-{$match: {nb_restos: {$lt: 1000}}},
-{$sort: {"nb_restos": -1}}
-])
+			{$match: {"borough": {$ne: "Missing"}}},
+			{$group: {_id: "$borough", nb_restos: {$sum:1}}},
+			{$match: {nb_restos: {$lt: 1000}}},
+			{$sort: {"nb_restos": -1}}
+			])
 ```
 ````
 
 
-Trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
+Dans la collection `NYfood`, trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
 ````{tabbed} Python
 ```python
+# Python reconnais les expressions régulières
 cursor = db.NYfood.find({"name": "/Pizza/"})
-cursor = list(cursor)
+reponse = list(cursor)
 ```
 ````
 
