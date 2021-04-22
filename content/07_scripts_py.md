@@ -346,19 +346,19 @@ Création d'un graphique montrant, pour chaque valeur possible de note, le nombr
 ```{code-cell}
 import matplotlib.pyplot as plt
 
-cursor.agrr = client.food.NYfood.aggregate([
+cursor_agrr = client.food.NYfood.aggregate([
                                               {"$unwind": "$grades"},
                                               {"$group": {"_id": "$grades.grade", "nb": {"$sum": 1}}}
                                             ])
 
-# exploitation du resultat                                  
+# récupérer nos informations                                  
 l_nb = []
 l_grade = []
-for obj in cursor.agrr :
+for obj in cursor_agrr :
     l_nb.append(obj["nb"])
     l_grade.append(obj["_id"])
 
-
+# Création du graphe
 plt.figure(figsize = (10, 5))
 plt.bar(l_grade, l_nb, color ='blue', width = 0.4)
 plt.xlabel("Note")
@@ -454,7 +454,9 @@ Ici nous restons dans la base `food` :
 ```python
 db = client["food"]
 ```
+
 **Question 1**
+
 Dans la collection `NYfood`, trouvez les restaurants qui n'ont reçu que des notes égales à B.
 ````{tabbed} Python
 
@@ -492,6 +494,7 @@ db.NYfood.find({$nor: [
 ````
 
 **Question 2**
+
 Dans la collection `NYfood`, on vous demande de conserver les quartiers ayant moins de 1000 restaurants.
 ````{tabbed} Python
 ```python
@@ -504,8 +507,8 @@ dico_sort = {"$sort": {"nb_restos": -1}}
 l = [dico_match, dico_group, dico_match2, dico_sort]
 
 # Notre requête
-cursor.aggr = db.NYfood.aggregate(l)
-reponse = list(cursor.aggr)
+cursor_aggr = db.NYfood.aggregate(l)
+reponse = list(cursor_aggr)
 ```
 ````
 
@@ -522,7 +525,8 @@ db.NYfood.aggregate([
 ```
 ````
 
-**Question 3**
+**Question 3** 
+
 Dans la collection `NYfood`, trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
 ````{tabbed} Python
 ```python
