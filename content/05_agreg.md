@@ -20,10 +20,10 @@ kernelspec:
 
 * Auteurs/trices : **CASTRIQUE Jérémy, NOJAC Dimitri, VAVASSEUR Salomé**
 
-Dans cette partie, nous allons étudier **les regroupements dans les requêtes d'aggrégation**. Dans un premier temps, nous étudierons ce qu'est l'étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l'aide des 4 d'opérateurs qui sont : **sum, max, min, count**. 
-  * somme, count, max, min, avec ou sans groupe
+Dans cette partie, nous allons étudier **les regroupements dans les requêtes d'aggrégation**. Dans un premier temps, nous étudierons ce qu'est l'étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l'aide des 4 d'opérateurs qui sont : `$sum`, `$max`, `$min`, `$count` avec ou sans groupe.
 
-Les requêtes de regroupement vont permettre d'effectuer des opérations d'accumulation sur des documents regroupés. Il est l'équivalent de l'opérateur GROUP BY en SQL.
+Les requêtes de regroupement vont permettre d'effectuer des opérations d'accumulation sur des documents regroupés. Il est l'équivalent de l'opérateur `GROUP BY` en SQL.
+
 **syntaxe**
 
 ```
@@ -43,14 +43,13 @@ db.coll.aggregate([
 Les équivalents en SQL de l'opérateur $sum sont `COUNT(*)` ou bien `SUM` qui permettent de compter le nombre de variables.
 **Exemple de requête sans regroupement**
 
-SQL
-
+En SQL:
 
 ```sql
 SELECT SUM(att) as nb
 FROM t
 ```
-MongoDB
+En MongoDB :
 
 ```{code-cell}
 db.coll.aggregate([
@@ -68,6 +67,16 @@ Pour sélectionner certains individus, il faut filtrer sur l'id.
 Sur la base de NYfood, on peut notamment filtrer par quartier.
 
 Voici un exemple de requête :
+
+En SQL :
+
+``sql
+SELECT COUNT(*) as nb
+FROM NYfood
+GROUP BY borough
+```
+
+En MongoDB :
 
 ```{code-cell}
 db.NYfood.aggregate(
@@ -109,6 +118,8 @@ db.coll.aggregate(
 ##### Sans regroupement
 Regardons une requête simple :
 
+En MongoDB :
+
 ```{code-cell}
 db.NYfood.aggregate(
       [{$group:{
@@ -118,6 +129,13 @@ db.NYfood.aggregate(
         }
        ]
 )
+```
+
+Dont l'équivalent en SQL est :
+
+```sql
+SELECT COUNT(*) as nb
+FROM NYfood
 ```
 
 On utilise la fonction aggregate.
