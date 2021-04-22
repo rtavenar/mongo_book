@@ -443,7 +443,7 @@ Il est également possible d'insérer directement des données à partir d'une c
 
 ```{code-cell} R
 individus <- mongo("individus")
-str <- c('{"prenom" : "yolan"}' , '{"prenom": "paule", "age" : 22}', '{"prenom": "faisal"}')
+str <- c('{"prenom" : "yolan"}' , '{"prenom": "paul", "age" : 22}', '{"prenom": "faisal"}')
 individus$insert(str)
 ```
  
@@ -457,7 +457,7 @@ Nous pouvons également noter l'équivalent en MongoDB :
 
 ```r
 individus <- mongo("individus")
-individus$insert(c('{"prenom" : "yolan"}' , '{"prenom": "paule", "age" : 22}', '{"prenom": "faisal"}'))
+individus$insert(c('{"prenom" : "yolan"}' , '{"prenom": "paul", "age" : 22}', '{"prenom": "faisal"}'))
 ```
 
 ````
@@ -467,8 +467,8 @@ individus$insert(c('{"prenom" : "yolan"}' , '{"prenom": "paule", "age" : 22}', '
 ```javascript
 db.createCollection("individus")
 db.individus.insert([
-{"prenom" : "yolan", "age" : 22}',
-{"prenom": "paule", "age" : 22},
+{"prenom" : "yolan"}',
+{"prenom": "paul", "age" : 22},
 {"prenom": "faisal"}
 ])
 ```
@@ -528,6 +528,8 @@ test$remove('{}')
 ```javascript
 db.test.remove({})
 ```
+````
+
 
 
 La méthode *drop()* supprime une collection entière. Cela inclut toutes les documents, ainsi que les métadonnées telles que les index de la collection.  
@@ -535,7 +537,8 @@ La méthode *drop()* supprime une collection entière. Cela inclut toutes les do
 ```{code-cell} R
 test$drop()
 ```
-Nous pouvons également noter l'équivalent en MongoDB :
+
+Nous pouvons noter l'équivalent en MongoDB :
 
 ````{tabbed} Mongolite
 ```r
@@ -554,43 +557,6 @@ db.test.drop()
 
 Pour modifier des enregistrements existants, utilisez l'opérateur *update()* :  
 
-**Remplacement d'un document :**  
-  
-```{code-cell} R
-individus$find()
-```
-
-```{code-cell} R
-individus$update('{"prenom":"paule"}', '{"prenom": "paul"}')
-```
-
-```{code-cell} R
-individus$find()
-```
-  
-On voit ici que le document est remplacé, cela supprime tous les autres champs (pour le document remplacé) s’ils existent. Ici age est supprimé.  
-  
-Nous pouvons noter l'équivalent en MongoDB :
-
-````{tabbed} Mongolite
-
-```r
-individus$update('{"prenom":"paule"}', '{"prenom": "paul"}')
-```
-
-````
-
-````{tabbed} Équivalent MongoDB
-
-```javascript
-db.individus.update(
-{"prenom" : "paule"},
-{"prenom" : "paul"}
-)
-```
-
-````
-
 **Modification d'un document :**  
 
 ```{code-cell} R
@@ -598,7 +564,7 @@ individus$find()
 ```
 
 ```{code-cell} R
-individus$update('{"prenom":"faisal"}', '{"$set":{"age": 22}}')
+individus$update('{"prenom":"yolan"}', '{"$set":{"age": 22}}')
 ```
 
 ```{code-cell} R
@@ -610,7 +576,7 @@ Nous pouvons noter l'équivalent en MongoDB :
 ````{tabbed} Mongolite
 
 ```r
-individus$update('{"prenom":"faisal"}', '{"$set":{"age": 21}}')
+individus$update('{"prenom":"yolan"}', '{"$set":{"age": 22}}')
 ```
 
 ````
@@ -620,7 +586,7 @@ individus$update('{"prenom":"faisal"}', '{"$set":{"age": 21}}')
 ```javascript
 db.individus.update(
 {"prenom" : "yolan"},
-{$set: {"age" : 21}}
+{$set: {"age" : 22}}
 )
 ```
 
@@ -762,7 +728,7 @@ Cet exercice reprend l'exemple de carthographie avec leaflet de François-Xavier
 **Question 1 :**
   
 
-```r
+```{code-cell} R
 req = '[{"$group":{"_id":"$borough","nb_restos":{"$sum":1}}}]' 
 df <- coll$aggregate(pipeline=req) 
 df
@@ -772,7 +738,7 @@ df
 
 **Question 2 :**
   
-```r
+```{code-cell} R
 library(tidyverse)
 
 df %>%
@@ -786,7 +752,7 @@ df %>%
   
 **Question 1 :**
   
-```r
+```{code-cell} R
 restos.coord = coll$aggregate(
   '[
     { "$project": { 
@@ -802,7 +768,7 @@ head(restos.coord)
   
 **Question 2 :**
 
-```r
+```{code-cell} R
 library(leaflet)
 
 leaflet(restos.coord) %>%
@@ -812,7 +778,7 @@ leaflet(restos.coord) %>%
   
 **Question 3 :**
   
-```r
+```{code-cell} R
 pal = colorFactor("Accent", restos.coord$borough)
 leaflet(restos.coord) %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
