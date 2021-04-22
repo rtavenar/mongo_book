@@ -395,10 +395,42 @@ it$page(2)
 ## Manipulation de données
 
 ### Méthode insert
+La méthode *insert()* permet, à l'instar du *.insert* en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/06_modif.html)), d'ajouter des données à une collection.  
+La méthode la plus simple, est d'insérer des données à partir d'un data frame R. Les colonnes du data frame seront automatiquement transformées en clées d'enregistrement JSON.  
+  
+ ```{code-cell} R
+test <- mongo()
+test$drop()
+test$insert(iris)
+```
+
+```{admonition} Remarque
+En pratique, c'est l'inverse de *mongo$find()* qui converti la collection en Data Frame.  
+```{code-cell}
+test$find(limit = 3)
+```
+```
+
+Il est également possible d'insérer directement des données à partir d'une chaîne de caractère JSON. Cette méthode nécessite un vecteur de caractères où chaque élément est une chaîne JSON valide.  
+
+```{code-cell} R
+individus <- mongo("individus")
+str <- c('{"prenom" : "yolan"}' , '{"prenom": "paul", "age" : 22}', '{"prenom": "faisal"}')
+individus$insert(str)
+```
+ 
+```{code-cell} R
+subjects$find(query = '{}', fields = '{}')
+```
+
+### Méthode remove
+
+
+
 
 ### Méthode update
 
-### Méthode remove
+
 
 ## Import et export de données
 
