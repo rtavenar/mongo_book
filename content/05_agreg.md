@@ -242,6 +242,7 @@ l'étape `$limit` seul sans le sort.
 ```sql
 SELECT count(borough)
 FROM NYfood 
+group by borough
 ORDER BY count(borough) desc
 limit 3
 ```
