@@ -36,7 +36,7 @@ FROM t
 ```
 MongoDB
 
-```javascript
+```{code-cell}
 db.coll.aggregate([
   {$group:
     {_id: null, 
@@ -53,7 +53,7 @@ Sur la base de NYfood, on peut notamment filtrer par quartier.
 
 Voici un exemple de requête :
 
-```javascript
+```{code-cell}
 db.NYfood.aggregate(
 [
   {$group:
@@ -75,6 +75,7 @@ Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu
 ##### Sans regroupement
 Regardons une requête simple :
 
+```{code-cell}
 db.NYfood.aggregate(
       [{$group:{
           _id: null,
@@ -83,6 +84,7 @@ db.NYfood.aggregate(
         }
        ]
 )
+```
 
 On utilise la fonction aggregate.
 Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
@@ -99,7 +101,7 @@ Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondan
 ##### Avec regroupement
 Toujours dans la collection notes e la base étudiants, on cherche à connaitre le nombre détudiantes et d'étudiants. Pour cela, on va effectuer un regroupement sur l'attribu sexe.
 
-```javascript
+```{code-cell}
 db.notes.aggregate(
       [{$group:{
           _id: "$sexe",
@@ -129,7 +131,7 @@ Jusqu'ici, nous avons compté le nombre d'individus grâce à l'attribu **$sum**
 
 On se place maintenant dans la collection cesars2016 de la base cinema.
 
-```javascript
+```{code-cell}
 db.cesars2016.aggregate(
 [
 {$group:
@@ -154,7 +156,7 @@ FROM t
 ##### Avec regroupement
 Si on veut sélectionner les sommes des durées de films par genre, il suffit de rajouter un regroupement comme le suivant :
 
-```javascript
+```{code-cell}
 db.cesars2016.aggregate(
 [
 {$group:
@@ -181,7 +183,7 @@ L'opérateur **count** renvoie le nombre de documents présents dans l'aggrégat
 
 Dans cet exemple, on assigne à la valeure NB_+10 le nombre de documents ayant eu au :oins une note supérieure à 10. :
 
-```javascript
+```{code-cell}
 db.notes.aggregate(
 [
 	{
@@ -208,7 +210,7 @@ Au final, l'opérateur **count** est un équivalent aux opérateurs **group** av
 
 Pour cette partie on se basera sur cette collection pour les exemples :
 
-```javascript
+```{code-cell}
 { "_id" : 1, "objet" : "a", "prix" : 10, "quantité" : 2},
 { "_id" : 2, "objet" : "b", "prix" : 20, "quantité" : 1},
 { "_id" : 3, "objet" : "c", "prix" : 5, "quantité" : 5},
@@ -229,7 +231,7 @@ _Exemple :_
 
 ````{tabbed} MongoDB
 
-```javascript
+```{code-cell}
 db.ventes.aggregate([
 	{$group: {_id:null,
                   prix_max: {$max: "$prix"},
@@ -255,7 +257,7 @@ et non à une chaîne de caractères.
 
 Cette requête renvoie la valeur maximale puis minimale que prend la variable **prix** sur tous les documents :
 
-```javascript
+```{code-cell}
 {
     "_id" : null,
     "prix_max" : 20.0,
@@ -273,7 +275,7 @@ _Exemple :_
 
 ````{tabbed} MongoDB
 
-```javascript
+```{code-cell}
 db.ventes.aggregate([
 	{$group: {_id:"$objet",
                   quantité_max: {$max: "$quantité"},
@@ -294,7 +296,7 @@ GROUP BY quantité
 On groupe à l'aide de la clé **"objet"**,
 on renvoie donc la valeur maximale puis minimale que prend la variable **quantité** pour chaque **objet** différent :
 
-```javascript
+```{code-cell}
 {
     "_id" : "a",
     "quantité_max" : 10.0,
