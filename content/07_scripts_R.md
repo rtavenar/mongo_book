@@ -308,6 +308,33 @@ print(df)
 ```
 
 ### Méthode distinct
+Tout comme le *.distinct()* en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/01_find.html)), la méthode *distinct()* nous renvoie les valeurs distinctes d'un champ.  
+
+**Exemple :**   
+
+Affichez la liste des notes existant dans la base :  
+
+```{code-cell} R
+mdb$distinct(key = "grades.grade")
+```
+
+Nous pouvons également noter l'équivalent en MongoDB :
+
+````{tabbed} Mongolite
+
+```r
+mdb$distinct(key = "grades.grade")
+```
+
+````
+
+````{tabbed} Équivalent MongoDB
+
+```javascript
+db.NYfood.distinct("grades.grade")
+```
+
+````
 
 ### Sélectionner par date
 
@@ -404,13 +431,15 @@ test$drop()
 test$insert(iris)
 ```
 
-```{admonition} Remarque
+````{admonition} Remarque
 En pratique, c'est l'inverse de *mongo$find()* qui converti la collection en Data Frame.  
 
-  ```{code-cell} R
-  test$find(limit = 3)
-  ```
+```{code-cell} R
+test$find(limit = 3)
 ```
+````
+
+
 
 Il est également possible d'insérer directement des données à partir d'une chaîne de caractère JSON. Cette méthode nécessite un vecteur de caractères où chaque élément est une chaîne JSON valide.  
 
@@ -457,12 +486,36 @@ test$drop()
 ```
 
 
+### Méthodes update/upsert
 
+Pour modifier des enregistrements existants, utilisez l'opérateur update() :  
 
+```{code-cell} R
+individus$find()
+```
 
+```{code-cell} R
+individus$update('{"prenom":"yolan"}', '{"$set":{"age": 21}}')
+```
 
+```{code-cell R
+individus$find()
+```
 
-### Méthode update
+Par défaut, la méthode *update()* met à jour un seul document. Pour mettre à jour plusieurs documents, utilisez l'option *multi* de la méthode *update()*.  
+
+```{code-cell} R
+individus$update('{}', '{"$set":{"booleen_age": false}}', multiple = TRUE)
+individus$update('{"age" : {"$gte" : 0}}', '{"$set":{"booleen_age": true}}', multiple = TRUE)
+individus$find()
+```
+  
+Si aucun document ne correspond à la condition de mise à jour, le comportement par défaut de la méthode de mise à jour est de ne rien faire. En spécifiant l'option *upsert* à true, l'opération de mise à jour met à jour le ou les documents correspondants ou insère un nouveau document si aucun document correspondant n'existe.  
+ 
+```{code-cell} R
+individus$update('{"prenom":"malo"}', '{"$set":{"age": 22}}', upsert = TRUE)
+individus$find()
+```
 
 
 
