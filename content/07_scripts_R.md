@@ -682,27 +682,53 @@ individus$count()
 ### Autres formats d'export (jsonlite/bjson/...)
 Pour ces autres formats ou package concernant les méthodes import()* et *export()*, nous vous renvoyons [à la page de Jeroen Ooms](https://jeroen.github.io/mongolite/import-export.html).  
 
-## Exercice final
-
-Cet exercice est reprend l'exemple de carthographie avec leaflet de François-Xavier Jollois, disponible [en cliquant ici.](https://fxjollois.github.io/cours-2017-2018/du-abd-r/connexion-r-mongodb.html#un_peu_de_cartographie_avec_leaflet)  
-  
+## Exercices 
+   
 ### Consignes
 
+**Exercice 1 :**
+  
+1. A l'aide d'une requête d'aggrégation, récupérer le nombre de restaurants par quatier dans la collection NYfood.
+2. Réaliser un barplot pour visualiser le résultat.  
+  
+**Exercice 2 :**
+  
+Cet exercice reprend l'exemple de carthographie avec leaflet de François-Xavier Jollois, disponible [en cliquant ici.](https://fxjollois.github.io/cours-2017-2018/du-abd-r/connexion-r-mongodb.html#un_peu_de_cartographie_avec_leaflet) 
+  
 1. A l'aide d'une requête d'aggrégation, récupérer le nom, le quartier, la longitude et la latitude des restaurant new-yorkais de la collection NYfood.
 2. Afficher les différents restaurants sur la carte du monde. Que constatez vous ?
-3. Réaliser une carte des restaurants new-yorkais en ajoutant une couleur en fonction du quartier.  
+3. Réaliser une carte des restaurants new-yorkais en ajoutant une couleur en fonction du quartier (coordonnées de New-York : long: -73.9, lat  =  40.7).  
 
 ### Correction
 
+**Exercice 1 :**
+  
 **Question 1 :**
   
 ```{code-cell} R
-mdb = mongo(collection="NYfood", db="food",
-            url="mongodb://localhost:27017/food",
-            verbose=TRUE)
-            
+req = '[{"$group":{"_id":"$borough","nb_restos":{"$sum":1}}}]' 
+quartiers <- coll$aggregate(pipeline=req) 
+quartiers
+```
 
-restos.coord = mdb$aggregate(
+**Question 2 :**
+  
+```{code-cell} R
+quartiers %>%
+  rename(Borough=`_id`,Nombre=nb_restos) %>%
+  ggplot(aes(x=Borough, y=Nombre)) +
+  geom_bar(stat="identity",aes(fill=Borough)) +
+  geom_text(aes(label=Nombre), vjust=1.6, color="black", size=3.5)
+```
+  
+
+ 
+**Exercice 2 :**
+  
+**Question 1 :**
+  
+```{code-cell} R
+restos.coord = coll$aggregate(
   '[
     { "$project": { 
         "name": 1, 
@@ -711,6 +737,8 @@ restos.coord = mdb$aggregate(
         "lat": { "$arrayElemAt": ["$address.loc.coordinates", 1]} 
     }}
 ]')
+
+head(restos.coord)
 ```
   
 **Question 2 :**
