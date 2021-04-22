@@ -406,7 +406,8 @@ test$insert(iris)
 
 ```{admonition} Remarque
 En pratique, c'est l'inverse de *mongo$find()* qui converti la collection en Data Frame.  
-```{code-cell}
+
+```{code-cell} R
 test$find(limit = 3)
 ```
 
