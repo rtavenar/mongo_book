@@ -86,6 +86,24 @@ Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu
 
 ### opérateur $sum
 
+L'opérateur $sum permet de calculer et de retourner les sommes de variables numériques. /!\ Il ne prend pas en compte les variables non numériques.
+
+**syntaxe**
+
+```
+db.coll.aggregate(
+   [
+     {
+       $group:
+         {
+           _id: { <var>,
+	   somme :{ $sum: [ <expression1>, <expression2> ... ] } }
+         }
+     }
+   ]
+)
+```
+
 #### Comptage du nombre d'individus 
 ##### Sans regroupement
 Regardons une requête simple :
