@@ -91,8 +91,8 @@ La deuxième étape consiste à nous connecter à notre base de données et nos 
 ```{admonition} Syntax
 :class: tip
 
--Client.BasedeDonnee.Collection 
--Client["BasedeDonnee"]["Collection"]
+* Client.BasedeDonnee.Collection   
+* Client["BasedeDonnee"]["Collection"]
 ```
 
 ```{code-cell}
@@ -115,7 +115,7 @@ Enfin, il ne nous reste plus qu'à récupérer la collection souhaitée. Cela es
 coll_name = "NYfood"
 coll = db[coll_name]
 
-# meme syntax qu'auparavant
+# même syntax qu'auparavant
 
 coll = db.NYfood
 
@@ -147,8 +147,8 @@ Le fonctionement est le même que sur l'interface MongoDB:
 ```{admonition} Syntax requête
 :class: tip
 
- -Client.BasedeDonne.nomDeLaCollection.requete() 
- -Client["BasedeDonnee"]["Collection"].requete()
+ * Client.BasedeDonne.nomDeLaCollection.requete()    
+ * Client["BasedeDonnee"]["Collection"].requete()
 ```
 
 |Requête|Fonctionement|
@@ -197,8 +197,8 @@ De plus, pour utiliser certaines méthodes sur nos requêtes comme `sort()`, c'e
 ```{admonition} Syntax méthode
 :class: tip
 
--Client.BasedeDonnee.Collection.requetes().methode() 
--Client["BasedeDonnee"]["Collection"].requete().methode()
+* Client.BasedeDonnee.Collection.requetes().methode()    
+* Client["BasedeDonnee"]["Collection"].requete().methode()
 ```
 
 Cependant, nous ne pouvons pas utiliser ces méthodes à l'objet `Cursor` car ces méthodes font partie intégrante de la requête.
@@ -288,8 +288,8 @@ Les index sont des structures de données spéciales qui stockent une petite par
 ```{admonition} Syntax de requête d'index
 :class: tip
 
--Client.BasedeDonnee.Collection.requeteIndex() 
--Client["BasedeDonnee"]["Collection"].requeteIndex()
+* Client.BasedeDonnee.Collection.requeteIndex()    
+* Client["BasedeDonnee"]["Collection"].requeteIndex()
 ```
 
 |Requete|Fonctionement|
@@ -306,7 +306,7 @@ db = client["food"]
 coll = db["NYfood"]
 
 for k, v  in coll.index_information().items():
-    print("{}, {} \n".format(k, v))
+    print(" Nom : {}, Valeur : {} \n".format(k, v))
 ```
 
 Exemple de suppression ou de création d'un index :
@@ -321,8 +321,8 @@ Les requêtes d'agrégation ont pour but de faire des calculs simples (agrégats
 ```{admonition} Syntax de la requête d'aggregation
 :class: tip
 
--Client.BasedeDonnee.Collection.aggregate() 
--Client["BasedeDonnee"]["Collection"].aggregate()
+* Client.BasedeDonnee.Collection.aggregate()   
+* Client["BasedeDonnee"]["Collection"].aggregate()
 ```
 
 Dans l'exemple ci-dessous, on souhaite compter le nombre de restaurants dans la collection en les regroupant par quartier.
@@ -348,7 +348,7 @@ import matplotlib.pyplot as plt
 
 cursor.agrr = client.food.NYfood.aggregate([
                                               {"$unwind": "$grades"},
-                                              {"$group": {_id: "$grades.grade", nb: {"$sum": 1}}}
+                                              {"$group": {"_id": "$grades.grade", "nb": {"$sum": 1}}}
                                             ])
 
 # exploitation du resultat                                  
@@ -374,8 +374,8 @@ Contrairement aux requêtes d'interrogation, les requêtes de modification peuve
 ```{admonition} Syntax de requête de modifications
 :class: tip
 
--Client.BasedeDonnee.Collection.requeteModification() 
--Client["BasedeDonnee"]["Collection"].requeteModification()
+* Client.BasedeDonnee.Collection.requeteModification()   
+* Client["BasedeDonnee"]["Collection"].requeteModification()
 ```
 
 |Requete|Fonctionement|
@@ -422,7 +422,7 @@ db.NYfood.insert_one(
 
 ```{admonition} Remarque
 
- Si la collection `NYfood` n'existe pas encore dans la base de données, elle sera automatiquement créée lors de l'insertion d'un document dans cette nouvelle collection. La méthode ```db.create_collection()``` est donc facultative.
+Si la collection `NYfood` n'existe pas encore dans la base de données, elle sera automatiquement créée lors de l'insertion d'un document dans cette nouvelle collection. La méthode ```db.create_collection()``` est donc facultative.
 ```
 
 
@@ -454,7 +454,7 @@ Ici nous restons dans la base `food` :
 ```python
 db = client["food"]
 ```
-
+**Question 1**
 Dans la collection `NYfood`, trouvez les restaurants qui n'ont reçu que des notes égales à B.
 ````{tabbed} Python
 
@@ -491,6 +491,7 @@ db.NYfood.find({$nor: [
 
 ````
 
+**Question 2**
 Dans la collection `NYfood`, on vous demande de conserver les quartiers ayant moins de 1000 restaurants.
 ````{tabbed} Python
 ```python
@@ -521,7 +522,7 @@ db.NYfood.aggregate([
 ```
 ````
 
-
+**Question 3**
 Dans la collection `NYfood`, trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
 ````{tabbed} Python
 ```python
