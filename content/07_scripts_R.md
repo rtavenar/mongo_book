@@ -467,8 +467,8 @@ individus$insert(c('{"prenom" : "yolan"}' , '{"prenom": "paul", "age" : 22}', '{
 ```javascript
 db.createCollection("individus")
 db.individus.insert([
-{"prenom" : "yolan"}',
-{"prenom": "paul", "age" : 22},
+{"prenom" : "yolan", "age" : 22}',
+{"prenom": "paule", "age" : 22},
 {"prenom": "faisal"}
 ])
 ```
@@ -516,6 +516,20 @@ test$remove('{}')
 test$count()
 ```
 
+Nous pouvons noter l'équivalent en MongoDB :
+
+````{tabbed} Mongolite
+```r
+test$remove('{}')
+```
+````
+````{tabbed} Équivalent MongoDB
+
+```javascript
+db.test.remove({})
+```
+
+
 La méthode *drop()* supprime une collection entière. Cela inclut toutes les documents, ainsi que les métadonnées telles que les index de la collection.  
 
 ```{code-cell} R
@@ -542,7 +556,41 @@ Pour modifier des enregistrements existants, utilisez l'opérateur *update()* :
 
 **Remplacement d'un document :**  
   
+```{code-cell} R
+individus$find()
+```
+
+```{code-cell} R
+individus$update('{"prenom":"paule"}', '{"prenom": "paul"}}')
+```
+
+```{code-cell} R
+individus$find()
+```
   
+On voit ici que le document est remplacé, cela supprime tous les autres champs (pour le document remplacé) s’ils existent. Ici age est supprimé.  
+  
+Nous pouvons noter l'équivalent en MongoDB :
+
+````{tabbed} Mongolite
+
+```r
+individus$update('{"prenom":"paule"}', '{"prenom": "paul"}}')
+```
+
+````
+
+````{tabbed} Équivalent MongoDB
+
+```javascript
+db.individus.update(
+{"prenom" : "paule"},
+{"prenom" : "paul"}
+)
+```
+
+````
+
 **Modification d'un document :**  
 
 ```{code-cell} R
@@ -550,19 +598,19 @@ individus$find()
 ```
 
 ```{code-cell} R
-individus$update('{"prenom":"yolan"}', '{"$set":{"age": 21}}')
+individus$update('{"prenom":"faisal"}', '{"$set":{"age": 22}}')
 ```
 
 ```{code-cell} R
 individus$find()
 ```
 
-Nous pouvons également noter l'équivalent en MongoDB :
+Nous pouvons noter l'équivalent en MongoDB :
 
 ````{tabbed} Mongolite
 
 ```r
-individus$update('{"prenom":"yolan"}', '{"$set":{"age": 21}}')
+individus$update('{"prenom":"faisal"}', '{"$set":{"age": 21}}')
 ```
 
 ````
@@ -715,8 +763,6 @@ Cet exercice reprend l'exemple de carthographie avec leaflet de François-Xavier
   
 
 ```{code-cell} R
-library(tidyverse)
-
 req = '[{"$group":{"_id":"$borough","nb_restos":{"$sum":1}}}]' 
 df <- coll$aggregate(pipeline=req) 
 df
@@ -727,6 +773,8 @@ df
 **Question 2 :**
   
 ```{code-cell} R
+library(tidyverse)
+
 df %>%
   rename(Borough=`_id`,Nombre=nb_restos) %>%
   ggplot(aes(x=Borough, y=Nombre)) +
