@@ -70,7 +70,7 @@ Voici un exemple de requête :
 
 En SQL :
 
-``sql
+```sql
 SELECT COUNT(*) as nb
 FROM NYfood
 GROUP BY borough
