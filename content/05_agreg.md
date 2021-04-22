@@ -179,7 +179,7 @@ GROUP BY genre
 
 L'opérateur **count** renvoie le nombre de documents présents dans l'aggrégation.
 
-Dans cet exemple, on assigne à la valeure NB_+10 le nombre de documents ayant eu des notes supérieurs à 10. :
+Dans cet exemple, on assigne à la valeure NB_+10 le nombre de documents ayant eu au :oins une note supérieure à 10. :
 
 ```javascript
 db.notes.aggregate(
