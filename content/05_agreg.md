@@ -24,6 +24,21 @@ Dans cette partie, nous allons étudier **les regroupements dans les requêtes d
   * somme, count, max, min, avec ou sans groupe
 
 Les requêtes de regroupement vont permettre d'effectuer des opérations d'accumulation sur des documents regroupés. Il est l'équivalent de l'opérateur GROUP BY en SQL.
+**syntaxe**
+
+```
+db.coll.aggregate([
+	{
+  $group:
+    {
+      _id: <expression>, // Group By Expression
+      <field1>: { <accumulator1> : <expression1> },
+      ...
+    }
+ }
+
+])
+```
 
 **Exemple de requête sans regroupement**
 
