@@ -181,7 +181,7 @@ GROUP BY genre
 
 L'opérateur **count** renvoie le nombre de documents présents dans l'aggrégation.
 
-Dans cet exemple, on assigne à la valeure NB_+10 le nombre de documents ayant eu au :oins une note supérieure à 10. :
+Dans cet exemple, on assigne à la valeur NB_+10 le nombre de documents ayant eu au moins une note supérieure à 10. :
 
 ```{code-cell}
 db.notes.aggregate(
@@ -202,11 +202,11 @@ db.notes.aggregate(
 
 L'opérateur **match** exclu les documents qui possèdent une note <10. 
 L'opérateur **count** va donc agir sur les documents ayant des notes supérieurs ou égales à 10.
-L'opérateur **count** assigne à la valeure NB_+10 le nombre de documents.
+L'opérateur **count** assigne à la valeur NB_+10 le nombre de documents.
 
-Au final, l'opérateur **count** est un équivalent aux opérateurs **group** avec **sum** et **project** (opérateur vu plus tard dans le chapitre).
+Au final, l'opérateur **count** est un équivalent aux opérateurs **$group** avec **$sum** et **$project** (opérateur vu plus tard dans le chapitre).
 
-### Opérateurs min et max
+### Opérateurs $min et $max
 
 Pour cette partie on se basera sur cette collection pour les exemples :
 
