@@ -662,13 +662,20 @@ db.individus.update(
 
 ### La méthode export/import pour JSON
 
+Le format par défaut JSON est celui d'une ligne par document.  
+
 ```{code-cell} R
 individus$export(stdout())
 ```
 
+En temps normal on exporte vers un fichier que l'on précise avec *file()* :  
+
 ```{code-cell} R
 individus$export(file("individus.json"))
 ```
+
+On peut faire l'essai de supprimer totalement la collection et de l'importer ensuite :  
+
 ```{code-cell} R
 individus$drop()
 individus$count()
