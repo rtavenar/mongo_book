@@ -575,7 +575,7 @@ Nous pouvons noter l'équivalent en MongoDB :
 ````{tabbed} Mongolite
 
 ```r
-individus$update('{"prenom":"paule"}', '{"prenom": "paul"}}')
+individus$update('{"prenom":"paule"}', '{"prenom": "paul"}')
 ```
 
 ````
