@@ -675,7 +675,7 @@ individus$count()
 ```
 
 ```{code-cell} R
-individus$import(file("dump.json"))
+individus$import(file("individus.json"))
 individus$count()
 ```
 
@@ -701,28 +701,34 @@ Cet exercice reprend l'exemple de carthographie avec leaflet de François-Xavier
 
 ### Correction
 
+```{code-cell} R
+bdd2 = coll$find('{}')
+bdd2
+```
+  
 **Exercice 1 :**
   
 **Question 1 :**
   
+
 ```{code-cell} R
 req = '[{"$group":{"_id":"$borough","nb_restos":{"$sum":1}}}]' 
-quartiers <- coll$aggregate(pipeline=req) 
-quartiers
+df <- coll$aggregate(pipeline=req) 
+df
 ```
+
+
 
 **Question 2 :**
   
 ```{code-cell} R
-quartiers %>%
+df %>%
   rename(Borough=`_id`,Nombre=nb_restos) %>%
   ggplot(aes(x=Borough, y=Nombre)) +
   geom_bar(stat="identity",aes(fill=Borough)) +
   geom_text(aes(label=Nombre), vjust=1.6, color="black", size=3.5)
 ```
-  
-
- 
+   
 **Exercice 2 :**
   
 **Question 1 :**
