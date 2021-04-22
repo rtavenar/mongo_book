@@ -703,7 +703,7 @@ Cet exercice reprend l'exemple de carthographie avec leaflet de François-Xavier
 
 ```{code-cell} R
 bdd2 = coll$find('{}')
-bdd2
+head(bdd2)
 ```
   
 **Exercice 1 :**
