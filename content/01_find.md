@@ -380,7 +380,7 @@ Le résultat de cette requête sera l'ensemble des documents ne contenant pas la
 
 #### `nor` logique
 
-Pour plus de renseignements sur la **les opérateurs**, consultez la documentation MongoDB [disponible à cette adresse](https://docs.mongodb.com/manual/reference/operator/query/).
+Pour plus de renseignements sur **les opérateurs**, consultez la documentation MongoDB [disponible à cette adresse](https://docs.mongodb.com/manual/reference/operator/query/).
 
 ---
 
