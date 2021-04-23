@@ -47,9 +47,16 @@ La commande `db.NomDeLaCollection.insert([])` permet l'ajout d'une liste de docu
 
 Exemple: 
 
-```{code-cell}
+```{code-cell}js
 db.ventes.insert([{"nom" : "C1"}, {"nom" : "C2"}])
 ```
+
+Si on execute la ligne suivant on retrouve bien les document créé.
+
+```{code-cell}
+db.ventes.find({})
+```
+
 
 ## Modification
 ### Remplacement d'un document
