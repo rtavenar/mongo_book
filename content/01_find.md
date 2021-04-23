@@ -97,7 +97,7 @@ db.collectionName.findOne({})
 
 Au contraire, si l’on souhaite **fixer des contraintes sur les documents à retourner**, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". 
 
-La base de données NYfood recense un ensemble de restaurants américains et nous donne pour chaque restaurant des informations sur son quartier, son adresse, son type de cuisine, son nom et ses notes obtenues. En utilisant cette syntaxe, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*. Dans cet exemple sur la base de données NYfood, la virgule représente un **ET logique** entre les contraintes.     
+La base de données food contient une collection NYfood qui recense un ensemble de restaurants américains et nous donne pour chaque restaurant des informations sur son quartier, son adresse, son type de cuisine, son nom et ses notes obtenues. En utilisant cette syntaxe, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*. Dans cet exemple sur la base de données NYfood, la virgule représente un **ET logique** entre les contraintes.     
 
 ````{tabbed} Syntaxe
 
@@ -130,7 +130,7 @@ WHERE cuisine = 'Bakery' AND 'borough' = 'Bronx'
 
 ### Poser une condition sur une clé de sous-document 
 
-Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un restaurant, nous disposons d'un **sous-document** contenant à la fois les coordonnées GPS et l'adresse postale. Plutôt qu'une liste de valeur comme présentée précédemment, nous avons comme valeur de la clé un nouveau document. Voici un extrait d'un document comportant un sous-document : 
+Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un restaurant, nous disposons d'un **sous-document** contenant à la fois les coordonnées GPS et l'adresse postale. Plutôt qu'une liste de valeur comme présentée précédemment, nous avons comme valeur de la clé un nouveau document. Voici un extrait d'un document comportant un sous-document, présent dans la collection NYfood : 
 
 ```javascript
 {
@@ -385,25 +385,23 @@ Pour connaître la **liste des collections** contenues dans une base de données
 db.getCollectionInfos()
 ```
 
-Cette méthode nous permet ensuite de faire des **requêtes d'interrogation sur les collections de la base** <a id="find"></a>.  
-
 ### Valeurs distinctes d'un champ : la méthode `distinct`
 
-La méthode `distinct` permet de ne renvoyer que les valeurs distinctes d'un champ ou d'une liste de conditions. C'est l'équivalent du `DISTINCT` en SQL.
+La méthode `distinct` permet de renvoyer **toutes les valeurs distinctes du champ spécifié**. C'est l'équivalent du `SELECT DISTINCT` en SQL.
+Par exemple, la requête suivante en MongoDB permet d'afficher la liste des notes attribuées à des restaurants du quartier « Manhattan » pour la collection NYfood.   
 
 ````{panels}
 
-MongoDB
+Syntaxe et exemple en MongoDB
 ^^^
 ```javascript
-db.collectionName.distinct(champ,
-    {...}
-)
+db.collectionName.distinct(champ, {...})
+db.NYfood.distinct("grades.grade", {"borough": "Manhattan"}) 
 ```
 
 ---
 
-Notation SQL
+Équivalent de la syntaxe en SQL
 ^^^
 ```sql
 SELECT DISTINCT(champ)
@@ -413,11 +411,11 @@ WHERE ...
 
 ````
 
-La requête ci-dessus permet de renvoyer tous les éléments distincts de `champ` de la collection choisie. Si elle est bien formulée, on devrait obtenir tous les valeurs possibles du champ une fois au maximum.
+> À noter : il n'y a pas d'équivalent en SQL pour l'exemple présenté ici puisque **un attribut ne peut pas être une liste de valeurs en SQL**. 
 
 ### Compter le nombre d'éléments : la méthode `count`
 
-La méthode `count` permet de compter le nombre d'éléments ou de documents présents dans une collection. On peut l'utiliser directement sur la collection de base ou bien l'utiliser après avoir exécuter une requête.
+La méthode `count` permet de **compter le nombre de documents dans une collection**. On peut l'utiliser directement sur la collection de base ou bien l'utiliser après avoir exécuter une requête puisque la méthode `count()` accepte un document masque elle aussi.
 
 ````{tabbed} Sur une collection sans requête
 
@@ -433,31 +431,31 @@ db.collectionName.find({"a": 1}).count()
 ```
 ````
 
-Bien entendu, les résultats seront différents car on n'a pas le même nombre de documents ou d'éléments avant et après une requête.
+> Bien entendu, les résultats seront différents car nous n'avons pas le même nombre de documents avant et après un filtrage de données.
 
 ### Trier la récupération des documents : la méthode `sort`
 
-La méthode `sort` sert à trier, après avoir effectuer une requête, les documents ou les éléments de la base de données à partir d'un des champs. Pour choisir l'ordre, il suffit de mettre `1` pour trier dans un ordre croissant et `-1` pour trier dans un ordre décroissant.
+La méthode `sort` sert à **trier, après avoir effectuer une requête, les documents de sortie** à partir d'une ou plusieurs clés. Pour choisir l'ordre de tri, il suffit de mettre `1` pour trier dans un **ordre croissant** et `-1` pour trier dans un **ordre décroissant**.
 
-Voici comme ça se présente pour un tri par ordre croissant.
+Par exemple, pour trier les documents de sortie de façon croissante on utilisera la syntaxe suivante :
+
 ```javascript
 db.collectionName.find().sort(
-  {"champ" : 1}
+  {"key" : 1}
 )
 ```
 
-Il est également possible de faire un tri sur plusieurs champs. On peut aussi mettre différents ordres, croissant ou déccroissant.
+Il est également possible de faire un **tri sur plusieurs champs** :
+
 ```javascript
 db.collectionName.find().sort(
-  {"champ1" : 1, "champ2" : -1}
+  {"key1" : 1, "key2" : -1}
 )
 ```
-
-On notera qu'il est impossible d'utiliser cette méthode sans faire une requête `find` au préalable qu'elle soit vide ou non.
 
 ### Limiter la récupération des documents : la méthode `limit`
 
-On également limiter le nombre de résultats obtenus avec la méthode limit.
+La méthode `limit` permet de **limiter le nombre de documents renvoyés**. Elle accepte les arguments numériques. Voici un exemple :
 
 ```javascript
 db.NYfood.find({}).limit(2)
