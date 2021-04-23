@@ -65,11 +65,11 @@ Sur la base de NYfood, on peut notamment filtrer par quartier.
 
 Voici un exemple de requête :
 
+_En mongoDB :_
+
 ```{code-cell}
 use food
 ```
-
-````{tabbed} MongoDB
 
 ```{code-cell}
 :tags: [output_scroll]
@@ -79,16 +79,14 @@ db.NYfood.aggregate([
     	   nb: {$sum: 1}}}
 ])
 ```
-````
 
-````{tabbed} SQL
+_En SQL :_
 
 ```sql
 SELECT COUNT(*) as nb
 FROM NYfood
 GROUP BY borough
 ```
-````
 
 
 Dans cette requête, MongoDB va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
@@ -119,11 +117,11 @@ db.coll.aggregate([
 ##### Sans regroupement
 Regardons une requête simple :
 
+_En mongoDB :_
+
 ```{code-cell}
 use food
 ```
-
-````{tabbed} MongoDB
 
 ```{code-cell}
 :tags: [output_scroll]
@@ -133,15 +131,15 @@ db.NYfood.aggregate([
               nb: {$sum: 1}}}
 ])
 ```
-````
 
-````{tabbed} SQL
+
+_En SQL :_
 
 ```sql
 SELECT COUNT(*) as nb
 FROM NYfood
 ```
-````
+
 
 On utilise la fonction aggregate.
 Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
@@ -157,11 +155,11 @@ Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondan
 ##### Avec regroupement
 Toujours dans la collection notes e la base étudiants, on cherche à connaitre le nombre détudiantes et d'étudiants. Pour cela, on va effectuer un regroupement sur l'attribut sexe.
 
+_En mongoDB :_
+
 ```{code-cell}
 use etudiants
 ```
-
-````{tabbed} MongoDB
 
 ```{code-cell}
 :tags: [output_scroll]
@@ -171,15 +169,15 @@ db.notes.aggregate([
               nb_etud: {$sum: 1}}}
 ])
 ```
-````
 
-````{tabbed} SQL
+_En SQL :_
+
 ```sql
 SELECT COUNT(*) AS nb_etud
 FROM notes
 GROUP BY sexe
 ```
-````
+
 
 On obtient donc 2 listes différentes:
 * une contenant F et 2
