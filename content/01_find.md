@@ -52,6 +52,7 @@ Les clés se doivent d'être des **chaînes de caractères** mais nous pouvons a
 **Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs.** 
 
 ```{admonition} Avant de commencer, il vous faut : 
+
 Tout d'abord, il est nécessaire d'avoir installé un serveur comme par exemple le serveur **MongoDB Atlas** qui tourne en continu. Après avoir démarré le serveur, il vous faut lancer une connexion client, le **client Robot 3T** est idéal pour des requêtes en MongoDB. Il ne vous reste plus qu'à choisir une base de données ou en importer une et sélectionner *"Open Shell"* par clique droit sur la base pour faire vos requêtes !    
 ```
 
@@ -64,6 +65,7 @@ Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger l
 **Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction `find`.**
  
  ```{admonition} Remarque
+ 
 Toute commande sur une collection intitulée collectionName utilise le préfixe db : `db.collectionName`. Il suffit d’y associer la fonction souhaitée pour avoir un résultat. En l'occurence, ici la syntaxe de données d'interrogation MongoDB est `db.collectionName.find()`.
 ```
 
@@ -127,7 +129,6 @@ WHERE cuisine = 'Bakery' AND borough = 'Bronx'
 
 ````
 
-
 ### Poser une condition sur une clé de sous-document 
 
 Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un restaurant, nous disposons d'un **sous-document** contenant à la fois les coordonnées GPS et l'adresse postale. Plutôt qu'une liste de valeur comme présentée précédemment, nous avons comme valeur de la clé un nouveau document. Voici un extrait d'un document comportant un sous-document, présent dans la collection NYfood : 
@@ -160,7 +161,6 @@ Si l'on souhaite **poser une condition sur une clé ou plusieurs clés de sous-d
 db.NYfood.find({"adress.zipcode": "10462"})
 ```
 où `adress` est le sous-document et `zipcode` la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est "10462".
-
 
 ### Projection des données
 
@@ -205,24 +205,29 @@ Pour plus de renseignements sur la **fonction `find()`**, consultez la documenta
 
 Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**.
 
+ ```{admonition} Remarque
+ 
+La syntaxe des requêtes avec des opérateurs de comparaison est la suivante : `db.nomDeLaCollection.find({"x": {operateur: valeur}})`. Le sous-document contenant l'opératuer peut en fait contenir plusieurs opérateurs et ainsi ne seront retournées que les documents vérifiant toutes les conditions.
+```
+
 ### Opérateurs de comparaison
 
-L'opérateur de comparaison permet de comparer deux élements entre eux. Le tableau suivant l'ensemble des opérateurs de comparaison : 
+L'opérateur de comparaison permet de comparer deux élements entre eux. Le tableau suivant regroupe l'ensemble des opérateurs de comparaison : 
 
-| Opérateur logique 	| Mot clé en MongoDB 	|
+| Opérateur logique 	| Mot clé en MongoDB 	| 
 |-	|-	|
 | = 	| $eq 	|
+| négation 	| $ne 	|
 | < 	| $lt 	|
 | > 	| $gt 	|
 | ≤ 	| $lte 	|
 | ≥ 	| $gte 	|
 | ∈ 	| $in 	|
 | ∉ 	| $nin 	|
-| négation 	| $ne 	|
 | clé existante 	| $exists 	|
 | \|.\| 	| $size 	|
 
-Les opérateurs `$eq`, `$lt`, `$gt`, `$lte`, `$gte` s'utilisent de la même façon en MongoDB. Ces opérateurs comparent la valeur d'une variable à une valeur fixe (nombre, booléen, chaine de caractères...).
+Les opérateurs `$eq`, `$ne`, `$lt`, `$gt`, `$lte`, `$gte` s'utilisent de la même façon en MongoDB. Ces opérateurs comparent la valeur d'une variable à une valeur fixe (nombre, booléen, chaine de caractères...).
 
 ````{panels}
 
@@ -247,7 +252,7 @@ WHERE a >= 1
 
 ````
 
-Les opérateurs `$in` et `$nin` s'ulisent de la même façon en MongoDB. Ces opérateurs teste l'existence de la valeur d'une variable dans une liste. Sa façon de l'utiliser en MongoDB est la suivante : 
+Les opérateurs `$in` et `$nin` s'utilisent de la même façon en MongoDB. Ces opérateurs testent l'existence de la valeur d'une variable dans une liste. Sa façon de l'utiliser en MongoDB est la suivante : 
 
 ````{panels}
 
@@ -280,7 +285,8 @@ db.t.find(
     }
 )
 ```
-Cette requête renvera donc les documents ayant le sous-document `a` existant.
+
+> Cette requête renvera donc les documents ayant une clé `a`.
 
 Enfin, l'opérateur `$size` permet des récuperer les documents avec des sous-documents d'une certaine taille. Sa syntaxe en MongoDB s'écrit comme suit :
 
@@ -290,11 +296,11 @@ db.t.find(
     }
 )
 ```
-Le résultat obtenu est l'ensemble des documents avec le sous-document `a` qui est de taille **5**.
+Le résultat obtenu est l'ensemble des documents pour lesquels la clé `a` est de taille **5**.
 
 ### Opérateurs logiques
 
-Les différents opérateurs logiques en MongoDB sont : `and`, `or`, `not` et `nor`. Ces opérateurs de tester plusieurs conditions simultanément.
+Les différents opérateurs logiques en MongoDB sont : `and`, `or`, `not` et `nor`. Ces opérateurs permettent de tester plusieurs conditions simultanément.
 
 #### `and` logique
 
@@ -369,13 +375,12 @@ db.t.find(
     }
 )
 ```
+
 Le résultat de cette requête sera l'ensemble des documents ne contenant pas la valeur **1** pour la variable `a` et **"blue"** pour la variable `b`.
 
+#### `nor` logique
+
 Pour plus de renseignements sur la **les opérateurs**, consultez la documentation MongoDB [disponible à cette adresse](https://docs.mongodb.com/manual/reference/operator/query/).
-
-
-Opérateurs : le sous-document contenant l’opérateur peut en fait contenir plusieurs opérateurs et ainsi ne seront retournées que les documents vérifiant toutes les conditions
-
 
 ---
 
@@ -392,7 +397,7 @@ db.getCollectionInfos()
 ### Valeurs distinctes d'un champ : la méthode `distinct`
 
 La méthode `distinct` permet de renvoyer **toutes les valeurs distinctes du champ spécifié**. C'est l'équivalent du `SELECT DISTINCT` en SQL.
-Par exemple, la requête suivante en MongoDB permet d'afficher la liste des notes attribuées à des restaurants du quartier « Manhattan » pour la collection NYfood.   
+Par exemple, la requête suivante en MongoDB permet d'afficher la **liste des notes attribuées à des restaurants du quartier « Manhattan » pour la collection NYfood.**
 
 ````{panels}
 
@@ -415,33 +420,37 @@ WHERE ...
 
 ````
 
-> À noter : il n'y a pas d'équivalent en SQL pour l'exemple présenté ici puisque **un attribut ne peut pas être une liste de valeurs en SQL**. 
+> À noter : il n'y a pas d'équivalent en SQL pour l'exemple des notes attribuées aux restaurants du quartier "Manhattan" présenté ici puisque **un attribut ne peut pas être une liste de valeurs en SQL**. 
 
 ### Compter le nombre d'éléments : la méthode `count`
 
-La méthode `count` permet de **compter le nombre de documents dans une collection**. On peut l'utiliser directement sur la collection de base ou bien l'utiliser après avoir exécuter une requête puisque la méthode `count()` accepte un document masque elle aussi.
+La méthode `count` permet de **compter le nombre de documents dans une collection**. On peut l'utiliser directement sur la collection de base pour connaître le nombre de documents dans la collection ou bien l'utiliser après avoir exécuter une requête puisque la méthode `count()` accepte un document masque elle aussi.
+
+```{code-cell}
+use food
+```
 
 ````{tabbed} Sur une collection sans requête
 
-```javascript
-db.collectionName.count()
+```{code-cell}
+db.NYfood.count()
 ```
 ````
 
 ````{tabbed} Sur une collection après requête
 
 ```javascript
-db.collectionName.find({"a": 1}).count()
+db.NYfood.find({"cuisine": "Bakery"}).count()
 ```
 ````
 
-> Bien entendu, les résultats seront différents car nous n'avons pas le même nombre de documents avant et après un filtrage de données.
+> Bien entendu, les résultats seront différents car nous n'avons pas le même nombre de documents avant et après un filtrage de données. Dans le premier exemple, on souhaite afficher le **nombre de documents dans la collection NYfood** tandis que dans le deuxième, on récupère le **nombre de documents correspondant à des boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")*. 
 
 ### Trier la récupération des documents : la méthode `sort`
 
-La méthode `sort` sert à **trier, après avoir effectuer une requête, les documents de sortie** à partir d'une ou plusieurs clés. Pour choisir l'ordre de tri, il suffit de mettre `1` pour trier dans un **ordre croissant** et `-1` pour trier dans un **ordre décroissant**.
+La méthode `sort` sert à **trier les documents de sortie** à partir d'une ou plusieurs clés. Pour choisir l'ordre de tri, il suffit de mettre `1` pour trier dans un **ordre croissant** et `-1` pour trier dans un **ordre décroissant**.
 
-Par exemple, pour trier les documents de sortie de façon croissante on utilisera la syntaxe suivante :
+Par exemple, pour trier les documents de sortie en fonction de la clé `key` de façon croissante on utilisera la syntaxe suivante :
 
 ```javascript
 db.collectionName.find().sort(
@@ -449,7 +458,7 @@ db.collectionName.find().sort(
 )
 ```
 
-Il est également possible de faire un **tri sur plusieurs champs** :
+Il est également possible de faire un **tri sur plusieurs clés** :
 
 ```javascript
 db.collectionName.find().sort(
@@ -484,7 +493,7 @@ Compter les documents de sortie | `db.collectionName.find({}).count()`
 Limiter les documents de sortie | `db.collectionName.find({}).limit(2)` 
 Valeurs distinctes d'un champ | `db.collectionName.distinct(champ, {})`
 
-Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quizz ci-dessous.
+**Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quizz ci-dessous.**
 
 ### <a id="quizz"></a> Quizz "Premières requêtes en MongoDB" : À vous de jouer ! 
 
