@@ -47,7 +47,7 @@ Tout document appartient donc à une collection et a un champ appelé `_id` qui 
 
 > On a une **association de clés et de valeurs**, un document est équivalent aux objets JSON *(et ressemble aux dictionnaires en python)*. Dans ce document, on a accès au **nom de l'étudiant** par la clé `nom`, à **ses notes** par la clé `notes` *(attention, ici on a une **liste de valeurs** entre crochets, ce type d'attribut n'est par exemple pas disponible dans le modèle relationnel)* et à **son sexe** par la clé `sexe`. L'étudiant représenté par ce document, est identifié à l'aide d'une clé `_id`. 
  
-Les clés se doivent d'être des **chaînes de caractères** mais nous pouvons avoir comme valeur de ces clés des *valeurs booléennes, des nombres, des chaînes de caractères, des dates ou des listes de valeurs* comme nous venons de le voir. Les clés et les valeurs sont **sensibles à la casse et aux type**. Chaque clé doît être **unique**, il n'est pas possible d'avoir deux fois la même clé dans un document. 
+Les clés se doivent d'être des **chaînes de caractères** mais nous pouvons avoir comme valeur de ces clés des *valeurs booléennes, des nombres, des chaînes de caractères, des dates ou des listes de valeurs* comme nous venons de le voir. Les clés et les valeurs sont **sensibles à la casse et au type**. Chaque clé doît être **unique**, il n'est pas possible d'avoir deux fois la même clé dans un document. 
 
 **Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs.** 
 
@@ -56,7 +56,7 @@ Les clés se doivent d'être des **chaînes de caractères** mais nous pouvons a
 Tout d'abord, il est nécessaire d'avoir installé un serveur comme par exemple le serveur **MongoDB Atlas** qui tourne en continu. Après avoir démarré le serveur, il vous faut lancer une connexion client, le **client Robot 3T** est idéal pour des requêtes en MongoDB. Il ne vous reste plus qu'à choisir une base de données ou en importer une et sélectionner *"Open Shell"* par clique droit sur la base pour faire vos requêtes !    
 ```
 
-Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Dans un second temps, nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB, une [**fiche "résumé" des quelques points à retenir**](#resume) et un petit [**quizz**](#quiz) sont donnés à la fin de ce chapitre.
+Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Dans un second temps, nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB, une [**fiche "résumé" des quelques points à retenir**](#resume) et un petit [**quiz**](#quiz) sont donnés à la fin de ce chapitre.
 
 ---
 
@@ -99,7 +99,49 @@ db.collectionName.findOne({})
 
 Au contraire, si l’on souhaite **fixer des contraintes sur les documents à retourner**, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". 
 
-La base de données food contient une collection NYfood qui recense un ensemble de restaurants américains et nous donne pour chaque restaurant des informations sur son quartier, son adresse, son type de cuisine, son nom et ses notes obtenues. En utilisant cette syntaxe, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*. Dans cet exemple sur la base de données NYfood, la virgule représente un **ET logique** entre les contraintes.     
+La base de données food contient une collection NYfood qui recense un ensemble de restaurants américains et nous donne pour chaque restaurant des informations sur son quartier, son adresse, son type de cuisine, son nom, ses notes obtenues et son identifiant. Voici un extrait d'un document présent dans la collection NYfood : 
+
+```javascript
+{
+    "_id" : ObjectId("6006c1882822efb1c9290f68"),
+    "address" : {
+        "building" : "265-15",
+        "loc" : {
+            "type" : "Point",
+            "coordinates" : [ 
+                -73.7032601, 
+                40.7386417
+            ]
+        },
+        "street" : "Hillside Avenue",
+        "zipcode" : "11004"
+    },
+    "borough" : "Queens",
+    "cuisine" : "Ice Cream, Gelato, Yogurt, Ices",
+    "grades" : [ 
+        {
+            "date" : ISODate("2014-10-28T00:00:00.000Z"),
+            "grade" : "A",
+            "score" : 9
+        }, 
+        {
+            "date" : ISODate("2013-09-18T00:00:00.000Z"),
+            "grade" : "A",
+            "score" : 10
+        }, 
+        {
+            "date" : ISODate("2012-09-20T00:00:00.000Z"),
+            "grade" : "A",
+            "score" : 13
+        }
+    ],
+    "name" : "Carvel Ice Cream",
+    "restaurant_id" : "40361322"
+}   
+    
+```
+
+En utilisant la syntaxe précédente, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*. Dans cet exemple sur la base de données NYfood, la virgule représente un **ET logique** entre les contraintes.     
 
 ````{tabbed} Syntaxe
 
@@ -109,7 +151,7 @@ db.nomDeLaCollection.find({"x":"y"})
 
 ````
  
-````{tabbed} Exemple sur la base de données NYfood
+````{tabbed} Exemple sur la base de données food
 
 ```javascript
 db.NYfood.find(
@@ -131,29 +173,7 @@ WHERE cuisine = 'Bakery' AND borough = 'Bronx'
 
 ### Poser une condition sur une clé de sous-document 
 
-Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un restaurant, nous disposons d'un **sous-document** contenant à la fois les coordonnées GPS et l'adresse postale. Plutôt qu'une liste de valeur comme présentée précédemment, nous avons comme valeur de la clé un nouveau document. Voici un extrait d'un document comportant un sous-document, présent dans la collection NYfood : 
-
-```javascript
-{
-    "_id" : ObjectId("6006c1882822efb1c9290f68"),
-    "address" : {
-        "building" : "265-15",
-        "loc" : {
-            "type" : "Point",
-            "coordinates" : [ 
-                -73.7032601, 
-                40.7386417
-            ]
-        },
-        "street" : "Hillside Avenue",
-        "zipcode" : "11004"
-    },
-    "borough" : "Queens",
-    "cuisine" : "Ice Cream, Gelato, Yogurt, Ices", 
-    (...)
-}    
-    
-```
+Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un restaurant dans la collection NYfood, nous disposons d'un **sous-document** contenant à la fois les coordonnées GPS et l'adresse postale. Plutôt qu'une liste de valeur comme présentée précédemment, nous avons comme valeur de la clé un nouveau document. 
 
 Si l'on souhaite **poser une condition sur une clé ou plusieurs clés de sous-document**, on utilise alors la syntaxe suivante :
 
