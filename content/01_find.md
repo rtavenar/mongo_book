@@ -60,7 +60,7 @@ Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger l
 
 ---
 
-## <a id="find"></a> Requêtes d'interrogation et de filtrage des données
+## <a name="find"></a> Requêtes d'interrogation et de filtrage des données
 
 **Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction `find`.**
  
@@ -221,7 +221,7 @@ Pour plus de renseignements sur la **fonction `find()`**, consultez la documenta
 
 ---
 
-## <a id="operateurs"></a> Requêtes plus complexes en utilisant des opérateurs 
+## <a name="operateurs"></a> Requêtes plus complexes en utilisant des opérateurs 
 
 Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**.
 
@@ -404,7 +404,7 @@ Pour plus de renseignements sur **les opérateurs**, consultez la documentation 
 
 ---
 
-## <a id="methodes"></a> Méthodes utiles pour des requêtes en MongoDB 
+## <a name="methodes"></a> Méthodes utiles pour des requêtes en MongoDB 
 
 ### Connaître la liste des collections dans une base de données
 
@@ -494,7 +494,7 @@ db.collectionName.find({}).limit(2)
 
 ## Pour conclure ce chapitre 
 
-### <a id="resume"></a> Fiche "résumé" pour bien démarrer en MongoDB
+### <a name="resume"></a> Fiche "résumé" pour bien démarrer en MongoDB
 
 Objectif | Syntaxe 
 --- | --- 
@@ -511,7 +511,7 @@ Valeurs distinctes d'un champ | `db.collectionName.distinct(champ, {})`
 
 **Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quiz ci-dessous.**
 
-### <a id="quiz"></a> Quiz "Premières requêtes en MongoDB" : À vous de jouer ! 
+### <a name="quiz"></a> Quiz "Premières requêtes en MongoDB" : À vous de jouer ! 
 
 **Qu'est-ce qui caractérise MongoDB ?**
 
