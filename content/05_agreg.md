@@ -275,24 +275,24 @@ GROUP BY prix
 
 L'opérateur `$count` renvoie le nombre de documents présents dans l'aggrégation.
 
-Dans cet exemple, on assigne à la valeur NB_+10 le nombre de documents ayant eu au moins une note supérieure à 10 :
+Dans cet exemple, on assigne à la valeur NB_+24 le nombre de documents ayant un individu avec un âge supérieure à 24 :
 
 ```{code-cell}
-use etudiants
+use large_db
 ```
 
 ```{code-cell}
-:tags: [output_scroll]
+:tags: [output_scroll] 
 
-db.notes.aggregate([
-	{$match: {"notes": {$gt: 10}}},
-	{$count: "NB_+10"}
+db.users.aggregate([
+    {$match: {"age": {$gt: 24}}},
+    {$count: "NB_+24"}
 ])
 ```
 
-L'opérateur `$match` exclu les documents qui possèdent une note <10. 
-L'opérateur `$count` va donc agir sur les documents ayant des notes supérieurs ou égales à 10 grâce à l'opérateur `$gt` (plus grand que) et va assigner
-à la valeur NB_+10 le nombre de documents répondant au critère.
+L'opérateur `$match` exclu les documents qui possèdent un individu avec un âge <24. 
+L'opérateur `$count` va donc agir sur les documents ayant un individu avec un âge supérieure à 24 à l'opérateur `$gt` (plus grand que) et va assigner
+à la valeur NB_+24 le nombre de documents répondant au critère.
 
 Au final, l'opérateur `$count` est un équivalent aux opérateurs `$group` avec `$sum` et `$project` (opérateur vu plus tard dans le chapitre).
 
