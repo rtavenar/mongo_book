@@ -111,8 +111,9 @@ La fonction _remove_ peut également recevoir des documents précis en argument 
 ```js
 db.nomDeLaCollection.remove({"marque" : "Citroën"})
 ```
-⋅⋅⋅Tous les documents correspondants à cette sélection seront supprimés, ici tous ceux dont l'attribut "marque" correspond à "Citroën".
+       Tous les documents correspondants à cette sélection seront supprimés, ici tous ceux dont l'attribut "marque" correspond à "Citroën".
 * Suppression d'un seul document :
+
 Pour ce faire, il convient d'utiliser l'attribut "_id" puisqu'il est unique :
 ```js
 db.nomDeLaCollection.remove({"_id" : ObjectId("5612c6c0a5c56580cfacc342")})
