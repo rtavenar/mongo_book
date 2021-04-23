@@ -87,7 +87,7 @@ db.dropDatabase()
 ```
 Lors de l'éxecution de cette commande, c'est la base **courante**, celle qui est pointée par _db_, qui sera supprimée.
 ```{admonition} Important !
-:class: attention
+:class: tip
 Notez bien que tous les index qui pouvaient exister dans les collections de cette base seront également supprimés !
 ```
 
