@@ -22,45 +22,13 @@ Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates)
 
 ## Qu'est-ce qu'une date dans MONGODB
 
-Les dates sur MongoDB sont définies a la milliseconde près, nous allons nous intéresser aux requêtes utilisant des dates, car les attributs de type date doivent être considérés de façon particulière.
-Les dates sont enregistrées sous la forme ISO date, nous retrouvons la date de la forme suivante : 
-
-```javascript
-("<YYYY-mm-ddTHH:MM:ssZ>").
-```
-Ce format nous permet de d’avoir une version de référence (UTC) de la date spécifiée. 
-Nous pouvons mettre uniquement l’année ou l’année et le mois sans devoir spécifier tout le langage s’occupe de remplir les autres arguments pour retrouver la forme :
-```javascript
-("<YYYY-mm-ddTHH:MM:ssZ>").
-```
-
-Exemple :
-
-```javascript
-New Date ('2021')
-```
-Ce qui donne un objet de type date de la forme suivante :
-```javascript
-ISODate("2021-01-01T00 :00:00Z")
-```
-
-Nous 	avons aussi d’autre formats de dates qui donne la date suivant 
-fuseau horaire locale de l’utilisateur.
-```javascript
-("<YYYY-mm-ddTHH:MM:ss>")
-```
-
-Ainsi, il faut toujours utiliser une comparaison sous forme d’intervalle pour ces attributs.
-Lorsque l’on souhaite effectuer un test sur une date, on utilisera des opérateurs de comparaison.
-
-Afin de vérifier les deux conditions de borne dans un intervalle de comparaison nous avons besoin de l’opérateur "elemmatch", ce qui va nous permettre de comparer pour chaque élément de type date s’il existe bien dans l’intervalle qui nous intéresse.
-Ainsi, si nous souhaitions regrouper des documents par date, il faudrait faire un recours par une syntaxe particulière pour préciser à quel degré de précision sur la date l’agrégation doit se faire.
-
 ### les différents objets Date
 
 ### créations annexes
 
 ## Transformation de formats
+
+les deux procédés opératoires présentées ci-dessous sont applicable uniquement au sein de la méthode aggregate.
 
 ### présentation des formats
 
@@ -107,6 +75,24 @@ La méthode prend en argument :
 
 #### Exemples
 
+Partons du postulat qu'il existe une variable de type string qui décrit une temporalité dans la collection métro. 
+
+```javascript
+db.metro.aggregate(
+   [
+     {
+       $project: {
+          objetdate : { 
+              $dateFromString: {
+              dateString: "23-04-2021 à 15 heures 25 minutes et 23 secondes", format: "%d-%m-%Y à %H heures %M minutes et %S secondes"
+                } 
+              }
+       }
+     }
+   ]
+)
+```
+
 ### $dateToString
 
 On retrouve la méthode inverse avec des arguments similaires.
@@ -128,6 +114,23 @@ La méthode prend en argument :
 * Une gestion potentielle des valeurs nulles
 
 #### Exemples
+
+```javascript
+db.metro.aggregate(
+   [
+     {
+       $project: {
+          years_tr: { $dateToString: { format: "%Y", date: "$lastCheckDate"} },
+          month_str : {$dateToString: { format: "%m", date: "$lastCheckDate"} },
+          date_str : {$dateToString: { format: "%d-%m-%Y", date: "$lastCheckDate"} }
+       }
+     }
+   ]
+)
+```
+on obtient alors le résultat
+
+![Resultat](resdatetostring.png)
 
 ## Exemples d'applications
 #### Utilisation d'un objet date au format string.
@@ -184,11 +187,12 @@ db.NYfood.find(
 )
 ```
 
-#### Utilisation d'un objet date dans un aggregate.
+#### Utilisation d'un objet date dans un aggregate
 
 Il est possible d'accéder aux attributs années, mois, jours,... d'une date. Ceci est très utile pour les requêtes d'aggrégations.
 
 Exemple d'une requête de regroupement par le mois et l'années. Nous voulons afficher mois par mois le nombre de stations de métros dans la base `keolis`.
+
 ```javascript
 db.metro.aggregate([
                         {$group:
