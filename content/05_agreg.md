@@ -117,6 +117,10 @@ db.coll.aggregate([
 ##### Sans regroupement
 Regardons une requête simple :
 
+```{code-cell}
+use food
+```
+
 ````{tabbed} MongoDB
 
 ```{code-cell}
