@@ -275,7 +275,7 @@ GROUP BY prix
 
 L'opérateur `$count` renvoie le nombre de documents présents dans l'aggrégation.
 
-Dans cet exemple, on assigne à la valeur NB_+24 le nombre de documents ayant un individu avec un âge supérieure à 24 :
+Dans cet exemple, on assigne à la valeur NB_+24 le nombre de documents ayant un individu avec un âge supérieur à 24 :
 
 ```{code-cell}
 use large_db
@@ -291,7 +291,7 @@ db.users.aggregate([
 ```
 
 L'opérateur `$match` exclu les documents qui possèdent un individu avec un âge <24. 
-L'opérateur `$count` va donc agir sur les documents ayant un individu avec un âge supérieure à 24 à l'opérateur `$gt` (plus grand que) et va assigner
+L'opérateur `$count` va donc agir sur les documents ayant un individu avec un âge supérieur à 24 à l'opérateur `$gt` (plus grand que) et va assigner
 à la valeur NB_+24 le nombre de documents répondant au critère.
 
 Au final, l'opérateur `$count` est un équivalent aux opérateurs `$group` avec `$sum` et `$project` (opérateur vu plus tard dans le chapitre).
