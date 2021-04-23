@@ -492,9 +492,9 @@ db.collectionName.find({}).limit(2)
 
 ---
 
-## <a id="resume"></a> À retenir
+## Pour conclure ce chapitre 
 
-### Fiche "résumé" pour bien démarrer en MongoDB
+### <a id="resume"></a> Fiche "résumé" pour bien démarrer en MongoDB
 
 Objectif | Syntaxe 
 --- | --- 
