@@ -539,7 +539,7 @@ db.notes.find({}, {"nom": true, "_id": false})
 2. `db.notes.find({"notes": {$exists: true}})`
 3. `db.notes.find({$or: [{"notes": {$size: 1}},{"notes": {$size: 2}}]})`
 
-*Réponse 1 : L'opérateur `$size` : permet de prendre en compte la taille de la liste de valeurs, telle qu'une liste de notes.*
+*Réponse 1 : L'opérateur `$size` permet de prendre en compte la taille de la liste de valeurs, telle qu'une liste de notes. Ici on souhaite que la liste de notes soit précisement de taille 2.*
 
 **Quel opérateur permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste ?**
 
