@@ -72,6 +72,8 @@ use food
 ````{tabbed} MongoDB
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.aggregate([
   {$group: {_id: "$borough",
     	   nb: {$sum: 1}}}
@@ -89,7 +91,7 @@ GROUP BY borough
 ````
 
 
-Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
+Dans cette requête, MongoDB va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
 
 
 ### Opérateur de somme
@@ -124,6 +126,8 @@ use food
 ````{tabbed} MongoDB
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.aggregate([
       {$group:{_id: null,
               nb: {$sum: 1}}}
@@ -148,7 +152,6 @@ On créé notre variable qu'on appelle nb qui va faire la somme de tout les indi
 Dans cet exemple, nous avons compté le nombre d'individus sans sélection.
 
 En pratique, cela n'a pas forcément beaucoup d'intérêt.
-
 Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondant à un critère. Pour cela, nous allons regarder avec une requête de regroupement.
 
 ##### Avec regroupement
@@ -161,6 +164,8 @@ use etudiants
 ````{tabbed} MongoDB
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.notes.aggregate([
       {$group:{_id: "$sexe",
               nb_etud: {$sum: 1}}}
@@ -281,6 +286,8 @@ use etudiants
 ```
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.notes.aggregate([
 	{$match: {"notes": {$gt: 10}}},
 	{$count: "NB_+10"}
