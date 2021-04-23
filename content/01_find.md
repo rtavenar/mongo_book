@@ -51,7 +51,7 @@ Les clés se doivent d'être des **chaînes de caractères** mais nous pouvons a
 
 **Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs.** 
 
-```{admonition} Avant de commencer à faire des requêtes avec MongoDB, il vous faut : 
+```{admonition} Avant de commencer, il vous faut : 
 Tout d'abord, il est nécessaire d'avoir installé un serveur comme par exemple le serveur `MongoDB Atlas` qui tourne en continu. Après avoir démarré le serveur, il vous faut lancer une connexion client, le `client Robot 3T` est idéal pour des requêtes en MongoDB. Il ne vous reste plus qu'à choisir une base de données ou en importer une et sélectionner `"Open Shell" par clique droit sur la base pour faire vos requêtes !    
 ```
 
