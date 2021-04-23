@@ -24,6 +24,17 @@ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/06_m
 ## Insertion
 
 ## Modification
+### Remplacement d'un document
+```javascript
+db.collec.update(
+{"nom": "C1"},
+{"nom": "C1", "marque": "Citroën"}
+)
+```
+Les documents sélectionnés sur la 1ère ligne sont supprimés et remplacés selon les champs renseignés sur la 2nde ligne. Les champs qui ne sont pas renseignés sont donc supprimés.
 
+### Modification d'un ou plusieurs documents
+
+### Upsert
 
 ## Suppression
