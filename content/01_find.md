@@ -25,7 +25,7 @@ Dans un **système de base de données relationnelles**, les données sont stock
 
 **Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.** On ne parle plus de tables, ni d'enregistrements mais de collections et de documents. Une collection est un ensemble de documents, c'est l'équivalent d'une table en relationnel. Un document est un enregistrement, une ligne dans le modèle de données relationnel. Ce système de gestion de données nous évite de faire des jointures de tables car toutes les informations nécessaires sont stockées dans un même document.
 
-Tout document appartient à une collection et a un champ appelé "_id" qui identifie le document dans la base de données. Prenons la la base de données étudiants. Voici un exemple de document : 
+Tout document appartient à une collection et a un champ appelé `_id` qui identifie le document dans la base de données. Prenons la la base de données étudiants. Voici un exemple de document : 
 
 ```javascript
 {
@@ -39,7 +39,7 @@ Tout document appartient à une collection et a un champ appelé "_id" qui ident
 }
 ```
 
-On a une association de clés et de valeurs, un document est équivalent aux objets JSON. Dans ce document, on a accès au nom de l'étudiant, à ses notes *(c'est une **liste de valeurs**, ce type d'attribut n'étant pas disponible dans le modèle relationnel)*, et à son sexe. L'étudiant représenté par ce document, est identifié à l'aide d'une clé "_id". Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs. 
+On a une association de clés et de valeurs, un document est équivalent aux objets JSON. Dans ce document, on a accès au nom de l'étudiant, à ses notes *(c'est une **liste de valeurs**, ce type d'attribut n'étant pas disponible dans le modèle relationnel)*, et à son sexe. L'étudiant représenté par ce document, est identifié à l'aide d'une clé `_id`. Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs. 
 
 Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Dans un second temps, nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB sont données à la fin de ce chapitre ainsi qu'une [**fiche "résumé" des points à retenir**](#resume).
 
@@ -47,12 +47,10 @@ Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger l
 
 ## <a id="find"></a> Requêtes d'interrogation et de filtrage des données : la fonction `find` 
 
-Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction find.
+Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction `find`.
  
  ```{admonition} Remarque
-Toute commande sur une collection intitulée collectionName utilise le préfixe db : "db.collectionName". Il suffit d’y associer la fonction souhaitée pour avoir un résultat. 
-
-En l'occurence, ici la syntaxe de données d'interrogation MongoDB est db.collectionName.find().
+Toute commande sur une collection intitulée collectionName utilise le préfixe db : `db.collectionName`. Il suffit d’y associer la fonction souhaitée pour avoir un résultat. En l'occurence, ici la syntaxe de données d'interrogation MongoDB est `db.collectionName.find()`.
 ```
 
 En MongoDB, il existe deux types de requêtes simples, retournant respectivement **toutes les occurences d'une collection** ou **seulement la première**. 
@@ -79,9 +77,9 @@ db.collectionName.findOne({})
 
 ````
 
-> À noter : Dans les deuxièmes propositions, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au *document masque*. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner. 
+> À noter : Dans les deuxièmes propositions de chaque cas présenté ci-dessus, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au *document masque*. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner. 
 
-Si l’on souhaite fixer des contraintes sur les documents à retourner, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". En utilisant cette syntaxe, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*. Dans cet exemple sur la base de données NYfood, la virgule représente un ET logique entre les contraintes.     
+Si l’on souhaite fixer des contraintes sur les documents à retourner, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". En utilisant cette syntaxe, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*. Dans cet exemple sur la base de données NYfood, la virgule représente un **ET logique** entre les contraintes.     
 
 ````{tabbed} Syntaxe
 
@@ -106,9 +104,9 @@ Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un res
 ```javascript
 db.NYfood.find({"adress.zipcode": "10462"})
 ```
-où adress est le sous-document et zipcode la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est "10462".
+où **adress** est le sous-document et **zipcode** la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est "10462".
 
-Les résultats que obtenus jusqu’à présent sont parfois assez indigestes, notamment parce que toutes les clés sont retournées pour tous les documents. Il est possible de limiter cela en spécifiant les clés à retourner comme second argument de find(). On appelle ça une **projection**.
+Les résultats obtenus jusqu’à présent sont parfois assez indigestes, notamment parce que toutes les clés sont retournées pour tous les documents. Il est possible de limiter cela en spécifiant les clés à retourner comme second argument de find(). On appelle ça une **projection**.
 
 <dl>
   <dt>Projection</dt>
@@ -118,7 +116,8 @@ Les résultats que obtenus jusqu’à présent sont parfois assez indigestes, no
 ```javascript
 db.NYfood.find({"cuisine": "Bakery", "borough": "Bronx"}, {"name": true})
 ```
-> C'est l'équivalent du "SELECT name" en SQL. Jusqu'ici, on utilisais le "SELECT *" *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque clé ou de chaque attribut.
+
+> C'est l'équivalent du `SELECT name` en SQL. Jusqu'ici, on utilisais le `SELECT *` *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque clé ou de chaque attribut.
 
 ```{admonition} Embellissez les résultats de la fonction find ! 
 :class: tip
@@ -300,7 +299,7 @@ db.t.find(
 ```
 Le résultat de cette requête sera l'ensemble des documents ne contenant pas la valeur **1** pour la variable `a` et **"blue"** pour la variable `b`.
 
-https://docs.mongodb.com/manual/reference/operator/query/
+Pour plus de renseignements sur la **les opérateurs**, consultez la documentation MongoDB [disponible à cette adresse](https://docs.mongodb.com/manual/reference/operator/query/).
 
 ---
 
@@ -388,3 +387,7 @@ db.NYfood.find({}).limit(2)
 
 
 
+
+
+
+Pour que le langage mongoDB n'ait plus aucun secret pour vous, consultez la [documentation MongoDB](https://docs.mongodb.com/manual/reference/operator/query/) ou bien ce site 
