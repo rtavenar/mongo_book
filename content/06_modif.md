@@ -37,8 +37,7 @@ Exemple:
 db.createCollection("ventes")
 ```
 
-Ici, on crée par exemple une collection "ventes" au sein de la base "voitures".
-
+Ici, on crée par exemple une collection "ventes" au sein de la base "voitures".  
 :warning: **Si vous tentez d'exécuter plusieurs fois la commande, une erreur surviendra car votre collection existe déjà.** 
 
 ### Ajout de nouveaux documents 
