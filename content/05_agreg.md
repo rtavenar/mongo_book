@@ -179,9 +179,7 @@ GROUP BY cuisine
 ```
 
 
-On obtient donc 2 listes différentes:
-* une contenant F et 2
-* l'autre contenant M et 5
+On obtient donc plusieurs listes différentes contenant pour chacune le nombre de restaurants dans chaque liste nommée par le type de cuisine.
 
 Il y a donc eu un comptage du nombre d'étudiants en fonction de la variable sexe.
 
