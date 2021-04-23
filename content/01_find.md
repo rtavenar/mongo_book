@@ -82,7 +82,7 @@ d'une collection avec find()
 ---
 
 Retourner uniquement la première occurence
-de la liste de résultats avec findOne()
+d'une collection avec findOne()
 ^^^
 ```javascript
 db.collectionName.findOne()
