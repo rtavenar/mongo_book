@@ -152,4 +152,4 @@ db.ventes.remove({"marque" : "Citroën"})
 db.nomDeLaCollection.remove({"_id" : ObjectId("5612c6c0a5c56580cfacc342")})
 ``` 
 
-Et voilà, vous savez tout sur la suppression !
+Et voilà, vous savez tout sur la création, la suppression et la modification de bases !
