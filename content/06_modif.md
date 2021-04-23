@@ -93,7 +93,7 @@ db.ventes.update(
 	{upsert: true}
 )
 ```
-Dans cet exemple, si la base de données contient un élément ayant "C1" en variable "nom" alors il sera remplacé par un document ayant "C1" en variable "nom" **et** "Citroën" en variable "marque". Sinon un document {"nom": "C1", "marque": "Citroën"} sera créé.
+Dans cet exemple, si la base de données contient un élément ayant "C1" en variable "nom" alors il sera remplacé par un document ayant "C1" en variable "nom" **et** "Citroën" en variable "marque". Sinon un document `{"nom": "C1", "marque": "Citroën"}` sera créé.
 
 ## Suppression
 
@@ -129,8 +129,9 @@ La fonction _remove_ peut également recevoir des documents précis en argument 
 ```js
 db.nomDeLaCollection.remove({"marque" : "Citroën"})
 ```
-⋅⋅⋅Tous les documents correspondants à cette sélection seront supprimés, ici tous ceux dont l'attribut "marque" correspond à "Citroën".
+       Tous les documents correspondants à cette sélection seront supprimés, ici tous ceux dont l'attribut "marque" correspond à "Citroën".
 * Suppression d'un seul document :
+
 Pour ce faire, il convient d'utiliser l'attribut "_id" puisqu'il est unique :
 ```js
 db.nomDeLaCollection.remove({"_id" : ObjectId("5612c6c0a5c56580cfacc342")})
