@@ -126,13 +126,12 @@ db.nomDeLaCollection.remove({})
 Lorsque l'on passe en argument un document vide, comme dans l'exemple ci-dessus, on supprime toutes les données contenues dans la collection, mais on en conserve la structure, donc les index.
 
 La fonction _remove_ peut également recevoir des documents précis en argument :
-* Condition sous la forme d'un document masque :
+* Condition sous la forme d'un document masque :  
    Tous les documents correspondants à la sélection seront supprimés, par exemple tous ceux dont l'attribut "marque" correspond à "Citroën" :
 ```js
 db.nomDeLaCollection.remove({"marque" : "Citroën"})
 ```
-* Suppression d'un seul document :
-
+* Suppression d'un seul document :  
    Pour ce faire, il convient d'utiliser l'attribut "_id" puisqu'il est unique :
 ```js
 db.nomDeLaCollection.remove({"_id" : ObjectId("5612c6c0a5c56580cfacc342")})
