@@ -83,7 +83,7 @@ db.ventes.update(
 	{multi: true}
 )
 ```
-Cette requête par exemple ajoute un attribut "pays" : "France" aux modèles C1 **et** C3.
+Cette requête par exemple ajoute un attribut "pays" : "France" aux modèles C1 **et** C2.
 
 ### Upsert
 L'option `upsert` (mélange de "update" et "insert") permet de mettre une condition sur la requête : si aucun document ne correspond aux conditions indiquées en 1ère ligne, alors un nouveau document est créer par les champs renseignés sur la 2nde ligne.
