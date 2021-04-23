@@ -390,4 +390,4 @@ db.NYfood.find({}).limit(2)
 
 
 
-Pour que le langage mongoDB n'ait plus aucun secret pour vous, consultez la [documentation MongoDB](https://docs.mongodb.com/manual/reference/operator/query/) ou bien ce site 
+Afin que le langage mongoDB n'ait plus aucun secret pour vous, nous vous invitons à lire les **chapitres suivants** et à consultez la [documentation MongoDB](https://docs.mongodb.com) !
