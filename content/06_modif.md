@@ -22,6 +22,17 @@ Ce chapitre traite des différentes requêtes de modification (insertion, modifi
 Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/06_modif.md`.
 
 ## Insertion
+Ici, on cherche à utiliser la base "voitures". Si elle n'existe pas elle sera alors créée.
+
+```{js echo = true, results = 'hide'}
+use voitures
+```
+Création d'une nouvelle collection au sein de la base sélectionnés.
+
+```js 
+db.createCollection("ventes")
+```
+
 
 ## Modification
 ### Remplacement d'un document
