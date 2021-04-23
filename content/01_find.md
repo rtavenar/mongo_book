@@ -254,10 +254,7 @@ Les opérateurs `$eq`, `$ne`, `$lt`, `$gt`, `$lte`, `$gte` s'utilisent de la mê
 MongoDB
 ^^^
 ```javascript
-db.t.find(
-    {"a": {$gte : 1}
-    }
-)
+db.notes.find({"notes": {$gte: 13}})
 ```
 
 ---
@@ -266,26 +263,13 @@ SQL
 ^^^
 ```sql
 SELECT *
-FROM t
-WHERE a >= 1 
+FROM notes
+WHERE notes >= 13 
 ```
 
 ````
 
-L'exemple suivant montre la liste des étudiants ayant au moins une note (strictement) supérieure à 13 :
-
-```{code-cell}
-use etudiants
-```
-
-```{code-cell}
-:tags: [output_scroll]
-
-db.notes.find({"notes": {$gt: 13}})
-
-```
-
-A noter qu'il est possible de cumuler les conditions en les séparant par une virgule.
+L'exemple ci-dessus affiche la liste des étudiants ayant au moins une note supérieure ou égale à 13.
 
 Les opérateurs `$in` et `$nin` s'utilisent de la même façon en MongoDB. Ces opérateurs testent l'existence de la valeur d'une variable dans une liste. Sa façon de l'utiliser en MongoDB est la suivante : 
 
