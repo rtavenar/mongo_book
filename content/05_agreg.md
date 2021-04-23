@@ -23,7 +23,7 @@ Dans cette partie, nous allons étudier **les regroupements dans les requêtes d
 
 Les requêtes de regroupement vont permettre d'effectuer des opérations d'accumulation sur des documents regroupés. Il est l'équivalent de l'opérateur `GROUP BY` en SQL.
 
-**syntaxe**
+**Syntaxe**
 
 ```javascript
 db.coll.aggregate([
@@ -42,7 +42,7 @@ Les équivalents en SQL de l'opérateur $sum sont `COUNT(*)` ou bien `SUM` qui p
 
 ````{tabbed} MongoDB
 
-```{code-cell}
+```javascript
 db.coll.aggregate([
   {$group: {_id: null, 
     	   nb: {$sum: "$att"}}}
@@ -64,6 +64,10 @@ Pour sélectionner certains individus, il faut filtrer sur l'identifiant.
 Sur la base de NYfood, on peut notamment filtrer par quartier.
 
 Voici un exemple de requête :
+
+```{code-cell}
+use food
+```
 
 ````{tabbed} MongoDB
 
@@ -88,11 +92,18 @@ GROUP BY borough
 Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
 
 
-### opérateur $sum
+### Opérateur de somme
 
-L'opérateur `$sum` permet de calculer et de retourner les sommes de variables numériques. /!\ Il ne prend pas en compte les variables non numériques.
+L'opérateur `$sum` permet de calculer et de retourner les sommes de variables numériques.
 
-**syntaxe**
+```{admonition} Attention
+:class: tip
+
+Il ne prend pas en compte les variables non numériques.
+```
+
+
+**Syntaxe**
 
 ```javascript
 db.coll.aggregate([
@@ -138,6 +149,10 @@ Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondan
 
 ##### Avec regroupement
 Toujours dans la collection notes e la base étudiants, on cherche à connaitre le nombre détudiantes et d'étudiants. Pour cela, on va effectuer un regroupement sur l'attribut sexe.
+
+```{code-cell}
+use etudiants
+```
 
 ````{tabbed} MongoDB
 
@@ -251,15 +266,15 @@ GROUP BY prix
 ```
 
 
-### opérateur $count
+### Opérateur de comptage
 
 L'opérateur `$count` renvoie le nombre de documents présents dans l'aggrégation.
 
-**syntaxe**
+Dans cet exemple, on assigne à la valeur NB_+10 le nombre de documents ayant eu au moins une note supérieure à 10 :
 
-**A remplir par Jeremy**
-
-Dans cet exemple, on assigne à la valeur NB_+10 le nombre de documents ayant eu au moins une note supérieure à 10. :
+```{code-cell}
+use etudiants
+```
 
 ```{code-cell}
 db.notes.aggregate([
@@ -274,10 +289,10 @@ L'opérateur `$count` va donc agir sur les documents ayant des notes supérieurs
 
 Au final, l'opérateur `$count` est un équivalent aux opérateurs `$group` avec `$sum` et `$project` (opérateur vu plus tard dans le chapitre).
 
-### Opérateurs $min et $max
+### Opérateurs d'extremum
 
 
-**syntaxe**
+**Syntaxe**
 
 ```javascript
 db.coll.aggregate([
@@ -291,7 +306,7 @@ db.coll.aggregate([
 
 Pour cette partie on se basera sur cette collection pour les exemples :
 
-```{code-cell}
+```javascript
 { "_id" : 1, "objet" : "a", "prix" : 10, "quantité" : 2},
 { "_id" : 2, "objet" : "b", "prix" : 20, "quantité" : 1},
 { "_id" : 3, "objet" : "c", "prix" : 5, "quantité" : 5},
