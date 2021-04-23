@@ -27,15 +27,10 @@ Les requêtes de regroupement vont permettre d'effectuer des opérations d'accum
 
 ```javascript
 db.coll.aggregate([
-	{
-  $group:
-    {
-      _id: <expression>, // Group By Expression
-      <field1>: { <accumulator1> : <expression1> },
-      ...
-    }
- }
-
+	{$group: {_id: <expression>, // Group By Expression
+      		 <field1>: { <accumulator1> : <expression1> },
+      		...}
+	}
 ])
 ```
 
@@ -49,10 +44,8 @@ Les équivalents en SQL de l'opérateur $sum sont `COUNT(*)` ou bien `SUM` qui p
 
 ```{code-cell}
 db.coll.aggregate([
-  {$group:
-    {_id: null, 
-    nb: {$sum: "$att"}}
-  }
+  {$group: {_id: null, 
+    	   nb: {$sum: "$att"}}}
 ])
 ```
 ````
@@ -75,16 +68,10 @@ Voici un exemple de requête :
 ````{tabbed} MongoDB
 
 ```{code-cell}
-db.NYfood.aggregate(
-[
-  {$group:
-    {
-    _id: "$borough",
-    nb: {$sum: 1}
-    }
-  }
-]
-)
+db.NYfood.aggregate([
+  {$group: {_id: "$borough",
+    	   nb: {$sum: 1}}}
+])
 ```
 ````
 
@@ -108,17 +95,11 @@ L'opérateur `$sum` permet de calculer et de retourner les sommes de variables n
 **syntaxe**
 
 ```javascript
-db.coll.aggregate(
-   [
-     {
-       $group:
-         {
-           _id: { <var>,
-	   somme :{ $sum: [ <expression1>, <expression2> ... ] } }
-         }
+db.coll.aggregate([
+     {$group: {_id: { <var>,
+	      somme :{ $sum: [ <expression1>, <expression2> ... ]}}}
      }
-   ]
-)
+])
 ```
 
 #### Comptage du nombre d'individus 
@@ -128,14 +109,10 @@ Regardons une requête simple :
 ````{tabbed} MongoDB
 
 ```{code-cell}
-db.NYfood.aggregate(
-      [{$group:{
-          _id: null,
-          nb: {$sum: 1}
-          }
-        }
-       ]
-)
+db.NYfood.aggregate([
+      {$group:{_id: null,
+              nb: {$sum: 1}}}
+])
 ```
 ````
 
@@ -165,14 +142,10 @@ Toujours dans la collection notes e la base étudiants, on cherche à connaitre 
 ````{tabbed} MongoDB
 
 ```{code-cell}
-db.notes.aggregate(
-      [{$group:{
-          _id: "$sexe",
-          nb_etud: {$sum: 1}
-          }
-        }
-       ]
-)
+db.notes.aggregate([
+      {$group:{_id: "$sexe",
+              nb_etud: {$sum: 1}}}
+])
 ```
 ````
 
@@ -193,7 +166,7 @@ Il y a donc eu un comptage du nombre d'étudiants en fonction de la variable sex
 
 #### Additionner des variables
 
-Pour cette partie, nous allons nous placer dans cette base que nous avons créée
+Pour cette partie, nous allons nous placer dans cette base que nous avons créée.
 
 ```javascript
 { "_id" : 1, "objet" : "a", "prix" : 10, "quantité" : 2},
@@ -210,16 +183,10 @@ On se place maintenant dans la collection précédente.
 
 ````{tabbed} MongoDB
 ```javascript
-db.coll.aggregate(
-[
-{$group:
-{
-_id: null,
-qtt_tot: {$sum: "$quantité"}
-}
-}
-]
-)
+db.coll.aggregate([
+	{$group: {_id: null,
+		 qtt_tot: {$sum: "$quantité"}}}
+])
 ```
 ````
 
@@ -231,6 +198,15 @@ FROM coll
 ```
 ````
 
+***Résultat obtenu :***
+```javascript
+/* 1 */
+{
+    "_id" : null,
+    "qtt_tot" : 28.0
+}
+```
+
 Ici, on calcule la somme des quantités vendues.
 
 
@@ -239,16 +215,10 @@ Si on veut sélectionner les sommes des durées de films par genre, il suffit de
 
 ````{tabbed} MongoDB
 ```javascript
-db.cesars2016.aggregate(
-[
-{$group:
-{
-_id: "$prix",
-qtt_tot: {$sum: "$quantité"}
-}
-}
-]
-)
+db.coll.aggregate([
+	{$group: {_id: "$prix",
+		 qtt_tot: {$sum: "$quantité"}}}
+])
 ```
 ````
 
@@ -259,6 +229,26 @@ FROM coll
 GROUP BY prix
 ```
 ````
+***Résultat obtenu :***
+```javascript
+/* 1 */
+{
+    "_id" : 20.0,
+    "qtt_tot" : 1.0
+}
+ 
+/* 2 */
+{
+    "_id" : 10.0,
+    "qtt_tot" : 12.0
+}
+ 
+/* 3 */
+{
+    "_id" : 5.0,
+    "qtt_tot" : 15.0
+}
+```
 
 
 ### opérateur $count
@@ -272,20 +262,10 @@ L'opérateur `$count` renvoie le nombre de documents présents dans l'aggrégati
 Dans cet exemple, on assigne à la valeur NB_+10 le nombre de documents ayant eu au moins une note supérieure à 10. :
 
 ```{code-cell}
-db.notes.aggregate(
-[
-	{
-	$match: {
-		"notes": {
-			$gt: 10
-			}
-		}
-	},
-	{
-	$count: "NB_+10"
-	}
-]
-)
+db.notes.aggregate([
+	{$match: {"notes": {$gt: 10}}},
+	{$count: "NB_+10"}
+])
 ```
 
 L'opérateur `$match` exclu les documents qui possèdent une note <10. 
@@ -299,7 +279,15 @@ Au final, l'opérateur `$count` est un équivalent aux opérateurs `$group` avec
 
 **syntaxe**
 
-A remplir par dimitri
+```javascript
+db.coll.aggregate([
+     {$group:
+         {_id: { <var>,
+	   max: {$max: [ <expression1>, <expression2> ... ]}}}
+     }
+   ]
+)
+```
 
 Pour cette partie on se basera sur cette collection pour les exemples :
 
