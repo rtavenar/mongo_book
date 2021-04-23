@@ -15,11 +15,9 @@ kernelspec:
 
 # Les requêtes de modification
 
-* Auteurs/trices : Rémi Leduc, Léo Rouger, Clément Caillard
+* Auteurs : Rémi Leduc, Léo Rouger, Clément Caillard
 
-Ce chapitre traite des différentes requêtes de modification (insertion, modification, suppression)
-
-Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/06_modif.md`.
+Ce chapitre traite des différentes requêtes de modification (insertion, modification et suppression).
 
 ## Insertion
 Ici, on cherche à utiliser la base "voitures". Si elle n'existe pas elle sera alors créée.
@@ -79,3 +77,21 @@ db.ventes.update(
 Dans cet exemple, si la base de données contient un élément ayant "C1" en variable "nom" alors il sera remplacé par un document ayant "C1" en variable "nom" **et** "Citroën" en variable "marque". Sinon un document {"nom": "C1", "marque": "Citroën"} sera créé.
 
 ## Suppression
+=======
+Comme toutes les bonnes choses ont une fin, il est possible de supprimer une base, ou bien, sans être aussi radical, des éléments plus précis.
+Nous allons voir ici comment procéder aux différentes suppressions :
+
+### Suppression d'une base entière
+```js
+db.dropDatabase()
+```
+Lors de l'éxecution de cette commande, c'est la base **courante**, celle qui est pointée par _db_, qui sera supprimée.
+```{warning} Important !
+Notez bien que tous les index qui pouvaient exister dans les collections de cette base seront également supprimés !
+```
+
+### Suppression d'une collection
+```js
+db.nomDeLaCollection.drop()
+```
+
