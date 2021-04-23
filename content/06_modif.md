@@ -24,7 +24,6 @@ Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/06_m
 ## Insertion
 Ici, on cherche à utiliser la base "voitures". Si elle n'existe pas elle sera alors créée.
 
-<<<<<<< Updated upstream
 ```{js echo = true, results = 'hide'}
 use voitures
 ```
@@ -34,7 +33,7 @@ Création d'une nouvelle collection au sein de la base sélectionnés.
 db.createCollection("ventes")
 ```
 
-=======
+
 ## Modification
 ### Remplacement d'un document
 ```javascript
@@ -55,21 +54,6 @@ db.collec.update(
 	}
 )
 ```
-
-### Upsert
->>>>>>> Stashed changes
-
-## Modification
-### Remplacement d'un document
-```javascript
-db.collec.update(
-{"nom": "C1"},
-{"nom": "C1", "marque": "Citroën"}
-)
-```
-Les documents sélectionnés sur la 1ère ligne sont supprimés et remplacés selon les champs renseignés sur la 2nde ligne. Les champs qui ne sont pas renseignés sont donc supprimés.
-
-### Modification d'un ou plusieurs documents
 
 ### Upsert
 
