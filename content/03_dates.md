@@ -150,7 +150,7 @@ db.NYfood.find(
 )
 ```
 
-#### Utilisation d'un objet date dans un aggregate
+#### Utilisation d'un objet date dans un aggregate.
 
 Il est possible d'accéder aux attributs années, mois, jours,... d'une date. Ceci est très utile pour les requêtes d'aggrégations.
 
