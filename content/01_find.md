@@ -44,7 +44,6 @@ Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger l
 ---
 
 (find) = 
-
 ## Requêtes d'interrogation et de filtrage des données : la fonction `find`
 
 Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction find.
@@ -130,7 +129,8 @@ Pour plus de renseignements sur la **fonction find()**, consultez la documentati
 
 ---
 
-(operateurs)= ## Requêtes plus complexes en utilisant des opérateurs
+(operateurs)= 
+## Requêtes plus complexes en utilisant des opérateurs
 
 Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**.
 
