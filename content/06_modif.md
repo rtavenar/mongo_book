@@ -127,10 +127,10 @@ Lorsque l'on passe en argument un document vide, comme dans l'exemple ci-dessus,
 
 La fonction _remove_ peut également recevoir des documents précis en argument :
 * Condition sous la forme d'un document masque :
+   Tous les documents correspondants à la sélection seront supprimés, par exemple tous ceux dont l'attribut "marque" correspond à "Citroën" :
 ```js
 db.nomDeLaCollection.remove({"marque" : "Citroën"})
 ```
-   Tous les documents correspondants à cette sélection seront supprimés, ici tous ceux dont l'attribut "marque" correspond à "Citroën".
 * Suppression d'un seul document :
 
    Pour ce faire, il convient d'utiliser l'attribut "_id" puisqu'il est unique :
