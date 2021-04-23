@@ -272,6 +272,15 @@ WHERE a >= 1
 
 ````
 
+L'exemple suivant montre la liste des étudiants ayant au moins une note (strictement) supérieure à 13 :
+
+```javascript
+db.notes.find({"notes": {$gt: 13}})
+
+```
+
+A noter qu'il est possible de cumuler les conditions en les séparant par une virgule.
+
 Les opérateurs `$in` et `$nin` s'utilisent de la même façon en MongoDB. Ces opérateurs testent l'existence de la valeur d'une variable dans une liste. Sa façon de l'utiliser en MongoDB est la suivante : 
 
 ````{panels}
@@ -316,6 +325,7 @@ db.t.find(
     }
 )
 ```
+
 Le résultat obtenu est l'ensemble des documents pour lesquels la clé `a` est de taille **5**.
 
 ### Opérateurs logiques
@@ -399,6 +409,13 @@ db.t.find(
 Le résultat de cette requête sera l'ensemble des documents ne contenant pas la valeur **1** pour la variable `a` et **"blue"** pour la variable `b`.
 
 #### `not` logique
+
+Le `not` renvoie les documents qui ne remplissent pas les conditions qu'il contient. L'exemple suivant, sur la base NYfood, permet de renvoyer la liste des restaurants n’ayant aucune note "C".
+
+```javascript
+db.NYfood.find({"grades.grade": {$not: {$eq: "C"}}}) 
+
+```
 
 Pour plus de renseignements sur **les opérateurs**, consultez la documentation MongoDB [disponible à cette adresse](https://docs.mongodb.com/manual/reference/operator/query/).
 
