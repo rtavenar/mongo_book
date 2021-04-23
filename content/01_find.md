@@ -466,11 +466,11 @@ db.NYfood.find({"cuisine": "Bakery"}).count()
 
 La méthode `sort` sert à **trier les documents de sortie** à partir d'une ou plusieurs clés. Pour choisir l'ordre de tri, il suffit de mettre `1` pour trier dans un **ordre croissant** et `-1` pour trier dans un **ordre décroissant**.
 
-Par exemple, pour trier les documents de sortie en fonction de la clé `key` de façon croissante on utilisera la syntaxe suivante :
+Par exemple, pour trier les documents de sortie en fonction de la clé `key1` de façon croissante on utilisera la syntaxe suivante :
 
 ```javascript
 db.collectionName.find({}).sort(
-  {"key" : 1}
+  {"key1" : 1}
 )
 ```
 
