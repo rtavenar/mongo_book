@@ -77,7 +77,7 @@ db.ventes.update(
 Dans cet exemple, si la base de données contient un élément ayant "C1" en variable "nom" alors il sera remplacé par un document ayant "C1" en variable "nom" **et** "Citroën" en variable "marque". Sinon un document {"nom": "C1", "marque": "Citroën"} sera créé.
 
 ## Suppression
-=======
+
 Comme toutes les bonnes choses ont une fin, il est possible de supprimer une base, ou bien, sans être aussi radical, des éléments plus précis.
 Nous allons voir ici comment procéder aux différentes suppressions :
 
@@ -86,7 +86,8 @@ Nous allons voir ici comment procéder aux différentes suppressions :
 db.dropDatabase()
 ```
 Lors de l'éxecution de cette commande, c'est la base **courante**, celle qui est pointée par _db_, qui sera supprimée.
-```{warning} Important !
+```{admonition} Important !
+:class: attention
 Notez bien que tous les index qui pouvaient exister dans les collections de cette base seront également supprimés !
 ```
 
