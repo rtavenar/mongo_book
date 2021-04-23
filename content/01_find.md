@@ -23,9 +23,9 @@ Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
 Dans un **système de base de données relationnelles** *(comme les bases de données SQL)*, les données sont stockées par **ligne** *(appelées n-uplets)* dans des **tables** *(également appelées relations)*. Le modèle de données relationnel est un modèle **très structuré**, comportant des **attributs typés** *(les colonnes/attributs des tables ont un type précis qu'il soit numérique, alphanumérique ou temporel)* et des **contraintes d'intégrité** *(comme par exemple celle de l'unicité des valeurs de la clé primaire, la clé primaire étant un ensemble d'attributs permettant d'identifier de manière unique chaque n-uplet de la relation)*. Dans ce type de structure, il est nécessaire d'établir des **jointures sur plusieurs tables** afin de tirer des informations pertinentes sur la base de données.
 
-**Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.** On ne parle plus de tables, ni d'enregistrements *(i.e les lignes de la table en SQL)* mais de **collections** et de **documents**. Une collection est un ensemble de documents, c'est l'équivalent d'une table dans un modèle relationnel. Un document est un enregistrement, une ligne dans le modèle de données relationnel. Ce système de gestion de données nous évite de faire des jointures de tables car **toutes les informations nécessaires sont stockées dans un même document**. 
+**Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.** On ne parle plus de tables, ni d'enregistrements mais de **collections** et de **documents**. Une collection est un ensemble de documents, c'est l'équivalent d'une table dans un modèle relationnel. Un document est un enregistrement, une ligne dans le modèle de données relationnel. Ce système de gestion de données nous évite de faire des jointures de tables car **toutes les informations nécessaires sont stockées dans un même document**. De plus, l'utilisation de bases de données NoSQL avec MongoDB nous permet plus de flexibilité en termes de mise à jour de la structure des données : aucun modèle n'est supposé sur les données, aucun attribut n'est obligatoire et il n'y a pas de type fixé pour un attribut. 
 
-Tout document appartient donc à une collection et a un champ appelé `_id` qui identifie le document dans la base de données. Prenons la base de données étudiants. Voici un exemple de document : 
+Tout document appartient donc à une collection et a un champ appelé `_id` qui identifie le document dans la base de données. Prenons pour exemple la base de données `étudiants`. Voici un exemple de document : 
 
 ```javascript
 {
@@ -39,15 +39,21 @@ Tout document appartient donc à une collection et a un champ appelé `_id` qui 
 }
 ```
 
-> On a une **association de clés et de valeurs**, un document est équivalent aux objets JSON *(et ressemble aux dictionnaires en python)*. Dans ce document, on a accès au **nom de l'étudiant** par la clé `nom`, à **ses notes** par la clé `notes` *(attention, ici on a une **liste de valeurs** entre crochets, ce type d'attribut n'est par exemple pas disponible dans le modèle relationnel)* et à **son sexe** par la clé `sexe`. L'étudiant représenté par ce document, est identifié à l'aide d'une clé `_id`. **Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs.**
+> On a une **association de clés et de valeurs**, un document est équivalent aux objets JSON *(et ressemble aux dictionnaires en python)*. Dans ce document, on a accès au **nom de l'étudiant** par la clé `nom`, à **ses notes** par la clé `notes` *(attention, ici on a une **liste de valeurs** entre crochets, ce type d'attribut n'est par exemple pas disponible dans le modèle relationnel)* et à **son sexe** par la clé `sexe`. L'étudiant représenté par ce document, est identifié à l'aide d'une clé `_id`. 
+ 
+Les clés se doivent d'être des **chaînes de caractères** mais nous pouvons avoir comme valeur de ces clés des *valeurs booléennes, des nombres, des chaînes de carcatères, des dates ou des listes de valeurs* comme nous venons de le voir. Les clés et les valeurs sont **sensibles à la casse et aux type**. Chaque clé doît être **unique**, il n'est pas possible d'avoir deux fois la même clé dans un document. **Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs.** 
+
+```{admonition} Avant de commencer à faire des requêtes avec MongoDB, il vous faut : 
+Tout d'abord, il est nécessaire d'avoir installé un serveur comme par exemple le serveur MongoDB Atlas qui tourne en continu. Après avoir démarrer le serveur, il vous faut lancer une connexion client, le client Robot 3T est idéal pour des requêtes en MongoDB. Il ne vous reste plus qu'à choisir une base de données ou en importer une et sélectionner "Open Shell" par clique droit sur la base pour faire vos requêtes !    
+```
 
 Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Dans un second temps, nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB, une [**fiche "résumé" des points à retenir**](#resume) et un petit [**quizz**](#quizz) sont donnés à la fin de ce chapitre.
 
 ---
 
-## <a id="find"></a> Requêtes d'interrogation et de filtrage des données : la fonction `find` 
+## <a id="find"></a> Requêtes d'interrogation et de filtrage des données
 
-Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction `find`.
+**Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction `find`.**
  
  ```{admonition} Remarque
 Toute commande sur une collection intitulée collectionName utilise le préfixe db : `db.collectionName`. Il suffit d’y associer la fonction souhaitée pour avoir un résultat. En l'occurence, ici la syntaxe de données d'interrogation MongoDB est `db.collectionName.find()`.
