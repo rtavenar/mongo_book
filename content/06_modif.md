@@ -145,7 +145,7 @@ La fonction _remove_ peut également recevoir des documents précis en argument 
 * Condition sous la forme d'un document masque :  
    Tous les documents correspondants à la sélection seront supprimés, par exemple tous ceux dont l'attribut "marque" correspond à "Citroën" :
 ```{code-cell}
-db.nomDeLaCollection.remove({"marque" : "Citroën"})
+db.ventes.remove({"marque" : "Citroën"})
 ```
 * Suppression d'un seul document :  
    Pour ce faire, il convient d'utiliser l'attribut "_id" puisqu'il est unique :
