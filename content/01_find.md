@@ -17,6 +17,8 @@ kernelspec:
 
 Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
+---
+
 ## Introduction à MongoDB
 
 Dans un **système de base de données relationnelles**, les données sont stockées par ligne *(appelées n-uplets)* dans des tables *(également appelées relations)*. Le modèle de données relationnel est un modèle très structuré, comportant des attributs typés et des contraintes d'intégrité *(comme par exemple l'unicité des valeurs de la clé primaire)*. Il est nécessaire de faire des jointures sur plusieurs tables afin de tirer des informations pertinentes de la base.
