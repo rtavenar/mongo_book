@@ -542,4 +542,4 @@ db.notes.find({}, {"nom": true, "_id": false})
 *Réponse 1 : Bien que `ORDER BY` soit une instruction en SQL, ce n'est pas disponible pour les bases de données en MongoDB.*
 
 
-Afin que le langage mongoDB n'ait plus aucun secret pour vous, nous vous invitons à lire les **chapitres suivants** et à consultez la [documentation MongoDB](https://docs.mongodb.com) !
+Afin que le langage MongoDB n'ait plus aucun secret pour vous, nous vous invitons à lire les **chapitres suivants** et à consultez la [documentation MongoDB](https://docs.mongodb.com) !
