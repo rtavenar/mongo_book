@@ -470,6 +470,8 @@ Pour vous tester, répondez aux questions du quizz ci-dessous.
 
 ### <a id="quizz"></a> À vous de jouer ! 
 
+1. Qu'est-ce qui caractérise MongoDB ? 
+A. C'est un modèle orienté document
 
 
 Afin que le langage mongoDB n'ait plus aucun secret pour vous, nous vous invitons à lire les **chapitres suivants** et à consultez la [documentation MongoDB](https://docs.mongodb.com) !
