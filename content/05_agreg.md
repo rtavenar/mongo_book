@@ -14,7 +14,7 @@ kernelspec:
 ---
 
 # Les requêtes d'agrégation
-
+(sec:exec)=
 ## Regroupements
 
 * Auteurs/trices : ***CASTRIQUE Jérémy, NOJAC Dimitri, VAVASSEUR Salomé***
