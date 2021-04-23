@@ -21,7 +21,6 @@ Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates)
 
 
 ## Qu'est-ce qu'une date dans MONGODB
-
 Les dates sur MongoDB sont définies a la milliseconde près, nous allons nous intéresser aux requêtes utilisant des dates, car les attributs de type date doivent être considérés de façon particulière.
 Les dates sont enregistrées sous la forme ISO date, nous retrouvons la date de la forme suivante : 
 
@@ -56,7 +55,6 @@ Lorsque l’on souhaite effectuer un test sur une date, on utilisera des opérat
 L’opérateur `elemmatch` nous permet vérifier les deux conditions de bornes dans cette intervalle.
 
 Ainsi, si nous souhaitions effectuer un regroupement par date, il faudrait préciser à quel degré de précision sur la date l’agrégation doit se faire.
-
 ## Transformation de formats
 
 ### présentation des formats
