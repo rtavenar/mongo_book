@@ -488,48 +488,49 @@ Pour vous tester et être certain que vous avez bien compris, répondez aux ques
 
 ### <a id="quizz"></a> Quizz "Premières requêtes en MongoDB" : À vous de jouer ! 
 
-**1. Qu'est-ce qui caractérise MongoDB ?**
+**Qu'est-ce qui caractérise MongoDB ?**
 
-⋅⋅A. C'est un modèle orienté graphique
-⋅⋅B. C'est un modèle orienté document
-⋅⋅C. C'est un modèle structuré
+1. C'est un modèle orienté graphique
+2. C'est un modèle orienté document
+3. C'est un modèle structuré
 
-*Réponse B : C'est un modèle orienté document.*
+*Réponse 2 : C'est un modèle orienté document.*
 
-**2. Que nous renvoie cette requête sur la collection `notes` de la base `etudiants` ?**
+**Que nous renvoie cette requête sur la collection `notes` de la base `etudiants` ?**
 
 ```javascript
 db.notes.find({}, {"nom": true, "_id": false}) 
 ```
 
-⋅⋅A. Affiche **tout** le contenu de la collection `notes`
-⋅⋅B. Les noms des étudiants de la base et la clé `_id` qui identifie chaque étudiant
-⋅⋅C. Tous les noms des étudiants de la base, mais pas les autres clés
+1. Affiche **tout** le contenu de la collection `notes`
+2. Les noms des étudiants de la base et la clé `_id` qui identifie chaque étudiant
+3. Tous les noms des étudiants de la base, mais pas les autres clés
 
-*Réponse C : L'argument `"_id": false` permet de retirer l'affichage de la clé `id`. On ne récupère que le noms des étudiants de la base.*
+*Réponse 3 : L'argument `"_id": false` permet de retirer l'affichage de la clé `id`. On ne récupère que le noms des étudiants de la base.*
 
-**3. Comment récupérer la liste des étudiants ayant obtenu exactement deux notes ?**
-⋅⋅A. `db.notes.find({"notes": {$size: 2}})`
-⋅⋅B. `db.notes.find({"notes": {$exists: true}})`
-⋅⋅C. `db.notes.find({$or: [{"notes": {$size: 1}},{"notes": {$size: 2}}]})`
+**Comment récupérer la liste des étudiants ayant obtenu exactement deux notes ?**
 
-*Réponse A : L'opérateur `$size` : permet de prendre en compte la taille de la liste de valeurs, telle qu'une liste de notes.*
+1. `db.notes.find({"notes": {$size: 2}})`
+2. `db.notes.find({"notes": {$exists: true}})`
+3. `db.notes.find({$or: [{"notes": {$size: 1}},{"notes": {$size: 2}}]})`
 
-**4. Quel opérateur permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste ? **
+*Réponse 1 : L'opérateur `$size` : permet de prendre en compte la taille de la liste de valeurs, telle qu'une liste de notes.*
 
-⋅⋅A. L'opérateur `$eq`
-⋅⋅B. L'opérateur `$nor`
-⋅⋅C. L'opérateur `$gt`
+**Quel opérateur permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste ? **
 
-*Réponse A : L'opérateur `$nor` permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste.*
+1. L'opérateur `$eq`
+2. L'opérateur `$nor`
+3. L'opérateur `$gt`
 
-**5. Quelle méthode ci-dessous ne fait pas partie du langage MongoDB ?**
+*Réponse 2 : L'opérateur `$nor` permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste.*
 
-⋅⋅*. `db.collectionName.find({}).orderby({"key" : 1})`
-⋅⋅*. `db.collectionName.find({}).sort({"key" : 1})`
-⋅⋅*. `db.collectionName.find({}).limit(3)`
+**Quelle méthode ci-dessous ne fait pas partie du langage MongoDB ?**
 
-*Réponse A : Bien que `ORDER BY` soit une instruction en SQL, ce n'est pas disponible pour les bases de données en MongoDB.*
+1. `db.collectionName.find({}).orderby({"key" : 1})`
+2. `db.collectionName.find({}).sort({"key" : 1})`
+3. `db.collectionName.find({}).limit(3)`
+
+*Réponse 1 : Bien que `ORDER BY` soit une instruction en SQL, ce n'est pas disponible pour les bases de données en MongoDB.*
 
 
 Afin que le langage mongoDB n'ait plus aucun secret pour vous, nous vous invitons à lire les **chapitres suivants** et à consultez la [documentation MongoDB](https://docs.mongodb.com) !
