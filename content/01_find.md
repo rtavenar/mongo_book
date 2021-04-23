@@ -21,11 +21,11 @@ Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
 ## Introduction à MongoDB
 
-Dans un **système de base de données relationnelles**, les données sont stockées par ligne *(appelées n-uplets)* dans des tables *(également appelées relations)*. Le modèle de données relationnel est un modèle très structuré, comportant des attributs typés et des contraintes d'intégrité *(comme par exemple l'unicité des valeurs de la clé primaire)*. Il est nécessaire de faire des jointures sur plusieurs tables afin de tirer des informations pertinentes de la base.
+Dans un **système de base de données relationnelles** *(comme les bases de données SQL)*, les données sont stockées par **ligne** *(appelées n-uplets)* dans des **tables** *(également appelées relations)*. Le modèle de données relationnel est un modèle **très structuré**, comportant des **attributs typés** *(les colonnes de la table ont un type précis comme date, )* et des **contraintes d'intégrité** *(comme par exemple l'unicité des valeurs de la clé primaire, celle qui permet d'identifier chaque ligne de données)*. Dans ce type de structure, il est nécessaire d'établir des **jointures sur plusieurs tables** afin de tirer des informations pertinentes sur la base.
 
-**Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.** On ne parle plus de tables, ni d'enregistrements mais de collections et de documents. Une collection est un ensemble de documents, c'est l'équivalent d'une table en relationnel. Un document est un enregistrement, une ligne dans le modèle de données relationnel. Ce système de gestion de données nous évite de faire des jointures de tables car toutes les informations nécessaires sont stockées dans un même document.
+**Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.** On ne parle plus de tables, ni d'enregistrements *(i.e les lignes de la table en SQL)* mais de **collections** et de **documents**. Une collection est un ensemble de documents, c'est l'équivalent d'une table dans un modèle relationnel. Un document est un enregistrement, une ligne dans le modèle de données relationnel. Ce système de gestion de données nous évite de faire des jointures de tables car **toutes les informations nécessaires sont stockées dans un même document**. 
 
-Tout document appartient à une collection et a un champ appelé `_id` qui identifie le document dans la base de données. Prenons la la base de données étudiants. Voici un exemple de document : 
+Tout document appartient donc à une collection et a un champ appelé `_id` qui identifie le document dans la base de données. Prenons la base de données étudiants. Voici un exemple de document : 
 
 ```javascript
 {
@@ -39,9 +39,9 @@ Tout document appartient à une collection et a un champ appelé `_id` qui ident
 }
 ```
 
-On a une association de clés et de valeurs, un document est équivalent aux objets JSON. Dans ce document, on a accès au nom de l'étudiant, à ses notes *(c'est une **liste de valeurs**, ce type d'attribut n'étant pas disponible dans le modèle relationnel)*, et à son sexe. L'étudiant représenté par ce document, est identifié à l'aide d'une clé `_id`. Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs. 
+On a une association de clés et de valeurs, un document est équivalent aux objets JSON *(et ressemblent aux dictionnaires en python)*. Dans ce document, on a accès au nom de l'étudiant par la clé `nom`, à ses notes par la clé `notes` *(attention, ici on a une **liste de valeurs** entre crochets, ce type d'attribut n'est par exemple pas disponible dans le modèle relationnel)*, et à son sexe par la clé `sexe`. L'étudiant représenté par ce document, est identifié à l'aide d'une clé `_id`. Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs. 
 
-Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Dans un second temps, nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB sont données à la fin de ce chapitre ainsi qu'une [**fiche "résumé" des points à retenir**](#resume).
+Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Dans un second temps, nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB, une [**fiche "résumé" des points à retenir**](#resume) et un petit [**quizz**](#quizz) sont donnés à la fin de ce chapitre.
 
 ---
 
@@ -388,7 +388,7 @@ db.NYfood.find({}).limit(2)
 
 Pour vous tester, répondez aux questions du quizz ci-dessous.
 
-### À vous de jouer ! 
+### <a id="quizz"></a> À vous de jouer ! 
 
 
 
