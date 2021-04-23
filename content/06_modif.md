@@ -17,8 +17,9 @@ kernelspec:
 
 * Auteurs : Rémi Leduc, Léo Rouger, Clément Caillard
 
-Ce chapitre traite des différentes requêtes de modification (insertion, modification et suppression)
+Ce chapitre traite des différentes requêtes de modification ([insertion](sec:insertion), [modification](sec:modification) et [suppression](sec:suppression))
 
+(sec:insertion)=
 ## Insertion
 
 Pour la création d'une nouvelle collection il est nécessaire de sélectionner une base. Si elle n'existe pas, elle sera alors créée.
@@ -57,7 +58,7 @@ Si on execute la ligne suivant on retrouve bien les document créé.
 db.ventes.find({})
 ```
 
-
+(sec:modification)=
 ## Modification
 ### Remplacement d'un document
 ```{code-cell}
@@ -112,6 +113,7 @@ db.ventes.update(
 ```
 Cette fois un nouveau document est ajouté à la base.
 
+(sec:suppression)=
 ## Suppression
 
 Comme toutes les bonnes choses ont une fin, il est possible de supprimer une base, ou bien, sans être aussi radical, des éléments plus précis.
