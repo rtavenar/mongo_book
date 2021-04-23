@@ -52,7 +52,7 @@ Les clés se doivent d'être des **chaînes de caractères** mais nous pouvons a
 **Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs.** 
 
 ```{admonition} Avant de commencer, il vous faut : 
-Tout d'abord, il est nécessaire d'avoir installé un serveur comme par exemple le serveur `MongoDB Atlas` qui tourne en continu. Après avoir démarré le serveur, il vous faut lancer une connexion client, le `client Robot 3T` est idéal pour des requêtes en MongoDB. Il ne vous reste plus qu'à choisir une base de données ou en importer une et sélectionner `"Open Shell" par clique droit sur la base pour faire vos requêtes !    
+Tout d'abord, il est nécessaire d'avoir installé un serveur comme par exemple le serveur **MongoDB Atlas** qui tourne en continu. Après avoir démarré le serveur, il vous faut lancer une connexion client, le **client Robot 3T** est idéal pour des requêtes en MongoDB. Il ne vous reste plus qu'à choisir une base de données ou en importer une et sélectionner *"Open Shell"* par clique droit sur la base pour faire vos requêtes !    
 ```
 
 Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Dans un second temps, nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB, une [**fiche "résumé" des quelques points à retenir**](#resume) et un petit [**quizz**](#quizz) sont donnés à la fin de ce chapitre.
@@ -67,7 +67,9 @@ Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger l
 Toute commande sur une collection intitulée collectionName utilise le préfixe db : `db.collectionName`. Il suffit d’y associer la fonction souhaitée pour avoir un résultat. En l'occurence, ici la syntaxe de données d'interrogation MongoDB est `db.collectionName.find()`.
 ```
 
-En MongoDB, il existe deux types de requêtes simples, retournant respectivement **toutes les occurences d'une collection** ou **seulement la première**. 
+### Syntaxe d'interrogation de données sans et avec condition
+
+En MongoDB, lorsque l'on interroge les données, il existe deux types de requêtes simples, retournant respectivement **toutes les occurences d'une collection** ou **seulement la première**. Que l'on souhaite récupérer la première occurrence de la liste des résultats ou bien toute la liste des résultats, voici la syntaxe :  
 
 ````{panels}
 
@@ -93,7 +95,9 @@ db.collectionName.findOne({})
 
 > À noter : Dans les deuxièmes propositions de chaque cas présenté ci-dessus, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au *document masque*. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner. 
 
-Si l’on souhaite fixer des contraintes sur les documents à retourner, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". En utilisant cette syntaxe, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*. Dans cet exemple sur la base de données NYfood, la virgule représente un **ET logique** entre les contraintes.     
+Au contraire, si l’on souhaite **fixer des contraintes sur les documents à retourner**, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". 
+
+La base de données NYfood recense un ensemble de restaurants américains et nous donne pour chaque restaurant des informations sur son quartier, son adresse, son type de cuisine, son nom et ses notes obtenues. En utilisant cette syntaxe, on recherche par exemple les documents de la collection NYfood correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*. Dans cet exemple sur la base de données NYfood, la virgule représente un **ET logique** entre les contraintes.     
 
 ````{tabbed} Syntaxe
 
@@ -107,39 +111,93 @@ db.nomDeLaCollection.find({"x":"y"})
 
 ```javascript
 db.NYfood.find(
-    {"cuisine": "Chinese", "borough": "Bronx"}
+    {"cuisine": "Bakery", "borough": "Bronx"}
 )
 ```
 
 ````
 
-Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un restaurant, nous disposons d'un **sous-document** contenant à la fois les coordonnées GPS et l'adresse postale. Si l'on souhaite **poser une condition sur une clé ou plusieurs clés de sous-document**, on utilise alors la syntaxe suivante :
+````{tabbed} Parallèle avec le langage SQL
+
+```sql
+SELECT *
+FROM NYfood
+WHERE cuisine = 'Bakery' AND 'borough' = 'Bronx'
+```
+
+````
+
+
+### Poser une condition sur une clé de sous-document 
+
+Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un restaurant, nous disposons d'un **sous-document** contenant à la fois les coordonnées GPS et l'adresse postale. Plutôt qu'une liste de valeur comme présentée précédemment, nous avons comme valeur de la clé un nouveau document. Voici un extrait d'un document comportant un sous-document : 
+
+```javascript
+{
+    "_id" : ObjectId("6006c1882822efb1c9290f68"),
+    "address" : {
+        "building" : "265-15",
+        "loc" : {
+            "type" : "Point",
+            "coordinates" : [ 
+                -73.7032601, 
+                40.7386417
+            ]
+        },
+        "street" : "Hillside Avenue",
+        "zipcode" : "11004"
+    },
+    "borough" : "Queens",
+    "cuisine" : "Ice Cream, Gelato, Yogurt, Ices", 
+    (...)
+}    
+    
+```
+
+Si l'on souhaite **poser une condition sur une clé ou plusieurs clés de sous-document**, on utilise alors la syntaxe suivante :
 
 ```javascript
 db.NYfood.find({"adress.zipcode": "10462"})
 ```
-où **adress** est le sous-document et **zipcode** la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est "10462".
+où `adress` est le sous-document et `zipcode` la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est "10462".
 
-Les résultats obtenus jusqu’à présent sont parfois assez indigestes, notamment parce que toutes les clés sont retournées pour tous les documents. Il est possible de limiter cela en spécifiant les clés à retourner comme second argument de find(). On appelle ça une **projection**.
+
+### Projection des données
+
+Les résultats obtenus jusqu’à présent sont parfois assez indigestes, notamment parce que toutes les clés sont retournées pour tous les documents. Il est possible de limiter cela en spécifiant les clés à retourner comme second argument de la fonction `find()`. On appelle ça une **projection**.
 
 <dl>
   <dt>Projection</dt>
   <dd>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais     limiter les informations retournées en précisant comme deuxième argument de ma recherche find, la clé name avec la valeur true.</dd>
 </dl>
 
+````{tabbed} Projection en MongoDB
+
 ```javascript
 db.NYfood.find({"cuisine": "Bakery", "borough": "Bronx"}, {"name": true})
 ```
 
-> C'est l'équivalent du `SELECT name` en SQL. Jusqu'ici, on utilisais le `SELECT *` *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque clé ou de chaque attribut.
+````
 
-```{admonition} Embellissez les résultats de la fonction find ! 
-:class: tip
+````{tabbed} Projection en SQL
 
-Les résultats de la fonction find() peuvent apparaître désorganisés. MongoDB fournit pretty() qui affiche les résultats sous une forme plus lisible. La syntaxe est la suivante : collectionName.find().pretty() 😉
+```sql
+SELECT name
+FROM NYfood
+WHERE cuisine = 'Bakery' AND 'borough' = 'Bronx'
 ```
 
-Pour plus de renseignements sur la **fonction find()**, consultez la documentation MongoDB [disponible ici](https://docs.mongodb.com/manual/reference/method/db.collection.find/).
+````
+
+> C'est donc l'équivalent du `SELECT name` en SQL. Jusqu'ici, on utilisais le `SELECT *` *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque clé ou de chaque attribut.
+
+```{admonition} Embellissez vos résultats ! 
+:class: tip
+
+Les résultats de la fonction `find()` peuvent apparaître désorganisés. MongoDB fournit `pretty()` qui affiche les résultats sous une forme plus lisible. La syntaxe est la suivante : `collectionName.find().pretty()` 😉
+```
+
+Pour plus de renseignements sur la **fonction `find()`**, consultez la documentation MongoDB [disponible ici](https://docs.mongodb.com/manual/reference/method/db.collection.find/).
 
 ---
 
