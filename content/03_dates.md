@@ -57,10 +57,6 @@ L’opérateur `elemmatch` nous permet vérifier les deux conditions de bornes d
 
 Ainsi, si nous souhaitions effectuer un regroupement par date, il faudrait préciser à quel degré de précision sur la date l’agrégation doit se faire.
 
-### les différents objets Date
-
-### créations annexes
-
 ## Transformation de formats
 
 ### présentation des formats
