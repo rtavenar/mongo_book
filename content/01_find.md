@@ -493,7 +493,7 @@ Compter les documents de sortie | `db.collectionName.find({}).count()`
 Limiter les documents de sortie | `db.collectionName.find({}).limit(2)` 
 Valeurs distinctes d'un champ | `db.collectionName.distinct(champ, {})`
 
-**Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quizz ci-dessous.**
+**Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quiz ci-dessous.**
 
 ### <a id="quiz"></a> Quiz "Premières requêtes en MongoDB" : À vous de jouer ! 
 
