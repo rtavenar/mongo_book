@@ -545,7 +545,7 @@ db.NYfood.aggregate([
 Dans la collection `NYfood`, trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
 ````{tabbed} Python
 ```python
-# Python reconnais les expressions régulières
+# Python reconnaît les expressions régulières
 cursor = db.NYfood.find({"name": "/Pizza/"})
 reponse = list(cursor)
 ```
