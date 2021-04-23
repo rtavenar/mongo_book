@@ -153,29 +153,29 @@ En pratique, cela n'a pas forcément beaucoup d'intérêt.
 Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondant à un critère. Pour cela, nous allons regarder avec une requête de regroupement.
 
 ##### Avec regroupement
-Toujours dans la collection notes e la base étudiants, on cherche à connaitre le nombre détudiantes et d'étudiants. Pour cela, on va effectuer un regroupement sur l'attribut sexe.
+Toujours dans la collection NYfood de la base food, on cherche à connaitre le nombre de restaurants par type de cuisine. Pour cela, on va effectuer un regroupement sur l'attribut "cuisine".
 
 _En mongoDB :_
 
 ```{code-cell}
-use etudiants
+use food
 ```
 
 ```{code-cell}
 :tags: [output_scroll]
 
-db.notes.aggregate([
-      {$group:{_id: "$sexe",
-              nb_etud: {$sum: 1}}}
+db.NYfood.aggregate([
+      {$group:{_id: "$cuisine",
+              nb_par_cuis: {$sum: 1}}}
 ])
 ```
 
 _En SQL :_
 
 ```sql
-SELECT COUNT(*) AS nb_etud
-FROM notes
-GROUP BY sexe
+SELECT COUNT(*) AS nb_par_cuisine
+FROM NYfood
+GROUP BY cuisine
 ```
 
 
