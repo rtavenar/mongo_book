@@ -58,3 +58,5 @@ db.collec.update(
 ### Upsert
 
 ## Suppression
+
+Ceci est un test
