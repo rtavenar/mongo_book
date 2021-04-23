@@ -93,7 +93,7 @@ db.ventes.update(
 	{upsert: true}
 )
 ```
-Dans cet exemple, si la base de données contient un élément ayant "C1" en variable "nom" alors il sera remplacé par un document ayant "C1" en variable "nom" **et** "Citroën" en variable "marque". Sinon un document {"nom": "C1", "marque": "Citroën"} sera créé.
+Dans cet exemple, si la base de données contient un élément ayant "C1" en variable "nom" alors il sera remplacé par un document ayant "C1" en variable "nom" **et** "Citroën" en variable "marque". Sinon un document `{"nom": "C1", "marque": "Citroën"}` sera créé.
 
 ## Suppression
 
