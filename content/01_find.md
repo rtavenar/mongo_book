@@ -122,7 +122,7 @@ db.NYfood.find(
 ```sql
 SELECT *
 FROM NYfood
-WHERE cuisine = 'Bakery' AND 'borough' = 'Bronx'
+WHERE cuisine = 'Bakery' AND borough = 'Bronx'
 ```
 
 ````
