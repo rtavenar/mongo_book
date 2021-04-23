@@ -22,9 +22,46 @@ Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates)
 
 ## Qu'est-ce qu'une date dans MONGODB
 
+<<<<<<< HEAD
 ### les différents objets Date
 
 ### créations annexes
+=======
+Les dates sur MongoDB sont définies a la milliseconde près, nous allons nous intéresser aux requêtes utilisant des dates, car les attributs de type date doivent être considérés de façon particulière.
+Les dates sont enregistrées sous la forme ISO date, nous retrouvons la date de la forme suivante : 
+
+```javascript
+("<YYYY-mm-ddTHH:MM:ssZ>")
+```
+Ce format nous permet de d’avoir une version de référence (UTC) de la date spécifiée. 
+Nous pouvons mettre uniquement l’année ou l’année et le mois sans devoir spécifier tout le langage s’occupe de remplir les autres arguments pour retrouver la forme :
+```javascript
+("<YYYY-mm-ddTHH:MM:ssZ>")
+```
+
+Exemple :
+
+```javascript
+New Date ('2021')
+```
+Ce qui donne un objet de type date de la forme suivante :
+```javascript
+ISODate("2021-01-01T00 :00:00Z")
+```
+
+Nous 	avons aussi d’autre formats de dates qui donne la date suivant 
+fuseau horaire locale de l’utilisateur.
+```javascript
+("<YYYY-mm-ddTHH:MM:ss>")
+```
+
+Ainsi, il faut toujours utiliser une comparaison sous forme d’intervalle pour ces attributs.
+Lorsque l’on souhaite effectuer un test sur une date, on utilisera des opérateurs de comparaison.
+
+L’opérateur `elemmatch` nous permet vérifier les deux conditions de bornes dans cette intervalle.
+
+Ainsi, si nous souhaitions effectuer un regroupement par date, il faudrait préciser à quel degré de précision sur la date l’agrégation doit se faire.
+>>>>>>> 75fd4da92b5cbb806d04834f0b440f4c8a1ce12e
 
 ## Transformation de formats
 
