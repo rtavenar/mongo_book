@@ -272,7 +272,6 @@ GROUP BY prix
 
 
 ### Opérateur de comptage
-(sec:exec)=
 L'opérateur `$count` renvoie le nombre de documents présents dans l'aggrégation.
 
 Dans cet exemple, on assigne à la valeur NB_+24 le nombre de documents ayant un individu avec un âge supérieur à 24 :
