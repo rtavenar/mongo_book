@@ -41,7 +41,7 @@ db.ventes.update(
 )
 ```
 Le document sélectionné sur la 1ère ligne est supprimé et remplacé selon les champs renseignés sur la 2nde ligne. Les champs qui ne sont pas renseignés sont donc supprimés.
-:warning: **Seul le 1er document de la liste sera modifié.**
+<br> :warning: **Seul le 1er document de la liste sera modifié.** </br>
 
 ### Modification d'un document
 Si l'on souhaite conserver les autres champs, il suffit d'inclure la 2nde ligne dans un `$set`.
