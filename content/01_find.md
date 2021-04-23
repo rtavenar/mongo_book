@@ -274,7 +274,13 @@ WHERE a >= 1
 
 L'exemple suivant montre la liste des étudiants ayant au moins une note (strictement) supérieure à 13 :
 
-```javascript
+```{code-cell}
+use food
+```
+
+```{code-cell}
+:tags: [output_scroll]
+
 db.notes.find({"notes": {$gt: 13}})
 
 ```
@@ -412,9 +418,16 @@ Le résultat de cette requête sera l'ensemble des documents ne contenant pas la
 
 Le `not` renvoie les documents qui ne remplissent pas les conditions qu'il contient. L'exemple suivant, sur la base NYfood, permet de renvoyer la liste des restaurants n’ayant aucune note "C".
 
-```javascript
-db.NYfood.find({"grades.grade": {$not: {$eq: "C"}}}) 
+```{code-cell}
+use food
+```
 
+ 
+
+```{code-cell}
+:tags: [output_scroll]
+
+db.NYfood.find({"grades.grade": {$not: {$eq: "C"}}})
 ```
 
 Pour plus de renseignements sur **les opérateurs**, consultez la documentation MongoDB [disponible à cette adresse](https://docs.mongodb.com/manual/reference/operator/query/).
