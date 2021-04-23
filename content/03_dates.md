@@ -21,6 +21,14 @@ Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates)
 
 
 ## Qu'est-ce qu'une date dans MONGODB
+
+
+
+### les différents objets Date
+
+### créations annexes
+
+
 Les dates sur MongoDB sont définies a la milliseconde près, nous allons nous intéresser aux requêtes utilisant des dates, car les attributs de type date doivent être considérés de façon particulière.
 Les dates sont enregistrées sous la forme ISO date, nous retrouvons la date de la forme suivante : 
 
@@ -55,7 +63,10 @@ Lorsque l’on souhaite effectuer un test sur une date, on utilisera des opérat
 L’opérateur `elemmatch` nous permet vérifier les deux conditions de bornes dans cette intervalle.
 
 Ainsi, si nous souhaitions effectuer un regroupement par date, il faudrait préciser à quel degré de précision sur la date l’agrégation doit se faire.
+
 ## Transformation de formats
+
+les deux procédés opératoires présentées ci-dessous sont applicable uniquement au sein de la méthode aggregate.
 
 ### présentation des formats
 
@@ -102,6 +113,24 @@ La méthode prend en argument :
 
 #### Exemples
 
+Partons du postulat qu'il existe une variable de type string qui décrit une temporalité dans la collection métro. 
+
+```javascript
+db.metro.aggregate(
+   [
+     {
+       $project: {
+          objetdate : { 
+              $dateFromString: {
+              dateString: "23-04-2021 à 15 heures 25 minutes et 23 secondes", format: "%d-%m-%Y à %H heures %M minutes et %S secondes"
+                } 
+              }
+       }
+     }
+   ]
+)
+```
+
 ### $dateToString
 
 On retrouve la méthode inverse avec des arguments similaires.
@@ -123,6 +152,23 @@ La méthode prend en argument :
 * Une gestion potentielle des valeurs nulles
 
 #### Exemples
+
+```javascript
+db.metro.aggregate(
+   [
+     {
+       $project: {
+          years_tr: { $dateToString: { format: "%Y", date: "$lastCheckDate"} },
+          month_str : {$dateToString: { format: "%m", date: "$lastCheckDate"} },
+          date_str : {$dateToString: { format: "%d-%m-%Y", date: "$lastCheckDate"} }
+       }
+     }
+   ]
+)
+```
+on obtient alors le résultat
+
+![Resultat](resdatetostring.png)
 
 ## Exemples d'applications
 #### Utilisation d'un objet date au format string.
@@ -179,11 +225,12 @@ db.NYfood.find(
 )
 ```
 
-#### Utilisation d'un objet date dans un aggregate.
+#### Utilisation d'un objet date dans un aggregate
 
 Il est possible d'accéder aux attributs années, mois, jours,... d'une date. Ceci est très utile pour les requêtes d'aggrégations.
 
 Exemple d'une requête de regroupement par le mois et l'années. Nous voulons afficher mois par mois le nombre de stations de métros dans la base `keolis`.
+
 ```javascript
 db.metro.aggregate([
                         {$group:
