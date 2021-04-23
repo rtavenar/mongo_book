@@ -383,10 +383,12 @@ db.NYfood.find({}).limit(2)
 
 ---
 
-## <a id="resume"></a> À retenir
+## <a id="resume"></a> L'essentiel à retenir pour des premières requêtes en MongoDB
 
 
+Pour vous tester, répondez aux questions du quizz ci-dessous.
 
+### À vous de jouer ! 
 
 
 
