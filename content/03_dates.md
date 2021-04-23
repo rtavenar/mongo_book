@@ -26,12 +26,12 @@ Les dates sur MongoDB sont définies a la milliseconde près, nous allons nous i
 Les dates sont enregistrées sous la forme ISO date, nous retrouvons la date de la forme suivante : 
 
 ```javascript
-("<YYYY-mm-ddTHH:MM:ssZ>").
+("<YYYY-mm-ddTHH:MM:ssZ>")
 ```
 Ce format nous permet de d’avoir une version de référence (UTC) de la date spécifiée. 
 Nous pouvons mettre uniquement l’année ou l’année et le mois sans devoir spécifier tout le langage s’occupe de remplir les autres arguments pour retrouver la forme :
 ```javascript
-("<YYYY-mm-ddTHH:MM:ssZ>").
+("<YYYY-mm-ddTHH:MM:ssZ>")
 ```
 
 Exemple :
@@ -53,8 +53,9 @@ fuseau horaire locale de l’utilisateur.
 Ainsi, il faut toujours utiliser une comparaison sous forme d’intervalle pour ces attributs.
 Lorsque l’on souhaite effectuer un test sur une date, on utilisera des opérateurs de comparaison.
 
-Afin de vérifier les deux conditions de borne dans un intervalle de comparaison nous avons besoin de l’opérateur "elemmatch", ce qui va nous permettre de comparer pour chaque élément de type date s’il existe bien dans l’intervalle qui nous intéresse.
-Ainsi, si nous souhaitions regrouper des documents par date, il faudrait faire un recours par une syntaxe particulière pour préciser à quel degré de précision sur la date l’agrégation doit se faire.
+L’opérateur `elemmatch` nous permet vérifier les deux conditions de bornes dans cette intervalle.
+
+Ainsi, si nous souhaitions effectuer un regroupement par date, il faudrait préciser à quel degré de précision sur la date l’agrégation doit se faire.
 
 ### les différents objets Date
 
