@@ -469,7 +469,7 @@ La méthode `sort` sert à **trier les documents de sortie** à partir d'une ou 
 Par exemple, pour trier les documents de sortie en fonction de la clé `key` de façon croissante on utilisera la syntaxe suivante :
 
 ```javascript
-db.collectionName.find().sort(
+db.collectionName.find({}).sort(
   {"key" : 1}
 )
 ```
@@ -477,7 +477,7 @@ db.collectionName.find().sort(
 Il est également possible de faire un **tri sur plusieurs clés** :
 
 ```javascript
-db.collectionName.find().sort(
+db.collectionName.find({}).sort(
   {"key1" : 1, "key2" : -1}
 )
 ```
