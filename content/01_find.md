@@ -45,7 +45,7 @@ Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger l
 
 ---
 
-## Requêtes d'interrogation et de filtrage des données : la fonction `find` <a id="find"></a>
+## <a id="find"></a> Requêtes d'interrogation et de filtrage des données : la fonction `find` 
 
 Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction find.
  
@@ -130,7 +130,7 @@ Pour plus de renseignements sur la **fonction find()**, consultez la documentati
 
 ---
 
-## Requêtes plus complexes en utilisant des opérateurs <a id="operateurs"></a>
+## <a id="operateurs"></a> Requêtes plus complexes en utilisant des opérateurs 
 
 Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**.
 
@@ -304,7 +304,7 @@ https://docs.mongodb.com/manual/reference/operator/query/
 
 ---
 
-## Méthodes utiles pour des requêtes en MongoDB <a id="methodes"></a>
+## <a id="methodes"></a> Méthodes utiles pour des requêtes en MongoDB 
 
 ### Valeurs distinctes d'un champ : la méthode `distinct`
 
@@ -384,5 +384,5 @@ db.NYfood.find({}).limit(2)
 
 ---
 
-## Conclusion <a id="conclusion"></a>
+## <a id="conclusion"></a> Conclusion 
 
