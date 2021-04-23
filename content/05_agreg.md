@@ -42,15 +42,10 @@ db.coll.aggregate([
 Pour tous les opérateurs que nous allons étudier dans cette partie du cours, la syntaxe sera identique à celle-ci.
 
 Les équivalents en SQL de l'opérateur $sum sont `COUNT(*)` ou bien `SUM` qui permettent de compter le nombre de variables.
+
 **Exemple de requête sans regroupement**
 
-En SQL:
-
-```sql
-SELECT SUM(att) as nb
-FROM t
-```
-En MongoDB :
+````{tabbed} MongoDB
 
 ```{code-cell}
 db.coll.aggregate([
@@ -60,6 +55,14 @@ db.coll.aggregate([
   }
 ])
 ```
+````
+
+````{tabbed} SQL
+```sql
+SELECT SUM(att) as nb
+FROM t
+```
+````
   
 **Exemple de requête avec regroupement**
 
@@ -69,15 +72,7 @@ Sur la base de NYfood, on peut notamment filtrer par quartier.
 
 Voici un exemple de requête :
 
-En SQL :
-
-```sql
-SELECT COUNT(*) as nb
-FROM NYfood
-GROUP BY borough
-```
-
-En MongoDB :
+````{tabbed} MongoDB
 
 ```{code-cell}
 db.NYfood.aggregate(
@@ -91,6 +86,17 @@ db.NYfood.aggregate(
 ]
 )
 ```
+````
+
+````{tabbed} SQL
+
+```sql
+SELECT COUNT(*) as nb
+FROM NYfood
+GROUP BY borough
+```
+````
+
 
 Dans cette requête, Mongodb va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
 
@@ -101,7 +107,7 @@ L'opérateur `$sum` permet de calculer et de retourner les sommes de variables n
 
 **syntaxe**
 
-```
+```javascript
 db.coll.aggregate(
    [
      {
@@ -119,7 +125,7 @@ db.coll.aggregate(
 ##### Sans regroupement
 Regardons une requête simple :
 
-En MongoDB :
+````{tabbed} MongoDB
 
 ```{code-cell}
 db.NYfood.aggregate(
@@ -131,13 +137,15 @@ db.NYfood.aggregate(
        ]
 )
 ```
+````
 
-Dont l'équivalent en SQL est :
+````{tabbed} SQL
 
 ```sql
 SELECT COUNT(*) as nb
 FROM NYfood
 ```
+````
 
 On utilise la fonction aggregate.
 Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
@@ -152,7 +160,9 @@ En pratique, cela n'a pas forcément beaucoup d'intérêt.
 Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondant à un critère. Pour cela, nous allons regarder avec une requête de regroupement.
 
 ##### Avec regroupement
-Toujours dans la collection notes e la base étudiants, on cherche à connaitre le nombre détudiantes et d'étudiants. Pour cela, on va effectuer un regroupement sur l'attribu sexe.
+Toujours dans la collection notes e la base étudiants, on cherche à connaitre le nombre détudiantes et d'étudiants. Pour cela, on va effectuer un regroupement sur l'attribut sexe.
+
+````{tabbed} MongoDB
 
 ```{code-cell}
 db.notes.aggregate(
@@ -164,25 +174,28 @@ db.notes.aggregate(
        ]
 )
 ```
+````
 
-On obtient donc 2 listes diférentes:
-* une contenant F et 2
-* l'autre contenant M et 5
-
-Il y a donc eu un comptage du nombre d'étudiants en fonction de la variable sexe.
-
-L'équivalent en SQL est :
-
+````{tabbed} SQL
 ```sql
 SELECT COUNT(*) AS nb_etud
 FROM notes
 GROUP BY sexe
 ```
+````
+
+On obtient donc 2 listes différentes:
+* une contenant F et 2
+* l'autre contenant M et 5
+
+Il y a donc eu un comptage du nombre d'étudiants en fonction de la variable sexe.
+
+
 #### Additionner des variables
 
 Pour cette partie, nous allons nous placer dans cette base que nous avons créée
 
-```{code-cell}
+```javascript
 { "_id" : 1, "objet" : "a", "prix" : 10, "quantité" : 2},
 { "_id" : 2, "objet" : "b", "prix" : 20, "quantité" : 1},
 { "_id" : 3, "objet" : "c", "prix" : 5, "quantité" : 5},
@@ -195,6 +208,7 @@ Jusqu'ici, nous avons compté le nombre d'individus grâce à l'attribu `$sum`, 
 
 On se place maintenant dans la collection précédente.
 
+````{tabbed} MongoDB
 ```javascript
 db.coll.aggregate(
 [
@@ -207,20 +221,24 @@ qtt_tot: {$sum: "$quantité"}
 ]
 )
 ```
+````
 
-Ici, on calcule la somme des quantités vendues.
 
-Son équivalent en SQL est :
-
+````{tabbed} SQL
 ```sql
 SELECT SUM(quantité) AS qtt_tot
 FROM coll
 ```
+````
+
+Ici, on calcule la somme des quantités vendues.
+
 
 ##### Avec regroupement
 Si on veut sélectionner les sommes des durées de films par genre, il suffit de rajouter un regroupement comme le suivant :
 
-```{code-cell}
+````{tabbed} MongoDB
+```javascript
 db.cesars2016.aggregate(
 [
 {$group:
@@ -232,14 +250,16 @@ qtt_tot: {$sum: "$quantité"}
 ]
 )
 ```
+````
 
-Dont l'équivalent en SQL est :
-
+````{tabbed} SQL
 ```sql
 SELECT SUM(quantité) AS qtt_tot 
 FROM coll
 GROUP BY prix
 ```
+````
+
 
 ### opérateur $count
 
@@ -305,7 +325,7 @@ _Exemple :_
 
 ````{tabbed} MongoDB
 
-```{code-cell}
+```javascript
 db.ventes.aggregate([
 	{$group: {_id:null,
                   prix_max: {$max: "$prix"},
@@ -331,7 +351,7 @@ et non à une chaîne de caractères.
 
 Cette requête renvoie la valeur maximale puis minimale que prend la variable `$prix` sur tous les documents :
 
-```{code-cell}
+```javascript
 {
     "_id" : null,
     "prix_max" : 20.0,
@@ -349,7 +369,7 @@ _Exemple :_
 
 ````{tabbed} MongoDB
 
-```{code-cell}
+```javascript
 db.ventes.aggregate([
 	{$group: {_id:"$objet",
                   quantité_max: {$max: "$quantité"},
@@ -367,10 +387,10 @@ GROUP BY quantité
 ```
 ````
 
-On groupe à l'aide de la clé `"objet"`,
+On groupe à l'aide de la clé `objet`,
 on renvoie donc la valeur maximale puis minimale que prend la variable `quantité` pour chaque `objet` différent :
 
-```{code-cell}
+```javascript
 {
     "_id" : "a",
     "quantité_max" : 10.0,
