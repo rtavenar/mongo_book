@@ -168,7 +168,7 @@ Les résultats obtenus jusqu’à présent sont parfois assez indigestes, notamm
 
 <dl>
   <dt>Projection</dt>
-  <dd>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais     limiter les informations retournées en précisant comme deuxième argument de ma recherche find, la clé name avec la valeur true.</dd>
+  <dd>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais     limiter les informations retournées en précisant comme deuxième argument de ma recherche find, la clé name avec la valeur true. C'est un argument optionnel !</dd>
 </dl>
 
 ````{tabbed} Projection en MongoDB
@@ -376,6 +376,16 @@ Pour plus de renseignements sur la **les opérateurs**, consultez la documentati
 ---
 
 ## <a id="methodes"></a> Méthodes utiles pour des requêtes en MongoDB 
+
+### Connaître la liste des collections dans une base de données
+
+Pour connaître la **liste des collections** contenues dans une base de données, on utilise la commande suivante sur la base de données considérée :
+
+```javascript
+db.getCollectionInfos()
+```
+
+Cette méthode nous permet ensuite de faire des **requêtes d'interrogation sur les collections de la base** <a id="find"></a>.  
 
 ### Valeurs distinctes d'un champ : la méthode `distinct`
 
