@@ -426,13 +426,9 @@ WHERE ...
 
 La méthode `count` permet de **compter le nombre de documents dans une collection**. On peut l'utiliser directement sur la collection de base pour connaître le nombre de documents dans la collection ou bien l'utiliser après avoir exécuter une requête puisque la méthode `count()` accepte un document masque elle aussi.
 
-```{code-cell}
-use food
-```
-
 ````{tabbed} Sur une collection sans requête
 
-```{code-cell}
+```javascript
 db.NYfood.count()
 ```
 ````
