@@ -87,7 +87,7 @@ db.dropDatabase()
 ```
 Lors de l'éxecution de cette commande, c'est la base **courante**, celle qui est pointée par _db_, qui sera supprimée.
 ```{admonition} Important !
-:class: tip
+:class: warning
 Notez bien que tous les index qui pouvaient exister dans les collections de cette base seront également supprimés !
 ```
 
@@ -95,4 +95,6 @@ Notez bien que tous les index qui pouvaient exister dans les collections de cett
 ```js
 db.nomDeLaCollection.drop()
 ```
+Ici encore, les index éventuellement présents dans la collection supprimée seront eux aussi effacés.
 
+### Suppression de documents dans une collection
