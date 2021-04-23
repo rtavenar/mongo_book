@@ -56,10 +56,6 @@ Lorsque l’on souhaite effectuer un test sur une date, on utilisera des opérat
 Afin de vérifier les deux conditions de borne dans un intervalle de comparaison nous avons besoin de l’opérateur "elemmatch", ce qui va nous permettre de comparer pour chaque élément de type date s’il existe bien dans l’intervalle qui nous intéresse.
 Ainsi, si nous souhaitions regrouper des documents par date, il faudrait faire un recours par une syntaxe particulière pour préciser à quel degré de précision sur la date l’agrégation doit se faire.
 
-### les différents objets Date
-
-### créations annexes
-
 ## Transformation de formats
 
 ### présentation des formats
