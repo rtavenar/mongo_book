@@ -15,6 +15,10 @@ kernelspec:
 
 # Premières requêtes en MongoDB
 
+Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
+
+## Introduction à MongoDB
+
 Dans un **système de base de données relationnelles**, les données sont stockées par ligne *(appelées n-uplets)* dans des tables *(également appelées relations)*. Le modèle de données relationnel est un modèle très structuré, comportant des attributs typés et des contraintes d'intégrité *(comme par exemple l'unicité des valeurs de la clé primaire)*. Il est nécessaire de faire des jointures sur plusieurs tables afin de tirer des informations pertinentes de la base.
 
 **Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.** On ne parle plus de tables, ni d'enregistrements mais de collections et de documents. Une collection est un ensemble de documents, c'est l'équivalent d'une table en relationnel. Un document est un enregistrement, une ligne dans le modèle de données relationnel. Ce système de gestion de données nous évite de faire des jointures de tables car toutes les informations nécessaires sont stockées dans un même document.
@@ -36,8 +40,6 @@ Tout document appartient à une collection et a un champ appelé "_id" qui ident
 On a une association de clés et de valeurs, un document est équivalent aux objets JSON. Dans ce document, on a accès au nom de l'étudiant, à ses notes *(c'est une **liste de valeurs**, ce type d'attribut n'étant pas disponible dans le modèle relationnel)*, et à son sexe. L'étudiant représenté par ce document, est identifié à l'aide d'une clé "_id". Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d'utiliser ces indications clés et valeurs. 
 
 Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Ensuite nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB sont données à la fin de ce chapitre.
-
-Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
 ---
 
@@ -377,3 +379,8 @@ On également limiter le nombre de résultats obtenus avec la méthode limit.
 ```javascript
 db.NYfood.find({}).limit(2)
 ```
+
+---
+
+## Conclusion
+
