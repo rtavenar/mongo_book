@@ -516,7 +516,7 @@ db.notes.find({}, {"nom": true, "_id": false})
 
 *Réponse 1 : L'opérateur `$size` : permet de prendre en compte la taille de la liste de valeurs, telle qu'une liste de notes.*
 
-**Quel opérateur permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste ? **
+**Quel opérateur permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste ?**
 
 1. L'opérateur `$eq`
 2. L'opérateur `$nor`
