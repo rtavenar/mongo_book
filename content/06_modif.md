@@ -66,13 +66,8 @@ db.ventes.update(
 )
 ```
 Cette requête par exemple ajoute un attribut "marque" : "Citroën" aux modèles C1 et C3.
+
 ### Upsert
-<<<<<<< Updated upstream
-
-## Suppression
-
-Ceci est un test
-=======
 L'option `upsert` (mélange de "update" et "insert") permet de mettre une condition sur la requête : si aucun document ne correspond aux conditions indiquées en 1ère ligne, alors un nouveau document est créer par les champs renseignés sur la 2nde ligne.
 ```javascript
 db.ventes.update(
@@ -82,5 +77,5 @@ db.ventes.update(
 )
 ```
 Dans cet exemple, si la base de données contient un élément ayant "C1" en variable "nom" alors il sera remplacé par un document ayant "C1" en variable "nom" **et** "Citroën" en variable "marque". Sinon un document {"nom": "C1", "marque": "Citroën"} sera créé.
+
 ## Suppression
->>>>>>> Stashed changes
