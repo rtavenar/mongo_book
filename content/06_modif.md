@@ -66,9 +66,9 @@ Le document sélectionné sur la 1ère ligne est supprimé et remplacé selon le
 Si l'on souhaite conserver les autres champs, il suffit d'inclure la 2nde ligne dans un `$set`.
 ```js
 db.ventes.update(
-	{"nom": "C1"},
+	{"nom": "C2"},
 	{$set:
-		{"nom": "C1", "marque": "Citroën"}
+		{"marque": "Citroën"}
 	}
 )
 ```
@@ -78,23 +78,32 @@ Ici également, seul le 1er document de la liste répondant aux critères de la 
 Pour modifier plusieurs documents à la fois il est nécessaire d'ajouter `{multi: true}` en fin de requête.
 ```js
 db.ventes.update(
-	{"modèle" : {$in: ["C1", "C3"]}},
-	{$set: {"marque": "Citroën"}},
+	{"nom" : {$in: ["C1", "C2"]}},
+	{$set: {"pays": "France"}},
 	{multi: true}
 )
 ```
-Cette requête par exemple ajoute un attribut "marque" : "Citroën" aux modèles C1 **et** C3.
+Cette requête par exemple ajoute un attribut "pays" : "France" aux modèles C1 **et** C3.
 
 ### Upsert
 L'option `upsert` (mélange de "update" et "insert") permet de mettre une condition sur la requête : si aucun document ne correspond aux conditions indiquées en 1ère ligne, alors un nouveau document est créer par les champs renseignés sur la 2nde ligne.
 ```js
 db.ventes.update(
 	{"nom": "C1"},
-	{"nom": "C1", "marque": "Citroën"},
+	{$set : {"nom": "C1", "Nombre de roues": 4}},
 	{upsert: true}
 )
 ```
-Dans cet exemple, si la base de données contient un élément ayant "C1" en variable "nom" alors il sera remplacé par un document ayant "C1" en variable "nom" **et** "Citroën" en variable "marque". Sinon un document `{"nom": "C1", "marque": "Citroën"}` sera créé.
+Ici on ajoute une nouvelle variable "Nombre de roues" à laquelle on attribue 4 au modèle "C1"
+
+```js
+db.ventes.update(
+	{"nom": "Twingo"},
+	{$set : {"Nombre de roues": 4}},
+	{upsert: true}
+)
+```
+Cette fois un nouveau document est ajouté à la base.
 
 ## Suppression
 
