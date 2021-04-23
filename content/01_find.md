@@ -189,7 +189,7 @@ WHERE cuisine = 'Bakery' AND 'borough' = 'Bronx'
 
 ````
 
-> C'est donc l'équivalent du `SELECT name` en SQL. Jusqu'ici, on utilisais le `SELECT *` *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque clé ou de chaque attribut.
+C'est donc l'équivalent du `SELECT name` en SQL. Jusqu'ici, on utilisais le `SELECT *` *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque clé ou de chaque attribut.
 
 ```{admonition} Embellissez vos résultats ! 
 :class: tip
@@ -509,7 +509,6 @@ db.notes.find({}, {"nom": true, "_id": false})
 *Réponse C : L'argument `"_id": false` permet de retirer l'affichage de la clé `id`. On ne récupère que le noms des étudiants de la base.*
 
 **3. Comment récupérer la liste des étudiants ayant obtenu exactement deux notes ?**
-
 ⋅⋅A. `db.notes.find({"notes": {$size: 2}})`
 ⋅⋅B. `db.notes.find({"notes": {$exists: true}})`
 ⋅⋅C. `db.notes.find({$or: [{"notes": {$size: 1}},{"notes": {$size: 2}}]})`
@@ -526,9 +525,9 @@ db.notes.find({}, {"nom": true, "_id": false})
 
 **5. Quelle méthode ci-dessous ne fait pas partie du langage MongoDB ?**
 
-⋅⋅A. `db.collectionName.find({}).orderby({"key" : 1})`
-⋅⋅B. `db.collectionName.find({}).sort({"key" : 1})`
-⋅⋅C. `db.collectionName.find({}).limit(3)`
+⋅⋅*. `db.collectionName.find({}).orderby({"key" : 1})`
+⋅⋅*. `db.collectionName.find({}).sort({"key" : 1})`
+⋅⋅*. `db.collectionName.find({}).limit(3)`
 
 *Réponse A : Bien que `ORDER BY` soit une instruction en SQL, ce n'est pas disponible pour les bases de données en MongoDB.*
 
