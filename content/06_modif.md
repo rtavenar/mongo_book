@@ -38,7 +38,7 @@ db.createCollection("ventes")
 
 Ici on crée par exemple une collection vente au sein de la base voiture.
 
-⚠️ Si vous tentez d'executer plusieur fois la commande une erreur sera créée car votre collection existe déjà.
+:warning: *** Si vous tentez d'executer plusieur fois la commande une erreur sera créée car votre collection existe déjà. *** 
 
 ### Ajout de nouveaux documents 
 
