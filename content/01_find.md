@@ -373,6 +373,10 @@ Le résultat de cette requête sera l'ensemble des documents ne contenant pas la
 
 Pour plus de renseignements sur la **les opérateurs**, consultez la documentation MongoDB [disponible à cette adresse](https://docs.mongodb.com/manual/reference/operator/query/).
 
+
+Opérateurs : le sous-document contenant l’opérateur peut en fait contenir plusieurs opérateurs et ainsi ne seront retournées que les documents vérifiant toutes les conditions
+
+
 ---
 
 ## <a id="methodes"></a> Méthodes utiles pour des requêtes en MongoDB 
@@ -455,23 +459,78 @@ db.collectionName.find().sort(
 
 ### Limiter la récupération des documents : la méthode `limit`
 
-La méthode `limit` permet de **limiter le nombre de documents renvoyés**. Elle accepte les arguments numériques. Voici un exemple :
+La méthode `limit` permet de **limiter le nombre de documents renvoyés**. Elle accepte les arguments numériques. Voici la syntaxe :
 
 ```javascript
-db.NYfood.find({}).limit(2)
+db.collectionName.find({}).limit(2)
 ```
 
 ---
 
 ## <a id="resume"></a> L'essentiel à retenir pour des premières requêtes en MongoDB
 
+### Fiche "résumé" pour bien démarrer en MongoDB
 
-Pour vous tester, répondez aux questions du quizz ci-dessous.
+Objectif | Syntaxe 
+--- | --- 
+Récupérer toutes les occurrences de la collection | `db.collectionName.find({})`
+Récupérer la première occurrence de la collection | `db.collectionName.findOne({})`
+Filtrer les données | `db.collectionName.find({"x": valeur})`
+Limiter l'affichage des clés | `db.collectionName.find({}, {"key": true}) `
+Formater les documents de sortie | `db.collectionName.find({}).pretty()`  
+Requêtes avec des opérateurs de comparaison | `db.collectionName.find({"x": {operateur: valeur}})`  
+Trier les documents de sortie | `db.collectionName.find().sort({"key" : 1})`
+Compter les documents de sortie | `db.collectionName.find({}).count()`
+Limiter les documents de sortie | `db.collectionName.find({}).limit(2)` 
+Valeurs distinctes d'un champ | `db.collectionName.distinct(champ, {})`
 
-### <a id="quizz"></a> À vous de jouer ! 
+Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quizz ci-dessous.
 
-1. Qu'est-ce qui caractérise MongoDB ? 
-A. C'est un modèle orienté document
+### <a id="quizz"></a> Quizz "Premières requêtes en MongoDB" : À vous de jouer ! 
+
+**1. Qu'est-ce qui caractérise MongoDB ?**
+
+⋅⋅A. C'est un modèle orienté graphique
+⋅⋅B. C'est un modèle orienté document
+⋅⋅C. C'est un modèle structuré
+
+*Réponse B : C'est un modèle orienté document.*
+
+**2. Que nous renvoie cette requête sur la collection `notes` de la base `etudiants` ?**
+
+```javascript
+db.notes.find({}, {"nom": true, "_id": false}) 
+```
+
+⋅⋅A. Affiche **tout** le contenu de la collection `notes`
+⋅⋅B. Les noms des étudiants de la base et la clé `_id` qui identifie chaque étudiant
+⋅⋅C. Tous les noms des étudiants de la base, mais pas les autres clés
+
+*Réponse C : L'argument `"_id": false` permet de retirer l'affichage de la clé `id`. On ne récupère que le noms des étudiants de la base.*
+
+**3. Comment récupérer la liste des étudiants ayant obtenu exactement deux notes ?**
+
+⋅⋅A. `db.notes.find({"notes": {$size: 2}})`
+⋅⋅B. `db.notes.find({"notes": {$exists: true}})`
+⋅⋅C. `db.notes.find({$or: [{"notes": {$size: 1}},{"notes": {$size: 2}}]})`
+
+*Réponse A : L'opérateur `$size` : permet de prendre en compte la taille de la liste de valeurs, telle qu'une liste de notes.*
+
+**4. Quel opérateur permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste ? **
+
+⋅⋅A. L'opérateur `$eq`
+⋅⋅B. L'opérateur `$nor`
+⋅⋅C. L'opérateur `$gt`
+
+*Réponse A : L'opérateur `$nor` permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste.*
+
+**5. Quelle méthode ci-dessous ne fait pas partie du langage MongoDB ?**
+
+⋅⋅A. `db.collectionName.find({}).orderby({"key" : 1})`
+⋅⋅B. `db.collectionName.find({}).sort({"key" : 1})`
+⋅⋅C. `db.collectionName.find({}).limit(3)`
+
+*Réponse A : Bien que `ORDER BY` soit une instruction en SQL, ce n'est pas disponible pour les bases de données en MongoDB.*
 
 
 Afin que le langage mongoDB n'ait plus aucun secret pour vous, nous vous invitons à lire les **chapitres suivants** et à consultez la [documentation MongoDB](https://docs.mongodb.com) !
