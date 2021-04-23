@@ -53,7 +53,7 @@ db.ventes.insert([{"nom" : "C1"}, {"nom" : "C2"}])
 
 ## Modification
 ### Remplacement d'un document
-```{code-cell}
+```js
 db.ventes.update(
 	{"nom": "C1"},
 	{"nom": "C1", "marque": "Citroën"}
@@ -64,7 +64,7 @@ Le document sélectionné sur la 1ère ligne est supprimé et remplacé selon le
 
 ### Modification d'un document
 Si l'on souhaite conserver les autres champs, il suffit d'inclure la 2nde ligne dans un `$set`.
-```{code-cell}
+```js
 db.ventes.update(
 	{"nom": "C1"},
 	{$set:
@@ -76,7 +76,7 @@ Ici également, seul le 1er document de la liste répondant aux critères de la 
 
 ### Modification de plusieurs documents
 Pour modifier plusieurs documents à la fois il est nécessaire d'ajouter `{multi: true}` en fin de requête.
-```{code-cell}
+```js
 db.ventes.update(
 	{"modèle" : {$in: ["C1", "C3"]}},
 	{$set: {"marque": "Citroën"}},
@@ -87,7 +87,7 @@ Cette requête par exemple ajoute un attribut "marque" : "Citroën" aux modèles
 
 ### Upsert
 L'option `upsert` (mélange de "update" et "insert") permet de mettre une condition sur la requête : si aucun document ne correspond aux conditions indiquées en 1ère ligne, alors un nouveau document est créer par les champs renseignés sur la 2nde ligne.
-```{code-cell}
+```js
 db.ventes.update(
 	{"nom": "C1"},
 	{"nom": "C1", "marque": "Citroën"},
