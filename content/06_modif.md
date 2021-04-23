@@ -34,7 +34,7 @@ db.createventestion("ventes")
 
 ## Modification
 ### Remplacement d'un document
-```javascript
+```{code-cell}
 db.ventes.update(
 	{"nom": "C1"},
 	{"nom": "C1", "marque": "Citroën"}
