@@ -275,7 +275,7 @@ WHERE a >= 1
 L'exemple suivant montre la liste des étudiants ayant au moins une note (strictement) supérieure à 13 :
 
 ```{code-cell}
-use food
+use etudiants
 ```
 
 ```{code-cell}
@@ -321,7 +321,7 @@ db.t.find(
 )
 ```
 
-> Cette requête renvera donc les documents ayant une clé `a`.
+Cette requête renvera donc les documents ayant une clé `a`.
 
 Enfin, l'opérateur `$size` permet des récuperer les documents avec des sous-documents d'une certaine taille. Sa syntaxe en MongoDB s'écrit comme suit :
 
