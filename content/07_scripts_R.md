@@ -782,7 +782,7 @@ leaflet(restos.coord) %>%
 ```r
 pal = colorFactor("Accent", restos.coord$borough)
 leaflet(restos.coord) %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
+  addProviderTiles("Wikimedia") %>%
   setView(lng  = -73.9,
           lat  =  40.7,
           zoom =  10) %>%
