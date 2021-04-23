@@ -20,17 +20,35 @@ kernelspec:
 Ce chapitre traite des différentes requêtes de modification (insertion, modification et suppression)
 
 ## Insertion
-Ici, on cherche à utiliser la base "voitures". Si elle n'existe pas elle sera alors créée.
 
-```{js echo = true, results = 'hide'}
+Pour la création d'une nouvelle collection il est nécessaire de sélectionner une base. Si elle n'existe pas, elle sera alors créée.
+
+```{code-cell}
 use voitures
 ```
-Création d'une nouvelle ventestion au sein de la base sélectionnés.
 
-```js 
-db.createventestion("ventes")
+### Création d'une collection 
+
+Il est nécessaire d'utiliser la commande `db.createCollection("NomDeLaNouvelleCollection")` pour créer une nouvelle collection au sein de la base sélectionner 
+
+
+```{code-cell}
+db.createCollection("ventes")
 ```
 
+Ici on crée par exemple une collection vente au sein de la base voiture.
+
+⚠️ Si vous tentez d'executer plusieur fois la commande une erreur sera créée car votre collection existe déjà.
+
+### Ajout de nouveaux documents 
+
+La commande `db.NomDeLaCollection.insert([])` permet l'ajout d'une liste de document au sein de la collection. 
+
+Exemple: 
+
+```{code-cell}
+db.ventes.insert([{"nom" : "C1"}, {"nom" : "C2"}])
+```
 
 ## Modification
 ### Remplacement d'un document
