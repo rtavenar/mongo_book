@@ -56,7 +56,7 @@ Les clés se doivent d'être des **chaînes de caractères** mais nous pouvons a
 Tout d'abord, il est nécessaire d'avoir installé un serveur comme par exemple le serveur **MongoDB Atlas** qui tourne en continu. Après avoir démarré le serveur, il vous faut lancer une connexion client, le **client Robot 3T** est idéal pour des requêtes en MongoDB. Il ne vous reste plus qu'à choisir une base de données ou en importer une et sélectionner *"Open Shell"* par clique droit sur la base pour faire vos requêtes !    
 ```
 
-Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Dans un second temps, nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB, une [**fiche "résumé" des quelques points à retenir**](#resume) et un petit [**quizz**](#quizz) sont donnés à la fin de ce chapitre.
+Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Dans un second temps, nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB, une [**fiche "résumé" des quelques points à retenir**](#resume) et un petit [**quizz**](#quiz) sont donnés à la fin de ce chapitre.
 
 ---
 
@@ -476,7 +476,7 @@ db.collectionName.find({}).limit(2)
 
 ---
 
-## <a id="resume"></a> L'essentiel à retenir pour des premières requêtes en MongoDB
+## <a id="resume"></a> À retenir
 
 ### Fiche "résumé" pour bien démarrer en MongoDB
 
@@ -495,7 +495,7 @@ Valeurs distinctes d'un champ | `db.collectionName.distinct(champ, {})`
 
 **Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quizz ci-dessous.**
 
-### <a id="quizz"></a> Quizz "Premières requêtes en MongoDB" : À vous de jouer ! 
+### <a id="quiz"></a> Quiz "Premières requêtes en MongoDB" : À vous de jouer ! 
 
 **Qu'est-ce qui caractérise MongoDB ?**
 
