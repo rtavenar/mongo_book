@@ -25,7 +25,7 @@ Les requêtes de regroupement vont permettre d'effectuer des opérations d'accum
 
 **syntaxe**
 
-```
+```javascript
 db.coll.aggregate([
 	{
   $group:
@@ -38,6 +38,8 @@ db.coll.aggregate([
 
 ])
 ```
+
+Pour tous les opérateurs que nous allons étudier dans cette partie du cours, la syntaxe sera identique à celle-ci.
 
 Les équivalents en SQL de l'opérateur $sum sont `COUNT(*)` ou bien `SUM` qui permettent de compter le nombre de variables.
 **Exemple de requête sans regroupement**
@@ -177,31 +179,42 @@ FROM notes
 GROUP BY sexe
 ```
 #### Additionner des variables
+
+Pour cette partie, nous allons nous placer dans cette base que nous avons créée
+
+```{code-cell}
+{ "_id" : 1, "objet" : "a", "prix" : 10, "quantité" : 2},
+{ "_id" : 2, "objet" : "b", "prix" : 20, "quantité" : 1},
+{ "_id" : 3, "objet" : "c", "prix" : 5, "quantité" : 5},
+{ "_id" : 4, "objet" : "a", "prix" : 10, "quantité" : 10},
+{ "_id" : 5, "objet" : "c", "prix" : 5, "quantité" : 10}
+```
+
 ##### Sans regroupement
 Jusqu'ici, nous avons compté le nombre d'individus grâce à l'attribu `$sum`, mais celui ci permet aussi `d'additionner des variables`.
 
-On se place maintenant dans la collection cesars2016 de la base cinema.
+On se place maintenant dans la collection précédente.
 
-```{code-cell}
-db.cesars2016.aggregate(
+```javascript
+db.coll.aggregate(
 [
 {$group:
 {
 _id: null,
-duree_tot: {$sum: "$durée"}
+qtt_tot: {$sum: "$quantité"}
 }
 }
 ]
 )
 ```
 
-Ici, on calcule la somme des durées des films de la base.
+Ici, on calcule la somme des quantités vendues.
 
 Son équivalent en SQL est :
 
 ```sql
-SELECT SUM(durée) AS duree_tot 
-FROM t
+SELECT SUM(quantité) AS qtt_tot
+FROM coll
 ```
 
 ##### Avec regroupement
@@ -212,8 +225,8 @@ db.cesars2016.aggregate(
 [
 {$group:
 {
-_id: "$genre",
-nb: {$sum: "$durée"}
+_id: "$prix",
+qtt_tot: {$sum: "$quantité"}
 }
 }
 ]
@@ -223,9 +236,9 @@ nb: {$sum: "$durée"}
 Dont l'équivalent en SQL est :
 
 ```sql
-SELECT SUM(durée) AS duree_tot 
-FROM t
-GROUP BY genre
+SELECT SUM(quantité) AS qtt_tot 
+FROM coll
+GROUP BY prix
 ```
 
 ### opérateur $count
