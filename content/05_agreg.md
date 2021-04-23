@@ -263,6 +263,11 @@ Au final, l'opérateur `$count` est un équivalent aux opérateurs `$group` avec
 
 ### Opérateurs $min et $max
 
+
+**syntaxe**
+
+A remplir par dimitri
+
 Pour cette partie on se basera sur cette collection pour les exemples :
 
 ```{code-cell}
