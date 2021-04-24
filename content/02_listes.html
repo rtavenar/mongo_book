@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Attributs de type date" href="03_dates.html" />
-    <link rel="prev" title="1. Premières requêtes" href="01_find.html" />
+    <link rel="prev" title="1. Premières requêtes en MongoDB" href="01_find.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -97,7 +97,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_find.html">
-   1. Premières requêtes
+   1. Premières requêtes en MongoDB
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -454,15 +454,6 @@
 	&quot;sexe&quot; : &quot;M&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
-	&quot;nom&quot; : &quot;Hélène&quot;,
-	&quot;notes&quot; : [
-		13
-	],
-	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;F&quot;
-}
-{
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7741&quot;),
 	&quot;nom&quot; : &quot;Marc&quot;,
 	&quot;notes&quot; : [
@@ -473,13 +464,6 @@
 	&quot;sexe&quot; : &quot;M&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7740&quot;),
-	&quot;nom&quot; : &quot;Sophie&quot;,
-	&quot;notes&quot; : [ ],
-	&quot;ddn&quot; : ISODate(&quot;1996-09-12T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;F&quot;
-}
-{
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
 	&quot;nom&quot; : &quot;Marc&quot;,
 	&quot;notes&quot; : [
@@ -487,6 +471,22 @@
 	],
 	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
 	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
+	&quot;notes&quot; : [
+		13
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7740&quot;),
+	&quot;nom&quot; : &quot;Sophie&quot;,
+	&quot;notes&quot; : [ ],
+	&quot;ddn&quot; : ISODate(&quot;1996-09-12T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
 }
 </pre></div>
 </div>
@@ -554,13 +554,13 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 	&quot;sexe&quot; : &quot;M&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
-	&quot;nom&quot; : &quot;Hélène&quot;,
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
 	&quot;notes&quot; : [
-		13
+		15
 	],
-	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;F&quot;
+	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
 }
 {
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773c&quot;),
@@ -578,13 +578,13 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 	&quot;sexe&quot; : &quot;M&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
-	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
 	&quot;notes&quot; : [
-		15
+		13
 	],
-	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;M&quot;
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
 }
 </pre></div>
 </div>
@@ -608,6 +608,15 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 	&quot;sexe&quot; : &quot;M&quot;
 }
 {
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		15
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
 	&quot;nom&quot; : &quot;Hélène&quot;,
 	&quot;notes&quot; : [
@@ -622,15 +631,6 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 	&quot;notes&quot; : [ ],
 	&quot;ddn&quot; : ISODate(&quot;1996-09-12T00:00:00Z&quot;),
 	&quot;sexe&quot; : &quot;F&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
-	&quot;nom&quot; : &quot;Marc&quot;,
-	&quot;notes&quot; : [
-		15
-	],
-	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;M&quot;
 }
 </pre></div>
 </div>
@@ -657,15 +657,6 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 	&quot;sexe&quot; : &quot;M&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
-	&quot;nom&quot; : &quot;Hélène&quot;,
-	&quot;notes&quot; : [
-		13
-	],
-	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;F&quot;
-}
-{
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
 	&quot;nom&quot; : &quot;Marc&quot;,
 	&quot;notes&quot; : [
@@ -673,6 +664,15 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 	],
 	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
 	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
+	&quot;notes&quot; : [
+		13
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
 }
 </pre></div>
 </div>
@@ -694,15 +694,6 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
-	&quot;nom&quot; : &quot;Hélène&quot;,
-	&quot;notes&quot; : [
-		13
-	],
-	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;F&quot;
-}
-{
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
 	&quot;nom&quot; : &quot;Marc&quot;,
 	&quot;notes&quot; : [
@@ -710,6 +701,15 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 	],
 	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
 	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
+	&quot;notes&quot; : [
+		13
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
 }
 </pre></div>
 </div>
@@ -955,7 +955,7 @@ Les conditions sont toutes respectées au moins une fois, la liste complète est
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="01_find.html" title="previous page"><span class="section-number">1. </span>Premières requêtes</a>
+    <a class='left-prev' id="prev-link" href="01_find.html" title="previous page"><span class="section-number">1. </span>Premières requêtes en MongoDB</a>
     <a class='right-next' id="next-link" href="03_dates.html" title="next page"><span class="section-number">3. </span>Attributs de type date</a>
 
         </div>

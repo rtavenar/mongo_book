@@ -95,7 +95,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_find.html">
-   1. Premières requêtes
+   1. Premières requêtes en MongoDB
   </a>
  </li>
  <li class="toctree-l1">
@@ -279,6 +279,87 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#qu-est-ce-qu-une-date-dans-mongodb">
+   3.1. Qu’est-ce qu’une date dans MONGODB
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformation-de-formats">
+   3.2. Transformation de formats
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#presentation-des-formats">
+     3.2.1. présentation des formats
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datefromstring">
+     3.2.2. $dateFromString
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exemples">
+       3.2.2.1. Exemples
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datetostring">
+     3.2.3. $dateToString
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       3.2.3.1. Exemples
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exemples-d-applications">
+   3.3. Exemples d’applications
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utilisation-d-un-objet-date-au-format-string">
+     3.3.1. Utilisation d’un objet date au format string.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utilisation-d-un-objet-date-au-format-date">
+     3.3.2. Utilisation d’un objet date au format Date.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utilisation-d-un-objet-date-dans-une-requete-d-egalite">
+     3.3.3. Utilisation d’un objet date dans une requête d’égalité.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utilisation-d-un-objet-date-dans-une-liste">
+     3.3.4. Utilisation d’un objet date dans une liste.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utilisation-d-un-objet-date-dans-un-aggregate">
+     3.3.5. Utilisation d’un objet date dans un aggregate
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -290,10 +371,262 @@
   <div class="section" id="attributs-de-type-date">
 <h1><span class="section-number">3. </span>Attributs de type date<a class="headerlink" href="#attributs-de-type-date" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><p>Auteurs/trices : HAMELIN Marine, GARY Gaston, ABOULKACEM Zakaria, RALIN Kévin.</p></li>
+<li><p>Auteurs/trices : <strong>HAMELIN Marine, GARY Gaston, RALIN Kévin, ABOULKACEM Zakaria</strong></p></li>
 </ul>
-<p>Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates) et des différents types de requêtes que l’on peut vouloir faire sur de tels attributs</p>
-<p>Le fichier que vous devez modifier pour ce chapitre est <code class="docutils literal notranslate"><span class="pre">mongo_book/content/03_dates.md</span></code>.</p>
+<p>Ce chapitre traite des attributs de type dates (et sous-cas des listes de dates) et des différents types de requêtes que l’on peut vouloir faire sur de tels attributs;</p>
+<div class="section" id="qu-est-ce-qu-une-date-dans-mongodb">
+<h2><span class="section-number">3.1. </span>Qu’est-ce qu’une date dans MONGODB<a class="headerlink" href="#qu-est-ce-qu-une-date-dans-mongodb" title="Permalink to this headline">¶</a></h2>
+<p>Les dates sur MongoDB sont définies a la milliseconde près, nous allons nous intéresser aux requêtes utilisant des dates, car les attributs de type date doivent être considérés de façon particulière.
+Les dates sont enregistrées sous la forme ISO date, nous retrouvons la date de la forme suivante :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s2">&quot;&lt;YYYY-mm-ddTHH:MM:ssZ&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ce format nous permet de d’avoir une version de référence (UTC) de la date spécifiée.
+Nous pouvons mettre uniquement l’année ou l’année et le mois sans devoir spécifier tout le langage s’occupe de remplir les autres arguments pour retrouver la forme :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s2">&quot;&lt;YYYY-mm-ddTHH:MM:ssZ&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Exemple :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">New</span> <span class="nb">Date</span> <span class="p">(</span><span class="s1">&#39;2021&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ce qui donne un objet de type date de la forme suivante :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">ISODate</span><span class="p">(</span><span class="s2">&quot;2021-01-01T00 :00:00Z&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Nous 	avons aussi d’autre formats de dates qui donne la date suivant
+fuseau horaire locale de l’utilisateur.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s2">&quot;&lt;YYYY-mm-ddTHH:MM:ss&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ainsi, il faut toujours utiliser une comparaison sous forme d’intervalle pour ces attributs.
+Lorsque l’on souhaite effectuer un test sur une date, on utilisera des opérateurs de comparaison.</p>
+<p>L’opérateur <code class="docutils literal notranslate"><span class="pre">elemmatch</span></code> nous permet vérifier les deux conditions de bornes dans cette intervalle.</p>
+<p>Ainsi, si nous souhaitions effectuer un regroupement par date, il faudrait préciser à quel degré de précision sur la date l’agrégation doit se faire.</p>
+</div>
+<div class="section" id="transformation-de-formats">
+<h2><span class="section-number">3.2. </span>Transformation de formats<a class="headerlink" href="#transformation-de-formats" title="Permalink to this headline">¶</a></h2>
+<p>les deux procédés opératoires présentées ci-dessous sont applicable uniquement au sein de la méthode aggregate.</p>
+<div class="section" id="presentation-des-formats">
+<h3><span class="section-number">3.2.1. </span>présentation des formats<a class="headerlink" href="#presentation-des-formats" title="Permalink to this headline">¶</a></h3>
+<p>Ci-dessous un récapitulatif des formats disponibles</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:left head"><p>abbreviation</p></th>
+<th class="text-align:center head"><p>Description</p></th>
+<th class="text-align:right head"><p>Valeurs possibles</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:left"><p>%d</p></td>
+<td class="text-align:center"><p>jour du mois</p></td>
+<td class="text-align:right"><p>01-31</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>%G</p></td>
+<td class="text-align:center"><p>Année dans le format ISO 8601</p></td>
+<td class="text-align:right"><p>0000-9999</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>%H</p></td>
+<td class="text-align:center"><p>Heure</p></td>
+<td class="text-align:right"><p>00-23</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>%L</p></td>
+<td class="text-align:center"><p>Miliseconde</p></td>
+<td class="text-align:right"><p>000-999</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>%m</p></td>
+<td class="text-align:center"><p>Mois</p></td>
+<td class="text-align:right"><p>01-12</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>%M</p></td>
+<td class="text-align:center"><p>Minute</p></td>
+<td class="text-align:right"><p>00-59</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>%S</p></td>
+<td class="text-align:center"><p>Seconde</p></td>
+<td class="text-align:right"><p>00-60</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>%u</p></td>
+<td class="text-align:center"><p>jour par rapport à la semaine</p></td>
+<td class="text-align:right"><p>1-7 (Lundi-Dimanche)</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>%v</p></td>
+<td class="text-align:center"><p>Semaine</p></td>
+<td class="text-align:right"><p>1-53</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>%Y</p></td>
+<td class="text-align:center"><p>année</p></td>
+<td class="text-align:right"><p>0000-9999</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>%z</p></td>
+<td class="text-align:center"><p>décalage temporel par rapport à UTC</p></td>
+<td class="text-align:right"><p>+/-[hh][mm]</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:left"><p>%Z</p></td>
+<td class="text-align:center"><p>décalage temporel converti en minutes</p></td>
+<td class="text-align:right"><p>+/-mmm</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:left"><p>%%</p></td>
+<td class="text-align:center"><p>afficher le caractère pourcentage</p></td>
+<td class="text-align:right"><p>%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="datefromstring">
+<h3><span class="section-number">3.2.2. </span>$dateFromString<a class="headerlink" href="#datefromstring" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span> <span class="p">{</span> <span class="nx">$dateFromString</span><span class="o">:</span> <span class="p">{</span>
+     <span class="nx">dateString</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">dateStringExpression</span><span class="o">&gt;</span><span class="p">,</span>
+     <span class="nx">format</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">formatStringExpression</span><span class="o">&gt;</span><span class="p">,</span>
+     <span class="nx">timezone</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">tzExpression</span><span class="o">&gt;</span><span class="p">,</span>
+     <span class="nx">onError</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">onErrorExpression</span><span class="o">&gt;</span><span class="p">,</span>
+     <span class="nx">onNull</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">onNullExpression</span><span class="o">&gt;</span>
+<span class="p">}</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>La méthode $datefromstring permet de convertir une chaine de caractère représentant une date en objet date pour pouvoir effectuer des calculs et comparaison dessus.</p>
+<p>La méthode prend en argument :</p>
+<ul class="simple">
+<li><p>la date en format texte (Obligatoire)</p></li>
+<li><p>Le format</p></li>
+<li><p>Le fuseau horaire</p></li>
+<li><p>Une gestion potentielle des erreurs</p></li>
+</ul>
+<ul class="simple">
+<li><p>une gestion potentielle des valeurs nulles</p></li>
+</ul>
+<div class="section" id="exemples">
+<h4><span class="section-number">3.2.2.1. </span>Exemples<a class="headerlink" href="#exemples" title="Permalink to this headline">¶</a></h4>
+<p>Partons du postulat qu’il existe une variable de type string qui décrit une temporalité dans la collection métro.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">metro</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span>
+   <span class="p">[</span>
+     <span class="p">{</span>
+       <span class="nx">$project</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">objetdate</span> <span class="o">:</span> <span class="p">{</span> 
+              <span class="nx">$dateFromString</span><span class="o">:</span> <span class="p">{</span>
+              <span class="nx">dateString</span><span class="o">:</span> <span class="s2">&quot;23-04-2021 à 15 heures 25 minutes et 23 secondes&quot;</span><span class="p">,</span> <span class="nx">format</span><span class="o">:</span> <span class="s2">&quot;%d-%m-%Y à %H heures %M minutes et %S secondes&quot;</span>
+                <span class="p">}</span> 
+              <span class="p">}</span>
+       <span class="p">}</span>
+     <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="datetostring">
+<h3><span class="section-number">3.2.3. </span>$dateToString<a class="headerlink" href="#datetostring" title="Permalink to this headline">¶</a></h3>
+<p>On retrouve la méthode inverse avec des arguments similaires.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span> <span class="p">{</span> <span class="nx">$dateToString</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">date</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">dateExpression</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nx">format</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">formatString</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nx">timezone</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">tzExpression</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="nx">onNull</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">expression</span><span class="o">&gt;</span>
+<span class="p">}</span> <span class="p">}</span>
+</pre></div>
+</div>
+<p>La méthode prend en argument :</p>
+<ul class="simple">
+<li><p>la date en format texte (Obligatoire)</p></li>
+<li><p>Le format</p></li>
+<li><p>Le fuseau horaire</p></li>
+<li><p>Une gestion potentielle des valeurs nulles</p></li>
+</ul>
+<div class="section" id="id1">
+<h4><span class="section-number">3.2.3.1. </span>Exemples<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">metro</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span>
+   <span class="p">[</span>
+     <span class="p">{</span>
+       <span class="nx">$project</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">years_tr</span><span class="o">:</span> <span class="p">{</span> <span class="nx">$dateToString</span><span class="o">:</span> <span class="p">{</span> <span class="nx">format</span><span class="o">:</span> <span class="s2">&quot;%Y&quot;</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span> <span class="s2">&quot;$lastCheckDate&quot;</span><span class="p">}</span> <span class="p">},</span>
+          <span class="nx">month_str</span> <span class="o">:</span> <span class="p">{</span><span class="nx">$dateToString</span><span class="o">:</span> <span class="p">{</span> <span class="nx">format</span><span class="o">:</span> <span class="s2">&quot;%m&quot;</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span> <span class="s2">&quot;$lastCheckDate&quot;</span><span class="p">}</span> <span class="p">},</span>
+          <span class="nx">date_str</span> <span class="o">:</span> <span class="p">{</span><span class="nx">$dateToString</span><span class="o">:</span> <span class="p">{</span> <span class="nx">format</span><span class="o">:</span> <span class="s2">&quot;%d-%m-%Y&quot;</span><span class="p">,</span> <span class="nx">date</span><span class="o">:</span> <span class="s2">&quot;$lastCheckDate&quot;</span><span class="p">}</span> <span class="p">}</span>
+       <span class="p">}</span>
+     <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>on obtient alors le résultat</p>
+<p><img alt="Resultat" src="../_images/resdatetostring.png" /></p>
+</div>
+</div>
+</div>
+<div class="section" id="exemples-d-applications">
+<h2><span class="section-number">3.3. </span>Exemples d’applications<a class="headerlink" href="#exemples-d-applications" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="utilisation-d-un-objet-date-au-format-string">
+<h3><span class="section-number">3.3.1. </span>Utilisation d’un objet date au format string.<a class="headerlink" href="#utilisation-d-un-objet-date-au-format-string" title="Permalink to this headline">¶</a></h3>
+<p>Exemple d’une requête simple. On veut récupérer la liste des individus dont l’attribut date est supérieur à une date créée.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate</span> <span class="o">=</span> <span class="s2">&quot;&lt;YYYY-mm-dd&gt;&quot;</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">coll</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;varDateString&quot;</span> <span class="o">:</span> <span class="p">{</span><span class="nx">$gt</span> <span class="o">:</span> <span class="nx">madate</span><span class="p">}})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utilisation-d-un-objet-date-au-format-date">
+<h3><span class="section-number">3.3.2. </span>Utilisation d’un objet date au format Date.<a class="headerlink" href="#utilisation-d-un-objet-date-au-format-date" title="Permalink to this headline">¶</a></h3>
+<p>Exemple d’une requête simple dans la db <code class="docutils literal notranslate"><span class="pre">food</span></code>. On veut récupérer la liste des restaurants dont la date de la note est supérieure à une date créée.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;&lt;YYYY-mm-dd&gt;&quot;</span><span class="p">)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;grades.date&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gt</span> <span class="o">:</span> <span class="nx">madate</span><span class="p">}})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utilisation-d-un-objet-date-dans-une-requete-d-egalite">
+<h3><span class="section-number">3.3.3. </span>Utilisation d’un objet date dans une requête d’égalité.<a class="headerlink" href="#utilisation-d-un-objet-date-dans-une-requete-d-egalite" title="Permalink to this headline">¶</a></h3>
+<p>Exemple d’une requête simple dans la base de donnée <code class="docutils literal notranslate"><span class="pre">etudiants</span></code>. On veut récupérer les étudiants nés le 13 février 1995. Il est important d’utiliser l’encadrement. En effet, lors de la création d’une date, la précision est à la seconde près.
+La requête suivante nous renvoie donc les étudiants nés le 13 février 1995 à 00 heures, 00 minutes et 00 secondes.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-13&quot;</span><span class="p">)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;ddn&quot;</span><span class="o">:</span> <span class="nx">madate</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Pour avoir les étudiants nés le 13 février 1995, nous utiliserions la requête suivante :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madateinf</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-13&quot;</span><span class="p">)</span>
+<span class="nx">madatesup</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-14&quot;</span><span class="p">)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;ddn&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gte</span><span class="o">:</span> <span class="nx">madateinf</span><span class="p">,</span>
+             <span class="nx">$lt</span><span class="o">:</span> <span class="nx">madatesup</span><span class="p">}}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utilisation-d-un-objet-date-dans-une-liste">
+<h3><span class="section-number">3.3.4. </span>Utilisation d’un objet date dans une liste.<a class="headerlink" href="#utilisation-d-un-objet-date-dans-une-liste" title="Permalink to this headline">¶</a></h3>
+<p>Exemple d’une requête où l’attribut <code class="docutils literal notranslate"><span class="pre">date</span></code> de type date est inclus dans la liste <code class="docutils literal notranslate"><span class="pre">grades</span></code> dans la base de donnée <code class="docutils literal notranslate"><span class="pre">etudiants</span></code>. La requête suivante nous retourne les restaurants possédant au moins une note attribué après le 5 octobre 2014.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2014-10-05&quot;</span><span class="p">)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;grades.date&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gt</span><span class="o">:</span> <span class="nx">madate</span><span class="p">}}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Pour avoir les restaurants qui ont obtenu au moins une notes au mois de novembre 2014, nous utiliserions l’opérateur <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code>. Attention à donner l’attribut de type liste, ici <code class="docutils literal notranslate"><span class="pre">grades</span></code>, avant l’opérateur et à spécifier l’attribut de type date, <code class="docutils literal notranslate"><span class="pre">date</span></code>, dans <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2014-11-01&quot;</span><span class="p">)</span>
+<span class="nx">madate2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2014-12-01&quot;</span><span class="p">)</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;grades&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$elemMatch</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gte</span><span class="o">:</span> <span class="nx">madate1</span><span class="p">,</span><span class="nx">$lt</span><span class="o">:</span> <span class="nx">madate2</span><span class="p">}}</span>
+               <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="utilisation-d-un-objet-date-dans-un-aggregate">
+<h3><span class="section-number">3.3.5. </span>Utilisation d’un objet date dans un aggregate<a class="headerlink" href="#utilisation-d-un-objet-date-dans-un-aggregate" title="Permalink to this headline">¶</a></h3>
+<p>Il est possible d’accéder aux attributs années, mois, jours,… d’une date. Ceci est très utile pour les requêtes d’aggrégations.</p>
+<p>Exemple d’une requête de regroupement par le mois et l’années. Nous voulons afficher mois par mois le nombre de stations de métros dans la base <code class="docutils literal notranslate"><span class="pre">keolis</span></code>.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">metro</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
+                        <span class="p">{</span><span class="nx">$group</span><span class="o">:</span>
+                            <span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="p">{</span><span class="nx">month</span><span class="o">:</span> <span class="p">{</span><span class="nx">$month</span><span class="o">:</span> <span class="s2">&quot;$lastCheckDate&quot;</span><span class="p">},</span>
+                                   <span class="nx">year</span><span class="o">:</span> <span class="p">{</span><span class="nx">$year</span><span class="o">:</span> <span class="s2">&quot;$lastCheckDate&quot;</span><span class="p">}},</span>
+                                   <span class="nx">nb</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span> <span class="mf">1</span><span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                      <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
