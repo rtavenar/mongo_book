@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>7.1. Requêtes depuis Python : pymongo &#8212; MongoDB : notes de cours</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -56,14 +53,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7.2. Requêtes depuis R : mongolite" href="07_scripts_R.html" />
     <link rel="prev" title="7. Effectuer des requêtes depuis des programmes Python ou R" href="07_scripts.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -72,30 +69,30 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  
-  <h1 class="site-logo" id="site-title">MongoDB : notes de cours</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">MongoDB : notes de cours</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="00_intro.html">
    MongoDB : Notes de cours
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Chapitres
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_find.html">
    1. Premières requêtes
@@ -126,11 +123,16 @@
    6. Les requêtes de modification
   </a>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="07_scripts.html">
    7. Effectuer des requêtes depuis des programmes Python ou R
   </a>
-  <ul class="current collapse-ul">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      7.1. Requêtes depuis Python :
@@ -152,16 +154,14 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Annexes
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="app_exemple.html">
    Annexe A : Exemple de fichier source
@@ -179,6 +179,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -247,12 +248,12 @@
     </div>
 </div>
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -278,6 +279,88 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#presentation-et-installation-a-id-partie1-a">
+   7.1.1. Présentation et installation
+   <a id="partie1">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connexion-serveur-base-de-donnees-et-collections-a-id-partie2-a">
+   7.1.2. Connexion serveur, base de données et collections
+   <a id="partie2">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#requetes-a-id-partie3-a">
+   7.1.3. Requêtes
+   <a id="partie3">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#requetes-simples-et-ses-specifictes-a-id-partie31-a">
+     7.1.3.1. Requêtes simples et ses spécifictés
+     <a id="partie31">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#les-index-a-id-partie32-a">
+     7.1.3.2. Les index
+     <a id="partie32">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#les-requetes-d-agregation-a-id-partie33-a">
+     7.1.3.3. Les requêtes d’agrégation
+     <a id="partie33">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#les-modifications-a-id-partie34-a">
+     7.1.3.4. Les modifications
+     <a id="partie34">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pour-aller-plus-loin-a-id-partie4-a">
+   7.1.4. Pour aller plus loin…
+   <a id="partie4">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#export-au-format-json-a-id-partie41-a">
+     7.1.4.1. Export au format JSON
+     <a id="partie41">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercices-et-corrections-a-id-partie42-a">
+     7.1.4.2. Exercices et corrections
+     <a id="partie42">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -289,25 +372,778 @@
   <div class="section" id="requetes-depuis-python-pymongo">
 <span id="sec-pymongo"></span><h1><span class="section-number">7.1. </span>Requêtes depuis Python : <code class="docutils literal notranslate"><span class="pre">pymongo</span></code><a class="headerlink" href="#requetes-depuis-python-pymongo" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><p>Auteurs/trices : Pierre Cottais, Tom Houée, Florian Guillaume</p></li>
+<li><p>Auteurs : Pierre Cottais, Tom Houée, Florian Guillaume</p></li>
 </ul>
-<p>Comment faire pour effectuer les requêtes présentes dans les chapitres 1 à 6 avec <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> ?</p>
-<p>Le fichier que vous devez modifier pour ce chapitre est <code class="docutils literal notranslate"><span class="pre">mongo_book/content/07_scripts_py.md</span></code>.</p>
-<p>Petit exemple ici d’utilisation de <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> :</p>
+<p><strong>Comment faire pour effectuer les requêtes présentes dans les chapitres 1 à 6 avec <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> ?</strong></p>
+<p><strong>Sommaire :</strong></p>
+<ol class="simple">
+<li><p><a class="reference external" href="#partie1">Présentation et installation</a></p></li>
+<li><p><a class="reference external" href="#partie2">Connexion serveur, base de données et collections</a></p></li>
+<li><p><a class="reference external" href="#partie3">Requêtes</a><br />
+3.1. <a class="reference external" href="#partie31">Requêtes simple et ces spécifictés</a><br />
+3.2. <a class="reference external" href="#partie32">Les Index</a><br />
+3.3. <a class="reference external" href="#partie33">Requête d’aggrégation</a><br />
+3.4. <a class="reference external" href="#partie34">Requête de modifications</a></p></li>
+<li><p><a class="reference external" href="#partie4">Pour aller plus loin…</a><br />
+4.1. <a class="reference external" href="#partie41">Export au format JSON</a><br />
+4.2. <a class="reference external" href="#partie42">Exercices et corrections</a></p></li>
+</ol>
+<div class="section" id="presentation-et-installation-a-id-partie1-a">
+<h2><span class="section-number">7.1.1. </span>Présentation et installation <a id="partie1"></a><a class="headerlink" href="#presentation-et-installation-a-id-partie1-a" title="Permalink to this headline">¶</a></h2>
+<p>PyMongo est une librairie Python contenant des outils pour travailler avec MongoDB et MongodbAtlas. PyMongo est maintenue par les développeurs de MongoDB officiel ce qui en fait la référence dans Python. Pour une documentation détaillée de la librairie, vous pouvez consulter la documentation :</p>
+<p><strong><a class="reference external" href="https://pymongo.readthedocs.io/en/stable/">https://pymongo.readthedocs.io/en/stable/</a></strong></p>
+<p>Pour installer la librairie, nous pouvons le faire avec la commande <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pymongo</span></code>, dans un terminal tel que Anaconda Prompt par exemple.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymongo</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition-remarque admonition">
+<p class="admonition-title">Remarque</p>
+<p>Cette librairie est déjà incluse dans la distribution Anaconda.</p>
+</div>
+</div>
+<div class="section" id="connexion-serveur-base-de-donnees-et-collections-a-id-partie2-a">
+<h2><span class="section-number">7.1.2. </span>Connexion serveur, base de données et collections <a id="partie2"></a><a class="headerlink" href="#connexion-serveur-base-de-donnees-et-collections-a-id-partie2-a" title="Permalink to this headline">¶</a></h2>
+<p>La première étape consiste à créer une connexion avec nos bases de données sur le serveur de MongoDB. Pour effectuer cette connexion, nous devons utiliser une URI qui est un URL. Il  existe différentes URI de connexion, mais ici, nous devons juste nous connecter à notre serveur local MongoDB. Pour voir les différents moyens de vous connecter à des serveurs extérieurs comme par exemple MongodbAtlas, voir la page :</p>
+<p><strong><a class="reference external" href="https://docs.mongodb.com/manual/reference/connection-string/">https://docs.mongodb.com/manual/reference/connection-string/</a>.</strong></p>
+<p>Ainsi notre URL de connexion est “mongodb://localhost:27017” avec notre :</p>
+<ul class="simple">
+<li><p>chaine de connexion : mongodb://</p></li>
+<li><p>host: localHost</p></li>
+<li><p>port: 27017.</p></li>
+</ul>
+<p>Pour utiliser cette URL nous utilisons la classe MongoClient de pymongo qui nous fait notre connexion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import de notre Classe MongoClient</span>
+<span class="kn">from</span> <span class="nn">pymongo</span>  <span class="kn">import</span> <span class="n">MongoClient</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">27017</span><span class="p">)</span>
-<span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">food</span>
 
-<span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;/^A/&quot;</span><span class="p">})</span>
+<span class="c1"># ou bien </span>
+
+<span class="n">db_uri</span> <span class="o">=</span> <span class="s2">&quot;mongodb://localhost:27017/&quot;</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">(</span><span class="n">db_uri</span><span class="p">)</span>
+
+<span class="c1"># affichage un objet</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.cursor.Cursor at 0x7f9a642f7850&gt;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MongoClient(host=[&#39;localhost:27017&#39;], document_class=dict, tz_aware=False, connect=True)
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">client</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pymongo.mongo_client.MongoClient&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ainsi, nous pouvons voir que la fonction créer un objet de class <code class="docutils literal notranslate"><span class="pre">pymongo.mongo_client.MongoClient</span></code> où nous retrouvons nos informations comme le host le port, etc…
+La deuxième étape consiste à nous connecter à notre base de données et nos collections, nous prendons ici l’exemple de la base de données <code class="docutils literal notranslate"><span class="pre">food</span></code>:</p>
+<div class="tip admonition">
+<p class="admonition-title">Syntax</p>
+<ul class="simple">
+<li><p>Client.BasedeDonnee.Collection</p></li>
+<li><p>Client[“BasedeDonnee”][“Collection”]</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;food&quot;</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="n">db_name</span><span class="p">]</span>
+
+<span class="c1"># ou bien</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">food</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Database(MongoClient(host=[&#39;localhost:27017&#39;], document_class=dict, tz_aware=False, connect=True), &#39;food&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">db</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pymongo.database.Database&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ainsi, il nous retourne un objet de classe <code class="docutils literal notranslate"><span class="pre">pymongo.database.Database</span></code>.<br />
+Enfin, il ne nous reste plus qu’à récupérer la collection souhaitée. Cela est le même principe pour utiliser les collections et qui cette fois nous retourne un objet <code class="docutils literal notranslate"><span class="pre">pymongo.collection.Collection</span></code>. Ici, nous prenons l’exemple de la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coll_name</span> <span class="o">=</span> <span class="s2">&quot;NYfood&quot;</span>
+<span class="n">coll</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="n">coll_name</span><span class="p">]</span>
+
+<span class="c1"># même syntax qu&#39;auparavant</span>
+
+<span class="n">coll</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">NYfood</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">coll</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collection(Database(MongoClient(host=[&#39;localhost:27017&#39;], document_class=dict, tz_aware=False, connect=True), &#39;food&#39;), &#39;NYfood&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">coll</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pymongo.collection.Collection&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>De plus, <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> a une fonction bien pratique qui permet d’afficher la liste des collection contenues dans une base de données :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">list_collection_names</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;NYfood&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>En résumé, le package <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> vous permet d’utiliser trois types d’objets via votre IDE python : les clients, les bases de données et les collections. Ces objets vont avoir des méthodes attitrées nous permettant d’effectuer des requêtes, nous les détaillerons dans la suite du cours.</p>
+<div class="admonition-remarque admonition">
+<p class="admonition-title">Remarque</p>
+<p>Cela fonctionne comme un dictionnaire Python. Toutefois, si votre base contient des caractères spéciaux, espace ou autre, on vous conseille la première écriture : <code class="docutils literal notranslate"><span class="pre">Client[&quot;BasedeDonnee&quot;][&quot;Collection&quot;]</span></code>.</p>
+</div>
+</div>
+<div class="section" id="requetes-a-id-partie3-a">
+<h2><span class="section-number">7.1.3. </span>Requêtes <a id="partie3"></a><a class="headerlink" href="#requetes-a-id-partie3-a" title="Permalink to this headline">¶</a></h2>
+<p>Maintenant que nous avons fait nos connexions, il nous reste à voir comment effectuer des requêtes.</p>
+<p><strong>Fonctionnement :</strong>
+Le fonctionement est le même que sur l’interface MongoDB:</p>
+<div class="tip admonition">
+<p class="admonition-title">Syntax requête</p>
+<ul class="simple">
+<li><p>Client.BasedeDonne.nomDeLaCollection.requete()</p></li>
+<li><p>Client[“BasedeDonnee”][“Collection”].requete()</p></li>
+</ul>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requête</p></th>
+<th class="head"><p>Fonctionement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>find()</p></td>
+<td><p>Recherche de tous les individus selon les critères indiqués</p></td>
+</tr>
+<tr class="row-odd"><td><p>find_one()</p></td>
+<td><p>Affichage du premier individu correspondant aux critères indiqués</p></td>
+</tr>
+</tbody>
+</table>
+<p>Mais le résultat est différent, il nous renvoie un objet de type <code class="docutils literal notranslate"><span class="pre">Cursor</span></code>. En effet, le module <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> ne stockera pas les résultats dans une liste par souci de mémoire :</p>
+<p>Par exemple, ici nous récupérons toutes les boulangeries de la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.cursor.Cursor at 0x7f42b4192d30&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ainsi, pour accéder au contenu de la requête il nous faut parcourir l’objet renvoyé par celle-ci, comme un objet itérable en Python.
+Exemple, on affiche les deux premiers individus issus de la requête.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span>
+
+<span class="c1"># afficher les 2 premiers individus</span>
+<span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">[:</span><span class="mi">2</span><span class="p">]:</span>    
+  <span class="nb">print</span><span class="p">(</span><span class="n">rep</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;6083b31323f43bf767cb5b22&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;1007&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.856077, 40.848447]}, &#39;street&#39;: &#39;Morris Park Ave&#39;, &#39;zipcode&#39;: &#39;10462&#39;}, &#39;borough&#39;: &#39;Bronx&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 3, 3, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 2}, {&#39;date&#39;: datetime.datetime(2013, 9, 11, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 6}, {&#39;date&#39;: datetime.datetime(2013, 1, 24, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10}, {&#39;date&#39;: datetime.datetime(2011, 11, 23, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 9}, {&#39;date&#39;: datetime.datetime(2011, 3, 10, 0, 0), &#39;grade&#39;: &#39;B&#39;, &#39;score&#39;: 14}], &#39;name&#39;: &#39;Morris Park Bake Shop&#39;, &#39;restaurant_id&#39;: &#39;30075445&#39;}
+{&#39;_id&#39;: ObjectId(&#39;6083b31323f43bf767cb5b44&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;120&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.9998042, 40.7251256]}, &#39;street&#39;: &#39;Prince Street&#39;, &#39;zipcode&#39;: &#39;10012&#39;}, &#39;borough&#39;: &#39;Manhattan&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 10, 17, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 11}, {&#39;date&#39;: datetime.datetime(2013, 9, 18, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 13}, {&#39;date&#39;: datetime.datetime(2013, 4, 30, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 7}, {&#39;date&#39;: datetime.datetime(2012, 4, 20, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 7}, {&#39;date&#39;: datetime.datetime(2011, 12, 19, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 3}], &#39;name&#39;: &quot;Olive&#39;S&quot;, &#39;restaurant_id&#39;: &#39;40363151&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nous pouvons afficher l’ensemble des réponses, mais cela peut demander beaucoup de mémoire pour votre ordinateur en fonction de la requête demandée. Pour ce faire, on utilise la ligne suivante.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cursor</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Il est donc préférable d’afficher les premiers résultats pour voir si votre requête est juste. Par exemple avec la requête <code class="docutils literal notranslate"><span class="pre">find_one()</span></code> affiche que le premier individu correspondant aux critères indiqués, comme par exemple, la première boulangerie de la collection :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;6083b31323f43bf767cb5b22&#39;),
+ &#39;address&#39;: {&#39;building&#39;: &#39;1007&#39;,
+  &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.856077, 40.848447]},
+  &#39;street&#39;: &#39;Morris Park Ave&#39;,
+  &#39;zipcode&#39;: &#39;10462&#39;},
+ &#39;borough&#39;: &#39;Bronx&#39;,
+ &#39;cuisine&#39;: &#39;Bakery&#39;,
+ &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 3, 3, 0, 0),
+   &#39;grade&#39;: &#39;A&#39;,
+   &#39;score&#39;: 2},
+  {&#39;date&#39;: datetime.datetime(2013, 9, 11, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 6},
+  {&#39;date&#39;: datetime.datetime(2013, 1, 24, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10},
+  {&#39;date&#39;: datetime.datetime(2011, 11, 23, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 9},
+  {&#39;date&#39;: datetime.datetime(2011, 3, 10, 0, 0), &#39;grade&#39;: &#39;B&#39;, &#39;score&#39;: 14}],
+ &#39;name&#39;: &#39;Morris Park Bake Shop&#39;,
+ &#39;restaurant_id&#39;: &#39;30075445&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>De plus, puisque notre réponse est un dictionnaire et que nous connaissons la structure, alors nous pouvons aller chercher les informations qui nous intéressent.
+Ainsi, nous récupérons ci-dessous la localisation et les coordonnées du premier individu issu de notre requête :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span>
+<span class="n">cursor</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;address&quot;</span><span class="p">][</span><span class="s2">&quot;loc&quot;</span><span class="p">][</span><span class="s2">&quot;coordinates&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-73.856077, 40.848447]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Methodes :</strong></p>
+<p>De plus, pour utiliser certaines méthodes sur nos requêtes comme <code class="docutils literal notranslate"><span class="pre">sort()</span></code>, c’est sensiblement la même syntaxe que MongoDB :</p>
+<div class="tip admonition">
+<p class="admonition-title">Syntax méthode</p>
+<ul class="simple">
+<li><p>Client.BasedeDonnee.Collection.requetes().methode()</p></li>
+<li><p>Client[“BasedeDonnee”][“Collection”].requete().methode()</p></li>
+</ul>
+</div>
+<p>Cependant, nous ne pouvons pas utiliser ces méthodes à l’objet <code class="docutils literal notranslate"><span class="pre">Cursor</span></code> car ces méthodes font partie intégrante de la requête.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Méthodes Python</p></th>
+<th class="head"><p>Fonctionalité</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>sort()</p></td>
+<td><p>Tri des individus</p></td>
+</tr>
+<tr class="row-odd"><td><p>count()</p></td>
+<td><p>Comptage du nombre d’individus issus de la requête</p></td>
+</tr>
+<tr class="row-even"><td><p>limit()</p></td>
+<td><p>Affichage des n premiers individus souhaités</p></td>
+</tr>
+<tr class="row-odd"><td><p>explain()</p></td>
+<td><p>Permet d’obtenir un certain nombre d’informations sur le déroulement d’une requête</p></td>
+</tr>
+<tr class="row-even"><td><p>distinct()</p></td>
+<td><p>Suppression des doublons</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exemples :</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># Affiche les deux premiers résultats</span>
+<span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># Trie les résultats par ordre décroissant par rapport à la variable name</span>
+<span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="s2">&quot;executionStats&quot;</span><span class="p">)</span> <span class="c1"># Affiche les informations </span>
+<span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">distinct</span><span class="p">(</span><span class="s2">&quot;grades.grade&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span> <span class="c1">#  liste des notes attribuées aux boulangeries</span>
+</pre></div>
+</div>
+<div class="section" id="requetes-simples-et-ses-specifictes-a-id-partie31-a">
+<h3><span class="section-number">7.1.3.1. </span>Requêtes simples et ses spécifictés <a id="partie31"></a><a class="headerlink" href="#requetes-simples-et-ses-specifictes-a-id-partie31-a" title="Permalink to this headline">¶</a></h3>
+<p>L’utilisation de <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> implique l’utilisation de certaines spécificités, deux principalement qui marquent une différence avec MongoDB.
+Premièrement, nous avons une spécificité avec les opérateurs et les noms qui doivent toujours être entre guillemets comme par exemple <code class="docutils literal notranslate"><span class="pre">$gte</span></code>.</p>
+<p>Exemple :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find_one</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$gte&quot;</span> <span class="p">:</span> <span class="s2">&quot;Y&quot;</span><span class="p">}})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;6083b31323f43bf767cb5b8e&#39;),
+ &#39;address&#39;: {&#39;building&#39;: &#39;72&#39;,
+  &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.92506, 40.8275556]},
+  &#39;street&#39;: &#39;East  161 Street&#39;,
+  &#39;zipcode&#39;: &#39;10451&#39;},
+ &#39;borough&#39;: &#39;Bronx&#39;,
+ &#39;cuisine&#39;: &#39;American &#39;,
+ &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 4, 15, 0, 0),
+   &#39;grade&#39;: &#39;A&#39;,
+   &#39;score&#39;: 9},
+  {&#39;date&#39;: datetime.datetime(2013, 11, 14, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 4},
+  {&#39;date&#39;: datetime.datetime(2013, 7, 29, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10},
+  {&#39;date&#39;: datetime.datetime(2012, 12, 31, 0, 0), &#39;grade&#39;: &#39;B&#39;, &#39;score&#39;: 15},
+  {&#39;date&#39;: datetime.datetime(2012, 5, 30, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 13},
+  {&#39;date&#39;: datetime.datetime(2012, 1, 9, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10},
+  {&#39;date&#39;: datetime.datetime(2011, 8, 15, 0, 0), &#39;grade&#39;: &#39;C&#39;, &#39;score&#39;: 37}],
+ &#39;name&#39;: &#39;Yankee Tavern&#39;,
+ &#39;restaurant_id&#39;: &#39;40365499&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>La deuxième spécificité concerne les dates. On utilise le module <code class="docutils literal notranslate"><span class="pre">datetime</span></code> et <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> va de lui même effectuer la conversion au format “date de MongoDb”.
+Exemple, liste des restaurants ayant au moins une note postérieure au 20 janvier 2015 :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s2">&quot;2015-01-20&quot;</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;grades.date&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$gte&quot;</span><span class="p">:</span> <span class="n">date</span><span class="p">}})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.cursor.Cursor at 0x7f42b418b0d0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Astuce :</strong></p>
+<p>Dans le but de rendre nos requêtes plus lisibles, il est possible de créer des variables Python qui correspondent aux conditions que nous utilisons pour nos requêtes.
+Par exemple, nous voulons afficher la liste des restaurants qui vérifient l’une des conditions suivantes :</p>
+<ul class="simple">
+<li><p>le restaurant appartient aux quartiers de “Manhattan”</p></li>
+<li><p>le restaurant est une boulangerie du Bronx commençant par la lettre “P”</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s2">&quot;food&quot;</span><span class="p">]</span>
+<span class="n">coll</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;NYfood&quot;</span><span class="p">]</span>
+
+<span class="c1"># première condition</span>
+<span class="n">dico_cond1</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">dico_cond1</span><span class="p">[</span><span class="s2">&quot;borough&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Manhattan&quot;</span>
+
+<span class="c1"># deuxième condition</span>
+<span class="n">dico_cond2</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">dico_cond2</span><span class="p">[</span><span class="s2">&quot;borough&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Bronx&quot;</span>
+<span class="n">dico_cond2</span><span class="p">[</span><span class="s2">&quot;cuisine&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Bakery&quot;</span>
+<span class="n">dico_cond2</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$gte&quot;</span><span class="p">:</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="s2">&quot;$lt&quot;</span><span class="p">:</span> <span class="s2">&quot;Q&quot;</span><span class="p">}</span>
+
+<span class="c1"># Notre requête final</span>
+<span class="n">req</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">req</span><span class="p">[</span><span class="s2">&quot;$or&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dico_cond1</span><span class="p">,</span> <span class="n">dico_cond2</span><span class="p">]</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">coll</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;6083b31323f43bf767cb60d8&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;831&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.90503799999999, 40.812633]}, &#39;street&#39;: &#39;East 149 Street&#39;, &#39;zipcode&#39;: &#39;10455&#39;}, &#39;borough&#39;: &#39;Bronx&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 1, 15, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 12}, {&#39;date&#39;: datetime.datetime(2013, 1, 3, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10}], &#39;name&#39;: &#39;Pitusa Bakery&#39;, &#39;restaurant_id&#39;: &#39;40510823&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Forme plus brutale :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cursorbis</span> <span class="o">=</span> <span class="n">coll</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;$or&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;borough&quot;</span><span class="p">:</span> <span class="s2">&quot;Manhattan&quot;</span><span class="p">},</span> 
+			     <span class="p">{</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="p">:</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$gte&quot;</span><span class="p">:</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="s2">&quot;$lt&quot;</span><span class="p">:</span> <span class="s2">&quot;Q&quot;</span><span class="p">}}</span>
+			     <span class="p">]})</span>
+<span class="n">cursorbis</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cursorbis</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cursorbis</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;6083b31323f43bf767cb60d8&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;831&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.90503799999999, 40.812633]}, &#39;street&#39;: &#39;East 149 Street&#39;, &#39;zipcode&#39;: &#39;10455&#39;}, &#39;borough&#39;: &#39;Bronx&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 1, 15, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 12}, {&#39;date&#39;: datetime.datetime(2013, 1, 3, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10}], &#39;name&#39;: &#39;Pitusa Bakery&#39;, &#39;restaurant_id&#39;: &#39;40510823&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>De plus, nous pouvons remarquer que ce sont deux listes <code class="docutils literal notranslate"><span class="pre">Cursor</span></code>, on peut donc tester l’égalité de leur contenu.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cursorbis</span> <span class="o">==</span> <span class="n">cursor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="les-index-a-id-partie32-a">
+<h3><span class="section-number">7.1.3.2. </span>Les index <a id="partie32"></a><a class="headerlink" href="#les-index-a-id-partie32-a" title="Permalink to this headline">¶</a></h3>
+<p>Les index sont des structures de données spéciales qui stockent une petite partie de l’ensemble de données de la collection sous une forme facile à parcourir. L’index stocke la valeur d’un champ spécifique ou d’un ensemble de champs, triés par la valeur du champ. Ainsi, l’utilisation avec <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> est la même qu’en mongoDB.</p>
+<div class="tip admonition">
+<p class="admonition-title">Syntax de requête d’index</p>
+<ul class="simple">
+<li><p>Client.BasedeDonnee.Collection.requeteIndex()</p></li>
+<li><p>Client[“BasedeDonnee”][“Collection”].requeteIndex()</p></li>
+</ul>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requete</p></th>
+<th class="head"><p>Fonctionement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>index_information()</p></td>
+<td><p>Pour obtenir la liste des index de la collection</p></td>
+</tr>
+<tr class="row-odd"><td><p>create_index()</p></td>
+<td><p>Création d’un index</p></td>
+</tr>
+<tr class="row-even"><td><p>drop_index()</p></td>
+<td><p>Suppression d’un index</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exemple :</strong></p>
+<p>L’ensemble des index de la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code> :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s2">&quot;food&quot;</span><span class="p">]</span>
+<span class="n">coll</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="s2">&quot;NYfood&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span>  <span class="ow">in</span> <span class="n">coll</span><span class="o">.</span><span class="n">index_information</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Nom : </span><span class="si">{}</span><span class="s2">, Valeur : </span><span class="si">{}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Nom : _id_, Valeur : {&#39;v&#39;: 2, &#39;key&#39;: [(&#39;_id&#39;, 1)]} 
+
+ Nom : address.loc_2dsphere, Valeur : {&#39;v&#39;: 2, &#39;key&#39;: [(&#39;address.loc&#39;, &#39;2dsphere&#39;)], &#39;2dsphereIndexVersion&#39;: 3} 
+
+ Nom : $**_text, Valeur : {&#39;v&#39;: 2, &#39;key&#39;: [(&#39;_fts&#39;, &#39;text&#39;), (&#39;_ftsx&#39;, 1)], &#39;weights&#39;: SON([(&#39;$**&#39;, 1)]), &#39;default_language&#39;: &#39;english&#39;, &#39;language_override&#39;: &#39;language&#39;, &#39;textIndexVersion&#39;: 3} 
+
+ Nom : borough_1, Valeur : {&#39;v&#39;: 2, &#39;key&#39;: [(&#39;borough&#39;, 1.0)]} 
+
+ Nom : cuisine_1, Valeur : {&#39;v&#39;: 2, &#39;key&#39;: [(&#39;cuisine&#39;, 1.0)]} 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Exemple de suppression ou de création d’un index :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">drop_index</span><span class="p">(</span><span class="s2">&quot;borough_1&quot;</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span><span class="s2">&quot;borough_1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="les-requetes-d-agregation-a-id-partie33-a">
+<h3><span class="section-number">7.1.3.3. </span>Les requêtes d’agrégation <a id="partie33"></a><a class="headerlink" href="#les-requetes-d-agregation-a-id-partie33-a" title="Permalink to this headline">¶</a></h3>
+<p>Les requêtes d’agrégation ont pour but de faire des calculs simples (agrégats) sur toute la collection ou seulement sur certains groupes. Pour ce faire, on utilise la méthode <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> .</p>
+<div class="tip admonition">
+<p class="admonition-title">Syntax de la requête d’aggregation</p>
+<ul class="simple">
+<li><p>Client.BasedeDonnee.Collection.aggregate()</p></li>
+<li><p>Client[“BasedeDonnee”][“Collection”].aggregate()</p></li>
+</ul>
+</div>
+<p>Dans l’exemple ci-dessous, on souhaite compter le nombre de restaurants dans la collection en les regroupant par quartier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># aggrégation</span>
+<span class="n">cursor_agreg</span> <span class="o">=</span> <span class="n">coll</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span>
+  <span class="p">{</span><span class="s2">&quot;$group&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;$borough&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;nb_restos&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$sum&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}}</span>
+  <span class="p">}</span>
+<span class="p">])</span>
+
+<span class="c1"># affichage</span>
+<span class="k">for</span> <span class="n">agreg</span> <span class="ow">in</span> <span class="n">cursor_agreg</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">agreg</span><span class="p">[</span><span class="s2">&quot;nb_restos&quot;</span><span class="p">],</span> <span class="s2">&quot;restaurants dans le quartier&quot;</span><span class="p">,</span> <span class="n">agreg</span><span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10258 restaurants dans le quartier Manhattan
+969 restaurants dans le quartier Staten Island
+5656 restaurants dans le quartier Queens
+2338 restaurants dans le quartier Bronx
+6085 restaurants dans le quartier Brooklyn
+51 restaurants dans le quartier Missing
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Bonus, exemple d’utilisation du résultat d’une agrégation</strong></p>
+<p>La méthode <code class="docutils literal notranslate"><span class="pre">aggregate</span></code> nous permets de faire des calculs, des regroupement, etc… Mais on a envie d’exploiter ce résultat en créant un graphique ou en le stockant dans un fichier.<br />
+Création d’un graphique montrant, pour chaque valeur possible de note, le nombre de fois qu’elle a été attribuée.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">cursor_agrr</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">food</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">aggregate</span><span class="p">([</span>
+                                              <span class="p">{</span><span class="s2">&quot;$unwind&quot;</span><span class="p">:</span> <span class="s2">&quot;$grades&quot;</span><span class="p">},</span>
+                                              <span class="p">{</span><span class="s2">&quot;$group&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;$grades.grade&quot;</span><span class="p">,</span> <span class="s2">&quot;nb&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$sum&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}}}</span>
+                                            <span class="p">])</span>
+
+<span class="c1"># récupérer nos informations                                  </span>
+<span class="n">l_nb</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">l_grade</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">cursor_agrr</span> <span class="p">:</span>
+    <span class="n">l_nb</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="s2">&quot;nb&quot;</span><span class="p">])</span>
+    <span class="n">l_grade</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">])</span>
+
+<span class="c1"># Création du graphe</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">l_grade</span><span class="p">,</span> <span class="n">l_nb</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Note&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Count&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Number of times assigned to a note&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/07_scripts_py_36_0.png" src="../_images/07_scripts_py_36_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="les-modifications-a-id-partie34-a">
+<h3><span class="section-number">7.1.3.4. </span>Les modifications <a id="partie34"></a><a class="headerlink" href="#les-modifications-a-id-partie34-a" title="Permalink to this headline">¶</a></h3>
+<p>Contrairement aux requêtes d’interrogation, les requêtes de modification peuvent modifier la base de données. Avec la librairie <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> l’écriture est la même qu’en MongoDB.</p>
+<div class="tip admonition">
+<p class="admonition-title">Syntax de requête de modifications</p>
+<ul class="simple">
+<li><p>Client.BasedeDonnee.Collection.requeteModification()</p></li>
+<li><p>Client[“BasedeDonnee”][“Collection”].requeteModification()</p></li>
+</ul>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requete</p></th>
+<th class="head"><p>Fonctionement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>insert_one()</p></td>
+<td><p>Insertion d’un seul document</p></td>
+</tr>
+<tr class="row-odd"><td><p>insert_many()</p></td>
+<td><p>Insertion d’une liste de documents</p></td>
+</tr>
+<tr class="row-even"><td><p>delete_one()</p></td>
+<td><p>Suppression d’un document</p></td>
+</tr>
+<tr class="row-odd"><td><p>delete_many()</p></td>
+<td><p>Suppression d’une liste de documents</p></td>
+</tr>
+<tr class="row-even"><td><p>update_one()</p></td>
+<td><p>Modification d’un document</p></td>
+</tr>
+<tr class="row-odd"><td><p>update_many()</p></td>
+<td><p>Modification d’une liste de documents</p></td>
+</tr>
+<tr class="row-even"><td><p>replace_one()</p></td>
+<td><p>Remplacement d’un document</p></td>
+</tr>
+</tbody>
+</table>
+<p>Exemple d’insertion d’un document dans la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">insert_one</span><span class="p">(</span>
+  <span class="p">{</span>
+	<span class="s2">&quot;_id&quot;</span> <span class="p">:</span> <span class="n">ObjectId</span><span class="p">(</span><span class="s2">&quot;nouvel_id_resto&quot;</span><span class="p">),</span>
+	<span class="s2">&quot;address&quot;</span> <span class="p">:</span> <span class="p">{</span>
+    	<span class="s2">&quot;building&quot;</span> <span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span>
+    	<span class="s2">&quot;loc&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        	<span class="s2">&quot;type&quot;</span> <span class="p">:</span> <span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+        	<span class="s2">&quot;coordinates&quot;</span> <span class="p">:</span> <span class="p">[</span>
+            	<span class="o">-</span><span class="mf">1.6773</span><span class="p">,</span>
+            	<span class="mf">48.111</span>
+        	<span class="p">]</span>
+    	<span class="p">},</span>
+    	<span class="s2">&quot;street&quot;</span> <span class="p">:</span> <span class="s2">&quot;Rue du Vau Saint-Germainl&quot;</span><span class="p">,</span>
+    	<span class="s2">&quot;zipcode&quot;</span> <span class="p">:</span> <span class="s2">&quot;35000&quot;</span>
+	<span class="p">},</span>
+	<span class="s2">&quot;borough&quot;</span> <span class="p">:</span> <span class="s2">&quot;KilKenny&#39;s Pub&quot;</span><span class="p">,</span>
+	<span class="s2">&quot;cuisine&quot;</span> <span class="p">:</span> <span class="s2">&quot;Bar, Pub&quot;</span><span class="p">,</span>
+	<span class="s2">&quot;grades&quot;</span> <span class="p">:</span> <span class="p">[</span>
+    	<span class="p">{</span>
+        	<span class="s2">&quot;date&quot;</span> <span class="p">:</span> <span class="n">ISODate</span><span class="p">(</span><span class="s2">&quot;2021-04-08T00:00:00.000Z&quot;</span><span class="p">),</span>
+        	<span class="s2">&quot;grade&quot;</span> <span class="p">:</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>
+        	<span class="s2">&quot;score&quot;</span> <span class="p">:</span> <span class="mi">9</span>
+    	<span class="p">}</span>
+	<span class="p">],</span>
+	<span class="s2">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;KilKenny&#39;s Pub&quot;</span><span class="p">,</span>
+	<span class="s2">&quot;restaurant_id&quot;</span> <span class="p">:</span> <span class="s2">&quot;99999999&quot;</span>
+<span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition-remarque admonition">
+<p class="admonition-title">Remarque</p>
+<p>Si la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code> n’existe pas encore dans la base de données, elle sera automatiquement créée lors de l’insertion d’un document dans cette nouvelle collection. La méthode <code class="docutils literal notranslate"><span class="pre">db.create_collection()</span></code> est donc facultative.</p>
+</div>
+</div>
+</div>
+<div class="section" id="pour-aller-plus-loin-a-id-partie4-a">
+<h2><span class="section-number">7.1.4. </span>Pour aller plus loin… <a id="partie4"></a><a class="headerlink" href="#pour-aller-plus-loin-a-id-partie4-a" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="export-au-format-json-a-id-partie41-a">
+<h3><span class="section-number">7.1.4.1. </span>Export au format JSON <a id="partie41"></a><a class="headerlink" href="#export-au-format-json-a-id-partie41-a" title="Permalink to this headline">¶</a></h3>
+<p>Les résultats obtenus après une requête peuvent être conservés dans le but d’un projet ou d’une étude quelconque. Ainsi, nous vous proposons d’enregistrer vos requêtes sous la forme d’un format JSON.</p>
+<p>Remarque : le module JSON ne peut écrire dans un fichier avec des données de types classiques comme liste, dictionnaire, nombre, caractère. En l’occurrence, un identifiant qui aura une classe “ObjectID” ne pourra être écrit dans le fichier directement, de même pour les objets <code class="docutils literal notranslate"><span class="pre">datetime</span></code>. Nous nous devons donc de les convertir en chaîne de caractères au préalable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cursor</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">cursor</span><span class="p">:</span>
+    <span class="n">elt</span><span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">elt</span><span class="p">[</span><span class="s2">&quot;_id&quot;</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">elt</span><span class="p">[</span><span class="s2">&quot;grades&quot;</span><span class="p">]:</span>
+        <span class="n">grade</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grade</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-</span><span class="si">%d</span><span class="s2">-%m&quot;</span><span class="p">)</span>
+        
+<span class="n">dico</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Bakery&quot;</span> <span class="p">:</span> <span class="n">cursor</span><span class="p">}</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;Bakery&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">jsonFile</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">dico</span><span class="p">,</span> <span class="n">jsonFile</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="exercices-et-corrections-a-id-partie42-a">
+<h3><span class="section-number">7.1.4.2. </span>Exercices et corrections <a id="partie42"></a><a class="headerlink" href="#exercices-et-corrections-a-id-partie42-a" title="Permalink to this headline">¶</a></h3>
+<p>Ici nous restons dans la base <code class="docutils literal notranslate"><span class="pre">food</span></code> :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s2">&quot;food&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Question 1</strong></p>
+<p>Dans la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code>, trouvez les restaurants qui n’ont reçu que des notes égales à B.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="381fb636-0147-43cc-8b1d-57ba42b092ae" name="a03c3e0c-3ef8-45b8-8212-e961923a966e" type="radio">
+</input><label class="tabbed-label" for="381fb636-0147-43cc-8b1d-57ba42b092ae">
+Python</label><div class="tabbed-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Création de nos conditions</span>
+<span class="n">condi1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;grades.grade&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$exists&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}}</span>
+<span class="n">condi2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;grades.grade&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$size&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}}</span>
+<span class="n">condi3</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;grades.grade&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$gt&quot;</span><span class="p">:</span> <span class="s2">&quot;B&quot;</span><span class="p">}}</span>
+<span class="n">condi4</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;grades.grade&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$lt&quot;</span><span class="p">:</span> <span class="s2">&quot;B&quot;</span><span class="p">}}</span>
+
+<span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="n">condi1</span><span class="p">,</span> <span class="n">condi2</span><span class="p">,</span> <span class="n">condi3</span><span class="p">,</span> <span class="n">condi4</span><span class="p">]</span>
+
+<span class="c1"># Notre requête</span>
+<span class="n">req</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$nor&quot;</span><span class="p">:</span> <span class="n">l</span> <span class="p">}</span>
+
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+
+<span class="n">reponse</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="2594a2b8-5cbe-462c-8ee3-7335adb2fcef" name="a03c3e0c-3ef8-45b8-8212-e961923a966e" type="radio">
+</input><label class="tabbed-label" for="2594a2b8-5cbe-462c-8ee3-7335adb2fcef">
+MongoDB</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">$nor</span><span class="o">:</span> <span class="p">[</span>
+			 <span class="p">{</span><span class="s2">&quot;grades.grade&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$exists</span><span class="o">:</span> <span class="kc">false</span><span class="p">}},</span>
+			 <span class="p">{</span><span class="s2">&quot;grades.grade&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$size</span><span class="o">:</span> <span class="mf">0</span><span class="p">}},</span>
+			 <span class="p">{</span><span class="s2">&quot;grades.grade&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gt</span><span class="o">:</span> <span class="s2">&quot;B&quot;</span><span class="p">}},</span>
+			 <span class="p">{</span><span class="s2">&quot;grades.grade&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$lt</span><span class="o">:</span> <span class="s2">&quot;B&quot;</span><span class="p">}}</span>
+			<span class="p">]</span>
+		<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question 2</strong></p>
+<p>Dans la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code>, on vous demande de conserver les quartiers ayant moins de 1000 restaurants.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="7dde45a6-4b8c-4461-be84-71e44a3f2b1e" name="8ed5f024-5652-4d0a-a041-a7ea51e6855a" type="radio">
+</input><label class="tabbed-label" for="7dde45a6-4b8c-4461-be84-71e44a3f2b1e">
+Python</label><div class="tabbed-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Création de nos conditions dans le aggregate</span>
+<span class="n">dico_match</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;borough&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$ne&quot;</span><span class="p">:</span> <span class="s2">&quot;Missing&quot;</span><span class="p">}}}</span>
+<span class="n">dico_group</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$group&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="s2">&quot;nb_restos&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$sum&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}}}</span>
+<span class="n">dico_match2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;nb_restos&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$lt&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">}}}</span>
+<span class="n">dico_sort</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$sort&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;nb_restos&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}}</span>
+
+<span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="n">dico_match</span><span class="p">,</span> <span class="n">dico_group</span><span class="p">,</span> <span class="n">dico_match2</span><span class="p">,</span> <span class="n">dico_sort</span><span class="p">]</span>
+
+<span class="c1"># Notre requête</span>
+<span class="n">cursor_aggr</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="n">reponse</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cursor_aggr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="8a7363cc-6ed4-49c5-8ed8-26905620ac80" name="8ed5f024-5652-4d0a-a041-a7ea51e6855a" type="radio">
+</input><label class="tabbed-label" for="8a7363cc-6ed4-49c5-8ed8-26905620ac80">
+MongoDB</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
+			<span class="p">{</span><span class="nx">$match</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$ne</span><span class="o">:</span> <span class="s2">&quot;Missing&quot;</span><span class="p">}}},</span>
+			<span class="p">{</span><span class="nx">$group</span><span class="o">:</span> <span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="nx">nb_restos</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span><span class="mf">1</span><span class="p">}}},</span>
+			<span class="p">{</span><span class="nx">$match</span><span class="o">:</span> <span class="p">{</span><span class="nx">nb_restos</span><span class="o">:</span> <span class="p">{</span><span class="nx">$lt</span><span class="o">:</span> <span class="mf">1000</span><span class="p">}}},</span>
+			<span class="p">{</span><span class="nx">$sort</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;nb_restos&quot;</span><span class="o">:</span> <span class="o">-</span><span class="mf">1</span><span class="p">}}</span>
+			<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question 3</strong></p>
+<p>Dans la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code>, trouvez tous les restaurants qui possède le mot “Pizza” dans le nom de l’enseigne.</p>
+<div class="tabbed-set docutils">
+<input checked="checked" id="4c8c79b3-9acf-4597-8151-1b36f9fb9c07" name="503a2835-287d-4019-b6c0-5354ea478a98" type="radio">
+</input><label class="tabbed-label" for="4c8c79b3-9acf-4597-8151-1b36f9fb9c07">
+Python</label><div class="tabbed-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python reconnaît les expressions régulières</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;/Pizza/&quot;</span><span class="p">})</span>
+<span class="n">reponse</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input id="05342e70-401b-4a5a-99e9-3194da266c59" name="503a2835-287d-4019-b6c0-5354ea478a98" type="radio">
+</input><label class="tabbed-label" for="05342e70-401b-4a5a-99e9-3194da266c59">
+MongoDB</label><div class="tabbed-content docutils">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="sr">/Pizza/</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -360,9 +1196,8 @@
 
       </div>
     </div>
-
     
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
 
     

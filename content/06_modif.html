@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>6. Les requêtes de modification &#8212; MongoDB : notes de cours</title>
     
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -44,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -56,14 +53,14 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7. Effectuer des requêtes depuis des programmes Python ou R" href="07_scripts.html" />
     <link rel="prev" title="5. Les requêtes d’agrégation" href="05_agreg.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -72,30 +69,30 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
-  
-  
-  <h1 class="site-logo" id="site-title">MongoDB : notes de cours</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">MongoDB : notes de cours</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="00_intro.html">
    MongoDB : Notes de cours
   </a>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Chapitres
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="01_find.html">
    1. Premières requêtes
@@ -126,11 +123,16 @@
    6. Les requêtes de modification
   </a>
  </li>
- <li class="toctree-l1 collapsible-parent">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="07_scripts.html">
    7. Effectuer des requêtes depuis des programmes Python ou R
   </a>
-  <ul class="collapse-ul">
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="07_scripts_py.html">
      7.1. Requêtes depuis Python :
@@ -152,16 +154,14 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
 </ul>
-<p class="caption collapsible-parent">
+<p class="caption">
  <span class="caption-text">
   Annexes
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="app_exemple.html">
    Annexe A : Exemple de fichier source
@@ -179,6 +179,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -247,12 +248,12 @@
     </div>
 </div>
 
-
             <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
 
@@ -278,6 +279,80 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#insertion">
+   6.1. Insertion
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creation-d-une-collection">
+     6.1.1. Création d’une collection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ajout-de-nouveaux-documents">
+     6.1.2. Ajout de nouveaux documents
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modification">
+   6.2. Modification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#remplacement-d-un-document">
+     6.2.1. Remplacement d’un document
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modification-d-un-document">
+     6.2.2. Modification d’un document
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modification-de-plusieurs-documents">
+     6.2.3. Modification de plusieurs documents
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#upsert">
+     6.2.4. Upsert
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#suppression">
+   6.3. Suppression
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#suppression-d-une-base-entiere">
+     6.3.1. Suppression d’une base entière
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#suppression-d-une-collection">
+     6.3.2. Suppression d’une collection
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#suppression-de-documents-dans-une-collection">
+     6.3.3. Suppression de documents dans une collection
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -289,10 +364,250 @@
   <div class="section" id="les-requetes-de-modification">
 <h1><span class="section-number">6. </span>Les requêtes de modification<a class="headerlink" href="#les-requetes-de-modification" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><p>Auteurs/trices : Rémi Leduc, Léo Rouger, Clément Caillard</p></li>
+<li><p>Auteurs : Rémi Leduc, Léo Rouger, Clément Caillard</p></li>
 </ul>
-<p>Ce chapitre traite des différentes requêtes de modification (insertion, modification, suppression)</p>
-<p>Le fichier que vous devez modifier pour ce chapitre est <code class="docutils literal notranslate"><span class="pre">mongo_book/content/06_modif.md</span></code>.</p>
+<p>Ce chapitre traite des différentes requêtes de modification (<a class="reference internal" href="#sec-insertion"><span class="std std-ref">insertion</span></a>, <a class="reference internal" href="#sec-modification"><span class="std std-ref">modification</span></a> et <a class="reference internal" href="#sec-suppression"><span class="std std-ref">suppression</span></a>).</p>
+<div class="section" id="insertion">
+<span id="sec-insertion"></span><h2><span class="section-number">6.1. </span>Insertion<a class="headerlink" href="#insertion" title="Permalink to this headline">¶</a></h2>
+<p>Pour la création d’une nouvelle collection, il est nécessaire de sélectionner une base. Si elle n’existe pas, elle sera alors créée.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">use</span> <span class="nx">voitures</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>switched to db voitures
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="creation-d-une-collection">
+<h3><span class="section-number">6.1.1. </span>Création d’une collection<a class="headerlink" href="#creation-d-une-collection" title="Permalink to this headline">¶</a></h3>
+<p>Il est nécessaire d’utiliser la commande <code class="docutils literal notranslate"><span class="pre">db.createCollection(&quot;NomDeLaNouvelleCollection&quot;)</span></code> pour créer une nouvelle collection au sein de la base sélectionnée.<br />
+Exemple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">createCollection</span><span class="p">(</span><span class="s2">&quot;ventes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;ok&quot; : 1 }
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ici, on crée par exemple une collection “ventes” au sein de la base “voitures”.<br />
+:warning: <strong>Si vous tentez d’exécuter plusieurs fois la commande, une erreur surviendra car votre collection existe déjà.</strong></p>
+</div>
+<div class="section" id="ajout-de-nouveaux-documents">
+<h3><span class="section-number">6.1.2. </span>Ajout de nouveaux documents<a class="headerlink" href="#ajout-de-nouveaux-documents" title="Permalink to this headline">¶</a></h3>
+<p>La commande <code class="docutils literal notranslate"><span class="pre">db.NomDeLaCollection.insert([])</span></code> permet l’ajout d’une liste de document au sein de la collection.<br />
+Exemple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">ventes</span><span class="p">.</span><span class="nx">insert</span><span class="p">([{</span><span class="s2">&quot;nom&quot;</span> <span class="o">:</span> <span class="s2">&quot;C1&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;nom&quot;</span> <span class="o">:</span> <span class="s2">&quot;C2&quot;</span><span class="p">}])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BulkWriteResult({
+	&quot;writeErrors&quot; : [ ],
+	&quot;writeConcernErrors&quot; : [ ],
+	&quot;nInserted&quot; : 2,
+	&quot;nUpserted&quot; : 0,
+	&quot;nMatched&quot; : 0,
+	&quot;nModified&quot; : 0,
+	&quot;nRemoved&quot; : 0,
+	&quot;upserted&quot; : [ ]
+})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si on exécute la ligne suivante, on retrouve bien les documents créés :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">ventes</span><span class="p">.</span><span class="nx">find</span><span class="p">({})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;6083b32013e1272df35f7624&quot;), &quot;nom&quot; : &quot;C1&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;6083b32013e1272df35f7625&quot;), &quot;nom&quot; : &quot;C2&quot; }
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="modification">
+<span id="sec-modification"></span><h2><span class="section-number">6.2. </span>Modification<a class="headerlink" href="#modification" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="remplacement-d-un-document">
+<h3><span class="section-number">6.2.1. </span>Remplacement d’un document<a class="headerlink" href="#remplacement-d-un-document" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">ventes</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
+	<span class="p">{</span><span class="s2">&quot;nom&quot;</span><span class="o">:</span> <span class="s2">&quot;C1&quot;</span><span class="p">},</span>
+	<span class="p">{</span><span class="s2">&quot;nom&quot;</span><span class="o">:</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="s2">&quot;marque&quot;</span><span class="o">:</span> <span class="s2">&quot;Citroën&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+</pre></div>
+</div>
+</div>
+</div>
+<p>Le document sélectionné sur la première ligne est supprimé et remplacé selon les champs renseignés sur la seconde ligne. Les champs qui ne sont pas renseignés sont donc supprimés.<br />
+:warning: <strong>Seul le premier document de la liste sera modifié.</strong></p>
+</div>
+<div class="section" id="modification-d-un-document">
+<h3><span class="section-number">6.2.2. </span>Modification d’un document<a class="headerlink" href="#modification-d-un-document" title="Permalink to this headline">¶</a></h3>
+<p>Si l’on souhaite conserver les autres champs, il suffit d’inclure la seconde ligne dans un <code class="docutils literal notranslate"><span class="pre">$set</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">ventes</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
+	<span class="p">{</span><span class="s2">&quot;nom&quot;</span><span class="o">:</span> <span class="s2">&quot;C2&quot;</span><span class="p">},</span>
+	<span class="p">{</span><span class="nx">$set</span><span class="o">:</span>
+		<span class="p">{</span><span class="s2">&quot;marque&quot;</span><span class="o">:</span> <span class="s2">&quot;Citroën&quot;</span><span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ici également, seul le premier document de la liste répondant aux critères de la première ligne sera modifié.</p>
+</div>
+<div class="section" id="modification-de-plusieurs-documents">
+<h3><span class="section-number">6.2.3. </span>Modification de plusieurs documents<a class="headerlink" href="#modification-de-plusieurs-documents" title="Permalink to this headline">¶</a></h3>
+<p>Pour modifier plusieurs documents à la fois, il est nécessaire d’ajouter <code class="docutils literal notranslate"><span class="pre">{multi:</span> <span class="pre">true}</span></code> en fin de requête.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">ventes</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
+	<span class="p">{</span><span class="s2">&quot;nom&quot;</span> <span class="o">:</span> <span class="p">{</span><span class="nx">$in</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="s2">&quot;C2&quot;</span><span class="p">]}},</span>
+	<span class="p">{</span><span class="nx">$set</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;pays&quot;</span><span class="o">:</span> <span class="s2">&quot;France&quot;</span><span class="p">}},</span>
+	<span class="p">{</span><span class="nx">multi</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WriteResult({ &quot;nMatched&quot; : 2, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 2 })
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cette requête, par exemple, ajoute un attribut “pays” ayant la valeur “France” aux modèles C1 <strong>et</strong> C2.</p>
+</div>
+<div class="section" id="upsert">
+<h3><span class="section-number">6.2.4. </span>Upsert<a class="headerlink" href="#upsert" title="Permalink to this headline">¶</a></h3>
+<p>L’option <code class="docutils literal notranslate"><span class="pre">upsert</span></code> (mélange de “update” et “insert”) permet de mettre une condition sur la requête : si aucun document ne correspond aux conditions indiquées en première ligne, alors un nouveau document est créé par les champs renseignés sur la seconde ligne.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">ventes</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
+	<span class="p">{</span><span class="s2">&quot;nom&quot;</span><span class="o">:</span> <span class="s2">&quot;C1&quot;</span><span class="p">},</span>
+	<span class="p">{</span><span class="nx">$set</span> <span class="o">:</span> <span class="p">{</span><span class="s2">&quot;nom&quot;</span><span class="o">:</span> <span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="s2">&quot;Nombre de roues&quot;</span><span class="o">:</span> <span class="mf">4</span><span class="p">}},</span>
+	<span class="p">{</span><span class="nx">upsert</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ici, on ajoute une nouvelle variable “Nombre de roues” à laquelle on attribue la valeur 4 au modèle “C1”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">ventes</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
+	<span class="p">{</span><span class="s2">&quot;nom&quot;</span><span class="o">:</span> <span class="s2">&quot;Twingo&quot;</span><span class="p">},</span>
+	<span class="p">{</span><span class="nx">$set</span> <span class="o">:</span> <span class="p">{</span><span class="s2">&quot;Nombre de roues&quot;</span><span class="o">:</span> <span class="mf">4</span><span class="p">}},</span>
+	<span class="p">{</span><span class="nx">upsert</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WriteResult({
+	&quot;nMatched&quot; : 0,
+	&quot;nUpserted&quot; : 1,
+	&quot;nModified&quot; : 0,
+	&quot;_id&quot; : ObjectId(&quot;6083b320756b0d6c15d77467&quot;)
+})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cette fois-ci, un nouveau document est ajouté à la base.</p>
+</div>
+</div>
+<div class="section" id="suppression">
+<span id="sec-suppression"></span><h2><span class="section-number">6.3. </span>Suppression<a class="headerlink" href="#suppression" title="Permalink to this headline">¶</a></h2>
+<p>Comme toutes les bonnes choses ont une fin, il est possible de supprimer une base, ou bien, sans être aussi radical, des éléments plus précis.
+Nous allons voir ici comment procéder aux différentes suppressions :</p>
+<div class="section" id="suppression-d-une-base-entiere">
+<h3><span class="section-number">6.3.1. </span>Suppression d’une base entière<a class="headerlink" href="#suppression-d-une-base-entiere" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">dropDatabase</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Lors de l’exécution de cette commande, c’est la base <strong>courante</strong>, celle qui est pointée par <em>db</em>, qui sera supprimée.</p>
+<div class="warning admonition">
+<p class="admonition-title">Important !</p>
+<p>Notez bien que tous les index qui pouvaient exister dans les collections de cette base seront également supprimés !</p>
+</div>
+</div>
+<div class="section" id="suppression-d-une-collection">
+<h3><span class="section-number">6.3.2. </span>Suppression d’une collection<a class="headerlink" href="#suppression-d-une-collection" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">nomDeLaCollection</span><span class="p">.</span><span class="nx">drop</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Ici encore, les index éventuellement présents dans la collection supprimée seront eux aussi effacés.</p>
+</div>
+<div class="section" id="suppression-de-documents-dans-une-collection">
+<h3><span class="section-number">6.3.3. </span>Suppression de documents dans une collection<a class="headerlink" href="#suppression-de-documents-dans-une-collection" title="Permalink to this headline">¶</a></h3>
+<p>Nous voilà arrivés au gros morceau…
+Lorsque l’on veut supprimer certains documents en particulier <strong>sans toucher aux index</strong>, il faut utiliser la commande suivante :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">nomDeLaCollection</span><span class="p">.</span><span class="nx">remove</span><span class="p">({})</span>
+</pre></div>
+</div>
+<p>Lorsque l’on passe en argument un document vide, comme dans l’exemple ci-dessus, on supprime toutes les données contenues dans la collection, mais on en conserve la structure, donc les index.</p>
+<p>La fonction <em>remove</em> peut également recevoir des documents précis en argument :</p>
+<ul class="simple">
+<li><p>Condition sous la forme d’un document masque :<br />
+Tous les documents correspondants à la sélection seront supprimés, par exemple tous ceux dont l’attribut “marque” correspond à “Citroën” :</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">ventes</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span><span class="s2">&quot;marque&quot;</span> <span class="o">:</span> <span class="s2">&quot;Citroën&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WriteResult({ &quot;nRemoved&quot; : 2 })
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Suppression d’un seul document :<br />
+Pour ce faire, il convient d’utiliser l’attribut “_id” puisqu’il est unique :</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">nomDeLaCollection</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span><span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;5612c6c0a5c56580cfacc342&quot;</span><span class="p">)})</span>
+</pre></div>
+</div>
+<p>Et voilà, vous savez tout sur la création, la suppression et la modification de bases !</p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -342,9 +657,8 @@
 
       </div>
     </div>
-
     
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
 
     
