@@ -49,6 +49,8 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Attributs de type date" href="03_dates.html" />
@@ -279,6 +281,63 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   2.1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fonctionnement-des-listes-en-mongodb">
+   2.2. Fonctionnement des listes en MongoDB
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operateur-size">
+     2.2.1. Opérateur $size
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#particularite-du-travail-sur-des-listes">
+   2.3. Particularité du travail sur des listes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#operateur-elemmatch">
+   2.4. Opérateur
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     $elemMatch
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cas-de-conditions-simultanement-non-realisables">
+     2.4.1. Cas de conditions simultanement non réalisables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cas-de-conditions-simultanement-realisables">
+     2.4.2. Cas de conditions simultanement réalisables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#recapitulatif">
+   2.5. Récapitulatif
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -293,7 +352,582 @@
 <li><p>Auteurs/trices : <strong>Malo REYNES, Lucas ROBIN, Fiona TUFFIN</strong></p></li>
 </ul>
 <p>Ce chapitre traite des attributs de type liste et des différents types de requêtes que l’on peut vouloir faire sur de tels attributs</p>
-<p>Le fichier que vous devez modifier pour ce chapitre est <code class="docutils literal notranslate"><span class="pre">mongo_book/content/02_listes.md</span></code>.</p>
+<div class="section" id="introduction">
+<h2><span class="section-number">2.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>En MongoDB, un document est composé de couples clé/valeur. Une clé peut être considérée comme le nom d’une variable (attribut) à laquelle correspond une valeur pour un individu. L’attribut peut être de plusieurs types : chaîne de caractères, booléen, nombre, liste ou date. C’est aux attributs de type <em>liste</em> que nous nous intéressons ici. En MongoDB comme en python, une liste est, comme son nom l’indique, une série de valeurs, ces valeurs pouvant être de tous types. Une liste peut également contenir des sous-listes. Il est possible de réaliser plusieurs opérations sur une liste telles qu’obtenir sa taille, récupérer son minimum, son maximum, sa moyenne et autres. Il faut toutefois faire attention à certains “pièges” que nous exposerons.</p>
+<p>Les exemples pour cette partie concernent les listes de notes des élèves de la collection <code class="docutils literal notranslate"><span class="pre">notes</span></code> de la base de données <code class="docutils literal notranslate"><span class="pre">etudiants</span></code>. On notera aussi que certains types de requêtes comme les <code class="docutils literal notranslate"><span class="pre">sum()</span></code> ou les <code class="docutils literal notranslate"><span class="pre">avg()</span></code> nécessitent des requêtes d’agrégation qui seront évoquées dans un chapitre suivant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">use</span> <span class="nx">etudiants</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>switched to db etudiants
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="fonctionnement-des-listes-en-mongodb">
+<h2><span class="section-number">2.2. </span>Fonctionnement des listes en MongoDB<a class="headerlink" href="#fonctionnement-des-listes-en-mongodb" title="Permalink to this headline">¶</a></h2>
+<p>Afin de mieux appréhender les listes en MongoDB, nous allons suivre un exemple au cours du quel, étape par étape, nous expliquerons notre démarche. Nous souhaitons connaître les étudiants ayant toutes leurs notes supérieures ou égales à 12.</p>
+<blockquote>
+<div><p>Remarque : les notes sont implémentées sous forme de liste dans la base de données (attribut <code class="docutils literal notranslate"><span class="pre">notes</span></code>). Parmi les 7 étudiants, un ne possède pas d’attribut <code class="docutils literal notranslate"><span class="pre">notes</span></code> et un autre à ce même attribut vide (liste contenant 0 élément). Nous allons donc traiter ces cas particuliers.</p>
+</div></blockquote>
+<div class="section" id="operateur-size">
+<h3><span class="section-number">2.2.1. </span>Opérateur $size<a class="headerlink" href="#operateur-size" title="Permalink to this headline">¶</a></h3>
+<p>Introduisons tout d’abord un élément utile pour comprendre le fonctionnement des listes : l’opérateur <code class="docutils literal notranslate"><span class="pre">$size</span></code>. Il renvoie les documents dont la taille (nombre d’éléments de la liste) vérifie la condition donnée.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$size</span><span class="o">:</span> <span class="mf">2</span><span class="p">}}</span>                     <span class="cm">/*Listes de 2 éléments*/</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;),
+	&quot;nom&quot; : &quot;Paul&quot;,
+	&quot;notes&quot; : [
+		10,
+		12
+	],
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7741&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		1,
+		5
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-01-01T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Attention, cet opérateur n’est pas compatible avec les intervalles de valeurs. On ne peut pas écrire le code suivant (qui renvoie une erreur) :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$size</span><span class="o">:</span> <span class="p">{</span><span class="nx">$lte</span><span class="o">:</span> <span class="mf">2</span><span class="p">}}}</span>             <span class="cm">/*Ne fonctionne pas, la taille doit être une valeur précise !!!*/</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error: error: {
+	&quot;ok&quot; : 0,
+	&quot;errmsg&quot; : &quot;$size needs a number&quot;,
+	&quot;code&quot; : 2,
+	&quot;codeName&quot; : &quot;BadValue&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Il faudra plutôt écrire :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="nx">$or</span> <span class="o">:</span> 
+        <span class="p">[{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$size</span><span class="o">:</span> <span class="mf">2</span><span class="p">}},</span>
+        <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$size</span><span class="o">:</span> <span class="mf">1</span><span class="p">}},</span>
+        <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$size</span><span class="o">:</span> <span class="mf">0</span><span class="p">}}]</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;),
+	&quot;nom&quot; : &quot;Paul&quot;,
+	&quot;notes&quot; : [
+		10,
+		12
+	],
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
+	&quot;notes&quot; : [
+		13
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7741&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		1,
+		5
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-01-01T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7740&quot;),
+	&quot;nom&quot; : &quot;Sophie&quot;,
+	&quot;notes&quot; : [ ],
+	&quot;ddn&quot; : ISODate(&quot;1996-09-12T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		15
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Exemple : on veut connaitre les notes de l’étudiant nommé Paul.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;nom&quot;</span><span class="o">:</span> <span class="s2">&quot;Paul&quot;</span><span class="p">},</span> 
+    <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;), &quot;notes&quot; : [ 10, 12 ] }
+</pre></div>
+</div>
+</div>
+</div>
+<p>Une liste de 2 notes est retournée. Plus précisement, c’est le contenu de l’attribut <code class="docutils literal notranslate"><span class="pre">notes</span></code> qui est donné.</p>
+<p>Exemple : on veut savoir si l’étudiant Paul a eu au moins une note égale à 12. Pour ce faire, on ajoute une condition sur les notes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;nom&quot;</span><span class="o">:</span> <span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="mf">12</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;),
+	&quot;nom&quot; : &quot;Paul&quot;,
+	&quot;notes&quot; : [
+		10,
+		12
+	],
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>La requête ressort un seul document : celui correspondant à l’étudiant Paul de notre collection. Cela signifie donc que Paul a eu au moins une note égale à 12.
+Néanmoins, l’objet retourné par la requête est l’ensemble du document. Toutes les notes de Paul sont données, même celles différentes de 12.</p>
+<p>Voyons maintenant ce qui se passe lorsqu’on recherche les notes supérieures ou égales à 12.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gte</span><span class="o">:</span> <span class="mf">12</span><span class="p">}}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;),
+	&quot;nom&quot; : &quot;Paul&quot;,
+	&quot;notes&quot; : [
+		10,
+		12
+	],
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
+	&quot;notes&quot; : [
+		13
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773c&quot;),
+	&quot;nom&quot; : &quot;Jean&quot;,
+	&quot;notes&quot; : [
+		1,
+		5,
+		7,
+		10,
+		12,
+		14,
+		3
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-05-25T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		15
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Avec cette requête, nous obtenons 4 éléments correspondant aux 4 étudiants qui ont eu au moins une note supérieure ou égale à 12.</p>
+<p>Nous voudrions maintenant ressortir les individus qui n’ont <strong>que</strong> des notes supérieures ou égales à 12. Pour cela, nous pouvons retirer tous les étudiants ayant eu des notes en dessous de 12. Pour ce faire, nous utilisons l’opérateur logique <code class="docutils literal notranslate"><span class="pre">$not</span></code> qui retire les documents ne réalisant pas la condition demandée.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span><span class="p">{</span><span class="nx">$not</span><span class="o">:</span> <span class="p">{</span><span class="nx">$lt</span><span class="o">:</span> <span class="mf">12</span><span class="p">}}}</span>              <span class="cm">/*Une condition : on enlève les étudiants qui ont au moins une note plus petite que 12*/</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773e&quot;),
+	&quot;nom&quot; : &quot;Michel&quot;,
+	&quot;ddn&quot; : ISODate(&quot;1995-02-13T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
+	&quot;notes&quot; : [
+		13
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7740&quot;),
+	&quot;nom&quot; : &quot;Sophie&quot;,
+	&quot;notes&quot; : [ ],
+	&quot;ddn&quot; : ISODate(&quot;1996-09-12T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		15
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Problème : la requête nous renvoie également les étudiants qui n’ont pas eu de note. C’est logique : si Sophie n’a pas de note, on ne peut pas dire qu’elle ait déjà eu moins que 12. Nous allons donc retirer les étudiants sans notes.</p>
+<p>Pour se faire, nous utilisons l’opérateur logique <code class="docutils literal notranslate"><span class="pre">$nor</span></code> en listant les éléments à ne pas prendre en compte. Nous ne voulons pas que la liste <code class="docutils literal notranslate"><span class="pre">notes</span></code> soit vide ou qu’elle comporte ne serait-ce qu’une note inférieure à 12.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="nx">$nor</span><span class="o">:</span> 
+        <span class="p">[{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$lt</span><span class="o">:</span> <span class="mf">12</span><span class="p">}},</span>               <span class="cm">/*1ère condition : on retire ceux qui ont des notes en dessous de 12*/</span>
+        <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$size</span><span class="o">:</span> <span class="mf">0</span><span class="p">}}]</span>               <span class="cm">/*2nde condition : on retire ceux qui n&#39;ont pas de notes*/</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773e&quot;),
+	&quot;nom&quot; : &quot;Michel&quot;,
+	&quot;ddn&quot; : ISODate(&quot;1995-02-13T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
+	&quot;notes&quot; : [
+		13
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		15
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nouveau problème : le document correspondant à l’étudiant Michel est renvoyé parce qu’il n’a pas d’attribut <code class="docutils literal notranslate"><span class="pre">notes</span></code>. Dans ces conditions, on remarque que les listes vides ou inexistantes sont retournées par les requêtes. Il est important de les enlever en rajoutant une condition dans le <code class="docutils literal notranslate"><span class="pre">$nor</span></code>.</p>
+<p>Il faut donc retirer les étudiants qui ont une liste <code class="docutils literal notranslate"><span class="pre">notes</span></code> vide mais aussi ceux qui n’ont pas de liste du tout.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="nx">$nor</span><span class="o">:</span> 
+        <span class="p">[{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$exists</span><span class="o">:</span> <span class="kc">false</span><span class="p">}},</span>         <span class="cm">/*1ère condition : on retire les documents ne possédant pas de liste &quot;notes&quot;*/</span>
+        <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$lt</span><span class="o">:</span> <span class="mf">12</span><span class="p">}},</span>                 <span class="cm">/*2ème condition : on retire ceux qui ont des notes en dessous de 12*/</span>
+        <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$size</span><span class="o">:</span> <span class="mf">0</span><span class="p">}}]</span>                <span class="cm">/*3ème condition : on retire ceux qui n&#39;ont pas de notes*/</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
+	&quot;notes&quot; : [
+		13
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		15
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cette fois, on ne retourne plus que 2 étudiants qui n’ont que des notes au-dessus de 12.</p>
+</div>
+</div>
+<div class="section" id="particularite-du-travail-sur-des-listes">
+<h2><span class="section-number">2.3. </span>Particularité du travail sur des listes<a class="headerlink" href="#particularite-du-travail-sur-des-listes" title="Permalink to this headline">¶</a></h2>
+<p>Lorsque nous faisons des requêtes sur un attribut d’un autre type qu’une liste, un seul élement est soumis à l’ensemble de nos conditions.
+Dans l’exemple ci-dessous, la clé <code class="docutils literal notranslate"><span class="pre">nom</span></code> renvoie une chaine de caractères, qui est un élément unique. Cet élément est soumis à deux conditions afin d’obtenir les noms qui commencent par la lettre M.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>                                <span class="cm">/*Cette requête nous renvoie les noms dont la première lettre est comprise &gt;= à M et &lt; à N, donc M*/</span>
+    <span class="p">{</span><span class="s2">&quot;nom&quot;</span><span class="o">:</span> 
+        <span class="p">{</span><span class="nx">$gte</span><span class="o">:</span> <span class="s2">&quot;M&quot;</span><span class="p">,</span> <span class="nx">$lt</span><span class="o">:</span> <span class="s2">&quot;N&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773e&quot;),
+	&quot;nom&quot; : &quot;Michel&quot;,
+	&quot;ddn&quot; : ISODate(&quot;1995-02-13T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7741&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		1,
+		5
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-01-01T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		15
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Avec les listes, c’est différent. Chaque élément contenu dans la liste est testé par les conditions. Voyons le fonctionnement d’une requête sur une liste avec plusieurs conditions :</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> 
+        <span class="p">{</span><span class="nx">$gt</span><span class="o">:</span> <span class="mf">13</span><span class="p">,</span> <span class="nx">$lte</span><span class="o">:</span> <span class="mf">10</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773c&quot;),
+	&quot;nom&quot; : &quot;Jean&quot;,
+	&quot;notes&quot; : [
+		1,
+		5,
+		7,
+		10,
+		12,
+		14,
+		3
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-05-25T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Cette requête teste pour chaque élément de la liste un à un :</p>
+<ul class="simple">
+<li><p>La condition <span class="math notranslate nohighlight">\(&gt; 13\)</span>;</p></li>
+<li><p>La condition <span class="math notranslate nohighlight">\(\le 10\)</span>;</p></li>
+</ul>
+<p>Si chacune des conditions est vérifiée au moins une fois, la liste complète est renvoyée. En clair, si au moins un élément de la liste est <span class="math notranslate nohighlight">\(&gt; 13\)</span> et au moins un élément est <span class="math notranslate nohighlight">\(\le 10\)</span>, les conditions sont considérées comme validées.</p>
+<p>Ainsi, à la liste “[1,5,7,10,12,14,3]” correspond :</p>
+<ul class="simple">
+<li><p>[F,F,F,F,F,T,F] pour la première condition</p></li>
+<li><p>[T,T,T,T,F,F,T] pour la seconde
+Les conditions sont toutes respectées au moins une fois, la liste complète est donc renvoyée.</p></li>
+</ul>
+<p>Ainsi, nous ne testons pas simultanément les deux conditions sur chaque nombre. Aucun nombre x ne vérifie x <span class="math notranslate nohighlight">\(&gt; 13\)</span> et x <span class="math notranslate nohighlight">\(\le 10\)</span>. Cela est contre-intuitif, il faut faire attention.</p>
+<p>Mais alors, comment pouvons-nous justement tester une double condition sur chaque élement de la liste ? Pour cela, nous allons faire appel à l’opérateur <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code>.</p>
+</div>
+<div class="section" id="operateur-elemmatch">
+<h2><span class="section-number">2.4. </span>Opérateur <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code><a class="headerlink" href="#operateur-elemmatch" title="Permalink to this headline">¶</a></h2>
+<p>Avec <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code>, on retourne les documents dont au moins un élément de la liste vérifie toutes les conditions.</p>
+<div class="section" id="cas-de-conditions-simultanement-non-realisables">
+<h3><span class="section-number">2.4.1. </span>Cas de conditions simultanement non réalisables<a class="headerlink" href="#cas-de-conditions-simultanement-non-realisables" title="Permalink to this headline">¶</a></h3>
+<p>Testez votre intuition ! D’après vous, que ressortira cette requête ?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> 
+        <span class="p">{</span><span class="nx">$elemMatch</span><span class="o">:</span> 
+            <span class="p">{</span><span class="nx">$gt</span><span class="o">:</span> <span class="mf">13</span><span class="p">,</span> <span class="nx">$lte</span><span class="o">:</span> <span class="mf">10</span><span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Contrairement à la requête précedente, cette requête teste les élements de la liste un à un. Ainsi, aucun élement ne vérifie ces deux conditions simultanement. Aucun élément n’est donc retourné par cette requête.</p>
+</div>
+<div class="section" id="cas-de-conditions-simultanement-realisables">
+<h3><span class="section-number">2.4.2. </span>Cas de conditions simultanement réalisables<a class="headerlink" href="#cas-de-conditions-simultanement-realisables" title="Permalink to this headline">¶</a></h3>
+<p>Avec la requête suivante, nous cherchons à savoir quels étudiants ont au moins une note comprise entre 9 et 13.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> 
+        <span class="p">{</span><span class="nx">$elemMatch</span><span class="o">:</span> 
+            <span class="p">{</span><span class="nx">$gt</span><span class="o">:</span> <span class="mf">9</span><span class="p">,</span> <span class="nx">$lt</span><span class="o">:</span> <span class="mf">13</span><span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;),
+	&quot;nom&quot; : &quot;Paul&quot;,
+	&quot;notes&quot; : [
+		10,
+		12
+	],
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773c&quot;),
+	&quot;nom&quot; : &quot;Jean&quot;,
+	&quot;notes&quot; : [
+		1,
+		5,
+		7,
+		10,
+		12,
+		14,
+		3
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-05-25T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Attention : on renvoie bien ici les listes dont <strong>au moins une valeur</strong> vérifie l’ensemble des conditions ! Les notes validant les deux conditions sont 10, 11 et 12. Par exemple, la liste [1,3,8,11,15] sera retournée mais la liste [1,3,8,15] ne le sera pas.</p>
+<p>Comment obtenir les étudiants dont <strong>toutes</strong> les notes vérifient les conditions simultanement ? Cela est réalisable grâce à l’opérateur <code class="docutils literal notranslate"><span class="pre">$nor</span></code> vu plus tôt :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
+    <span class="p">{</span><span class="nx">$nor</span><span class="o">:</span> 
+        <span class="p">[{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$exists</span><span class="o">:</span> <span class="kc">false</span><span class="p">}},</span>         <span class="cm">/*1ère condition : on retire les documents ne possédant pas de liste &quot;notes&quot;*/</span>
+        <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$size</span><span class="o">:</span> <span class="mf">0</span><span class="p">}},</span>                <span class="cm">/*2ème condition : on retire ceux qui n&#39;ont pas de notes*/</span>
+        <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$lte</span><span class="o">:</span> <span class="mf">9</span><span class="p">}},</span>                 <span class="cm">/*3ème condition : on retire les étudiants qui ont des notes en dessous de 10*/</span>
+        <span class="p">{</span><span class="s2">&quot;notes&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gte</span><span class="o">:</span> <span class="mf">13</span><span class="p">}}]</span>                <span class="cm">/*4ème condition : on retire ceux qui ont des notes au dessus de 12*/</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;),
+	&quot;nom&quot; : &quot;Paul&quot;,
+	&quot;notes&quot; : [
+		10,
+		12
+	],
+	&quot;sexe&quot; : &quot;M&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="recapitulatif">
+<h2><span class="section-number">2.5. </span>Récapitulatif<a class="headerlink" href="#recapitulatif" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><em>Je souhaite que <strong>toutes les conditions</strong> soient vérifiées <strong>au moins une fois</strong> par les éléments de ma liste, comment faire ?</em></p></li>
+</ul>
+<blockquote>
+<div><p>Code “classique”.</p>
+</div></blockquote>
+<p>Sans <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code>, si les conditions sont vérifiées une à une, que ce soit par un élément de la liste ou grâce à plusieurs éléments distincts, alors le document est retourné.</p>
+<ul class="simple">
+<li><p><em>Je souhaite que <strong>toutes les conditions</strong> soient <strong>simultanement</strong> vérifiées par <strong>au moins un élément</strong> de ma liste, comment faire ?</em></p></li>
+</ul>
+<blockquote>
+<div><p>Utilisation de l’opérateur <code class="docutils literal notranslate"><span class="pre">$elemMtach</span></code>.</p>
+</div></blockquote>
+<p>Avec <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code>, on regarde tous les éléments de la liste un par un et on retourne le document si et seulement si au moins un élément est capable de vérifier toutes les conditions à lui tout seul.</p>
+<ul class="simple">
+<li><p><em>Je souhaite que <strong>toutes les conditions</strong> soient vérifiées par <strong>tous les éléments</strong> de ma liste, comment faire ?</em></p></li>
+</ul>
+<blockquote>
+<div><p>Utilisation de l’opérateur <code class="docutils literal notranslate"><span class="pre">$nor</span></code>.</p>
+</div></blockquote>
+<p>Avec <code class="docutils literal notranslate"><span class="pre">$nor</span></code>, on liste les conditions que nous ne souhaitons pas retourner. Ainsi, on ne récupère pas les éléments qui valident des conditions. Il faut notamment penser à retirer les éléments vides avec <code class="docutils literal notranslate"><span class="pre">{$size:</span> <span class="pre">0}</span></code> et les éléments inexistants avec <code class="docutils literal notranslate"><span class="pre">{$exists:</span> <span class="pre">false}</span></code>.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
