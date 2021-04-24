@@ -31,6 +31,7 @@ jobs:
         python -m pip install -r requirements_imongo.txt
         pip install git+git://github.com/rtavenar/imongo.git#egg=imongo-kernel --user
         python -m pip install jupyter-book
+        python -m pip install matplotlib
         python -m pip install pymongo
 
     # Setup R (for the notebook on MongoBD integration in R)
@@ -40,9 +41,12 @@ jobs:
     - name: Setup R-related packages
       run: |
         sudo apt-get install libsasl2-dev
+        sudo apt install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
         R -e 'install.packages("mongolite")'
         R -e 'install.packages("IRkernel")'
         R -e 'IRkernel::installspec()'
+        R -e 'install.packages("devtools")'
+        R -e 'library(devtools); devtools::install_github("IRkernel/repr")'
 
     # Start a local MongoDB server
     - name: Start MongoDB
