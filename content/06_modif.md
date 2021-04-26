@@ -37,8 +37,12 @@ Exemple:
 db.createCollection("ventes")
 ```
 
-Ici, on crée par exemple une collection "ventes" au sein de la base "voitures".  
-:warning: **Si vous tentez d'exécuter plusieurs fois la commande, une erreur surviendra car votre collection existe déjà.** 
+Ici, on crée par exemple une collection "ventes" au sein de la base "voitures".
+
+```{admonition}
+:class: warning
+Si vous tentez d'exécuter plusieurs fois la commande, une erreur surviendra car votre collection existe déjà.
+```
 
 ### Ajout de nouveaux documents 
 
@@ -64,8 +68,12 @@ db.ventes.update(
 	{"nom": "C1", "marque": "Citroën"}
 )
 ```
-Le document sélectionné sur la première ligne est supprimé et remplacé selon les champs renseignés sur la seconde ligne. Les champs qui ne sont pas renseignés sont donc supprimés.  
-:warning: **Seul le premier document de la liste sera modifié.**
+Le document sélectionné sur la première ligne est supprimé et remplacé selon les champs renseignés sur la seconde ligne. Les champs qui ne sont pas renseignés sont donc supprimés.
+
+```{admonition}
+:class: warning
+Seul le premier document de la liste sera modifié.
+```
 
 ### Modification d'un document
 Si l'on souhaite conserver les autres champs, il suffit d'inclure la seconde ligne dans un `$set`.

@@ -22,7 +22,7 @@ output:
 (sec:pymongo)=
 # Requêtes depuis Python : `pymongo`
 
-* Auteurs : Pierre Cottais, Tom Houée, Florian Guillaume
+* Auteurs : **Pierre Cottais, Florian Guillaume, Tom Houée**
 
 **Comment faire pour effectuer les requêtes présentes dans les chapitres 1 à 6 avec `pymongo` ?**
 
@@ -41,7 +41,8 @@ output:
   4.1. [Export au format JSON](#partie41)  
   4.2. [Exercices et corrections](#partie42)
 
-## Présentation et installation <a id="partie1"></a>
+(partie1)=
+## Présentation et installation
 PyMongo est une librairie Python contenant des outils pour travailler avec MongoDB et MongodbAtlas. PyMongo est maintenue par les développeurs de MongoDB officiel ce qui en fait la référence dans Python. Pour une documentation détaillée de la librairie, vous pouvez consulter la documentation :
 
 **https://pymongo.readthedocs.io/en/stable/**
@@ -57,8 +58,8 @@ Cette librairie est déjà incluse dans la distribution Anaconda.
 ```
 
 
-
-## Connexion serveur, base de données et collections <a id="partie2"></a>
+(partie2)=
+## Connexion serveur, base de données et collections
 La première étape consiste à créer une connexion avec nos bases de données sur le serveur de MongoDB. Pour effectuer cette connexion, nous devons utiliser une URI qui est un URL. Il  existe différentes URI de connexion, mais ici, nous devons juste nous connecter à notre serveur local MongoDB. Pour voir les différents moyens de vous connecter à des serveurs extérieurs comme par exemple MongodbAtlas, voir la page : 
 
 **https://docs.mongodb.com/manual/reference/connection-string/.**
@@ -141,8 +142,8 @@ Cela fonctionne comme un dictionnaire Python. Toutefois, si votre base contient 
 ```
 
 
-
-## Requêtes <a id="partie3"></a>
+(partie3)=
+## Requêtes
 Maintenant que nous avons fait nos connexions, il nous reste à voir comment effectuer des requêtes.
 
 **Fonctionnement :**
@@ -226,8 +227,8 @@ db.NYfood.distinct("grades.grade", {"cuisine": "Bakery"}) #  liste des notes att
 ```
 
 
-
-### Requêtes simples et ses spécifictés <a id="partie31"></a>
+(partie31)=
+### Requêtes simples et ses spécifictés
 L'utilisation de `pymongo` implique l'utilisation de certaines spécificités, deux principalement qui marquent une différence avec MongoDB.
 Premièrement, nous avons une spécificité avec les opérateurs et les noms qui doivent toujours être entre guillemets comme par exemple ```$gte```.
 
@@ -291,8 +292,8 @@ De plus, nous pouvons remarquer que ce sont deux listes `Cursor`, on peut donc t
 print(cursorbis == cursor)
 ```
 
-
-### Les index <a id="partie32"></a>
+(partie32)=
+### Les index
 Les index sont des structures de données spéciales qui stockent une petite partie de l'ensemble de données de la collection sous une forme facile à parcourir. L'index stocke la valeur d'un champ spécifique ou d'un ensemble de champs, triés par la valeur du champ. Ainsi, l'utilisation avec `pymongo` est la même qu'en mongoDB.
 
 ```{admonition} Syntax de requête d'index
@@ -325,8 +326,8 @@ db.NYfood.drop_index("borough_1")
 db.NYfood.create_index("borough_1")
 ```
 
-
-### Les requêtes d'agrégation <a id="partie33"></a>
+(partie33)=
+### Les requêtes d'agrégation
 Les requêtes d'agrégation ont pour but de faire des calculs simples (agrégats) sur toute la collection ou seulement sur certains groupes. Pour ce faire, on utilise la méthode ```aggregate()``` .
 
 ```{admonition} Syntax de la requête d'aggregation
@@ -379,8 +380,8 @@ plt.title("Number of times assigned to a note")
 plt.show()
 ```
 
-
-### Les modifications <a id="partie34"></a>
+(partie34)=
+### Les modifications
 Contrairement aux requêtes d'interrogation, les requêtes de modification peuvent modifier la base de données. Avec la librairie `pymongo` l'écriture est la même qu'en MongoDB.
 
 ```{admonition} Syntax de requête de modifications
@@ -439,9 +440,11 @@ db.NYfood.insert_one(
 Si la collection `NYfood` n'existe pas encore dans la base de données, elle sera automatiquement créée lors de l'insertion d'un document dans cette nouvelle collection. La méthode ```db.create_collection()``` est donc facultative.
 ```
 
+(partie4)=
+## Pour aller plus loin...
 
-## Pour aller plus loin... <a id="partie4"></a>
-### Export au format JSON <a id="partie41"></a>
+(partie41)=
+### Export au format JSON
 Les résultats obtenus après une requête peuvent être conservés dans le but d'un projet ou d'une étude quelconque. Ainsi, nous vous proposons d'enregistrer vos requêtes sous la forme d'un format JSON.
 
 Remarque : le module JSON ne peut écrire dans un fichier avec des données de types classiques comme liste, dictionnaire, nombre, caractère. En l'occurrence, un identifiant qui aura une classe "ObjectID" ne pourra être écrit dans le fichier directement, de même pour les objets ```datetime```. Nous nous devons donc de les convertir en chaîne de caractères au préalable.
@@ -463,8 +466,8 @@ with open("Bakery", 'w', encoding='utf-8') as jsonFile:
     json.dump(dico, jsonFile, indent=4)
 ```
 
-
-### Exercices et corrections <a id="partie42"></a>
+(partie42)=
+### Exercices et corrections
 Ici nous restons dans la base `food` :
 ```python
 db = client["food"]
@@ -473,6 +476,9 @@ db = client["food"]
 **Question 1**
 
 Dans la collection `NYfood`, trouvez les restaurants qui n'ont reçu que des notes égales à B.
+
+`````{admonition} Cliquez pour montrer la solution
+:class: dropdown
 ````{tabbed} Python
 
 ```python
@@ -507,10 +513,14 @@ db.NYfood.find({$nor: [
 ```
 
 ````
+`````
 
 **Question 2**
 
 Dans la collection `NYfood`, on vous demande de conserver les quartiers ayant moins de 1000 restaurants.
+
+`````{admonition} Cliquez pour montrer la solution
+:class: dropdown
 ````{tabbed} Python
 ```python
 # Création de nos conditions dans le aggregate
@@ -539,10 +549,15 @@ db.NYfood.aggregate([
 			])
 ```
 ````
+`````
 
 **Question 3** 
 
 Dans la collection `NYfood`, trouvez tous les restaurants qui possède le mot "Pizza" dans le nom de l'enseigne.
+
+`````{admonition} Cliquez pour montrer la solution
+:class: dropdown
+
 ````{tabbed} Python
 ```python
 # Python reconnaît les expressions régulières
@@ -556,3 +571,4 @@ reponse = list(cursor)
 db.NYfood.find({"name": /Pizza/})
 ```
 ````
+`````

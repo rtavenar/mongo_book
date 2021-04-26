@@ -550,7 +550,10 @@ Pour vous tester et être certain que vous avez bien compris, répondez aux ques
 2. C'est un modèle orienté document
 3. C'est un modèle structuré
 
+```{admonition} Cliquez pour montrer la réponse
+:class: dropdown
 *Réponse 2 : C'est un modèle orienté document.*
+```
 
 **Que nous renvoie cette requête sur la collection `notes` de la base `etudiants` ?**
 
@@ -562,7 +565,11 @@ db.notes.find({}, {"nom": true, "_id": false})
 2. Les noms des étudiants de la base et la clé `_id` qui identifie chaque étudiant
 3. Tous les noms des étudiants de la base, mais pas les autres clés
 
+```{admonition} Cliquez pour montrer la réponse
+:class: dropdown
+
 *Réponse 3 : L'argument `"_id": false` permet de retirer l'affichage de la clé `id`. On ne récupère que le noms des étudiants de la base.*
+```
 
 **Comment récupérer la liste des étudiants ayant obtenu exactement deux notes ?**
 
@@ -570,7 +577,11 @@ db.notes.find({}, {"nom": true, "_id": false})
 2. `db.notes.find({"notes": {$exists: true}})`
 3. `db.notes.find({$or: [{"notes": {$size: 1}},{"notes": {$size: 2}}]})`
 
+```{admonition} Cliquez pour montrer la réponse
+:class: dropdown
+
 *Réponse 1 : L'opérateur `$size` permet de prendre en compte la taille de la liste de valeurs, telle qu'une liste de notes. Ici on souhaite que la liste de notes soit précisement de taille 2.*
+```
 
 **Quel opérateur permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste ?**
 
@@ -578,7 +589,11 @@ db.notes.find({}, {"nom": true, "_id": false})
 2. L'opérateur `$nor`
 3. L'opérateur `$gt`
 
+```{admonition} Cliquez pour montrer la réponse
+:class: dropdown
+
 *Réponse 2 : L'opérateur `$nor` permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste.*
+```
 
 **Quelle méthode ci-dessous ne fait pas partie du langage MongoDB ?**
 
@@ -586,7 +601,10 @@ db.notes.find({}, {"nom": true, "_id": false})
 2. `db.collectionName.find({}).sort({"key" : 1})`
 3. `db.collectionName.find({}).limit(3)`
 
-*Réponse 1 : Bien que `ORDER BY` soit une instruction en SQL, ce n'est pas disponible pour les bases de données en MongoDB.*
+```{admonition} Cliquez pour montrer la réponse
+:class: dropdown
 
+*Réponse 1 : Bien que `ORDER BY` soit une instruction en SQL, ce n'est pas disponible pour les bases de données en MongoDB.*
+```
 
 Afin que le langage MongoDB n'ait plus aucun secret pour vous, nous vous invitons à lire les **chapitres suivants** et à consulter la [documentation MongoDB](https://docs.mongodb.com) !
