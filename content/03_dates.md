@@ -105,7 +105,7 @@ db.notes.find(
 
 ### Utilisation d'un objet date dans une liste.
 
-Exemple d'une requête où l'attribut `date` de type date est inclus dans la liste `grades` dans la base de donnée `etudiants`. La requête suivante nous retourne les restaurants possédant au moins une note attribué après le 5 octobre 2014.
+Exemple d'une requête où l'attribut `date` de type date est inclus dans la liste `grades` dans la base de donnée `food`. La requête suivante nous retourne les restaurants possédant au moins une note attribué après le 5 octobre 2014.
 
 ```{code-cell}
 use food
