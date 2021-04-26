@@ -60,24 +60,43 @@ Ainsi, si nous souhaitions effectuer un regroupement par date, il faudrait préc
 ### Utilisation d'un objet date au format Date.
 
 Exemple d'une requête simple dans la db `food`. On veut récupérer la liste des restaurants dont la date de la note est supérieure à une date créée.
-```javascript
-madate = new Date("<YYYY-mm-dd>")
+
+```{code-cell}
+use food
+```
+
+```{code-cell}
+:tags: [output_scroll]
+
+madate = new Date("1995-02-13")
 db.NYfood.find({"grades.date": {$gt : madate}})
 ```
+
 ### Utilisation d'un objet date dans une requête d'égalité.
 
 Exemple d'une requête simple dans la base de donnée `etudiants`. On veut récupérer les étudiants nés le 13 février 1995. Il est important d'utiliser l'encadrement. En effet, lors de la création d'une date, la précision est à la milliseconde près. 
 La requête suivante nous renvoie donc les étudiants nés le 13 février 1995 à 00 heures, 00 minutes et 00 secondes (et 0 millisecondes).
-```javascript
+
+```{code-cell}
+use etudiants
+```
+
+```{code-cell}
+:tags: [output_scroll]
+
 madate = new Date("1995-02-13")
 db.notes.find(
     {"ddn": madate}
 )
 ```
+
 Pour avoir les étudiants nés le 13 février 1995, nous utiliserions la requête suivante :
-```javascript
-madateinf = new Date("1995-02-13")
-madatesup = new Date("1995-02-14")
+```{code-cell}
+:tags: [output_scroll]
+
+madateinf = new Date("1995-02-13");
+madatesup = new Date("1995-02-14");
+
 db.notes.find(
     {"ddn": {$gte: madateinf,
              $lt: madatesup}}
@@ -87,14 +106,28 @@ db.notes.find(
 ### Utilisation d'un objet date dans une liste.
 
 Exemple d'une requête où l'attribut `date` de type date est inclus dans la liste `grades` dans la base de donnée `etudiants`. La requête suivante nous retourne les restaurants possédant au moins une note attribué après le 5 octobre 2014.
-```javascript
+
+```{code-cell}
+use food
+```
+
+```{code-cell}
+:tags: [output_scroll]
+
 madate = new Date("2014-10-05")
 db.NYfood.find(
     {"grades.date": {$gt: madate}}
 )
 ```
 Pour avoir les restaurants qui ont obtenu au moins une notes au mois de novembre 2014, nous utiliserions l'opérateur `$elemMatch`. Attention à donner l'attribut de type liste, ici `grades`, avant l'opérateur et à spécifier l'attribut de type date, `date`, dans `$elemMatch`.
-```javascript
+
+```{code-cell}
+use food
+```
+
+```{code-cell}
+:tags: [output_scroll]
+
 madate1 = new Date("2014-11-01")
 madate2 = new Date("2014-12-01")
 db.NYfood.find(
@@ -106,26 +139,30 @@ db.NYfood.find(
 
 ### Utilisation d'un objet date dans un aggregate
 
-Il est possible d'accéder aux attributs années, mois, jours,... d'une date. Ceci est très utile pour les requêtes d'aggrégations.
+Il est possible d'accéder aux attributs années, mois, jours,... d'une date. Ceci est très utile pour les [requêtes d'agrégations](05_agreg.html).
 
-Exemple d'une requête de regroupement par le mois et l'années. Nous voulons afficher mois par mois le nombre de stations de métros dans la base `keolis`.
+Exemple d'une requête de regroupement par le mois et l'années. 
+Nous voulons afficher mois par mois le nombre d'étudiants ayant leur date de naissance à ce mois dans la base `etudiants`.
 
-```javascript
-db.metro.aggregate([
-                        {$group:
-                            {_id: {month: {$month: "$lastCheckDate"},
-                                   year: {$year: "$lastCheckDate"}},
-                                   nb: {$sum: 1}
-                            }
-                        }
-                      ])
+```{code-cell}
+use etudiants
+```
 
+```{code-cell}
+db.notes.aggregate([
+    {$group:
+        {_id: {month: {$month: "$ddn"},
+                year: {$year: "$ddn"}},
+                nb: {$sum: 1}
+        }
+    }
+])
 ``` 
 
 
 ## Transformation de formats
 
-les deux procédés opératoires présentées ci-dessous sont applicable uniquement au sein de la méthode aggregate.
+Les deux procédés opératoires présentés ci-dessous sont applicable uniquement au sein de la méthode aggregate.
 
 ### Présentation des formats
 
@@ -172,10 +209,10 @@ La méthode prend en argument :
 
 #### Exemples
 
-Partons du postulat qu'il existe une variable de type string qui décrit une temporalité dans la collection métro. 
+Partons du postulat qu'il existe une variable de type string qui décrit une temporalité dans la collection notes. 
 
 ```javascript
-db.metro.aggregate(
+db.notes.aggregate(
    [
      {
        $project: {
@@ -212,19 +249,16 @@ La méthode prend en argument :
 
 #### Exemples
 
-```javascript
-db.metro.aggregate(
+```{code-cell}
+db.notes.aggregate(
    [
      {
        $project: {
-          year_str: { $dateToString: { format: "%Y", date: "$lastCheckDate"} },
-          month_str : {$dateToString: { format: "%m", date: "$lastCheckDate"} },
-          date_str : {$dateToString: { format: "%d-%m-%Y", date: "$lastCheckDate"} }
+          year_str: { $dateToString: { format: "%Y", date: "$ddn"} },
+          month_str : {$dateToString: { format: "%m", date: "$ddn"} },
+          date_str : {$dateToString: { format: "%d-%m-%Y", date: "$ddn"} }
        }
      }
    ]
 )
 ```
-on obtient alors le résultat
-
-![Resultat](resdatetostring.png)

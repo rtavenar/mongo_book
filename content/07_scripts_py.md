@@ -91,7 +91,7 @@ print(type(client))
 Ainsi, nous pouvons voir que la fonction créer un objet de class `pymongo.mongo_client.MongoClient` où nous retrouvons nos informations comme le host le port, etc...
 La deuxième étape consiste à nous connecter à notre base de données et nos collections, nous prendons ici l'exemple de la base de données `food`:
 
-```{admonition} Syntax
+```{admonition} Syntaxe
 :class: tip
 
 * Client.BasedeDonnee.Collection   
