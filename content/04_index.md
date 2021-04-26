@@ -85,6 +85,8 @@ Construire une requête mongoDB utilisant des index ne diffèrent pas d'une requ
 _Exemple 1 : Opérateur égal (:, `$eq`)_
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"})
 ```
 
@@ -93,6 +95,8 @@ On récupère les restaurants proposant de la cuisine chinoise dans le quartier 
 _Exemple 2 : Opérateur infériorité/supériorité (`$lt`, `$lte`, `$gt`, `$gte`)_
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.find({"name": {$gte: "C", $lt: "D"}})
 ```
 
@@ -103,6 +107,8 @@ _Exemple 3 : différence d'exécution avec et sans index_
 Reprenons la requête vue à l'exemple 1, mais cette fois affichons son temps d'exécution :
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"}).explain("executionStats")
 ```
 
@@ -115,6 +121,8 @@ db.NYfood.createIndex({"cuisine": 1})
 On peut maintenant relancer la requête et observer la différence :
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"}).explain("executionStats")
 ```
 
@@ -141,6 +149,8 @@ Certaines requêtes pourront ainsi être accélérées par l'un ou l'autre des i
 Nous avons déjà vu un tel exemple, en effet si nous revenons un peu plus haut, nous avons déjà donné une requête de ce type :
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"}).explain("executionStats")
 ```
 
@@ -153,6 +163,8 @@ db.NYfood.createIndex({"cuisine": 1, "borough": 1})
 Répétons notre requête pour voir l'intérêt de notre nouvel index :
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"}).explain("executionStats")
 ```
 
@@ -209,13 +221,19 @@ Cette requête renvoie une liste des documents ordonnée par pertinence, si vous
 
 _Exemple 1 : Liste des documents comportant le terme "famille" mais pas le terme "politique"._
 
+```use discours```
+
 ```{code-cell}
+:tags: [output_scroll]
+
 db.discours.find({$text : {$search : "famille -politique"}})
 ```
 
 _Exemple 2 : Liste ordonnée par pertinence des documents par rapport au terme "écologie"_ :
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.discours.find({$text: {$search: "écologie"}},{"name": true, "score": {$meta: "textScore"}}).sort({score: {$meta: "textScore"}})
 ```
 
@@ -242,11 +260,18 @@ var ref = {"type": "Point", "coordinates": [longitude, latitude]}
 db.nomDeLaCollection.find({"clé": {$near : {$geometry : ref}}})
 ```
 _Exemple 1 :_
+
+```{code-cell}
+use food
+```
+
 ```{code-cell}
 var CrownHeights= {"type": "Point", "coordinates": [-73.923, 40.676]}
 ```
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.find({"address.loc" : {$near: {$geometry: CrownHeights}}})
 ```
 
@@ -273,6 +298,8 @@ var eastVillage= {"type" : "Polygon", "coordinates" : [[[-73.9917900, 40.7264100
 ```
 
 ```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.find({"address.loc": {$within : {$geometry : eastVillage}}})
 ```
 
