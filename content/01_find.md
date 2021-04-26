@@ -464,7 +464,7 @@ WHERE ...
 
 ````
 
-````{admonition}
+```{admonition}
 :class: tip
 
 À noter : il n'y a pas d'équivalent en SQL pour l'exemple des notes attribuées aux restaurants du quartier "Manhattan" présenté ici puisque **un attribut ne peut pas être une liste de valeurs en SQL**. 
