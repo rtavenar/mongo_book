@@ -17,7 +17,7 @@ kernelspec:
 (sec:exec)=
 ## Regroupements
 
-* Auteurs/trices : ***CASTRIQUE Jérémy, NOJAC Dimitri, VAVASSEUR Salomé***
+* Auteurs/trices : **CASTRIQUE Jérémy, NOJAC Dimitri, VAVASSEUR Salomé**
 
 Dans cette partie, nous allons étudier **les regroupements dans les requêtes d'aggrégation**. Dans un premier temps, nous étudierons ce qu'est l'étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l'aide des 4 d'opérateurs qui sont : `$sum`, `$max`, `$min`, `$count` avec ou sans groupe.
 
@@ -426,7 +426,7 @@ ou la valeur maximale.
 
 ##  Successions d'étapes d'agrégation 
 
-* Auteurs/trices : Marine BINARD, Yann CAUSEUR, Arthur CONAS
+* Auteurs/trices : **Marine BINARD, Yann CAUSEUR, Arthur CONAS**
 
 
 ### Introduction
