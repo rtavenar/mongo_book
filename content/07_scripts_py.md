@@ -118,7 +118,7 @@ Enfin, il ne nous reste plus qu'à récupérer la collection souhaitée. Cela es
 coll_name = "NYfood"
 coll = db[coll_name]
 
-# même syntax qu'auparavant
+# même syntaxe qu'auparavant
 
 coll = db.NYfood
 
@@ -149,7 +149,7 @@ Maintenant que nous avons fait nos connexions, il nous reste à voir comment eff
 **Fonctionnement :**
 Le fonctionement est le même que sur l'interface MongoDB:
 
-```{admonition} Syntax requête
+```{admonition} Syntaxe requête
 :class: tip
 
  * Client.BasedeDonne.nomDeLaCollection.requete()    
@@ -200,7 +200,7 @@ print(cursor[0]["address"]["loc"]["coordinates"])
 
 De plus, pour utiliser certaines méthodes sur nos requêtes comme `sort()`, c'est sensiblement la même syntaxe que MongoDB :
 
-```{admonition} Syntax méthode
+```{admonition} Syntaxe méthode
 :class: tip
 
 * Client.BasedeDonnee.Collection.requetes().methode()    
@@ -296,7 +296,7 @@ print(cursorbis == cursor)
 ### Les index
 Les index sont des structures de données spéciales qui stockent une petite partie de l'ensemble de données de la collection sous une forme facile à parcourir. L'index stocke la valeur d'un champ spécifique ou d'un ensemble de champs, triés par la valeur du champ. Ainsi, l'utilisation avec `pymongo` est la même qu'en mongoDB.
 
-```{admonition} Syntax de requête d'index
+```{admonition} Syntaxe de requête d'index
 :class: tip
 
 * Client.BasedeDonnee.Collection.requeteIndex()    
@@ -330,7 +330,7 @@ db.NYfood.create_index("borough_1")
 ### Les requêtes d'agrégation
 Les requêtes d'agrégation ont pour but de faire des calculs simples (agrégats) sur toute la collection ou seulement sur certains groupes. Pour ce faire, on utilise la méthode ```aggregate()``` .
 
-```{admonition} Syntax de la requête d'aggregation
+```{admonition} Syntaxe de la requête d'aggregation
 :class: tip
 
 * Client.BasedeDonnee.Collection.aggregate()   
@@ -384,7 +384,7 @@ plt.show()
 ### Les modifications
 Contrairement aux requêtes d'interrogation, les requêtes de modification peuvent modifier la base de données. Avec la librairie `pymongo` l'écriture est la même qu'en MongoDB.
 
-```{admonition} Syntax de requête de modifications
+```{admonition} Syntaxe de requête de modifications
 :class: tip
 
 * Client.BasedeDonnee.Collection.requeteModification()   
