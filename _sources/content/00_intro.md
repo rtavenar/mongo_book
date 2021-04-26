@@ -19,10 +19,8 @@ Ce document compile des notes pour un cours de MongoDB dispensé en Master
 Mathématiques Appliquées, Statistiques (parcours _Data Science_), à
 l'Université de Rennes 2.
 
-## Fonctionnement
-
-Ce document a été rédigé collaborativement par les étudiants du Master 1 de Data 
-Science de l'Université de Rennes 2 (2020-2021).
+Ce document a été rédigé collaborativement par les étudiants du Master 1
+en 2021.
 
 Pour aider à cette rédaction, deux annexes ont été mises à leur disposition :
 * [annexe consacrée à `git`](sec:git) ;

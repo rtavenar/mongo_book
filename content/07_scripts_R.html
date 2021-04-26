@@ -524,16 +524,16 @@
 </div>
 <p>Nous pouvons également noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="86d708bb-4c52-49f1-a56a-387ceae4d0b6" name="3f3becc4-5e60-452e-8dcf-31695b31023f" type="radio">
-</input><label class="tabbed-label" for="86d708bb-4c52-49f1-a56a-387ceae4d0b6">
+<input checked="checked" id="8b839683-6c09-41d9-9eea-b26f9b66bdd6" name="714efcbe-9071-4bb4-8dff-ff402debc990" type="radio">
+</input><label class="tabbed-label" for="8b839683-6c09-41d9-9eea-b26f9b66bdd6">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">req</span> <span class="o">=</span> <span class="s">&quot;{}&quot;</span>
 <span class="n">coll</span><span class="o">$</span><span class="nf">count</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="ad25dd49-e87e-41df-a462-fefa983470ed" name="3f3becc4-5e60-452e-8dcf-31695b31023f" type="radio">
-</input><label class="tabbed-label" for="ad25dd49-e87e-41df-a462-fefa983470ed">
+<input id="7341befb-fba0-492c-b7f1-8256efd77037" name="714efcbe-9071-4bb4-8dff-ff402debc990" type="radio">
+</input><label class="tabbed-label" for="7341befb-fba0-492c-b7f1-8256efd77037">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">()</span>
 </pre></div>
@@ -542,16 +542,16 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Et pour afficher le nombre de restaurants chinois :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="49fccd64-333c-470b-8fcb-2c3e258d5eac" name="b497100d-fb37-433d-af50-07899b4d01f1" type="radio">
-</input><label class="tabbed-label" for="49fccd64-333c-470b-8fcb-2c3e258d5eac">
+<input checked="checked" id="c728bccc-1100-470e-ab08-c2677a5d17ff" name="3ea3ef13-5754-478c-aa15-a02331871b21" type="radio">
+</input><label class="tabbed-label" for="c728bccc-1100-470e-ab08-c2677a5d17ff">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">req</span> <span class="o">=</span> <span class="s">&#39;{&quot;cuisine&quot;:&quot;Chinese&quot;}&#39;</span>
 <span class="n">coll</span><span class="o">$</span><span class="nf">count</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="5bcd329e-3bc8-43fb-a77d-d1713a37989e" name="b497100d-fb37-433d-af50-07899b4d01f1" type="radio">
-</input><label class="tabbed-label" for="5bcd329e-3bc8-43fb-a77d-d1713a37989e">
+<input id="e6cd6c60-addd-4c7a-9bae-59ac78c2b426" name="3ea3ef13-5754-478c-aa15-a02331871b21" type="radio">
+</input><label class="tabbed-label" for="e6cd6c60-addd-4c7a-9bae-59ac78c2b426">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span><span class="s2">&quot;Chinese&quot;</span><span class="p">})</span>
 </pre></div>
@@ -605,8 +605,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>L’équivalent en MongoDB est le suivant :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="19199e6f-c98d-44cb-837a-25cf24349957" name="758cd5ee-0208-46a6-b21b-b3584ebe55f3" type="radio">
-</input><label class="tabbed-label" for="19199e6f-c98d-44cb-837a-25cf24349957">
+<input checked="checked" id="7ce57f43-c6d2-483b-bc58-d5cfbdcbc7cb" name="b55cb40e-bb45-4c66-825b-35a24d5ab589" type="radio">
+</input><label class="tabbed-label" for="7ce57f43-c6d2-483b-bc58-d5cfbdcbc7cb">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">&lt;-</span> <span class="n">coll</span><span class="o">$</span><span class="nf">find</span><span class="p">(</span><span class="n">query</span> <span class="o">=</span> <span class="s">&#39;{&quot;cuisine&quot;:&quot;Chinese&quot;, &quot;borough&quot;:&quot;Brooklyn&quot;}&#39;</span><span class="p">,</span>
                   <span class="n">fields</span> <span class="o">=</span> <span class="s">&#39;{&quot;name&quot;: true, &quot;_id&quot;:false}&#39;</span><span class="p">,</span>
@@ -616,8 +616,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="3148cc6a-6c94-401c-ada0-7cfbc8d4cfd1" name="758cd5ee-0208-46a6-b21b-b3584ebe55f3" type="radio">
-</input><label class="tabbed-label" for="3148cc6a-6c94-401c-ada0-7cfbc8d4cfd1">
+<input id="35100a25-4d55-4c05-aa62-9dc29dccdb21" name="b55cb40e-bb45-4c66-825b-35a24d5ab589" type="radio">
+</input><label class="tabbed-label" for="35100a25-4d55-4c05-aa62-9dc29dccdb21">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span><span class="s2">&quot;Chinese&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="o">:</span><span class="s2">&quot;Brooklyn&quot;</span><span class="p">},</span> 
 <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="kc">false</span><span class="p">}).</span><span class="nx">sort</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="o">:-</span><span class="mf">1</span><span class="p">}).</span><span class="nx">limit</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>
@@ -629,15 +629,15 @@ Mongolite</label><div class="tabbed-content docutils">
 <p><strong>Exemple :</strong></p>
 <p>Créer un index sur le champs <em>name</em> :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="cd5041a1-f72e-49d7-a54b-5612637ad2e4" name="98b3bd33-4d3e-4adb-8487-ae89ddfe87c0" type="radio">
-</input><label class="tabbed-label" for="cd5041a1-f72e-49d7-a54b-5612637ad2e4">
+<input checked="checked" id="1f56f17c-358b-4955-9b28-c68099bde38d" name="c7daa77e-71ca-4221-be3e-57ab11dec103" type="radio">
+</input><label class="tabbed-label" for="1f56f17c-358b-4955-9b28-c68099bde38d">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">coll</span><span class="o">$</span><span class="nf">index</span><span class="p">(</span><span class="n">add</span> <span class="o">=</span> <span class="s">&#39;{&quot;name&quot; : 1}&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="807bc33f-0c64-4f63-a63d-c8bb2617b26b" name="98b3bd33-4d3e-4adb-8487-ae89ddfe87c0" type="radio">
-</input><label class="tabbed-label" for="807bc33f-0c64-4f63-a63d-c8bb2617b26b">
+<input id="84dfe945-7fd4-434a-9d76-be6cb7cb8776" name="c7daa77e-71ca-4221-be3e-57ab11dec103" type="radio">
+</input><label class="tabbed-label" for="84dfe945-7fd4-434a-9d76-be6cb7cb8776">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">createIndex</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="mf">1</span><span class="p">}</span>
 </pre></div>
@@ -709,16 +709,16 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Notons alors l’équivalent possible en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e784b79a-fd2e-4078-8af5-659b91f1236e" name="696206c8-74b5-4eae-a51e-7afdc36fc997" type="radio">
-</input><label class="tabbed-label" for="e784b79a-fd2e-4078-8af5-659b91f1236e">
+<input checked="checked" id="407e6b99-767d-46fa-b541-7a6f3c659344" name="d95fe876-c1a9-4133-b04c-a1a7c5892a8e" type="radio">
+</input><label class="tabbed-label" for="407e6b99-767d-46fa-b541-7a6f3c659344">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s">&#39;{&quot;borough&quot;: &quot;Manhattan&quot;, &quot;name&quot;: {&quot;$regex&quot;: &quot;^A&quot;, &quot;$options&quot;:&quot;i&quot;}}&#39;</span>
 <span class="n">coll</span><span class="o">$</span><span class="nf">find</span><span class="p">(</span><span class="n">query</span> <span class="o">=</span> <span class="n">q</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="m">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="9549f916-5852-430d-846d-83ff573d583f" name="696206c8-74b5-4eae-a51e-7afdc36fc997" type="radio">
-</input><label class="tabbed-label" for="9549f916-5852-430d-846d-83ff573d583f">
+<input id="0dc969e3-cfa0-4166-9987-8f43baaf4707" name="d95fe876-c1a9-4133-b04c-a1a7c5892a8e" type="radio">
+</input><label class="tabbed-label" for="0dc969e3-cfa0-4166-9987-8f43baaf4707">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Manhattan&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="sr">/^A/i</span> <span class="p">}).</span><span class="nx">limit</span><span class="p">(</span><span class="mf">10</span><span class="p">)</span>
 </pre></div>
@@ -772,7 +772,7 @@ Mongolite</label><div class="tabbed-content docutils">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1]]
 [[1]]$address
 [[1]]$address$building
-[1] &quot;1007&quot;
+[1] &quot;469&quot;
 
 [[1]]$address$loc
 [[1]]$address$loc$type
@@ -780,94 +780,83 @@ Mongolite</label><div class="tabbed-content docutils">
 
 [[1]]$address$loc$coordinates
 [[1]]$address$loc$coordinates[[1]]
-[1] -73.85608
+[1] -73.9617
 
 [[1]]$address$loc$coordinates[[2]]
-[1] 40.84845
+[1] 40.66294
 
 
 
 [[1]]$address$street
-[1] &quot;Morris Park Ave&quot;
+[1] &quot;Flatbush Avenue&quot;
 
 [[1]]$address$zipcode
-[1] &quot;10462&quot;
+[1] &quot;11225&quot;
 
 
 [[1]]$borough
-[1] &quot;Bronx&quot;
+[1] &quot;Brooklyn&quot;
 
 [[1]]$cuisine
-[1] &quot;Bakery&quot;
+[1] &quot;Hamburgers&quot;
 
 [[1]]$grades
 [[1]]$grades[[1]]
 [[1]]$grades[[1]]$date
-[1] &quot;2014-03-03 UTC&quot;
+[1] &quot;2014-12-30 UTC&quot;
 
 [[1]]$grades[[1]]$grade
 [1] &quot;A&quot;
 
 [[1]]$grades[[1]]$score
-[1] 2
+[1] 8
 
 
 [[1]]$grades[[2]]
 [[1]]$grades[[2]]$date
-[1] &quot;2013-09-11 UTC&quot;
+[1] &quot;2014-07-01 UTC&quot;
 
 [[1]]$grades[[2]]$grade
-[1] &quot;A&quot;
+[1] &quot;B&quot;
 
 [[1]]$grades[[2]]$score
-[1] 6
+[1] 23
 
 
 [[1]]$grades[[3]]
 [[1]]$grades[[3]]$date
-[1] &quot;2013-01-24 UTC&quot;
+[1] &quot;2013-04-30 UTC&quot;
 
 [[1]]$grades[[3]]$grade
 [1] &quot;A&quot;
 
 [[1]]$grades[[3]]$score
-[1] 10
+[1] 12
 
 
 [[1]]$grades[[4]]
 [[1]]$grades[[4]]$date
-[1] &quot;2011-11-23 UTC&quot;
+[1] &quot;2012-05-08 UTC&quot;
 
 [[1]]$grades[[4]]$grade
 [1] &quot;A&quot;
 
 [[1]]$grades[[4]]$score
-[1] 9
-
-
-[[1]]$grades[[5]]
-[[1]]$grades[[5]]$date
-[1] &quot;2011-03-10 UTC&quot;
-
-[[1]]$grades[[5]]$grade
-[1] &quot;B&quot;
-
-[[1]]$grades[[5]]$score
-[1] 14
+[1] 12
 
 
 
 [[1]]$name
-[1] &quot;Morris Park Bake Shop&quot;
+[1] &quot;Wendy&#39;S&quot;
 
 [[1]]$restaurant_id
-[1] &quot;30075445&quot;
+[1] &quot;30112340&quot;
 
 
 [[2]]
 [[2]]$address
 [[2]]$address$building
-[1] &quot;351&quot;
+[1] &quot;1007&quot;
 
 [[2]]$address$loc
 [[2]]$address$loc$type
@@ -875,30 +864,30 @@ Mongolite</label><div class="tabbed-content docutils">
 
 [[2]]$address$loc$coordinates
 [[2]]$address$loc$coordinates[[1]]
-[1] -73.98514
+[1] -73.85608
 
 [[2]]$address$loc$coordinates[[2]]
-[1] 40.76769
+[1] 40.84845
 
 
 
 [[2]]$address$street
-[1] &quot;West   57 Street&quot;
+[1] &quot;Morris Park Ave&quot;
 
 [[2]]$address$zipcode
-[1] &quot;10019&quot;
+[1] &quot;10462&quot;
 
 
 [[2]]$borough
-[1] &quot;Manhattan&quot;
+[1] &quot;Bronx&quot;
 
 [[2]]$cuisine
-[1] &quot;Irish&quot;
+[1] &quot;Bakery&quot;
 
 [[2]]$grades
 [[2]]$grades[[1]]
 [[2]]$grades[[1]]$date
-[1] &quot;2014-09-06 UTC&quot;
+[1] &quot;2014-03-03 UTC&quot;
 
 [[2]]$grades[[1]]$grade
 [1] &quot;A&quot;
@@ -909,49 +898,60 @@ Mongolite</label><div class="tabbed-content docutils">
 
 [[2]]$grades[[2]]
 [[2]]$grades[[2]]$date
-[1] &quot;2013-07-22 UTC&quot;
+[1] &quot;2013-09-11 UTC&quot;
 
 [[2]]$grades[[2]]$grade
 [1] &quot;A&quot;
 
 [[2]]$grades[[2]]$score
-[1] 11
+[1] 6
 
 
 [[2]]$grades[[3]]
 [[2]]$grades[[3]]$date
-[1] &quot;2012-07-31 UTC&quot;
+[1] &quot;2013-01-24 UTC&quot;
 
 [[2]]$grades[[3]]$grade
 [1] &quot;A&quot;
 
 [[2]]$grades[[3]]$score
-[1] 12
+[1] 10
 
 
 [[2]]$grades[[4]]
 [[2]]$grades[[4]]$date
-[1] &quot;2011-12-29 UTC&quot;
+[1] &quot;2011-11-23 UTC&quot;
 
 [[2]]$grades[[4]]$grade
 [1] &quot;A&quot;
 
 [[2]]$grades[[4]]$score
-[1] 12
+[1] 9
+
+
+[[2]]$grades[[5]]
+[[2]]$grades[[5]]$date
+[1] &quot;2011-03-10 UTC&quot;
+
+[[2]]$grades[[5]]$grade
+[1] &quot;B&quot;
+
+[[2]]$grades[[5]]$score
+[1] 14
 
 
 
 [[2]]$name
-[1] &quot;Dj Reynolds Pub And Restaurant&quot;
+[1] &quot;Morris Park Bake Shop&quot;
 
 [[2]]$restaurant_id
-[1] &quot;30191841&quot;
+[1] &quot;30075445&quot;
 
 
 [[3]]
 [[3]]$address
 [[3]]$address$building
-[1] &quot;2780&quot;
+[1] &quot;351&quot;
 
 [[3]]$address$loc
 [[3]]$address$loc$type
@@ -959,52 +959,52 @@ Mongolite</label><div class="tabbed-content docutils">
 
 [[3]]$address$loc$coordinates
 [[3]]$address$loc$coordinates[[1]]
-[1] -73.98242
+[1] -73.98514
 
 [[3]]$address$loc$coordinates[[2]]
-[1] 40.5795
+[1] 40.76769
 
 
 
 [[3]]$address$street
-[1] &quot;Stillwell Avenue&quot;
+[1] &quot;West   57 Street&quot;
 
 [[3]]$address$zipcode
-[1] &quot;11224&quot;
+[1] &quot;10019&quot;
 
 
 [[3]]$borough
-[1] &quot;Brooklyn&quot;
+[1] &quot;Manhattan&quot;
 
 [[3]]$cuisine
-[1] &quot;American &quot;
+[1] &quot;Irish&quot;
 
 [[3]]$grades
 [[3]]$grades[[1]]
 [[3]]$grades[[1]]$date
-[1] &quot;2014-06-10 UTC&quot;
+[1] &quot;2014-09-06 UTC&quot;
 
 [[3]]$grades[[1]]$grade
 [1] &quot;A&quot;
 
 [[3]]$grades[[1]]$score
-[1] 5
+[1] 2
 
 
 [[3]]$grades[[2]]
 [[3]]$grades[[2]]$date
-[1] &quot;2013-06-05 UTC&quot;
+[1] &quot;2013-07-22 UTC&quot;
 
 [[3]]$grades[[2]]$grade
 [1] &quot;A&quot;
 
 [[3]]$grades[[2]]$score
-[1] 7
+[1] 11
 
 
 [[3]]$grades[[3]]
 [[3]]$grades[[3]]$date
-[1] &quot;2012-04-13 UTC&quot;
+[1] &quot;2012-07-31 UTC&quot;
 
 [[3]]$grades[[3]]$grade
 [1] &quot;A&quot;
@@ -1015,7 +1015,7 @@ Mongolite</label><div class="tabbed-content docutils">
 
 [[3]]$grades[[4]]
 [[3]]$grades[[4]]$date
-[1] &quot;2011-10-12 UTC&quot;
+[1] &quot;2011-12-29 UTC&quot;
 
 [[3]]$grades[[4]]$grade
 [1] &quot;A&quot;
@@ -1026,16 +1026,16 @@ Mongolite</label><div class="tabbed-content docutils">
 
 
 [[3]]$name
-[1] &quot;Riviera Caterer&quot;
+[1] &quot;Dj Reynolds Pub And Restaurant&quot;
 
 [[3]]$restaurant_id
-[1] &quot;40356018&quot;
+[1] &quot;30191841&quot;
 
 
 [[4]]
 [[4]]$address
 [[4]]$address$building
-[1] &quot;469&quot;
+[1] &quot;97-22&quot;
 
 [[4]]$address$loc
 [[4]]$address$loc$type
@@ -1043,83 +1043,83 @@ Mongolite</label><div class="tabbed-content docutils">
 
 [[4]]$address$loc$coordinates
 [[4]]$address$loc$coordinates[[1]]
-[1] -73.9617
+[1] -73.86012
 
 [[4]]$address$loc$coordinates[[2]]
-[1] 40.66294
+[1] 40.73117
 
 
 
 [[4]]$address$street
-[1] &quot;Flatbush Avenue&quot;
+[1] &quot;63 Road&quot;
 
 [[4]]$address$zipcode
-[1] &quot;11225&quot;
+[1] &quot;11374&quot;
 
 
 [[4]]$borough
-[1] &quot;Brooklyn&quot;
+[1] &quot;Queens&quot;
 
 [[4]]$cuisine
-[1] &quot;Hamburgers&quot;
+[1] &quot;Jewish/Kosher&quot;
 
 [[4]]$grades
 [[4]]$grades[[1]]
 [[4]]$grades[[1]]$date
-[1] &quot;2014-12-30 UTC&quot;
+[1] &quot;2014-11-24 UTC&quot;
 
 [[4]]$grades[[1]]$grade
-[1] &quot;A&quot;
+[1] &quot;Z&quot;
 
 [[4]]$grades[[1]]$score
-[1] 8
+[1] 20
 
 
 [[4]]$grades[[2]]
 [[4]]$grades[[2]]$date
-[1] &quot;2014-07-01 UTC&quot;
+[1] &quot;2013-01-17 UTC&quot;
 
 [[4]]$grades[[2]]$grade
-[1] &quot;B&quot;
+[1] &quot;A&quot;
 
 [[4]]$grades[[2]]$score
-[1] 23
+[1] 13
 
 
 [[4]]$grades[[3]]
 [[4]]$grades[[3]]$date
-[1] &quot;2013-04-30 UTC&quot;
+[1] &quot;2012-08-02 UTC&quot;
 
 [[4]]$grades[[3]]$grade
 [1] &quot;A&quot;
 
 [[4]]$grades[[3]]$score
-[1] 12
+[1] 13
 
 
 [[4]]$grades[[4]]
 [[4]]$grades[[4]]$date
-[1] &quot;2012-05-08 UTC&quot;
+[1] &quot;2011-12-15 UTC&quot;
 
 [[4]]$grades[[4]]$grade
-[1] &quot;A&quot;
+[1] &quot;B&quot;
 
 [[4]]$grades[[4]]$score
-[1] 12
+[1] 25
 
 
 
 [[4]]$name
-[1] &quot;Wendy&#39;S&quot;
+[1] &quot;Tov Kosher Kitchen&quot;
 
 [[4]]$restaurant_id
-[1] &quot;30112340&quot;
+[1] &quot;40356068&quot;
 
 
 [[5]]
 [[5]]$address
 [[5]]$address$building
-[1] &quot;97-22&quot;
+[1] &quot;2780&quot;
 
 [[5]]$address$loc
 [[5]]$address$loc$type
@@ -1127,77 +1127,77 @@ Mongolite</label><div class="tabbed-content docutils">
 
 [[5]]$address$loc$coordinates
 [[5]]$address$loc$coordinates[[1]]
-[1] -73.86012
+[1] -73.98242
 
 [[5]]$address$loc$coordinates[[2]]
-[1] 40.73117
+[1] 40.5795
 
 
 
 [[5]]$address$street
-[1] &quot;63 Road&quot;
+[1] &quot;Stillwell Avenue&quot;
 
 [[5]]$address$zipcode
-[1] &quot;11374&quot;
+[1] &quot;11224&quot;
 
 
 [[5]]$borough
-[1] &quot;Queens&quot;
+[1] &quot;Brooklyn&quot;
 
 [[5]]$cuisine
-[1] &quot;Jewish/Kosher&quot;
+[1] &quot;American &quot;
 
 [[5]]$grades
 [[5]]$grades[[1]]
 [[5]]$grades[[1]]$date
-[1] &quot;2014-11-24 UTC&quot;
+[1] &quot;2014-06-10 UTC&quot;
 
 [[5]]$grades[[1]]$grade
-[1] &quot;Z&quot;
+[1] &quot;A&quot;
 
 [[5]]$grades[[1]]$score
-[1] 20
+[1] 5
 
 
 [[5]]$grades[[2]]
 [[5]]$grades[[2]]$date
-[1] &quot;2013-01-17 UTC&quot;
+[1] &quot;2013-06-05 UTC&quot;
 
 [[5]]$grades[[2]]$grade
 [1] &quot;A&quot;
 
 [[5]]$grades[[2]]$score
-[1] 13
+[1] 7
 
 
 [[5]]$grades[[3]]
 [[5]]$grades[[3]]$date
-[1] &quot;2012-08-02 UTC&quot;
+[1] &quot;2012-04-13 UTC&quot;
 
 [[5]]$grades[[3]]$grade
 [1] &quot;A&quot;
 
 [[5]]$grades[[3]]$score
-[1] 13
+[1] 12
 
 
 [[5]]$grades[[4]]
 [[5]]$grades[[4]]$date
-[1] &quot;2011-12-15 UTC&quot;
+[1] &quot;2011-10-12 UTC&quot;
 
 [[5]]$grades[[4]]$grade
-[1] &quot;B&quot;
+[1] &quot;A&quot;
 
 [[5]]$grades[[4]]$score
-[1] 25
+[1] 12
 
 
 
 [[5]]$name
-[1] &quot;Tov Kosher Kitchen&quot;
+[1] &quot;Riviera Caterer&quot;
 
 [[5]]$restaurant_id
-[1] &quot;40356068&quot;
+[1] &quot;40356018&quot;
 </pre></div>
 </div>
 </div>
@@ -1211,30 +1211,30 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  address.building address.loc.type address.loc.coordinates     address.street
-1             8825            Point     -73.88038, 40.76431  Astoria Boulevard
-2             2206            Point     -74.13773, 40.61196  Victory Boulevard
-3             7114            Point     -73.90685, 40.61990           Avenue U
-4             6409            Point     -74.00529, 40.62889          11 Avenue
-5             2300            Point     -73.87861, 40.85029 Southern Boulevard
-  address.zipcode       borough       cuisine
-1           11369        Queens     American 
-2           10314 Staten Island Jewish/Kosher
-3           11234      Brooklyn  Delicatessen
-4           11219      Brooklyn     American 
-5           10460         Bronx     American 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  address.building address.loc.type address.loc.coordinates    address.street
+1             2206            Point     -74.13773, 40.61196 Victory Boulevard
+2             8825            Point     -73.88038, 40.76431 Astoria Boulevard
+3             6409            Point     -74.00529, 40.62889         11 Avenue
+4             7114            Point     -73.90685, 40.61990          Avenue U
+5             1839            Point     -73.94826, 40.64083   Nostrand Avenue
+  address.zipcode       borough                         cuisine
+1           10314 Staten Island                   Jewish/Kosher
+2           11369        Queens                       American 
+3           11219      Brooklyn                       American 
+4           11234      Brooklyn                    Delicatessen
+5           11226      Brooklyn Ice Cream, Gelato, Yogurt, Ices
                                                                                                           grades
-1                                      1416009600, 1398988800, 1362182400, 1328832000, Z, A, A, A, 38, 10, 7, 13
-2                                       1412553600, 1400544000, 1365033600, 1327363200, A, A, A, A, 9, 12, 12, 9
-3 1401321600, 1389657600, 1375488000, 1342569600, 1331251200, 1318550400, A, A, A, A, A, A, 10, 10, 8, 10, 13, 9
-4                   1405641600, 1375142400, 1360713600, 1345075200, 1313539200, A, A, A, A, A, 12, 12, 11, 2, 11
-5                                                          1401235200, 1371600000, 1339718400, A, A, A, 11, 4, 3
-                     name restaurant_id
-1 Brunos On The Boulevard      40356151
-2           Kosher Island      40356442
-3      Wilken&#39;S Fine Food      40356483
-4         Regina Caterers      40356649
-5               Wild Asia      40357217
+1                                       1412553600, 1400544000, 1365033600, 1327363200, A, A, A, A, 9, 12, 12, 9
+2                                      1416009600, 1398988800, 1362182400, 1328832000, Z, A, A, A, 38, 10, 7, 13
+3                   1405641600, 1375142400, 1360713600, 1345075200, 1313539200, A, A, A, A, A, 12, 12, 11, 2, 11
+4 1401321600, 1389657600, 1375488000, 1342569600, 1331251200, 1318550400, A, A, A, A, A, A, 10, 10, 8, 10, 13, 9
+5                                        1405296000, 1373414400, 1341964800, 1329955200, A, A, A, A, 12, 8, 5, 8
+                         name restaurant_id
+1               Kosher Island      40356442
+2     Brunos On The Boulevard      40356151
+3             Regina Caterers      40356649
+4          Wilken&#39;S Fine Food      40356483
+5 Taste The Tropics Ice Cream      40356731
 </pre></div>
 </div>
 </div>
@@ -1262,15 +1262,15 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons également noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="18e28505-7114-41f3-bba0-97826ce96c3f" name="9db89277-30e7-48a5-927f-3753af6ddc6f" type="radio">
-</input><label class="tabbed-label" for="18e28505-7114-41f3-bba0-97826ce96c3f">
+<input checked="checked" id="5536598d-b765-4b4f-8ab0-a16f41546bc5" name="827b3fce-b029-42a4-af3f-bd35578bb8f6" type="radio">
+</input><label class="tabbed-label" for="5536598d-b765-4b4f-8ab0-a16f41546bc5">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">coll</span><span class="o">$</span><span class="nf">distinct</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="s">&quot;grades.grade&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="159983e3-9624-4253-bdef-5f7774b73f02" name="9db89277-30e7-48a5-927f-3753af6ddc6f" type="radio">
-</input><label class="tabbed-label" for="159983e3-9624-4253-bdef-5f7774b73f02">
+<input id="32ddffe5-af74-4f15-b85e-99976be4a1d1" name="827b3fce-b029-42a4-af3f-bd35578bb8f6" type="radio">
+</input><label class="tabbed-label" for="32ddffe5-af74-4f15-b85e-99976be4a1d1">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">distinct</span><span class="p">(</span><span class="s2">&quot;grades.grade&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1349,8 +1349,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="80969b51-4d03-475c-812c-a06e2e0e8db1" name="e4713af7-c0be-4e37-b21c-a3afee81865d" type="radio">
-</input><label class="tabbed-label" for="80969b51-4d03-475c-812c-a06e2e0e8db1">
+<input checked="checked" id="4b0a9848-7c2d-4575-a4b3-5f57bae8b259" name="a49d3927-270e-4410-85a4-cf51f88009e8" type="radio">
+</input><label class="tabbed-label" for="4b0a9848-7c2d-4575-a4b3-5f57bae8b259">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">&lt;-</span> <span class="s">&#39;{&quot;grades.date&quot;: {&quot;$gte&quot;: {&quot;$date&quot;: &quot;2015-01-20T00:00:00Z&quot;}}}&#39;</span>
 <span class="n">data</span> <span class="o">&lt;-</span> <span class="n">coll</span><span class="o">$</span><span class="nf">find</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="m">10</span><span class="p">)</span>
@@ -1358,8 +1358,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="fc185c0d-00de-4ae2-9a95-ba9a1ae167dc" name="e4713af7-c0be-4e37-b21c-a3afee81865d" type="radio">
-</input><label class="tabbed-label" for="fc185c0d-00de-4ae2-9a95-ba9a1ae167dc">
+<input id="2eeb20bc-d48a-4ff2-81d0-9a89cf619cc1" name="a49d3927-270e-4410-85a4-cf51f88009e8" type="radio">
+</input><label class="tabbed-label" for="2eeb20bc-d48a-4ff2-81d0-9a89cf619cc1">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2015-01-20&quot;</span><span class="p">)</span>
 <span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;grades.date&quot;</span><span class="o">:</span><span class="p">{</span><span class="nx">$gte</span><span class="o">:</span> <span class="nx">date</span><span class="p">}}).</span><span class="nx">limit</span><span class="p">(</span><span class="mf">10</span><span class="p">)</span>
@@ -1394,20 +1394,20 @@ Mongolite</label><div class="tabbed-content docutils">
 	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>1</th><td>Missing      </td><td>   51</td></tr>
-	<tr><th scope=row>2</th><td>Brooklyn     </td><td> 6085</td></tr>
-	<tr><th scope=row>3</th><td>Staten Island</td><td>  969</td></tr>
-	<tr><th scope=row>4</th><td>Queens       </td><td> 5656</td></tr>
+	<tr><th scope=row>1</th><td>Bronx        </td><td> 2338</td></tr>
+	<tr><th scope=row>2</th><td>Staten Island</td><td>  969</td></tr>
+	<tr><th scope=row>3</th><td>Queens       </td><td> 5656</td></tr>
+	<tr><th scope=row>4</th><td>Brooklyn     </td><td> 6085</td></tr>
 	<tr><th scope=row>5</th><td>Manhattan    </td><td>10258</td></tr>
-	<tr><th scope=row>6</th><td>Bronx        </td><td> 2338</td></tr>
+	<tr><th scope=row>6</th><td>Missing      </td><td>   51</td></tr>
 </tbody>
 </table>
 </div></div>
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="1296cbbf-ccf9-43ac-97af-8f8c476d0a6b" name="be8c94d3-54bf-46ea-88f8-a39faf0b9761" type="radio">
-</input><label class="tabbed-label" for="1296cbbf-ccf9-43ac-97af-8f8c476d0a6b">
+<input checked="checked" id="2ae8c4f9-a761-4676-99c6-68db4e892957" name="c94ba494-ac6a-4de1-92f2-4a7fd5868923" type="radio">
+</input><label class="tabbed-label" for="2ae8c4f9-a761-4676-99c6-68db4e892957">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">req</span> <span class="o">=</span> <span class="s">&#39;[{&quot;$group&quot;:{&quot;_id&quot;:&quot;$borough&quot;,&quot;nb_restos&quot;:{&quot;$sum&quot;:1}}}]&#39;</span> 
 <span class="n">df</span> <span class="o">&lt;-</span> <span class="n">coll</span><span class="o">$</span><span class="nf">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="o">=</span><span class="n">req</span><span class="p">)</span> 
@@ -1415,8 +1415,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="ceb376f7-fef8-470b-b0eb-c9ade364a090" name="be8c94d3-54bf-46ea-88f8-a39faf0b9761" type="radio">
-</input><label class="tabbed-label" for="ceb376f7-fef8-470b-b0eb-c9ade364a090">
+<input id="2055b4d5-834c-4337-8697-a3f093dbe78b" name="c94ba494-ac6a-4de1-92f2-4a7fd5868923" type="radio">
+</input><label class="tabbed-label" for="2055b4d5-834c-4337-8697-a3f093dbe78b">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([{</span><span class="nx">$group</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="s2">&quot;nb_restos&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;$sum&quot;</span><span class="o">:</span><span class="mf">1</span><span class="p">}}}])</span>
 </pre></div>
@@ -1440,8 +1440,8 @@ Mongolite</label><div class="tabbed-content docutils">
 	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>1</th><td>Missing </td><td>  51</td></tr>
-	<tr><th scope=row>2</th><td>Brooklyn</td><td>6085</td></tr>
+	<tr><th scope=row>1</th><td>Bronx        </td><td>2338</td></tr>
+	<tr><th scope=row>2</th><td>Staten Island</td><td> 969</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -1533,25 +1533,25 @@ A noter qu’ici la méthode <em>insert()</em> crée la collection “individus�
 	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>1</th><td>6086706690bf4a74035f0559</td><td>yolan </td><td>NA</td></tr>
-	<tr><th scope=row>2</th><td>6086706690bf4a74035f055a</td><td>paul  </td><td>22</td></tr>
-	<tr><th scope=row>3</th><td>6086706690bf4a74035f055b</td><td>faisal</td><td>NA</td></tr>
+	<tr><th scope=row>1</th><td>608673e18a51ff3db5136cd9</td><td>yolan </td><td>NA</td></tr>
+	<tr><th scope=row>2</th><td>608673e18a51ff3db5136cda</td><td>paul  </td><td>22</td></tr>
+	<tr><th scope=row>3</th><td>608673e18a51ff3db5136cdb</td><td>faisal</td><td>NA</td></tr>
 </tbody>
 </table>
 </div></div>
 </div>
 <p>Nous pouvons également noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="135acbf9-932f-4dd5-b4bd-affdd98a0cd1" name="c52a910c-6266-4857-ac23-401cb4993f40" type="radio">
-</input><label class="tabbed-label" for="135acbf9-932f-4dd5-b4bd-affdd98a0cd1">
+<input checked="checked" id="991bc826-b99f-4082-82a2-9ed5beef67cd" name="6fa39370-de9d-460f-8f20-4e2a0e5b94da" type="radio">
+</input><label class="tabbed-label" for="991bc826-b99f-4082-82a2-9ed5beef67cd">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">individus</span> <span class="o">&lt;-</span> <span class="nf">mongo</span><span class="p">(</span><span class="s">&quot;individus&quot;</span><span class="p">)</span>
 <span class="n">individus</span><span class="o">$</span><span class="nf">insert</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;{&quot;prenom&quot; : &quot;yolan&quot;}&#39;</span> <span class="p">,</span> <span class="s">&#39;{&quot;prenom&quot;: &quot;paul&quot;, &quot;age&quot; : 22}&#39;</span><span class="p">,</span> <span class="s">&#39;{&quot;prenom&quot;: &quot;faisal&quot;}&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
-<input id="81f436ca-70cc-483e-9225-0026afc58b5e" name="c52a910c-6266-4857-ac23-401cb4993f40" type="radio">
-</input><label class="tabbed-label" for="81f436ca-70cc-483e-9225-0026afc58b5e">
+<input id="8fc6cf40-a924-4979-97b2-938e0945556d" name="6fa39370-de9d-460f-8f20-4e2a0e5b94da" type="radio">
+</input><label class="tabbed-label" for="8fc6cf40-a924-4979-97b2-938e0945556d">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>db.createCollection(&quot;individus&quot;)
 db.individus.insert([
@@ -1588,15 +1588,15 @@ db.individus.insert([
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="cc364480-d3b4-47d0-8a48-5dd800a98864" name="cd6242d8-226e-4d72-94db-e85fd119dcdd" type="radio">
-</input><label class="tabbed-label" for="cc364480-d3b4-47d0-8a48-5dd800a98864">
+<input checked="checked" id="a3eacd9e-99bf-4713-8512-5fc3631243d9" name="3c753c8f-80f4-4af6-9310-a6844dfefb58" type="radio">
+</input><label class="tabbed-label" for="a3eacd9e-99bf-4713-8512-5fc3631243d9">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">$</span><span class="nf">remove</span><span class="p">(</span><span class="s">&#39;{&quot;Species&quot; : &quot;setosa&quot;}&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="500408a1-869d-42a6-84f7-3d39fdeadd5d" name="cd6242d8-226e-4d72-94db-e85fd119dcdd" type="radio">
-</input><label class="tabbed-label" for="500408a1-869d-42a6-84f7-3d39fdeadd5d">
+<input id="9f5dd9b1-5e0d-4fdc-ab10-dd8f591c43da" name="3c753c8f-80f4-4af6-9310-a6844dfefb58" type="radio">
+</input><label class="tabbed-label" for="9f5dd9b1-5e0d-4fdc-ab10-dd8f591c43da">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span>
 <span class="p">{</span><span class="s2">&quot;Species&quot;</span> <span class="o">:</span> <span class="s2">&quot;setosa&quot;</span><span class="p">}</span>
@@ -1629,15 +1629,15 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="2251144a-d206-43d1-9602-3267a9e08ac9" name="f738fee0-34f5-4a36-a279-73538676b290" type="radio">
-</input><label class="tabbed-label" for="2251144a-d206-43d1-9602-3267a9e08ac9">
+<input checked="checked" id="0f92f735-1d12-4fa1-8258-c7e160692901" name="18c5e067-8e1c-44b2-bca7-77715503f68c" type="radio">
+</input><label class="tabbed-label" for="0f92f735-1d12-4fa1-8258-c7e160692901">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">$</span><span class="nf">remove</span><span class="p">(</span><span class="s">&#39;{}&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="eaab48c9-6d2c-4884-bcc7-adfb1e31287a" name="f738fee0-34f5-4a36-a279-73538676b290" type="radio">
-</input><label class="tabbed-label" for="eaab48c9-6d2c-4884-bcc7-adfb1e31287a">
+<input id="5b4ea69d-6de7-4324-95d3-4a634cb8db4c" name="18c5e067-8e1c-44b2-bca7-77715503f68c" type="radio">
+</input><label class="tabbed-label" for="5b4ea69d-6de7-4324-95d3-4a634cb8db4c">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">remove</span><span class="p">({})</span>
 </pre></div>
@@ -1654,15 +1654,15 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a437de45-7518-423a-b317-8e05c64c603d" name="e1f50589-9586-4d34-9c92-8189f899bae3" type="radio">
-</input><label class="tabbed-label" for="a437de45-7518-423a-b317-8e05c64c603d">
+<input checked="checked" id="8355a54a-7fd6-4382-93d3-8e875c60d2ea" name="64acc7cc-7dc3-4992-a6a8-af7a908a8ea7" type="radio">
+</input><label class="tabbed-label" for="8355a54a-7fd6-4382-93d3-8e875c60d2ea">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">$</span><span class="nf">drop</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<input id="50d98ca0-932c-495b-92a4-24bd19c07e03" name="e1f50589-9586-4d34-9c92-8189f899bae3" type="radio">
-</input><label class="tabbed-label" for="50d98ca0-932c-495b-92a4-24bd19c07e03">
+<input id="4d0812fb-cad4-400b-81db-a0e211c2a28e" name="64acc7cc-7dc3-4992-a6a8-af7a908a8ea7" type="radio">
+</input><label class="tabbed-label" for="4d0812fb-cad4-400b-81db-a0e211c2a28e">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">drop</span><span class="p">()</span>
 </pre></div>
@@ -1733,15 +1733,15 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="61edc7b3-505f-4bb4-8490-db82019f2ccc" name="003285f1-dcaf-4c59-849b-81ddc1e2b38d" type="radio">
-</input><label class="tabbed-label" for="61edc7b3-505f-4bb4-8490-db82019f2ccc">
+<input checked="checked" id="56019b90-e376-4aec-931b-bef656edda25" name="a7f925d5-d530-4c1d-a3a6-f915ab60cb17" type="radio">
+</input><label class="tabbed-label" for="56019b90-e376-4aec-931b-bef656edda25">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">individus</span><span class="o">$</span><span class="nf">update</span><span class="p">(</span><span class="s">&#39;{&quot;prenom&quot;:&quot;yolan&quot;}&#39;</span><span class="p">,</span> <span class="s">&#39;{&quot;$set&quot;:{&quot;age&quot;: 22}}&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="a4b56280-af6e-4835-af4a-e9d99489d0de" name="003285f1-dcaf-4c59-849b-81ddc1e2b38d" type="radio">
-</input><label class="tabbed-label" for="a4b56280-af6e-4835-af4a-e9d99489d0de">
+<input id="f0a865fb-13a1-4081-b243-283b9477dd4f" name="a7f925d5-d530-4c1d-a3a6-f915ab60cb17" type="radio">
+</input><label class="tabbed-label" for="f0a865fb-13a1-4081-b243-283b9477dd4f">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">individus</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
 <span class="p">{</span><span class="s2">&quot;prenom&quot;</span> <span class="o">:</span> <span class="s2">&quot;yolan&quot;</span><span class="p">},</span>
@@ -1806,8 +1806,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons également noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a627db53-6b1a-48d6-979d-7fb943527791" name="6d97da8f-f35d-4dc5-b5b3-a0afd4f4b134" type="radio">
-</input><label class="tabbed-label" for="a627db53-6b1a-48d6-979d-7fb943527791">
+<input checked="checked" id="0d69a99e-cec4-498f-999b-94d0e28dbbe7" name="e9368f70-d32b-4a18-9f58-39c07debba69" type="radio">
+</input><label class="tabbed-label" for="0d69a99e-cec4-498f-999b-94d0e28dbbe7">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">individus</span><span class="o">$</span><span class="nf">update</span><span class="p">(</span><span class="s">&#39;{}&#39;</span><span class="p">,</span> <span class="s">&#39;{&quot;$set&quot;:{&quot;booleen_age&quot;: false}}&#39;</span><span class="p">,</span> <span class="n">multiple</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 
@@ -1815,8 +1815,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="0f642487-350e-429f-be82-4529ce4ae2e0" name="6d97da8f-f35d-4dc5-b5b3-a0afd4f4b134" type="radio">
-</input><label class="tabbed-label" for="0f642487-350e-429f-be82-4529ce4ae2e0">
+<input id="dd9e46ac-2dae-4e5e-b119-af4674d4f045" name="e9368f70-d32b-4a18-9f58-39c07debba69" type="radio">
+</input><label class="tabbed-label" for="dd9e46ac-2dae-4e5e-b119-af4674d4f045">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">individus</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
 <span class="p">{},</span>
@@ -1846,7 +1846,7 @@ Mongolite</label><div class="tabbed-content docutils">
  $ modifiedCount: int 0
  $ matchedCount : int 0
  $ upsertedCount: int 1
- $ upsertedId   : chr &quot;60867066b50ccd493267c121&quot;
+ $ upsertedId   : chr &quot;608673e217436e9c6411ba35&quot;
 </pre></div>
 </div>
 </div>
@@ -1875,15 +1875,15 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons également noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="04bb586e-e28f-415b-b023-1bf136efc44c" name="87f4ce9e-dee2-40de-8e45-8752d6b40d15" type="radio">
-</input><label class="tabbed-label" for="04bb586e-e28f-415b-b023-1bf136efc44c">
+<input checked="checked" id="a6ca7c3e-479c-4a84-aed5-86682b5c1c63" name="03eaa015-2436-4d41-960c-1e73a1df47b9" type="radio">
+</input><label class="tabbed-label" for="a6ca7c3e-479c-4a84-aed5-86682b5c1c63">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">individus</span><span class="o">$</span><span class="nf">update</span><span class="p">(</span><span class="s">&#39;{&quot;prenom&quot;:&quot;malo&quot;}&#39;</span><span class="p">,</span> <span class="s">&#39;{&quot;$set&quot;:{&quot;age&quot;: 22}}&#39;</span><span class="p">,</span> <span class="n">upsert</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="267a7d7b-cd92-44c6-b68f-a50ae1cb3f27" name="87f4ce9e-dee2-40de-8e45-8752d6b40d15" type="radio">
-</input><label class="tabbed-label" for="267a7d7b-cd92-44c6-b68f-a50ae1cb3f27">
+<input id="6bed5c67-78fb-48a3-a5b3-ce559aadac43" name="03eaa015-2436-4d41-960c-1e73a1df47b9" type="radio">
+</input><label class="tabbed-label" for="6bed5c67-78fb-48a3-a5b3-ce559aadac43">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">individus</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
 <span class="p">{</span><span class="s2">&quot;prenom&quot;</span><span class="o">:</span><span class="s2">&quot;malo&quot;</span><span class="p">},</span>
@@ -1908,10 +1908,10 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;6086706690bf4a74035f0559&quot; }, &quot;prenom&quot; : &quot;yolan&quot;, &quot;age&quot; : 22, &quot;booleen_age&quot; : true }
-{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;6086706690bf4a74035f055a&quot; }, &quot;prenom&quot; : &quot;paul&quot;, &quot;age&quot; : 22, &quot;booleen_age&quot; : true }
-{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;6086706690bf4a74035f055b&quot; }, &quot;prenom&quot; : &quot;faisal&quot;, &quot;booleen_age&quot; : false }
-{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;60867066b50ccd493267c121&quot; }, &quot;prenom&quot; : &quot;malo&quot;, &quot;age&quot; : 22 }
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;608673e18a51ff3db5136cd9&quot; }, &quot;prenom&quot; : &quot;yolan&quot;, &quot;age&quot; : 22, &quot;booleen_age&quot; : true }
+{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;608673e18a51ff3db5136cda&quot; }, &quot;prenom&quot; : &quot;paul&quot;, &quot;age&quot; : 22, &quot;booleen_age&quot; : true }
+{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;608673e18a51ff3db5136cdb&quot; }, &quot;prenom&quot; : &quot;faisal&quot;, &quot;booleen_age&quot; : false }
+{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;608673e217436e9c6411ba35&quot; }, &quot;prenom&quot; : &quot;malo&quot;, &quot;age&quot; : 22 }
 </pre></div>
 </div>
 </div>
