@@ -82,7 +82,7 @@ db.NYfood.getIndexes()
 
 Construire une requête mongoDB utilisant des index ne diffèrent pas d'une requête n'en utilisant pas, toutefois, certains opérateurs logiques bénéficient tout particulièrement de la présence d'un ou plusieurs index. Il est donc pertinent de construire des index si vous pensez utiliser ces opérateurs.
 
-_Exemple 1 : Opérateur égal (:, $eq)_
+_Exemple 1 : Opérateur égal (:, `$eq`)_
 
 ```{code-cell}
 db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"})
@@ -90,13 +90,13 @@ db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"})
 
 On récupère les restaurants proposant de la cuisine chinoise dans le quartier de Brooklyn.
 
-_Exemple 2 : Opérateur infériorité/supériorité ($lt, $lte, $gt, $gte)_
+_Exemple 2 : Opérateur infériorité/supériorité (`$lt`, `$lte`, `$gt`, `$gte`)_
 
 ```{code-cell}
-db.users.find({"age": 20,"name": {$gte: "user100000", $lte:"user100000"}})
+db.NYfood.find({"name": {$gte: "C", $lt: "D"}})
 ```
 
-On récupère les utilisateurs de 20 ans et dont l'id est compris entre 10 000 et 100 000.
+On récupère les restaurant dont le nom est situé entre "C" et "D" dans l'ordre lexicographique.
 
 _Exemple 3 : différence d'exécution avec et sans index_
 
@@ -132,19 +132,29 @@ db.nomDeLaCollection.createIndex({"cle1": 1, "cle2": 1}
 :class: tip
 L'ordre dans lequel vous déclarez vos champs à une importance capitale dans le résultat renvoyé par la requête. 
 Par exemple, l'index composé suivant : db.nomDeLaCollection.createIndex({"cle2": 1, "cle1": 1}, ne correspond pas du tout
-à l'index vu juste au-dessus. 
-Les résultats renvoyés par une requête utilisant ces deux index seront donc totalement différents.
+à l'index vu juste au-dessus.
+Certaines requêtes pourront ainsi être accélérées par l'un ou l'autre des index mais pas forcément par les deux.
 ```
 
 * Exemple de requête utilisant un index composé
 
 Nous avons déjà vu un tel exemple, en effet si nous revenons un peu plus haut, nous avons déjà donné une requête de ce type :
 
-```javascript
-db.users.find({"age": 20,"name": {$gte: "user100000", $lte:"user100000"}})
+```{code-cell}
+db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"}).explain("executionStats")
 ```
 
-Ici, on utilise bien l'index "age_1_name_1", car en filtrant les résultats en premier par l'âge, la deuxième partie de la requête, portant sur le nom, est bien plus efficace, car le champ de recherche est réduit grandement par la première partie.
+Ici, on pourrait profiter  d'un index composé sur les attributs "cuisine" et "borough" :
+
+```{code-cell}
+db.NYfood.createIndex({"cuisine": 1, "borough": 1})
+```
+
+Répétons notre requête pour voir l'intérêt de notre nouvel index :
+
+```{code-cell}
+db.NYfood.find({"cuisine": "Chinese", "borough": "Brooklyn"}).explain("executionStats")
+```
 
 ## Requêtes et Index textuels
 
@@ -175,7 +185,7 @@ Pour effectuer un requête de type "moteur de recherche", on utilise la forme su
 db.nomDeLaCollection.find({$text : {$search : "ma requête"}})
 ```
 
-On remarque plusieurs choses : tout d'abord, il n'est pas nécessaire de préciser le ou les champ sur lequel on veut effectuer la recherche. Ce type de requête n'était possible que sur les champs avec un index textuel, c'est sur ces derniers que le langage va requêter (c'est le sens du "$text"). Ensuite, on remarque la présence de "$search", nécessaire pour ce type de requête.
+On remarque plusieurs choses : tout d'abord, il n'est pas nécessaire de préciser le ou les champ sur lequel on veut effectuer la recherche. Ce type de requête n'était possible que sur les champs avec un index textuel, c'est sur ces derniers que le langage va requêter (c'est le sens du `"$text"`). Ensuite, on remarque la présence de `"$search"`, nécessaire pour ce type de requête.
 
 Par défaut, lorsque l’on effectue une requête contenant plusieurs termes, un OU logique est effectué : les résultats retournés sont ceux qui contiennent au moins l’un des termes. On peut également effectuer une requête impliquant une expression exacte, qui sera encadrée de guillemets échappés par un caractère "\" :
 
@@ -189,7 +199,7 @@ De plus, il est possible d'exclure des termes des résultats en utilisant "-", d
 db.nomDeLaCollection.find({$text : {$search : "ma requête -exemple"}})
 ```
 
-Enfin, on peut classer les documents par pertinence par rapport à notre requête, en utilisant le score td-idf (plus d'informations disponibles ici : https://fr.wikipedia.org/wiki/TF-IDF) :
+Enfin, on peut classer les documents par pertinence par rapport à notre requête, en utilisant le score td-idf (plus d'informations disponibles [ici](https://fr.wikipedia.org/wiki/TF-IDF) :
 
 ```javascript
 db.nomDeLaCollection.find({$text: {$search: "ma requête"}},{"score": {$meta: "textScore"}}).sort({score: {$meta: "textScore"}})
@@ -234,8 +244,12 @@ db.nomDeLaCollection.find({"clé": {$near : {$geometry : ref}}})
 _Exemple 1 :_
 ```{code-cell}
 var CrownHeights= {"type": "Point", "coordinates": [-73.923, 40.676]}
+```
+
+```{code-cell}
 db.NYfood.find({"address.loc" : {$near: {$geometry: CrownHeights}}})
 ```
+
 Si l'on veut trouver les éléments inclus dans un polygone la variable sera de type "Polygon" et aura plusieurs couples de coordonnées.
 Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordonnées soient égales aux premières.
 
@@ -256,8 +270,10 @@ var eastVillage= {"type" : "Polygon", "coordinates" : [[[-73.9917900, 40.7264100
                                                     [-73.9829300, 40.7321400],
                                                     [-73.9829300, 40.7264100],
                                                     [-73.9917900, 40.7264100]]]}
-db.NYfood.find({"address.loc": {$within : {$geometry : eastVillage}}})
 ```
 
+```{code-cell}
+db.NYfood.find({"address.loc": {$within : {$geometry : eastVillage}}})
+```
 
 
