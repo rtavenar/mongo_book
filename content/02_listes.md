@@ -69,6 +69,13 @@ db.notes.find(
 ```
 Une liste de 2 notes est retournée. Plus précisement, c'est le contenu de l'attribut `notes` qui est donné.
 
+## Particularité du travail sur des listes 
+
+Les listes sont des objets particuliers pour lesquels des questions particulières se posent.
+Nous nous penchons ici sur deux de ces questions spécifiques aux listes.
+
+### "au moins un élément" ou "tous les éléments" ?
+
 Exemple : on veut savoir si l'étudiant Paul a eu au moins une note égale à 12. Pour ce faire, on ajoute une condition sur les notes.
 
 ```{code-cell}
@@ -122,7 +129,7 @@ db.notes.find(
 ```
 Cette fois, on ne retourne plus que 2 étudiants qui n'ont que des notes au-dessus de 12.
 
-## Particularité du travail sur des listes 
+### Cas des conditions multiples
 
 Lorsque nous faisons des requêtes sur un attribut d'un autre type qu'une liste, un seul élement est soumis à l'ensemble de nos conditions.
 Dans l'exemple ci-dessous, la clé `nom` renvoie une chaine de caractères, qui est un élément unique. Cet élément est soumis à deux conditions afin d'obtenir les noms qui commencent par la lettre M.
@@ -163,11 +170,11 @@ Ainsi, nous ne testons pas simultanément les deux conditions sur chaque nombre.
 
 Mais alors, comment pouvons-nous justement tester une double condition sur chaque élement de la liste ? Pour cela, nous allons faire appel à l'opérateur `$elemMatch`.
 
-## Opérateur `$elemMatch`
+### Opérateur `$elemMatch`
 
 Avec `$elemMatch`, on retourne les documents dont au moins un élément de la liste vérifie toutes les conditions.
 
-### Cas de conditions simultanement non réalisables
+#### Cas de conditions simultanement non réalisables
 
 Testez votre intuition ! D'après vous, que ressortira cette requête ? 
 ```{code-cell}
@@ -181,7 +188,7 @@ db.notes.find(
 ```
 Contrairement à la requête précedente, cette requête teste les élements de la liste un à un. Ainsi, aucun élement ne vérifie ces deux conditions simultanement. Aucun élément n'est donc retourné par cette requête.
 
-### Cas de conditions simultanement réalisables
+#### Cas de conditions simultanement réalisables
 
 Avec la requête suivante, nous cherchons à savoir quels étudiants ont au moins une note comprise entre 9 et 13.
 ```{code-cell}

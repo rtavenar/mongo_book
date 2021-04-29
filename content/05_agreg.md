@@ -17,7 +17,7 @@ kernelspec:
 (sec:exec)=
 ## Regroupements
 
-* Auteurs/trices : ***CASTRIQUE Jérémy, NOJAC Dimitri, VAVASSEUR Salomé***
+* Auteurs/trices : **CASTRIQUE Jérémy, NOJAC Dimitri, VAVASSEUR Salomé**
 
 Dans cette partie, nous allons étudier **les regroupements dans les requêtes d'aggrégation**. Dans un premier temps, nous étudierons ce qu'est l'étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l'aide des 4 d'opérateurs qui sont : `$sum`, `$max`, `$min`, `$count` avec ou sans groupe.
 
@@ -36,7 +36,10 @@ db.coll.aggregate([
 
 Pour tous les opérateurs que nous allons étudier dans cette partie du cours, la syntaxe sera identique à celle-ci.
 
-Les équivalents en SQL de l'opérateur $sum sont `COUNT(*)` ou bien `SUM` qui permettent de compter le nombre de variables.
+
+### Opérateur de somme
+
+L'équivalent en SQL de l'opérateur `$sum` est `SUM` qui permet de sommer les valeurs prises pour un attribut.
 
 **Exemple de requête sans regroupement**
 
@@ -56,12 +59,15 @@ SELECT SUM(att) as nb
 FROM t
 ```
 ````
+
+Vous remarquez qu'ici l'expression qui guide le regroupement est `null`, soit une constante.
+Cela signifie que tous les documents de la base seront regroupés ensemble et qu'un seul calcul sera fait pour ce groupe.
   
 **Exemple de requête avec regroupement**
 
-Pour sélectionner certains individus, il faut filtrer sur l'identifiant.
+Pour créer des groupes d'individus, il faut indiquer comment former ces groupes dans l'identifiant.
 
-Sur la base de NYfood, on peut notamment filtrer par quartier.
+Sur la base de `food`, on peut par exemple filtrer par quartier.
 
 Voici un exemple de requête :
 
@@ -76,25 +82,22 @@ use food
 
 db.NYfood.aggregate([
   {$group: {_id: "$borough",
-    	   nb: {$sum: 1}}}
+    	   nb: {$sum: {$size: "$grades"}}}}
 ])
 ```
 
 _En SQL :_
 
 ```sql
-SELECT COUNT(*) as nb
+SELECT SUM(n_grades) as nb
 FROM NYfood
 GROUP BY borough
 ```
 
 
-Dans cette requête, MongoDB va compter pour chaque groupe, le nombre d'individu ayant le même id et donc compter les restaurants d'un même quartiers ensemble.
+Dans cette requête, MongoDB va regrouper les individus ayant la même valweur pour l'attribut spécifié comme `_id` et donc considérer les restaurants d'un même quartier ensemble.
 
-
-### Opérateur de somme
-
-L'opérateur `$sum` permet de calculer et de retourner les sommes de variables numériques.
+L'opérateur `$sum` permet de calculer et de retourner les sommes de variables numériques (ici les sommes des nombres de notes).
 
 ```{admonition} Attention
 :class: tip
@@ -113,78 +116,8 @@ db.coll.aggregate([
 ])
 ```
 
-#### Comptage du nombre d'individus 
-##### Sans regroupement
-Regardons une requête simple :
 
-_En mongoDB :_
-
-```{code-cell}
-use food
-```
-
-```{code-cell}
-:tags: [output_scroll]
-
-db.NYfood.aggregate([
-      {$group:{_id: null,
-              nb: {$sum: 1}}}
-])
-```
-
-
-_En SQL :_
-
-```sql
-SELECT COUNT(*) as nb
-FROM NYfood
-```
-
-
-On utilise la fonction aggregate.
-Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
-Dans notre cas, on choisit tout les individus. On le note `id: null`.
-On créé notre variable qu'on appelle nb qui va faire la somme de tout les individus.
-
-
-Dans cet exemple, nous avons compté le nombre d'individus sans sélection.
-
-En pratique, cela n'a pas forcément beaucoup d'intérêt.
-Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondant à un critère. Pour cela, nous allons regarder avec une requête de regroupement.
-
-##### Avec regroupement
-Toujours dans la collection NYfood de la base food, on cherche à connaitre le nombre de restaurants par type de cuisine. Pour cela, on va effectuer un regroupement sur l'attribut "cuisine".
-
-_En mongoDB :_
-
-```{code-cell}
-use food
-```
-
-```{code-cell}
-:tags: [output_scroll]
-
-db.NYfood.aggregate([
-      {$group:{_id: "$cuisine",
-              nb_par_cuis: {$sum: 1}}}
-])
-```
-
-_En SQL :_
-
-```sql
-SELECT COUNT(*) AS nb_par_cuisine
-FROM NYfood
-GROUP BY cuisine
-```
-
-
-On obtient donc plusieurs listes différentes contenant pour chacune le nombre de restaurants dans chaque liste nommée par le type de cuisine.
-
-Il y a donc eu un comptage du nombre de restaurants en fonction de la variable cuisine.
-
-
-#### Additionner des variables
+**Autre exemple**
 
 Pour cette partie, nous allons nous placer dans cette base que nous avons créée.
 
@@ -196,7 +129,7 @@ Pour cette partie, nous allons nous placer dans cette base que nous avons créé
 { "_id" : 5, "objet" : "c", "prix" : 5, "quantité" : 10}
 ```
 
-##### Sans regroupement
+***Sans regroupement***
 Jusqu'ici, nous avons compté le nombre d'individus grâce à l'attribu `$sum`, mais celui ci permet aussi `d'additionner des variables`.
 
 On se place maintenant dans la collection précédente.
@@ -230,7 +163,7 @@ FROM coll
 Ici, on calcule la somme des quantités vendues.
 
 
-##### Avec regroupement
+***Avec regroupement***
 Si on veut sélectionner les sommes des durées de films par genre, il suffit de rajouter un regroupement comme le suivant :
 
 ````{tabbed} MongoDB
@@ -270,7 +203,6 @@ GROUP BY prix
 }
 ```
 
-
 ### Opérateur de comptage
 L'opérateur `$count` renvoie le nombre de documents présents dans l'aggrégation.
 
@@ -293,7 +225,68 @@ L'opérateur `$match` exclu les documents qui possèdent un individu avec un âg
 L'opérateur `$count` va donc agir sur les documents ayant un individu avec un âge supérieur à 24 à l'opérateur `$gt` (plus grand que) et va assigner
 à la valeur NB_+24 le nombre de documents répondant au critère.
 
-Au final, l'opérateur `$count` est un équivalent aux opérateurs `$group` avec `$sum` et `$project` (opérateur vu plus tard dans le chapitre).
+Une autre façon (moins directe) d'effectuer des opérations de comptage est d'utiliser l'opérateur `$sum`.
+
+***Sans regroupement***
+Regardons une requête simple :
+
+_En mongoDB :_
+
+```{code-cell}
+:tags: [output_scroll]
+
+db.NYfood.aggregate([
+      {$group:{_id: null,
+              nb: {$sum: 1}}}
+])
+```
+
+
+_En SQL :_
+
+```sql
+SELECT COUNT(*) as nb
+FROM NYfood
+```
+
+
+On utilise la fonction aggregate.
+Lorsqu'on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
+Dans notre cas, on choisit tout les individus. On le note `id: null`.
+On créé notre variable qu'on appelle nb qui va faire la somme de tout les individus.
+
+
+Dans cet exemple, nous avons compté le nombre d'individus sans sélection.
+
+En pratique, cela n'a pas forcément beaucoup d'intérêt.
+Il s'avère plus utile de pouvoir sélectionner le nombre de variables répondant à un critère. Pour cela, nous allons regarder avec une requête de regroupement.
+
+***Avec regroupement***
+Toujours dans la collection NYfood de la base food, on cherche à connaitre le nombre de restaurants par type de cuisine. Pour cela, on va effectuer un regroupement sur l'attribut "cuisine".
+
+_En mongoDB :_
+
+```{code-cell}
+:tags: [output_scroll]
+
+db.NYfood.aggregate([
+      {$group:{_id: "$cuisine",
+              nb_par_cuis: {$sum: 1}}}
+])
+```
+
+_En SQL :_
+
+```sql
+SELECT COUNT(*) AS nb_par_cuisine
+FROM NYfood
+GROUP BY cuisine
+```
+
+
+On obtient donc plusieurs listes différentes contenant pour chacune le nombre de restaurants dans chaque liste nommée par le type de cuisine.
+
+Il y a donc eu un comptage du nombre de restaurants en fonction de la variable cuisine.
 
 ### Opérateurs d'extremum
 
@@ -431,11 +424,9 @@ ou la valeur maximale.
 ```
 
 
-  Le fichier que vous devez modifier pour ce chapitre est `mongo_book/content/05_agreg.md`.
-
 ##  Successions d'étapes d'agrégation 
 
-* Auteurs/trices : Marine BINARD, Yann CAUSEUR, Arthur CONAS
+* Auteurs/trices : **Marine BINARD, Yann CAUSEUR, Arthur CONAS**
 
 
 ### Introduction
@@ -448,10 +439,10 @@ contenues dans des crochets et séparées par des virgules, qui s'effectueront s
 
 Il peut donc être intéressant d'éxécuter le code étape par étape pour savoir sur quelles données on travaille à un moment donné.
 
-Commençons par regarder ce que peut faire chaque étape.
+Dans la suite, nous présentons de nouvelles étapes d'agrégation.
 
+### Project
 
-### <center> Project </center>
 ***Pourquoi l'utiliser ?***  
 Il peut arriver lors d'une requête d'agrégation de vouloir créer de nouvelles variables par exemple, pour des calculs. La commande `$project` permet donc de créer de nouvelles variables. Néanmoins, il faut faire attention, 
 lorsque l'on crée une nouvelle variable dans une requête d'agrégation.
@@ -529,7 +520,7 @@ L'exemple serait donc:
  HAVING COUNT(grade) AS "n_notes"
  ```
  
-### <center> Sort </center>
+### Sort
 
 ***Pourquoi l'utiliser ?***
 
@@ -604,7 +595,7 @@ FROM NYfood
 ORDER BY borough, _id
 ```
 
-### <center> Limit </center>
+### Limit
 ***Pourquoi l'utiliser ?***
 
 L'étape `$limit` va simplement permettre de 
@@ -656,7 +647,7 @@ ORDER BY count(borough) desc
 LIMIT 3
 ```
 
-### <center> Match  </center>
+### Match
 
 ***Pourquoi l'utiliser***
 
@@ -702,7 +693,7 @@ Si le `$match` est au début, il fera une sélection sur l'ensemble des données
 C'est pour cela qu'on utilise aussi le `$match` plus tard, pour avoir accès aux données créées avec nos bouts de requêtes précédents, ce qui permet ici d'avoir accès au `n`.
 Cependant, ce dernier `$match` n'a pas accès à toute la base de données `NYfood` et n'agit que sur les résultats des requêtes précédentes.
 
-### <center> Unwind </center>
+### Unwind
 
 ***Pourquoi l'utiliser ?*** 
  
@@ -744,7 +735,10 @@ Afin d'illustrer le fonctionnement pas à pas, découpons une requête en détai
 Pour cet exemple, on veut  **les 3 notes les plus données dans les restaurants du quartier de Brooklyn**.
 La première étape naturelle est de sélectionner les restaurants présents uniquement dans le quartier de Brooklyn.
 Pour cela on utilise `$match`, qui retourne uniquement les restaurants de Brooklyn.
-```
+
+```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.aggregate(
 	[
      {$match: {"borough": "Brooklyn"}},
@@ -753,7 +747,9 @@ db.NYfood.aggregate(
 ```
 Dans un second temps, il faut voir que pour récupérer les différentes valeurs de notes, il faut acceder à chaque élément de la liste et non la liste entière. Pour y accéder, il faut utiliser la commande `$unwind`, qui rendra donc à cette étape tous les restaurants de Brooklyn associés à une note qu'il a obtenu (Attention, cela retourne beaucoup de résultats : nombre de restaurants * nombre de notes)
 
-```
+```{code-cell}
+:tags: [output_scroll]
+
 db.NYfood.aggregate(
 	[
      {$match: {"borough": "Brooklyn"}},
@@ -762,7 +758,8 @@ db.NYfood.aggregate(
 ) 
 ```
 Ensuite, pour savoir quelle note a été la plus attribuée, il faut grouper pour chaque valeur de note. On utilise donc un `$group` sur l'attribut `$grades.grade$ (accessible grâce a `$unwind`). Puis, on décide de compter le nombre d'itérations de chaque note stockée dans la variable `nb`. Cette étape nous retourne donc le nombre de fois où chaque note a été attribuée à un restaurant.
-```
+```{code-cell}
+
 db.NYfood.aggregate(
 	[
      {$match: {"borough": "Brooklyn"}},
@@ -772,7 +769,8 @@ db.NYfood.aggregate(
 ) 
 ```
 Nous sommes donc tout proches du résultat espéré. Il reste maintenant à trier les résultats par ordre décroissant, afin d'avoir les notes les plus données au début : `{$sort: {nb: -1}}`. Mais comme l'énoncé le précise, on souhaite afficher uniquement les 3 notes les plus données. Etant donné que les notes sont triées, il faut seulement préciser : `{$limit: 3}`.
-```
+```{code-cell}
+
 db.NYfood.aggregate(
 	[
      {$match: {"borough": "Brooklyn"}},

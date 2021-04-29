@@ -17,11 +17,9 @@ kernelspec:
 
 Auteurs/trices : **Julie FRANCOISE, Manon MAHEO et Valentin PENISSON**
 
----
-
 ## Introduction à MongoDB
 
-Dans un **système de base de données relationnelles** *(comme les bases de données SQL)*, les données sont stockées par **ligne** *(appelées n-uplets)* dans des **tables** *(également appelées relations)*. Le modèle de données relationnel est un modèle **très structuré**, comportant des **attributs typés** *(les colonnes/attributs des tables ont un type précis qu'il soit numérique, alphanumérique ou temporel)* et des **contraintes d'intégrité** *(comme par exemple celle de l'unicité des valeurs de la clé primaire, la clé primaire étant un ensemble d'attributs permettant d'identifier de manière unique chaque n-uplet de la relation)*. Dans ce type de structure, il est nécessaire d'établir des **jointures sur plusieurs tables** afin de tirer des informations pertinentes sur la base de données.
+Dans un **système de base de données relationnelles** *(comme les bases de données que l'on interroge avec la syntaxe SQL)*, les données sont stockées par **ligne** *(appelées n-uplets)* dans des **tables** *(également appelées relations)*. Le modèle de données relationnel est un modèle **très structuré**, comportant des **attributs typés** *(les colonnes/attributs des tables ont un type précis qu'il soit numérique, alphanumérique ou temporel)* et des **contraintes d'intégrité** *(comme par exemple celle de l'unicité des valeurs de la clé primaire, la clé primaire étant un ensemble d'attributs permettant d'identifier de manière unique chaque n-uplet de la relation)*. Dans ce type de structure, il est nécessaire d'établir des **jointures sur plusieurs tables** afin de tirer des informations pertinentes sur la base de données.
 
 
 **Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.** On ne parle plus de tables, ni d'enregistrements mais de **collections** et de **documents**. 
@@ -31,7 +29,7 @@ Une collection est un ensemble de documents, c'est l'équivalent d'une table dan
 De plus, l'utilisation de bases de données NoSQL avec MongoDB nous permet plus de flexibilité en termes de mise à jour de la structure des données : aucun modèle n'est supposé sur les données, aucun attribut n'est obligatoire et il n'y a pas de type fixé pour un attribut. 
 
 
-Tout document appartient donc à une collection et a un champ appelé `_id` qui identifie le document dans la base de données. Prenons pour exemple la base de données `étudiants`. Voici un exemple de document : 
+Tout document appartient donc à une collection et a un champ appelé `_id` qui identifie le document dans la base de données. Prenons pour exemple la base de données `etudiants`. Voici un exemple de document : 
 
 ```javascript
 {
@@ -45,7 +43,10 @@ Tout document appartient donc à une collection et a un champ appelé `_id` qui 
 }
 ```
 
-> On a une **association de clés et de valeurs**, un document est équivalent aux objets JSON *(et ressemble aux dictionnaires en python)*. Dans ce document, on a accès au **nom de l'étudiant** par la clé `nom`, à **ses notes** par la clé `notes` *(attention, ici on a une **liste de valeurs** entre crochets, ce type d'attribut n'est par exemple pas disponible dans le modèle relationnel)* et à **son sexe** par la clé `sexe`. L'étudiant représenté par ce document, est identifié à l'aide d'une clé `_id`. 
+```{admonition}
+:class: tip
+On a une **association de clés et de valeurs**, un document est équivalent aux objets JSON *(et ressemble aux dictionnaires en python)*. Dans ce document, on a accès au **nom de l'étudiant** par la clé `nom`, à **ses notes** par la clé `notes` *(attention, ici on a une **liste de valeurs** entre crochets, ce type d'attribut n'est par exemple pas disponible dans le modèle relationnel)* et à **son sexe** par la clé `sexe`. L'étudiant représenté par ce document, est identifié à l'aide d'une clé `_id`. 
+```
  
 Les clés se doivent d'être des **chaînes de caractères** mais nous pouvons avoir comme valeur de ces clés des *valeurs booléennes, des nombres, des chaînes de caractères, des dates ou des listes de valeurs* comme nous venons de le voir. Les clés et les valeurs sont **sensibles à la casse et au type**. Chaque clé doît être **unique**, il n'est pas possible d'avoir deux fois la même clé dans un document. 
 
@@ -58,9 +59,8 @@ Tout d'abord, il est nécessaire d'avoir installé un serveur comme par exemple 
 
 Dans ce chapitre, nous étudierons dans un premier temps [**comment interroger les données d'une base de données MongoDB avec la fonction find**](#find). Dans un second temps, nous regarderons comment effectuer des [requêtes plus complexes, impliquant des **opérateurs de comparaison**](#operateurs). Quelques [**méthodes utiles**](#methodes) pour des requêtes en MongoDB, une [**fiche "résumé" des quelques points à retenir**](#resume) et un petit [**quiz**](#quiz) sont donnés à la fin de ce chapitre.
 
----
-
-## <a name="find"></a> Requêtes d'interrogation et de filtrage des données
+(find)=
+## Requêtes d'interrogation et de filtrage des données
 
 **Pour récupérer des documents stockés dans une collection, il est nécessaire d'utiliser la fonction `find`.**
  
@@ -71,7 +71,7 @@ Toute commande sur une collection intitulée collectionName utilise le préfixe 
 
 ### Syntaxe d'interrogation de données sans et avec condition
 
-En MongoDB, lorsque l'on interroge les données, il existe deux types de requêtes simples, retournant respectivement **toutes les occurences d'une collection** ou **seulement la première**. Que l'on souhaite récupérer la première occurrence de la liste des résultats ou bien toute la liste des résultats, voici la syntaxe :  
+En MongoDB, lorsque l'on interroge une base de données, il existe deux types de requêtes simples, retournant respectivement **toutes les occurences d'une collection** ou **seulement la première**. Que l'on souhaite récupérer la première occurrence de la liste des résultats ou bien toute la liste des résultats, voici la syntaxe :  
 
 ````{panels}
 
@@ -95,11 +95,19 @@ db.collectionName.findOne({})
 
 ````
 
-> À noter : Dans les deuxièmes propositions de chaque cas présenté ci-dessus, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au *document masque*. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner. 
+```{admonition}
+:class: tip
+À noter : Dans les deuxièmes propositions de chaque cas présenté ci-dessus, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au *document masque*. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner.
 
 Au contraire, si l’on souhaite **fixer des contraintes sur les documents à retourner**, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". 
+```
 
-La base de données food contient une collection NYfood qui recense un ensemble de restaurants américains et nous donne pour chaque restaurant des informations sur son quartier, son adresse, son type de cuisine, son nom, ses notes obtenues et son identifiant. Voici un extrait d'un document présent dans la collection NYfood : 
+
+```{code-cell}
+use food
+```
+
+ Ici on a juste sélectionné la base sur laquelle on souhaite opérer : la base de données food contient une collection NYfood qui recense un ensemble de restaurants américains et nous donne pour chaque restaurant des informations sur son quartier, son adresse, son type de cuisine, son nom, ses notes obtenues et son identifiant. Voici un extrait d'un document présent dans la collection NYfood : 
 
 ```javascript
 {
@@ -177,10 +185,11 @@ Il se peut que pour une clé d'un document, comme par exemple l'adresse d'un res
 
 Si l'on souhaite **poser une condition sur une clé ou plusieurs clés de sous-document**, on utilise alors la syntaxe suivante :
 
-```javascript
-db.NYfood.find({"adress.zipcode": "10462"})
+```{code-cell}
+:tags: [output_scroll]
+db.NYfood.find({"address.zipcode": "10462"})
 ```
-où `adress` est le sous-document et `zipcode` la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est "10462".
+où `address` est le sous-document et `zipcode` la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est "10462".
 
 ### Projection des données
 
@@ -209,7 +218,7 @@ WHERE cuisine = 'Bakery' AND 'borough' = 'Bronx'
 
 ````
 
-C'est donc l'équivalent du `SELECT name` en SQL. Jusqu'ici, on utilisais le `SELECT *` *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque clé ou de chaque attribut.
+C'est donc l'équivalent du `SELECT name` en SQL. Jusqu'ici, on utilisait le `SELECT *` *(pour all)* c'est-à-dire qu'on récupérait toutes les valeurs de chaque clé ou de chaque attribut.
 
 ```{admonition} Embellissez vos résultats ! 
 :class: tip
@@ -219,11 +228,10 @@ Les résultats de la fonction `find()` peuvent apparaître désorganisés. Mongo
 
 Pour plus de renseignements sur la **fonction `find()`**, consultez la documentation MongoDB [disponible ici](https://docs.mongodb.com/manual/reference/method/db.collection.find/).
 
----
+(operateurs)=
+## Requêtes plus complexes en utilisant des opérateurs 
 
-## <a name="operateurs"></a> Requêtes plus complexes en utilisant des opérateurs 
-
-Les opérateurs se séparent en deux grandes parties : les **opérateurs de comparaison** et les **opérateurs logiques**.
+Nous verrons dans cette section deux types d'opérateurs : les **opérateurs de comparaison** et les **opérateurs logiques**.
 
  ```{admonition} Remarque
  
@@ -396,7 +404,7 @@ db.t.find(
 )
 ```
 
-Le résultat de cette requête sera l'ensemble des documents ne contenant pas la valeur **1** pour la variable `a` et **"blue"** pour la variable `b`.
+Le résultat de cette requête sera l'ensemble des documents ne contenant pas la valeur **1** pour la variable `a` ni la valeur **"blue"** pour la variable `b`.
 
 #### `not` logique
 
@@ -416,15 +424,14 @@ db.NYfood.find({"grades.grade": {$not: {$eq: "C"}}})
 
 Pour plus de renseignements sur **les opérateurs**, consultez la documentation MongoDB [disponible à cette adresse](https://docs.mongodb.com/manual/reference/operator/query/).
 
----
-
-## <a name="methodes"></a> Méthodes utiles pour des requêtes en MongoDB 
+(methodes)=
+## Méthodes utiles pour des requêtes en MongoDB 
 
 ### Connaître la liste des collections dans une base de données
 
 Pour connaître la **liste des collections** contenues dans une base de données, on utilise la commande suivante sur la base de données considérée :
 
-```javascript
+```{code-cell}
 db.getCollectionInfos()
 ```
 
@@ -439,7 +446,10 @@ Syntaxe et exemple en MongoDB
 ^^^
 ```javascript
 db.collectionName.distinct(champ, {...})
-db.NYfood.distinct("grades.grade", {"borough": "Manhattan"}) 
+db.NYfood.distinct(
+    "grades.grade", 
+    {"borough": "Manhattan"}
+) 
 ```
 
 ---
@@ -454,7 +464,11 @@ WHERE ...
 
 ````
 
-> À noter : il n'y a pas d'équivalent en SQL pour l'exemple des notes attribuées aux restaurants du quartier "Manhattan" présenté ici puisque **un attribut ne peut pas être une liste de valeurs en SQL**. 
+```{admonition}
+:class: tip
+
+À noter : il n'y a pas d'équivalent en SQL pour l'exemple des notes attribuées aux restaurants du quartier "Manhattan" présenté ici puisque **un attribut ne peut pas être une liste de valeurs en SQL**. 
+```
 
 ### Compter le nombre d'éléments : la méthode `count`
 
@@ -474,7 +488,10 @@ db.NYfood.find({"cuisine": "Bakery"}).count()
 ```
 ````
 
-> Bien entendu, les résultats seront différents car nous n'avons pas le même nombre de documents avant et après un filtrage de données. Dans le premier exemple, on souhaite afficher le **nombre de documents dans la collection NYfood** tandis que dans le deuxième, on récupère le **nombre de documents correspondant à des boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")*. 
+```{admonition}
+:class: tip
+Bien entendu, les résultats seront différents car nous n'avons pas le même nombre de documents avant et après un filtrage de données. Dans le premier exemple, on souhaite afficher le **nombre de documents dans la collection NYfood** tandis que dans le deuxième, on récupère le **nombre de documents correspondant à des boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")*. 
+```
 
 ### Trier la récupération des documents : la méthode `sort`
 
@@ -504,11 +521,10 @@ La méthode `limit` permet de **limiter le nombre de documents renvoyés**. Elle
 db.collectionName.find({}).limit(2)
 ```
 
----
-
+(resume)=
 ## Pour conclure ce chapitre 
 
-### <a name="resume"></a> Fiche "résumé" pour bien démarrer en MongoDB
+**Fiche "résumé" pour bien démarrer en MongoDB**
 
 Objectif | Syntaxe 
 --- | --- 
@@ -523,9 +539,10 @@ Compter les documents de sortie | `db.collectionName.find({}).count()`
 Limiter les documents de sortie | `db.collectionName.find({}).limit(2)` 
 Valeurs distinctes d'un champ | `db.collectionName.distinct(champ, {})`
 
-**Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quiz ci-dessous.**
+(quiz)=
+### Quiz "Premières requêtes en MongoDB" : À vous de jouer ! 
 
-### <a name="quiz"></a> Quiz "Premières requêtes en MongoDB" : À vous de jouer ! 
+Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quiz ci-dessous.
 
 **Qu'est-ce qui caractérise MongoDB ?**
 
@@ -533,7 +550,10 @@ Valeurs distinctes d'un champ | `db.collectionName.distinct(champ, {})`
 2. C'est un modèle orienté document
 3. C'est un modèle structuré
 
+```{admonition} Cliquez pour montrer la réponse
+:class: dropdown
 *Réponse 2 : C'est un modèle orienté document.*
+```
 
 **Que nous renvoie cette requête sur la collection `notes` de la base `etudiants` ?**
 
@@ -545,7 +565,11 @@ db.notes.find({}, {"nom": true, "_id": false})
 2. Les noms des étudiants de la base et la clé `_id` qui identifie chaque étudiant
 3. Tous les noms des étudiants de la base, mais pas les autres clés
 
+```{admonition} Cliquez pour montrer la réponse
+:class: dropdown
+
 *Réponse 3 : L'argument `"_id": false` permet de retirer l'affichage de la clé `id`. On ne récupère que le noms des étudiants de la base.*
+```
 
 **Comment récupérer la liste des étudiants ayant obtenu exactement deux notes ?**
 
@@ -553,7 +577,11 @@ db.notes.find({}, {"nom": true, "_id": false})
 2. `db.notes.find({"notes": {$exists: true}})`
 3. `db.notes.find({$or: [{"notes": {$size: 1}},{"notes": {$size: 2}}]})`
 
+```{admonition} Cliquez pour montrer la réponse
+:class: dropdown
+
 *Réponse 1 : L'opérateur `$size` permet de prendre en compte la taille de la liste de valeurs, telle qu'une liste de notes. Ici on souhaite que la liste de notes soit précisement de taille 2.*
+```
 
 **Quel opérateur permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste ?**
 
@@ -561,7 +589,11 @@ db.notes.find({}, {"nom": true, "_id": false})
 2. L'opérateur `$nor`
 3. L'opérateur `$gt`
 
+```{admonition} Cliquez pour montrer la réponse
+:class: dropdown
+
 *Réponse 2 : L'opérateur `$nor` permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste.*
+```
 
 **Quelle méthode ci-dessous ne fait pas partie du langage MongoDB ?**
 
@@ -569,7 +601,10 @@ db.notes.find({}, {"nom": true, "_id": false})
 2. `db.collectionName.find({}).sort({"key" : 1})`
 3. `db.collectionName.find({}).limit(3)`
 
+```{admonition} Cliquez pour montrer la réponse
+:class: dropdown
+
 *Réponse 1 : Bien que `ORDER BY` soit une instruction en SQL, ce n'est pas disponible pour les bases de données en MongoDB.*
+```
 
-
-Afin que le langage MongoDB n'ait plus aucun secret pour vous, nous vous invitons à lire les **chapitres suivants** et à consultez la [documentation MongoDB](https://docs.mongodb.com) !
+Afin que le langage MongoDB n'ait plus aucun secret pour vous, nous vous invitons à lire les **chapitres suivants** et à consulter la [documentation MongoDB](https://docs.mongodb.com) !
