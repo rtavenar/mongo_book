@@ -307,32 +307,44 @@
   <a class="reference internal nav-link" href="#particularite-du-travail-sur-des-listes">
    2.3. Particularité du travail sur des listes
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#operateur-elemmatch">
-   2.4. Opérateur
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     $elemMatch
-    </span>
-   </code>
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cas-de-conditions-simultanement-non-realisables">
-     2.4.1. Cas de conditions simultanement non réalisables
+    <a class="reference internal nav-link" href="#au-moins-un-element-ou-tous-les-elements">
+     2.3.1. “au moins un élément” ou “tous les éléments” ?
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cas-de-conditions-simultanement-realisables">
-     2.4.2. Cas de conditions simultanement réalisables
+    <a class="reference internal nav-link" href="#cas-des-conditions-multiples">
+     2.3.2. Cas des conditions multiples
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operateur-elemmatch">
+     2.3.3. Opérateur
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       $elemMatch
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cas-de-conditions-simultanement-non-realisables">
+       2.3.3.1. Cas de conditions simultanement non réalisables
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cas-de-conditions-simultanement-realisables">
+       2.3.3.2. Cas de conditions simultanement réalisables
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#recapitulatif">
-   2.5. Récapitulatif
+   2.4. Récapitulatif
   </a>
  </li>
 </ul>
@@ -445,15 +457,6 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
-	&quot;nom&quot; : &quot;Hélène&quot;,
-	&quot;notes&quot; : [
-		13
-	],
-	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;F&quot;
-}
-{
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;),
 	&quot;nom&quot; : &quot;Paul&quot;,
 	&quot;notes&quot; : [
@@ -461,6 +464,15 @@
 		12
 	],
 	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
+	&quot;notes&quot; : [
+		13
+	],
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
 }
 {
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7741&quot;),
@@ -473,6 +485,13 @@
 	&quot;sexe&quot; : &quot;M&quot;
 }
 {
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7740&quot;),
+	&quot;nom&quot; : &quot;Sophie&quot;,
+	&quot;notes&quot; : [ ],
+	&quot;ddn&quot; : ISODate(&quot;1996-09-12T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
+}
+{
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
 	&quot;nom&quot; : &quot;Marc&quot;,
 	&quot;notes&quot; : [
@@ -480,13 +499,6 @@
 	],
 	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
 	&quot;sexe&quot; : &quot;M&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7740&quot;),
-	&quot;nom&quot; : &quot;Sophie&quot;,
-	&quot;notes&quot; : [ ],
-	&quot;ddn&quot; : ISODate(&quot;1996-09-12T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;F&quot;
 }
 </pre></div>
 </div>
@@ -509,6 +521,14 @@
 </div>
 </div>
 <p>Une liste de 2 notes est retournée. Plus précisement, c’est le contenu de l’attribut <code class="docutils literal notranslate"><span class="pre">notes</span></code> qui est donné.</p>
+</div>
+</div>
+<div class="section" id="particularite-du-travail-sur-des-listes">
+<h2><span class="section-number">2.3. </span>Particularité du travail sur des listes<a class="headerlink" href="#particularite-du-travail-sur-des-listes" title="Permalink to this headline">¶</a></h2>
+<p>Les listes sont des objets particuliers pour lesquels des questions particulières se posent.
+Nous nous penchons ici sur deux de ces questions spécifiques aux listes.</p>
+<div class="section" id="au-moins-un-element-ou-tous-les-elements">
+<h3><span class="section-number">2.3.1. </span>“au moins un élément” ou “tous les éléments” ?<a class="headerlink" href="#au-moins-un-element-ou-tous-les-elements" title="Permalink to this headline">¶</a></h3>
 <p>Exemple : on veut savoir si l’étudiant Paul a eu au moins une note égale à 12. Pour ce faire, on ajoute une condition sur les notes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -545,15 +565,6 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
-	&quot;nom&quot; : &quot;Hélène&quot;,
-	&quot;notes&quot; : [
-		13
-	],
-	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;F&quot;
-}
-{
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;),
 	&quot;nom&quot; : &quot;Paul&quot;,
 	&quot;notes&quot; : [
@@ -563,13 +574,13 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 	&quot;sexe&quot; : &quot;M&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
-	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;),
+	&quot;nom&quot; : &quot;Hélène&quot;,
 	&quot;notes&quot; : [
-		15
+		13
 	],
-	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;M&quot;
+	&quot;ddn&quot; : ISODate(&quot;1995-03-05T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
 }
 {
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773c&quot;),
@@ -584,6 +595,15 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 		3
 	],
 	&quot;ddn&quot; : ISODate(&quot;1995-05-25T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;M&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
+	&quot;nom&quot; : &quot;Marc&quot;,
+	&quot;notes&quot; : [
+		15
+	],
+	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
 	&quot;sexe&quot; : &quot;M&quot;
 }
 </pre></div>
@@ -617,6 +637,13 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 	&quot;sexe&quot; : &quot;F&quot;
 }
 {
+	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7740&quot;),
+	&quot;nom&quot; : &quot;Sophie&quot;,
+	&quot;notes&quot; : [ ],
+	&quot;ddn&quot; : ISODate(&quot;1996-09-12T00:00:00Z&quot;),
+	&quot;sexe&quot; : &quot;F&quot;
+}
+{
 	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;),
 	&quot;nom&quot; : &quot;Marc&quot;,
 	&quot;notes&quot; : [
@@ -624,13 +651,6 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 	],
 	&quot;ddn&quot; : ISODate(&quot;1993-03-06T00:00:00Z&quot;),
 	&quot;sexe&quot; : &quot;M&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7740&quot;),
-	&quot;nom&quot; : &quot;Sophie&quot;,
-	&quot;notes&quot; : [ ],
-	&quot;ddn&quot; : ISODate(&quot;1996-09-12T00:00:00Z&quot;),
-	&quot;sexe&quot; : &quot;F&quot;
 }
 </pre></div>
 </div>
@@ -717,9 +737,8 @@ Néanmoins, l’objet retourné par la requête est l’ensemble du document. To
 </div>
 <p>Cette fois, on ne retourne plus que 2 étudiants qui n’ont que des notes au-dessus de 12.</p>
 </div>
-</div>
-<div class="section" id="particularite-du-travail-sur-des-listes">
-<h2><span class="section-number">2.3. </span>Particularité du travail sur des listes<a class="headerlink" href="#particularite-du-travail-sur-des-listes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cas-des-conditions-multiples">
+<h3><span class="section-number">2.3.2. </span>Cas des conditions multiples<a class="headerlink" href="#cas-des-conditions-multiples" title="Permalink to this headline">¶</a></h3>
 <p>Lorsque nous faisons des requêtes sur un attribut d’un autre type qu’une liste, un seul élement est soumis à l’ensemble de nos conditions.
 Dans l’exemple ci-dessous, la clé <code class="docutils literal notranslate"><span class="pre">nom</span></code> renvoie une chaine de caractères, qui est un élément unique. Cet élément est soumis à deux conditions afin d’obtenir les noms qui commencent par la lettre M.</p>
 <div class="cell tag_output_scroll docutils container">
@@ -809,10 +828,10 @@ Les conditions sont toutes respectées au moins une fois, la liste complète est
 <p>Mais alors, comment pouvons-nous justement tester une double condition sur chaque élement de la liste ? Pour cela, nous allons faire appel à l’opérateur <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code>.</p>
 </div>
 <div class="section" id="operateur-elemmatch">
-<h2><span class="section-number">2.4. </span>Opérateur <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code><a class="headerlink" href="#operateur-elemmatch" title="Permalink to this headline">¶</a></h2>
+<h3><span class="section-number">2.3.3. </span>Opérateur <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code><a class="headerlink" href="#operateur-elemmatch" title="Permalink to this headline">¶</a></h3>
 <p>Avec <code class="docutils literal notranslate"><span class="pre">$elemMatch</span></code>, on retourne les documents dont au moins un élément de la liste vérifie toutes les conditions.</p>
 <div class="section" id="cas-de-conditions-simultanement-non-realisables">
-<h3><span class="section-number">2.4.1. </span>Cas de conditions simultanement non réalisables<a class="headerlink" href="#cas-de-conditions-simultanement-non-realisables" title="Permalink to this headline">¶</a></h3>
+<h4><span class="section-number">2.3.3.1. </span>Cas de conditions simultanement non réalisables<a class="headerlink" href="#cas-de-conditions-simultanement-non-realisables" title="Permalink to this headline">¶</a></h4>
 <p>Testez votre intuition ! D’après vous, que ressortira cette requête ?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -830,7 +849,7 @@ Les conditions sont toutes respectées au moins une fois, la liste complète est
 <p>Contrairement à la requête précedente, cette requête teste les élements de la liste un à un. Ainsi, aucun élement ne vérifie ces deux conditions simultanement. Aucun élément n’est donc retourné par cette requête.</p>
 </div>
 <div class="section" id="cas-de-conditions-simultanement-realisables">
-<h3><span class="section-number">2.4.2. </span>Cas de conditions simultanement réalisables<a class="headerlink" href="#cas-de-conditions-simultanement-realisables" title="Permalink to this headline">¶</a></h3>
+<h4><span class="section-number">2.3.3.2. </span>Cas de conditions simultanement réalisables<a class="headerlink" href="#cas-de-conditions-simultanement-realisables" title="Permalink to this headline">¶</a></h4>
 <p>Avec la requête suivante, nous cherchons à savoir quels étudiants ont au moins une note comprise entre 9 et 13.</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
@@ -904,8 +923,9 @@ Les conditions sont toutes respectées au moins une fois, la liste complète est
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="recapitulatif">
-<h2><span class="section-number">2.5. </span>Récapitulatif<a class="headerlink" href="#recapitulatif" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Récapitulatif<a class="headerlink" href="#recapitulatif" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><em>Je souhaite que <strong>toutes les conditions</strong> soient vérifiées <strong>au moins une fois</strong> par les éléments de ma liste, comment faire ?</em></p></li>
 </ul>
@@ -980,6 +1000,6 @@ Les conditions sont toutes respectées au moins une fois, la liste complète est
   
   <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-  None
+  
   </body>
 </html>

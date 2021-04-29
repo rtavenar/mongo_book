@@ -398,8 +398,7 @@ Exemple:</p>
 </div>
 </div>
 </div>
-<p>Ici, on crée par exemple une collection “ventes” au sein de la base “voitures”.<br />
-:warning: <strong>Si vous tentez d’exécuter plusieurs fois la commande, une erreur surviendra car votre collection existe déjà.</strong></p>
+<p>Ici, on crée par exemple une collection “ventes” au sein de la base “voitures”.</p>
 </div>
 <div class="section" id="ajout-de-nouveaux-documents">
 <h3><span class="section-number">6.1.2. </span>Ajout de nouveaux documents<a class="headerlink" href="#ajout-de-nouveaux-documents" title="Permalink to this headline">¶</a></h3>
@@ -434,8 +433,8 @@ Exemple:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608673dac4b96bfc45b04e07&quot;), &quot;nom&quot; : &quot;C1&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673dac4b96bfc45b04e08&quot;), &quot;nom&quot; : &quot;C2&quot; }
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608a72ca775eef1566d0d7ac&quot;), &quot;nom&quot; : &quot;C1&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72ca775eef1566d0d7ad&quot;), &quot;nom&quot; : &quot;C2&quot; }
 </pre></div>
 </div>
 </div>
@@ -455,9 +454,13 @@ Exemple:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WriteResult({ &quot;nMatched&quot; : 1, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 1 })
+</pre></div>
 </div>
-<p>Le document sélectionné sur la première ligne est supprimé et remplacé selon les champs renseignés sur la seconde ligne. Les champs qui ne sont pas renseignés sont donc supprimés.<br />
-:warning: <strong>Seul le premier document de la liste sera modifié.</strong></p>
+</div>
+</div>
+<p>Le document sélectionné sur la première ligne est supprimé et remplacé selon les champs renseignés sur la seconde ligne. Les champs qui ne sont pas renseignés sont donc supprimés.</p>
 </div>
 <div class="section" id="modification-d-un-document">
 <h3><span class="section-number">6.2.2. </span>Modification d’un document<a class="headerlink" href="#modification-d-un-document" title="Permalink to this headline">¶</a></h3>
@@ -491,6 +494,11 @@ Exemple:</p>
 	<span class="p">{</span><span class="nx">$set</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;pays&quot;</span><span class="o">:</span> <span class="s2">&quot;France&quot;</span><span class="p">}},</span>
 	<span class="p">{</span><span class="nx">multi</span><span class="o">:</span> <span class="kc">true</span><span class="p">}</span>
 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WriteResult({ &quot;nMatched&quot; : 2, &quot;nUpserted&quot; : 0, &quot;nModified&quot; : 2 })
 </pre></div>
 </div>
 </div>
@@ -532,7 +540,7 @@ Exemple:</p>
 	&quot;nMatched&quot; : 0,
 	&quot;nUpserted&quot; : 1,
 	&quot;nModified&quot; : 0,
-	&quot;_id&quot; : ObjectId(&quot;608673da17436e9c6411ba12&quot;)
+	&quot;_id&quot; : ObjectId(&quot;608a72cb43f60737b0e7c7bf&quot;)
 })
 </pre></div>
 </div>
@@ -650,6 +658,6 @@ Pour ce faire, il convient d’utiliser l’attribut “_id” puisqu’il est u
   
   <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-  None
+  
   </body>
 </html>

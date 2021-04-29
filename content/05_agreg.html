@@ -293,42 +293,6 @@
     <a class="reference internal nav-link" href="#operateur-de-somme">
      5.1.1. Opérateur de somme
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#comptage-du-nombre-d-individus">
-       5.1.1.1. Comptage du nombre d’individus
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#sans-regroupement">
-         5.1.1.1.1. Sans regroupement
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#avec-regroupement">
-         5.1.1.1.2. Avec regroupement
-        </a>
-       </li>
-      </ul>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#additionner-des-variables">
-       5.1.1.2. Additionner des variables
-      </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id1">
-         5.1.1.2.1. Sans regroupement
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id2">
-         5.1.1.2.2. Avec regroupement
-        </a>
-       </li>
-      </ul>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#operateur-de-comptage">
@@ -341,12 +305,12 @@
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id3">
+      <a class="reference internal nav-link" href="#sans-regroupement">
        5.1.3.1. Sans regroupement
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id4">
+      <a class="reference internal nav-link" href="#avec-regroupement">
        5.1.3.2. Avec regroupement
       </a>
      </li>
@@ -365,43 +329,28 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#center-project-center">
-     5.2.2.
-     <center>
-      Project
-     </center>
+    <a class="reference internal nav-link" href="#project">
+     5.2.2. Project
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#center-sort-center">
-     5.2.3.
-     <center>
-      Sort
-     </center>
+    <a class="reference internal nav-link" href="#sort">
+     5.2.3. Sort
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#center-limit-center">
-     5.2.4.
-     <center>
-      Limit
-     </center>
+    <a class="reference internal nav-link" href="#limit">
+     5.2.4. Limit
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#center-match-center">
-     5.2.5.
-     <center>
-      Match
-     </center>
+    <a class="reference internal nav-link" href="#match">
+     5.2.5. Match
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#center-unwind-center">
-     5.2.6.
-     <center>
-      Unwind
-     </center>
+    <a class="reference internal nav-link" href="#unwind">
+     5.2.6. Unwind
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -427,7 +376,7 @@
 <div class="section" id="regroupements">
 <span id="sec-exec"></span><h2><span class="section-number">5.1. </span>Regroupements<a class="headerlink" href="#regroupements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Auteurs/trices : <em><strong>CASTRIQUE Jérémy, NOJAC Dimitri, VAVASSEUR Salomé</strong></em></p></li>
+<li><p>Auteurs/trices : <strong>CASTRIQUE Jérémy, NOJAC Dimitri, VAVASSEUR Salomé</strong></p></li>
 </ul>
 <p>Dans cette partie, nous allons étudier <strong>les regroupements dans les requêtes d’aggrégation</strong>. Dans un premier temps, nous étudierons ce qu’est l’étape de regroupement. Ensuite nous regarderons comment effectuer des calculs à l’aide des 4 d’opérateurs qui sont : <code class="docutils literal notranslate"><span class="pre">$sum</span></code>, <code class="docutils literal notranslate"><span class="pre">$max</span></code>, <code class="docutils literal notranslate"><span class="pre">$min</span></code>, <code class="docutils literal notranslate"><span class="pre">$count</span></code> avec ou sans groupe.</p>
 <p>Les requêtes de regroupement vont permettre d’effectuer des opérations d’accumulation sur des documents regroupés. Il est l’équivalent de l’opérateur <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> en SQL.</p>
@@ -441,11 +390,13 @@
 </pre></div>
 </div>
 <p>Pour tous les opérateurs que nous allons étudier dans cette partie du cours, la syntaxe sera identique à celle-ci.</p>
-<p>Les équivalents en SQL de l’opérateur $sum sont <code class="docutils literal notranslate"><span class="pre">COUNT(*)</span></code> ou bien <code class="docutils literal notranslate"><span class="pre">SUM</span></code> qui permettent de compter le nombre de variables.</p>
+<div class="section" id="operateur-de-somme">
+<h3><span class="section-number">5.1.1. </span>Opérateur de somme<a class="headerlink" href="#operateur-de-somme" title="Permalink to this headline">¶</a></h3>
+<p>L’équivalent en SQL de l’opérateur <code class="docutils literal notranslate"><span class="pre">$sum</span></code> est <code class="docutils literal notranslate"><span class="pre">SUM</span></code> qui permet de sommer les valeurs prises pour un attribut.</p>
 <p><strong>Exemple de requête sans regroupement</strong></p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="78074b76-b3db-4d49-bf7a-170e9bf0532f" name="e7b8ddc5-f253-4549-8e35-140ef937b307" type="radio">
-</input><label class="tabbed-label" for="78074b76-b3db-4d49-bf7a-170e9bf0532f">
+<input checked="checked" id="4b7ef09a-eafe-472d-93b6-d39338c679e1" name="c1336d01-b834-40eb-a23d-9d65ee2ee657" type="radio">
+</input><label class="tabbed-label" for="4b7ef09a-eafe-472d-93b6-d39338c679e1">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">coll</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
   <span class="p">{</span><span class="nx">$group</span><span class="o">:</span> <span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span> 
@@ -454,8 +405,8 @@ MongoDB</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="bf0e3a17-0a51-48eb-8fb8-cc466ad13a4c" name="e7b8ddc5-f253-4549-8e35-140ef937b307" type="radio">
-</input><label class="tabbed-label" for="bf0e3a17-0a51-48eb-8fb8-cc466ad13a4c">
+<input id="fe781b36-3fe5-440d-a64f-b736760040c0" name="c1336d01-b834-40eb-a23d-9d65ee2ee657" type="radio">
+</input><label class="tabbed-label" for="fe781b36-3fe5-440d-a64f-b736760040c0">
 SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">att</span><span class="p">)</span> <span class="k">as</span> <span class="n">nb</span>
 <span class="k">FROM</span> <span class="n">t</span>
@@ -463,9 +414,11 @@ SQL</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
+<p>Vous remarquez qu’ici l’expression qui guide le regroupement est <code class="docutils literal notranslate"><span class="pre">null</span></code>, soit une constante.
+Cela signifie que tous les documents de la base seront regroupés ensemble et qu’un seul calcul sera fait pour ce groupe.</p>
 <p><strong>Exemple de requête avec regroupement</strong></p>
-<p>Pour sélectionner certains individus, il faut filtrer sur l’identifiant.</p>
-<p>Sur la base de NYfood, on peut notamment filtrer par quartier.</p>
+<p>Pour créer des groupes d’individus, il faut indiquer comment former ces groupes dans l’identifiant.</p>
+<p>Sur la base de <code class="docutils literal notranslate"><span class="pre">food</span></code>, on peut par exemple filtrer par quartier.</p>
 <p>Voici un exemple de requête :</p>
 <p><em>En mongoDB :</em></p>
 <div class="cell docutils container">
@@ -484,32 +437,30 @@ SQL</label><div class="tabbed-content docutils">
 <div class="cell_input docutils container">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
   <span class="p">{</span><span class="nx">$group</span><span class="o">:</span> <span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="s2">&quot;$borough&quot;</span><span class="p">,</span>
-    	   <span class="nx">nb</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span> <span class="mf">1</span><span class="p">}}}</span>
+    	   <span class="nx">nb</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span> <span class="p">{</span><span class="nx">$size</span><span class="o">:</span> <span class="s2">&quot;$grades&quot;</span><span class="p">}}}}</span>
 <span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : &quot;Bronx&quot;, &quot;nb&quot; : 2338 }
-{ &quot;_id&quot; : &quot;Staten Island&quot;, &quot;nb&quot; : 969 }
-{ &quot;_id&quot; : &quot;Missing&quot;, &quot;nb&quot; : 51 }
-{ &quot;_id&quot; : &quot;Manhattan&quot;, &quot;nb&quot; : 10258 }
-{ &quot;_id&quot; : &quot;Brooklyn&quot;, &quot;nb&quot; : 6085 }
-{ &quot;_id&quot; : &quot;Queens&quot;, &quot;nb&quot; : 5656 }
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : &quot;Missing&quot;, &quot;nb&quot; : 79 }
+{ &quot;_id&quot; : &quot;Bronx&quot;, &quot;nb&quot; : 8706 }
+{ &quot;_id&quot; : &quot;Manhattan&quot;, &quot;nb&quot; : 38617 }
+{ &quot;_id&quot; : &quot;Queens&quot;, &quot;nb&quot; : 20877 }
+{ &quot;_id&quot; : &quot;Staten Island&quot;, &quot;nb&quot; : 3216 }
+{ &quot;_id&quot; : &quot;Brooklyn&quot;, &quot;nb&quot; : 21962 }
 </pre></div>
 </div>
 </div>
 </div>
 <p><em>En SQL :</em></p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">nb</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">n_grades</span><span class="p">)</span> <span class="k">as</span> <span class="n">nb</span>
 <span class="k">FROM</span> <span class="n">NYfood</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">borough</span>
 </pre></div>
 </div>
-<p>Dans cette requête, MongoDB va compter pour chaque groupe, le nombre d’individu ayant le même id et donc compter les restaurants d’un même quartiers ensemble.</p>
-<div class="section" id="operateur-de-somme">
-<h3><span class="section-number">5.1.1. </span>Opérateur de somme<a class="headerlink" href="#operateur-de-somme" title="Permalink to this headline">¶</a></h3>
-<p>L’opérateur <code class="docutils literal notranslate"><span class="pre">$sum</span></code> permet de calculer et de retourner les sommes de variables numériques.</p>
+<p>Dans cette requête, MongoDB va regrouper les individus ayant la même valweur pour l’attribut spécifié comme <code class="docutils literal notranslate"><span class="pre">_id</span></code> et donc considérer les restaurants d’un même quartier ensemble.</p>
+<p>L’opérateur <code class="docutils literal notranslate"><span class="pre">$sum</span></code> permet de calculer et de retourner les sommes de variables numériques (ici les sommes des nombres de notes).</p>
 <div class="tip admonition">
 <p class="admonition-title">Attention</p>
 <p>Il ne prend pas en compte les variables non numériques.</p>
@@ -522,105 +473,7 @@ SQL</label><div class="tabbed-content docutils">
 <span class="p">])</span>
 </pre></div>
 </div>
-<div class="section" id="comptage-du-nombre-d-individus">
-<h4><span class="section-number">5.1.1.1. </span>Comptage du nombre d’individus<a class="headerlink" href="#comptage-du-nombre-d-individus" title="Permalink to this headline">¶</a></h4>
-<div class="section" id="sans-regroupement">
-<h5><span class="section-number">5.1.1.1.1. </span>Sans regroupement<a class="headerlink" href="#sans-regroupement" title="Permalink to this headline">¶</a></h5>
-<p>Regardons une requête simple :</p>
-<p><em>En mongoDB :</em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">use</span> <span class="nx">food</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>switched to db food
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_output_scroll docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
-      <span class="p">{</span><span class="nx">$group</span><span class="o">:</span><span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-              <span class="nx">nb</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span> <span class="mf">1</span><span class="p">}}}</span>
-<span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : null, &quot;nb&quot; : 25357 }
-</pre></div>
-</div>
-</div>
-</div>
-<p><em>En SQL :</em></p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">nb</span>
-<span class="k">FROM</span> <span class="n">NYfood</span>
-</pre></div>
-</div>
-<p>On utilise la fonction aggregate.
-Lorsqu’on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
-Dans notre cas, on choisit tout les individus. On le note <code class="docutils literal notranslate"><span class="pre">id:</span> <span class="pre">null</span></code>.
-On créé notre variable qu’on appelle nb qui va faire la somme de tout les individus.</p>
-<p>Dans cet exemple, nous avons compté le nombre d’individus sans sélection.</p>
-<p>En pratique, cela n’a pas forcément beaucoup d’intérêt.
-Il s’avère plus utile de pouvoir sélectionner le nombre de variables répondant à un critère. Pour cela, nous allons regarder avec une requête de regroupement.</p>
-</div>
-<div class="section" id="avec-regroupement">
-<h5><span class="section-number">5.1.1.1.2. </span>Avec regroupement<a class="headerlink" href="#avec-regroupement" title="Permalink to this headline">¶</a></h5>
-<p>Toujours dans la collection NYfood de la base food, on cherche à connaitre le nombre de restaurants par type de cuisine. Pour cela, on va effectuer un regroupement sur l’attribut “cuisine”.</p>
-<p><em>En mongoDB :</em></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">use</span> <span class="nx">food</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>switched to db food
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_output_scroll docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
-      <span class="p">{</span><span class="nx">$group</span><span class="o">:</span><span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="s2">&quot;$cuisine&quot;</span><span class="p">,</span>
-              <span class="nx">nb_par_cuis</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span> <span class="mf">1</span><span class="p">}}}</span>
-<span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : &quot;Bakery&quot;, &quot;nb_par_cuis&quot; : 691 }
-{ &quot;_id&quot; : &quot;Soul Food&quot;, &quot;nb_par_cuis&quot; : 44 }
-{ &quot;_id&quot; : &quot;Korean&quot;, &quot;nb_par_cuis&quot; : 262 }
-{ &quot;_id&quot; : &quot;Ethiopian&quot;, &quot;nb_par_cuis&quot; : 18 }
-{ &quot;_id&quot; : &quot;Donuts&quot;, &quot;nb_par_cuis&quot; : 479 }
-{ &quot;_id&quot; : &quot;Greek&quot;, &quot;nb_par_cuis&quot; : 111 }
-{ &quot;_id&quot; : &quot;Sandwiches&quot;, &quot;nb_par_cuis&quot; : 459 }
-{ &quot;_id&quot; : &quot;Polynesian&quot;, &quot;nb_par_cuis&quot; : 1 }
-{ &quot;_id&quot; : &quot;Creole/Cajun&quot;, &quot;nb_par_cuis&quot; : 1 }
-{ &quot;_id&quot; : &quot;Ice Cream, Gelato, Yogurt, Ices&quot;, &quot;nb_par_cuis&quot; : 348 }
-Type &quot;it&quot; for more
-</pre></div>
-</div>
-</div>
-</div>
-<p><em>En SQL :</em></p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">nb_par_cuisine</span>
-<span class="k">FROM</span> <span class="n">NYfood</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">cuisine</span>
-</pre></div>
-</div>
-<p>On obtient donc plusieurs listes différentes contenant pour chacune le nombre de restaurants dans chaque liste nommée par le type de cuisine.</p>
-<p>Il y a donc eu un comptage du nombre de restaurants en fonction de la variable cuisine.</p>
-</div>
-</div>
-<div class="section" id="additionner-des-variables">
-<h4><span class="section-number">5.1.1.2. </span>Additionner des variables<a class="headerlink" href="#additionner-des-variables" title="Permalink to this headline">¶</a></h4>
+<p><strong>Autre exemple</strong></p>
 <p>Pour cette partie, nous allons nous placer dans cette base que nous avons créée.</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="mf">1</span><span class="p">,</span> <span class="s2">&quot;objet&quot;</span> <span class="o">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;prix&quot;</span> <span class="o">:</span> <span class="mf">10</span><span class="p">,</span> <span class="s2">&quot;quantité&quot;</span> <span class="o">:</span> <span class="mf">2</span><span class="p">},</span>
 <span class="p">{</span> <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="mf">2</span><span class="p">,</span> <span class="s2">&quot;objet&quot;</span> <span class="o">:</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;prix&quot;</span> <span class="o">:</span> <span class="mf">20</span><span class="p">,</span> <span class="s2">&quot;quantité&quot;</span> <span class="o">:</span> <span class="mf">1</span><span class="p">},</span>
@@ -629,13 +482,12 @@ Type &quot;it&quot; for more
 <span class="p">{</span> <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="mf">5</span><span class="p">,</span> <span class="s2">&quot;objet&quot;</span> <span class="o">:</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;prix&quot;</span> <span class="o">:</span> <span class="mf">5</span><span class="p">,</span> <span class="s2">&quot;quantité&quot;</span> <span class="o">:</span> <span class="mf">10</span><span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="id1">
-<h5><span class="section-number">5.1.1.2.1. </span>Sans regroupement<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
-<p>Jusqu’ici, nous avons compté le nombre d’individus grâce à l’attribu <code class="docutils literal notranslate"><span class="pre">$sum</span></code>, mais celui ci permet aussi <code class="docutils literal notranslate"><span class="pre">d'additionner</span> <span class="pre">des</span> <span class="pre">variables</span></code>.</p>
+<p><em><strong>Sans regroupement</strong></em>
+Jusqu’ici, nous avons compté le nombre d’individus grâce à l’attribu <code class="docutils literal notranslate"><span class="pre">$sum</span></code>, mais celui ci permet aussi <code class="docutils literal notranslate"><span class="pre">d'additionner</span> <span class="pre">des</span> <span class="pre">variables</span></code>.</p>
 <p>On se place maintenant dans la collection précédente.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="7d956fd9-34ff-4a0f-af46-215b6e85258e" name="9c089808-e633-416c-b71b-73c20b9c07f5" type="radio">
-</input><label class="tabbed-label" for="7d956fd9-34ff-4a0f-af46-215b6e85258e">
+<input checked="checked" id="6b99e468-5233-4b12-a949-cc09685ff464" name="ddf030a5-3591-4304-9fd4-74c3fe86e148" type="radio">
+</input><label class="tabbed-label" for="6b99e468-5233-4b12-a949-cc09685ff464">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">coll</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
 	<span class="p">{</span><span class="nx">$group</span><span class="o">:</span> <span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -644,8 +496,8 @@ MongoDB</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="c8ef8497-376b-4c16-8fbf-a2fc71abbf1d" name="9c089808-e633-416c-b71b-73c20b9c07f5" type="radio">
-</input><label class="tabbed-label" for="c8ef8497-376b-4c16-8fbf-a2fc71abbf1d">
+<input id="d2153319-79c9-4814-b941-3c276c693292" name="ddf030a5-3591-4304-9fd4-74c3fe86e148" type="radio">
+</input><label class="tabbed-label" for="d2153319-79c9-4814-b941-3c276c693292">
 SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">quantité</span><span class="p">)</span> <span class="k">AS</span> <span class="n">qtt_tot</span>
 <span class="k">FROM</span> <span class="n">coll</span>
@@ -662,13 +514,11 @@ SQL</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 <p>Ici, on calcule la somme des quantités vendues.</p>
-</div>
-<div class="section" id="id2">
-<h5><span class="section-number">5.1.1.2.2. </span>Avec regroupement<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
-<p>Si on veut sélectionner les sommes des durées de films par genre, il suffit de rajouter un regroupement comme le suivant :</p>
+<p><em><strong>Avec regroupement</strong></em>
+Si on veut sélectionner les sommes des durées de films par genre, il suffit de rajouter un regroupement comme le suivant :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a455f5d3-ee6e-4671-839a-6b61ec27e9b1" name="492e5b48-fc6e-4959-8e80-617ab32a011b" type="radio">
-</input><label class="tabbed-label" for="a455f5d3-ee6e-4671-839a-6b61ec27e9b1">
+<input checked="checked" id="01c16323-81fb-4672-8694-9e9a5e7af34b" name="e575625a-877d-479d-a910-9931d6d71c6d" type="radio">
+</input><label class="tabbed-label" for="01c16323-81fb-4672-8694-9e9a5e7af34b">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">coll</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
 	<span class="p">{</span><span class="nx">$group</span><span class="o">:</span> <span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="s2">&quot;$prix&quot;</span><span class="p">,</span>
@@ -677,8 +527,8 @@ MongoDB</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="6dc15b16-cdc6-4b1d-b3ee-052e4f4939a3" name="492e5b48-fc6e-4959-8e80-617ab32a011b" type="radio">
-</input><label class="tabbed-label" for="6dc15b16-cdc6-4b1d-b3ee-052e4f4939a3">
+<input id="5efabc83-2894-4190-a6da-f468884008c8" name="e575625a-877d-479d-a910-9931d6d71c6d" type="radio">
+</input><label class="tabbed-label" for="5efabc83-2894-4190-a6da-f468884008c8">
 SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">SUM</span><span class="p">(</span><span class="n">quantité</span><span class="p">)</span> <span class="k">AS</span> <span class="n">qtt_tot</span> 
 <span class="k">FROM</span> <span class="n">coll</span>
@@ -706,8 +556,6 @@ SQL</label><div class="tabbed-content docutils">
     <span class="s2">&quot;qtt_tot&quot;</span> <span class="o">:</span> <span class="mf">15.0</span>
 <span class="p">}</span>
 </pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="operateur-de-comptage">
@@ -739,7 +587,53 @@ SQL</label><div class="tabbed-content docutils">
 <p>L’opérateur <code class="docutils literal notranslate"><span class="pre">$match</span></code> exclu les documents qui possèdent un individu avec un âge &lt;24.
 L’opérateur <code class="docutils literal notranslate"><span class="pre">$count</span></code> va donc agir sur les documents ayant un individu avec un âge supérieur à 24 à l’opérateur <code class="docutils literal notranslate"><span class="pre">$gt</span></code> (plus grand que) et va assigner
 à la valeur NB_+24 le nombre de documents répondant au critère.</p>
-<p>Au final, l’opérateur <code class="docutils literal notranslate"><span class="pre">$count</span></code> est un équivalent aux opérateurs <code class="docutils literal notranslate"><span class="pre">$group</span></code> avec <code class="docutils literal notranslate"><span class="pre">$sum</span></code> et <code class="docutils literal notranslate"><span class="pre">$project</span></code> (opérateur vu plus tard dans le chapitre).</p>
+<p>Une autre façon (moins directe) d’effectuer des opérations de comptage est d’utiliser l’opérateur <code class="docutils literal notranslate"><span class="pre">$sum</span></code>.</p>
+<p><em><strong>Sans regroupement</strong></em>
+Regardons une requête simple :</p>
+<p><em>En mongoDB :</em></p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
+      <span class="p">{</span><span class="nx">$group</span><span class="o">:</span><span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+              <span class="nx">nb</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span> <span class="mf">1</span><span class="p">}}}</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>En SQL :</em></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">nb</span>
+<span class="k">FROM</span> <span class="n">NYfood</span>
+</pre></div>
+</div>
+<p>On utilise la fonction aggregate.
+Lorsqu’on utilise aggregate, il faut donner les individus sur lesquels on veut faire la requête.
+Dans notre cas, on choisit tout les individus. On le note <code class="docutils literal notranslate"><span class="pre">id:</span> <span class="pre">null</span></code>.
+On créé notre variable qu’on appelle nb qui va faire la somme de tout les individus.</p>
+<p>Dans cet exemple, nous avons compté le nombre d’individus sans sélection.</p>
+<p>En pratique, cela n’a pas forcément beaucoup d’intérêt.
+Il s’avère plus utile de pouvoir sélectionner le nombre de variables répondant à un critère. Pour cela, nous allons regarder avec une requête de regroupement.</p>
+<p><em><strong>Avec regroupement</strong></em>
+Toujours dans la collection NYfood de la base food, on cherche à connaitre le nombre de restaurants par type de cuisine. Pour cela, on va effectuer un regroupement sur l’attribut “cuisine”.</p>
+<p><em>En mongoDB :</em></p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
+      <span class="p">{</span><span class="nx">$group</span><span class="o">:</span><span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="s2">&quot;$cuisine&quot;</span><span class="p">,</span>
+              <span class="nx">nb_par_cuis</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span> <span class="mf">1</span><span class="p">}}}</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>En SQL :</em></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">nb_par_cuisine</span>
+<span class="k">FROM</span> <span class="n">NYfood</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">cuisine</span>
+</pre></div>
+</div>
+<p>On obtient donc plusieurs listes différentes contenant pour chacune le nombre de restaurants dans chaque liste nommée par le type de cuisine.</p>
+<p>Il y a donc eu un comptage du nombre de restaurants en fonction de la variable cuisine.</p>
 </div>
 <div class="section" id="operateurs-d-extremum">
 <h3><span class="section-number">5.1.3. </span>Opérateurs d’extremum<a class="headerlink" href="#operateurs-d-extremum" title="Permalink to this headline">¶</a></h3>
@@ -764,14 +658,14 @@ L’opérateur <code class="docutils literal notranslate"><span class="pre">$cou
 <p>Nous allons nous intéresser aux opérateurs <code class="docutils literal notranslate"><span class="pre">$min</span></code> et <code class="docutils literal notranslate"><span class="pre">$max</span></code> au sein de l’opéarteur <code class="docutils literal notranslate"><span class="pre">$group</span></code>,
 ils peuvent aussi être utilisés dans l’opérateur <code class="docutils literal notranslate"><span class="pre">$project</span></code> que nous verrons en deuxième partie de chapitre.
 En SQL, les équivalents sont les opérateurs <code class="docutils literal notranslate"><span class="pre">MIN</span></code>et `MAX.</p>
-<div class="section" id="id3">
-<h4><span class="section-number">5.1.3.1. </span>Sans regroupement<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="sans-regroupement">
+<h4><span class="section-number">5.1.3.1. </span>Sans regroupement<a class="headerlink" href="#sans-regroupement" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">$min</span></code> et <code class="docutils literal notranslate"><span class="pre">$max</span></code> s’ils sont utilisés sans regroupement retournent respectivement la valeur minimale et la valeur maximale
 de l’attribut sur lequel ils sont appliqués et ceci sur tous les documents.</p>
 <p><em>Exemple :</em></p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="84f27377-6946-4de5-b3b0-0f0587ad7d8a" name="4446cfeb-3471-4331-8621-65c3d09e23a0" type="radio">
-</input><label class="tabbed-label" for="84f27377-6946-4de5-b3b0-0f0587ad7d8a">
+<input checked="checked" id="775bb452-15ba-4a84-9daf-f5b4bdd5bda5" name="feba7d80-f44f-44ad-9e3d-faba5f268aa0" type="radio">
+</input><label class="tabbed-label" for="775bb452-15ba-4a84-9daf-f5b4bdd5bda5">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">ventes</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
 	<span class="p">{</span><span class="nx">$group</span><span class="o">:</span> <span class="p">{</span><span class="nx">_id</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
@@ -781,8 +675,8 @@ MongoDB</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="130a2224-2a8c-4fa6-9d1f-c902d858e8c2" name="4446cfeb-3471-4331-8621-65c3d09e23a0" type="radio">
-</input><label class="tabbed-label" for="130a2224-2a8c-4fa6-9d1f-c902d858e8c2">
+<input id="167a6c52-fbf7-40c5-891f-d6e6ae56eec3" name="feba7d80-f44f-44ad-9e3d-faba5f268aa0" type="radio">
+</input><label class="tabbed-label" for="167a6c52-fbf7-40c5-891f-d6e6ae56eec3">
 Équivalent SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">MAX</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span> <span class="k">as</span> <span class="ss">&quot;prix max&quot;</span><span class="p">,</span> <span class="k">MIN</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span> <span class="k">as</span> <span class="ss">&quot;prix min&quot;</span>
 <span class="k">FROM</span> <span class="n">ventes</span>
@@ -804,14 +698,14 @@ et non à une chaîne de caractères.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="id4">
-<h4><span class="section-number">5.1.3.2. </span>Avec regroupement<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="avec-regroupement">
+<h4><span class="section-number">5.1.3.2. </span>Avec regroupement<a class="headerlink" href="#avec-regroupement" title="Permalink to this headline">¶</a></h4>
 <p>On peut aussi réaliser un regroupement et ainsi <code class="docutils literal notranslate"><span class="pre">$min</span></code> et <code class="docutils literal notranslate"><span class="pre">$max</span></code> renvoient toujours la valeur minimale et la valeur maximale
 de l’attribut sur lequel ils sont appliqués, mais cette fois-ci en étant appliqués sur les documents de l’ensemble de documents qui partagent la même clé de regroupement.</p>
 <p><em>Exemple :</em></p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="6728046c-f2a4-4e8c-b250-dc1f7028268a" name="2e301ebb-9f3a-48b4-b883-9680450c8b37" type="radio">
-</input><label class="tabbed-label" for="6728046c-f2a4-4e8c-b250-dc1f7028268a">
+<input checked="checked" id="538a9bcc-2e4b-4acf-9f57-645f61a2fa09" name="14a6d18c-7d42-4a11-be98-6f719713cd0f" type="radio">
+</input><label class="tabbed-label" for="538a9bcc-2e4b-4acf-9f57-645f61a2fa09">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">ventes</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
 	<span class="p">{</span><span class="nx">$group</span><span class="o">:</span> <span class="p">{</span><span class="nx">_id</span><span class="o">:</span><span class="s2">&quot;$objet&quot;</span><span class="p">,</span>
@@ -821,8 +715,8 @@ MongoDB</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="87bc8ab2-cbc9-4af3-9965-9ee5aba75cc1" name="2e301ebb-9f3a-48b4-b883-9680450c8b37" type="radio">
-</input><label class="tabbed-label" for="87bc8ab2-cbc9-4af3-9965-9ee5aba75cc1">
+<input id="ce285a77-89d8-4a62-81ad-758310a6bc35" name="14a6d18c-7d42-4a11-be98-6f719713cd0f" type="radio">
+</input><label class="tabbed-label" for="ce285a77-89d8-4a62-81ad-758310a6bc35">
 Équivalent SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="k">MAX</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span> <span class="k">as</span> <span class="ss">&quot;prix max&quot;</span><span class="p">,</span> <span class="k">MIN</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span> <span class="k">as</span> <span class="ss">&quot;prix min&quot;</span>
 <span class="k">FROM</span> <span class="n">ventes</span>
@@ -861,14 +755,13 @@ les opérateurs ne prennent pas en compte les valeurs de type null ou manquantes
 Si tous les documents ont une valeur de type null ou qui n’existe pas, les opérateurs renvoient null pour la valeur minimale
 ou la valeur maximale.</p>
 </div>
-<p>Le fichier que vous devez modifier pour ce chapitre est <code class="docutils literal notranslate"><span class="pre">mongo_book/content/05_agreg.md</span></code>.</p>
 </div>
 </div>
 </div>
 <div class="section" id="successions-d-etapes-d-agregation">
 <h2><span class="section-number">5.2. </span>Successions d’étapes d’agrégation<a class="headerlink" href="#successions-d-etapes-d-agregation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Auteurs/trices : Marine BINARD, Yann CAUSEUR, Arthur CONAS</p></li>
+<li><p>Auteurs/trices : <strong>Marine BINARD, Yann CAUSEUR, Arthur CONAS</strong></p></li>
 </ul>
 <div class="section" id="introduction">
 <h3><span class="section-number">5.2.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
@@ -878,10 +771,10 @@ nos étapes est crucial.</strong></p>
 <p>Nos étapes peuvent toutes être effectuées une à une et indépendamment. En fait, à l’intérieur de notre <code class="docutils literal notranslate"><span class="pre">db.coll.aggregate([])</span></code>, il y aura notre liste d’étapes,
 contenues dans des crochets et séparées par des virgules, qui s’effectueront sur les données que <strong>l’étape d’avant aura rendue.</strong></p>
 <p>Il peut donc être intéressant d’éxécuter le code étape par étape pour savoir sur quelles données on travaille à un moment donné.</p>
-<p>Commençons par regarder ce que peut faire chaque étape.</p>
+<p>Dans la suite, nous présentons de nouvelles étapes d’agrégation.</p>
 </div>
-<div class="section" id="center-project-center">
-<h3><span class="section-number">5.2.2. </span><center> Project </center><a class="headerlink" href="#center-project-center" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="project">
+<h3><span class="section-number">5.2.2. </span>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Pourquoi l’utiliser ?</strong></em><br />
 Il peut arriver lors d’une requête d’agrégation de vouloir créer de nouvelles variables par exemple, pour des calculs. La commande <code class="docutils literal notranslate"><span class="pre">$project</span></code> permet donc de créer de nouvelles variables. Néanmoins, il faut faire attention,
 lorsque l’on crée une nouvelle variable dans une requête d’agrégation.
@@ -920,16 +813,16 @@ Tous les attributs déjà existants pour les documents d’une collection ne son
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928c&quot;), &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928d&quot;), &quot;n_notes&quot; : 5 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928e&quot;), &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928f&quot;), &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19290&quot;), &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19291&quot;), &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19292&quot;), &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19293&quot;), &quot;n_notes&quot; : 5 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19294&quot;), &quot;n_notes&quot; : 6 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19295&quot;), &quot;n_notes&quot; : 4 }
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c6&quot;), &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c7&quot;), &quot;n_notes&quot; : 5 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c8&quot;), &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c9&quot;), &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594ca&quot;), &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cb&quot;), &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cc&quot;), &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cd&quot;), &quot;n_notes&quot; : 6 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594ce&quot;), &quot;n_notes&quot; : 5 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cf&quot;), &quot;n_notes&quot; : 4 }
 Type &quot;it&quot; for more
 </pre></div>
 </div>
@@ -953,16 +846,16 @@ Si on veut afficher le quartier en question, on doit le préciser tel que :</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928c&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Brooklyn&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928d&quot;), &quot;n_notes&quot; : 5, &quot;quartier&quot; : &quot;Bronx&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928e&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Manhattan&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928f&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Queens&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19290&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Brooklyn&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19291&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Staten Island&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19292&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Queens&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19293&quot;), &quot;n_notes&quot; : 5, &quot;quartier&quot; : &quot;Brooklyn&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19294&quot;), &quot;n_notes&quot; : 6, &quot;quartier&quot; : &quot;Brooklyn&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19295&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Brooklyn&quot; }
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c6&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Brooklyn&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c7&quot;), &quot;n_notes&quot; : 5, &quot;quartier&quot; : &quot;Bronx&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c8&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Manhattan&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c9&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Brooklyn&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594ca&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Queens&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cb&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Staten Island&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cc&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Queens&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cd&quot;), &quot;n_notes&quot; : 6, &quot;quartier&quot; : &quot;Brooklyn&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594ce&quot;), &quot;n_notes&quot; : 5, &quot;quartier&quot; : &quot;Brooklyn&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cf&quot;), &quot;n_notes&quot; : 4, &quot;quartier&quot; : &quot;Brooklyn&quot; }
 Type &quot;it&quot; for more
 </pre></div>
 </div>
@@ -982,16 +875,16 @@ variable sans la renommer avec cette syntaxe.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928c&quot;), &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928d&quot;), &quot;borough&quot; : &quot;Bronx&quot;, &quot;n_notes&quot; : 5 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928e&quot;), &quot;borough&quot; : &quot;Manhattan&quot;, &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928f&quot;), &quot;borough&quot; : &quot;Queens&quot;, &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19290&quot;), &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19291&quot;), &quot;borough&quot; : &quot;Staten Island&quot;, &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19292&quot;), &quot;borough&quot; : &quot;Queens&quot;, &quot;n_notes&quot; : 4 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19293&quot;), &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;n_notes&quot; : 5 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19294&quot;), &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;n_notes&quot; : 6 }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19295&quot;), &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;n_notes&quot; : 4 }
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c6&quot;), &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c7&quot;), &quot;borough&quot; : &quot;Bronx&quot;, &quot;n_notes&quot; : 5 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c8&quot;), &quot;borough&quot; : &quot;Manhattan&quot;, &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c9&quot;), &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594ca&quot;), &quot;borough&quot; : &quot;Queens&quot;, &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cb&quot;), &quot;borough&quot; : &quot;Staten Island&quot;, &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cc&quot;), &quot;borough&quot; : &quot;Queens&quot;, &quot;n_notes&quot; : 4 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cd&quot;), &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;n_notes&quot; : 6 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594ce&quot;), &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;n_notes&quot; : 5 }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cf&quot;), &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;n_notes&quot; : 4 }
 Type &quot;it&quot; for more
 </pre></div>
 </div>
@@ -1016,8 +909,8 @@ L’exemple serait donc:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="center-sort-center">
-<h3><span class="section-number">5.2.3. </span><center> Sort </center><a class="headerlink" href="#center-sort-center" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="sort">
+<h3><span class="section-number">5.2.3. </span>Sort<a class="headerlink" href="#sort" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Pourquoi l’utiliser ?</strong></em></p>
 <p>Comme dans la plus part des langages de bases de données, MongoDB ne stocke pas les documents dans une collection dans un ordre
 en particulier. C’est pourquoi l’étape <code class="docutils literal notranslate"><span class="pre">sort</span></code> (tri en français) va permettre
@@ -1052,21 +945,6 @@ n’importe quel ordre.</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928d&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1007&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.856077, 40.848447 ] }, &quot;street&quot; : &quot;Morris Park Ave&quot;, &quot;zipcode&quot; : &quot;10462&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Bakery&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-03-03T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 2 }, { &quot;date&quot; : ISODate(&quot;2013-09-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 6 }, { &quot;date&quot; : ISODate(&quot;2013-01-24T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2011-11-23T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2011-03-10T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 14 } ], &quot;name&quot; : &quot;Morris Park Bake Shop&quot;, &quot;restaurant_id&quot; : &quot;30075445&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19297&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2300&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.8786113, 40.8502883 ] }, &quot;street&quot; : &quot;Southern Boulevard&quot;, &quot;zipcode&quot; : &quot;10460&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-05-28T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2013-06-19T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 4 }, { &quot;date&quot; : ISODate(&quot;2012-06-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 3 } ], &quot;name&quot; : &quot;Wild Asia&quot;, &quot;restaurant_id&quot; : &quot;40357217&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192ab&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1006&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.84856870000002, 40.8903781 ] }, &quot;street&quot; : &quot;East 233 Street&quot;, &quot;zipcode&quot; : &quot;10466&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Ice Cream, Gelato, Yogurt, Ices&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-04-24T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-09-05T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-02-21T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2012-07-03T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2011-07-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 } ], &quot;name&quot; : &quot;Carvel Ice Cream&quot;, &quot;restaurant_id&quot; : &quot;40363093&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192ae&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1236&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.8893654, 40.81376179999999 ] }, &quot;street&quot; : &quot;238 Spofford Ave&quot;, &quot;zipcode&quot; : &quot;10474&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Chinese&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2013-12-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 8 }, { &quot;date&quot; : ISODate(&quot;2013-01-08T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2012-06-12T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 15 } ], &quot;name&quot; : &quot;Happy Garden&quot;, &quot;restaurant_id&quot; : &quot;40363289&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192c0&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;277&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.8941893, 40.8634684 ] }, &quot;street&quot; : &quot;East Kingsbridge Road&quot;, &quot;zipcode&quot; : &quot;10458&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Chinese&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-03-03T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-09-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-03-19T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2012-08-29T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2011-08-17T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 } ], &quot;name&quot; : &quot;Happy Garden&quot;, &quot;restaurant_id&quot; : &quot;40364296&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192c8&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;658&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.81363999999999, 40.82941100000001 ] }, &quot;street&quot; : &quot;Clarence Ave&quot;, &quot;zipcode&quot; : &quot;10465&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-06-21T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, { &quot;date&quot; : ISODate(&quot;2012-07-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 } ], &quot;name&quot; : &quot;Manhem Club&quot;, &quot;restaurant_id&quot; : &quot;40364363&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192e1&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2222&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.84971759999999, 40.8304811 ] }, &quot;street&quot; : &quot;Haviland Avenue&quot;, &quot;zipcode&quot; : &quot;10462&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-12-18T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 7 }, { &quot;date&quot; : ISODate(&quot;2014-05-01T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 17 }, { &quot;date&quot; : ISODate(&quot;2013-03-14T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, { &quot;date&quot; : ISODate(&quot;2012-09-20T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2012-02-08T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 19 } ], &quot;name&quot; : &quot;The New Starling Athletic Club Of The Bronx&quot;, &quot;restaurant_id&quot; : &quot;40364956&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192f9&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;72&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.92506, 40.8275556 ] }, &quot;street&quot; : &quot;East  161 Street&quot;, &quot;zipcode&quot; : &quot;10451&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-04-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2013-11-14T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 4 }, { &quot;date&quot; : ISODate(&quot;2013-07-29T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2012-12-31T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 15 }, { &quot;date&quot; : ISODate(&quot;2012-05-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 }, { &quot;date&quot; : ISODate(&quot;2012-01-09T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2011-08-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;C&quot;, &quot;score&quot; : 37 } ], &quot;name&quot; : &quot;Yankee Tavern&quot;, &quot;restaurant_id&quot; : &quot;40365499&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1930c&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;331&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.87786539999999, 40.8724377 ] }, &quot;street&quot; : &quot;East  204 Street&quot;, &quot;zipcode&quot; : &quot;10467&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Irish&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-08-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2014-03-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 23 }, { &quot;date&quot; : ISODate(&quot;2013-09-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 }, { &quot;date&quot; : ISODate(&quot;2012-12-18T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 27 }, { &quot;date&quot; : ISODate(&quot;2011-10-20T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 } ], &quot;name&quot; : &quot;Mcdwyers Pub&quot;, &quot;restaurant_id&quot; : &quot;40365893&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19325&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;5820&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.9002615, 40.885186 ] }, &quot;street&quot; : &quot;Broadway&quot;, &quot;zipcode&quot; : &quot;10463&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-02-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, { &quot;date&quot; : ISODate(&quot;2013-10-09T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 19 }, { &quot;date&quot; : ISODate(&quot;2013-05-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2012-11-20T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 18 }, { &quot;date&quot; : ISODate(&quot;2011-10-17T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2011-06-22T00:00:00Z&quot;), &quot;grade&quot; : &quot;C&quot;, &quot;score&quot; : 35 } ], &quot;name&quot; : &quot;The Punch Bowl&quot;, &quot;restaurant_id&quot; : &quot;40366497&quot; }
-Type &quot;it&quot; for more
-</pre></div>
-</div>
-</div>
 </div>
 <p><em><strong>Traduction SQL :</strong></em></p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">borough</span>
@@ -1091,16 +969,16 @@ Généralement, le moyen le plus simple de garantir cela consiste
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928d&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1007&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.856077, 40.848447 ] }, &quot;street&quot; : &quot;Morris Park Ave&quot;, &quot;zipcode&quot; : &quot;10462&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Bakery&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-03-03T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 2 }, { &quot;date&quot; : ISODate(&quot;2013-09-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 6 }, { &quot;date&quot; : ISODate(&quot;2013-01-24T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2011-11-23T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2011-03-10T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 14 } ], &quot;name&quot; : &quot;Morris Park Bake Shop&quot;, &quot;restaurant_id&quot; : &quot;30075445&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19297&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2300&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.8786113, 40.8502883 ] }, &quot;street&quot; : &quot;Southern Boulevard&quot;, &quot;zipcode&quot; : &quot;10460&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-05-28T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2013-06-19T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 4 }, { &quot;date&quot; : ISODate(&quot;2012-06-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 3 } ], &quot;name&quot; : &quot;Wild Asia&quot;, &quot;restaurant_id&quot; : &quot;40357217&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192ab&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1006&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.84856870000002, 40.8903781 ] }, &quot;street&quot; : &quot;East 233 Street&quot;, &quot;zipcode&quot; : &quot;10466&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Ice Cream, Gelato, Yogurt, Ices&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-04-24T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-09-05T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-02-21T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2012-07-03T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2011-07-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 } ], &quot;name&quot; : &quot;Carvel Ice Cream&quot;, &quot;restaurant_id&quot; : &quot;40363093&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192ae&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1236&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.8893654, 40.81376179999999 ] }, &quot;street&quot; : &quot;238 Spofford Ave&quot;, &quot;zipcode&quot; : &quot;10474&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Chinese&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2013-12-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 8 }, { &quot;date&quot; : ISODate(&quot;2013-01-08T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2012-06-12T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 15 } ], &quot;name&quot; : &quot;Happy Garden&quot;, &quot;restaurant_id&quot; : &quot;40363289&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192c0&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;277&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.8941893, 40.8634684 ] }, &quot;street&quot; : &quot;East Kingsbridge Road&quot;, &quot;zipcode&quot; : &quot;10458&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Chinese&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-03-03T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-09-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-03-19T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2012-08-29T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2011-08-17T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 } ], &quot;name&quot; : &quot;Happy Garden&quot;, &quot;restaurant_id&quot; : &quot;40364296&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192c8&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;658&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.81363999999999, 40.82941100000001 ] }, &quot;street&quot; : &quot;Clarence Ave&quot;, &quot;zipcode&quot; : &quot;10465&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-06-21T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, { &quot;date&quot; : ISODate(&quot;2012-07-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 } ], &quot;name&quot; : &quot;Manhem Club&quot;, &quot;restaurant_id&quot; : &quot;40364363&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192e1&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2222&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.84971759999999, 40.8304811 ] }, &quot;street&quot; : &quot;Haviland Avenue&quot;, &quot;zipcode&quot; : &quot;10462&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-12-18T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 7 }, { &quot;date&quot; : ISODate(&quot;2014-05-01T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 17 }, { &quot;date&quot; : ISODate(&quot;2013-03-14T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, { &quot;date&quot; : ISODate(&quot;2012-09-20T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2012-02-08T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 19 } ], &quot;name&quot; : &quot;The New Starling Athletic Club Of The Bronx&quot;, &quot;restaurant_id&quot; : &quot;40364956&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c192f9&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;72&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.92506, 40.8275556 ] }, &quot;street&quot; : &quot;East  161 Street&quot;, &quot;zipcode&quot; : &quot;10451&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-04-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2013-11-14T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 4 }, { &quot;date&quot; : ISODate(&quot;2013-07-29T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2012-12-31T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 15 }, { &quot;date&quot; : ISODate(&quot;2012-05-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 }, { &quot;date&quot; : ISODate(&quot;2012-01-09T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2011-08-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;C&quot;, &quot;score&quot; : 37 } ], &quot;name&quot; : &quot;Yankee Tavern&quot;, &quot;restaurant_id&quot; : &quot;40365499&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1930c&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;331&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.87786539999999, 40.8724377 ] }, &quot;street&quot; : &quot;East  204 Street&quot;, &quot;zipcode&quot; : &quot;10467&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Irish&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-08-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2014-03-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 23 }, { &quot;date&quot; : ISODate(&quot;2013-09-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 }, { &quot;date&quot; : ISODate(&quot;2012-12-18T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 27 }, { &quot;date&quot; : ISODate(&quot;2011-10-20T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 } ], &quot;name&quot; : &quot;Mcdwyers Pub&quot;, &quot;restaurant_id&quot; : &quot;40365893&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19325&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;5820&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.9002615, 40.885186 ] }, &quot;street&quot; : &quot;Broadway&quot;, &quot;zipcode&quot; : &quot;10463&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-02-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, { &quot;date&quot; : ISODate(&quot;2013-10-09T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 19 }, { &quot;date&quot; : ISODate(&quot;2013-05-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2012-11-20T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 18 }, { &quot;date&quot; : ISODate(&quot;2011-10-17T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2011-06-22T00:00:00Z&quot;), &quot;grade&quot; : &quot;C&quot;, &quot;score&quot; : 35 } ], &quot;name&quot; : &quot;The Punch Bowl&quot;, &quot;restaurant_id&quot; : &quot;40366497&quot; }
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c7&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1007&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.856077, 40.848447 ] }, &quot;street&quot; : &quot;Morris Park Ave&quot;, &quot;zipcode&quot; : &quot;10462&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Bakery&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-03-03T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 2 }, { &quot;date&quot; : ISODate(&quot;2013-09-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 6 }, { &quot;date&quot; : ISODate(&quot;2013-01-24T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2011-11-23T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2011-03-10T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 14 } ], &quot;name&quot; : &quot;Morris Park Bake Shop&quot;, &quot;restaurant_id&quot; : &quot;30075445&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594d1&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2300&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.8786113, 40.8502883 ] }, &quot;street&quot; : &quot;Southern Boulevard&quot;, &quot;zipcode&quot; : &quot;10460&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-05-28T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2013-06-19T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 4 }, { &quot;date&quot; : ISODate(&quot;2012-06-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 3 } ], &quot;name&quot; : &quot;Wild Asia&quot;, &quot;restaurant_id&quot; : &quot;40357217&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594e4&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1006&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.84856870000002, 40.8903781 ] }, &quot;street&quot; : &quot;East 233 Street&quot;, &quot;zipcode&quot; : &quot;10466&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Ice Cream, Gelato, Yogurt, Ices&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-04-24T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-09-05T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-02-21T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2012-07-03T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2011-07-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 } ], &quot;name&quot; : &quot;Carvel Ice Cream&quot;, &quot;restaurant_id&quot; : &quot;40363093&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594e8&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1236&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.8893654, 40.81376179999999 ] }, &quot;street&quot; : &quot;238 Spofford Ave&quot;, &quot;zipcode&quot; : &quot;10474&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Chinese&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2013-12-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 8 }, { &quot;date&quot; : ISODate(&quot;2013-01-08T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2012-06-12T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 15 } ], &quot;name&quot; : &quot;Happy Garden&quot;, &quot;restaurant_id&quot; : &quot;40363289&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594fa&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;277&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.8941893, 40.8634684 ] }, &quot;street&quot; : &quot;East Kingsbridge Road&quot;, &quot;zipcode&quot; : &quot;10458&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Chinese&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-03-03T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-09-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-03-19T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2012-08-29T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2011-08-17T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 } ], &quot;name&quot; : &quot;Happy Garden&quot;, &quot;restaurant_id&quot; : &quot;40364296&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059502&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;658&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.81363999999999, 40.82941100000001 ] }, &quot;street&quot; : &quot;Clarence Ave&quot;, &quot;zipcode&quot; : &quot;10465&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-06-21T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, { &quot;date&quot; : ISODate(&quot;2012-07-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 } ], &quot;name&quot; : &quot;Manhem Club&quot;, &quot;restaurant_id&quot; : &quot;40364363&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505951c&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2222&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.84971759999999, 40.8304811 ] }, &quot;street&quot; : &quot;Haviland Avenue&quot;, &quot;zipcode&quot; : &quot;10462&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-12-18T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 7 }, { &quot;date&quot; : ISODate(&quot;2014-05-01T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 17 }, { &quot;date&quot; : ISODate(&quot;2013-03-14T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, { &quot;date&quot; : ISODate(&quot;2012-09-20T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2012-02-08T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 19 } ], &quot;name&quot; : &quot;The New Starling Athletic Club Of The Bronx&quot;, &quot;restaurant_id&quot; : &quot;40364956&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059533&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;72&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.92506, 40.8275556 ] }, &quot;street&quot; : &quot;East  161 Street&quot;, &quot;zipcode&quot; : &quot;10451&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-04-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2013-11-14T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 4 }, { &quot;date&quot; : ISODate(&quot;2013-07-29T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2012-12-31T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 15 }, { &quot;date&quot; : ISODate(&quot;2012-05-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 }, { &quot;date&quot; : ISODate(&quot;2012-01-09T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2011-08-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;C&quot;, &quot;score&quot; : 37 } ], &quot;name&quot; : &quot;Yankee Tavern&quot;, &quot;restaurant_id&quot; : &quot;40365499&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059546&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;331&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.87786539999999, 40.8724377 ] }, &quot;street&quot; : &quot;East  204 Street&quot;, &quot;zipcode&quot; : &quot;10467&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;Irish&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-08-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2014-03-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 23 }, { &quot;date&quot; : ISODate(&quot;2013-09-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 }, { &quot;date&quot; : ISODate(&quot;2012-12-18T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 27 }, { &quot;date&quot; : ISODate(&quot;2011-10-20T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 } ], &quot;name&quot; : &quot;Mcdwyers Pub&quot;, &quot;restaurant_id&quot; : &quot;40365893&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505955f&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;5820&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.9002615, 40.885186 ] }, &quot;street&quot; : &quot;Broadway&quot;, &quot;zipcode&quot; : &quot;10463&quot; }, &quot;borough&quot; : &quot;Bronx&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-02-26T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, { &quot;date&quot; : ISODate(&quot;2013-10-09T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 19 }, { &quot;date&quot; : ISODate(&quot;2013-05-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2012-11-20T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 18 }, { &quot;date&quot; : ISODate(&quot;2011-10-17T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2011-06-22T00:00:00Z&quot;), &quot;grade&quot; : &quot;C&quot;, &quot;score&quot; : 35 } ], &quot;name&quot; : &quot;The Punch Bowl&quot;, &quot;restaurant_id&quot; : &quot;40366497&quot; }
 Type &quot;it&quot; for more
 </pre></div>
 </div>
@@ -1119,8 +997,8 @@ lorsque le nom de quartier sera le même pour plusieurs collections.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="center-limit-center">
-<h3><span class="section-number">5.2.4. </span><center> Limit </center><a class="headerlink" href="#center-limit-center" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="limit">
+<h3><span class="section-number">5.2.4. </span>Limit<a class="headerlink" href="#limit" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Pourquoi l’utiliser ?</strong></em></p>
 <p>L’étape <code class="docutils literal notranslate"><span class="pre">$limit</span></code> va simplement permettre de
 limiter le nombre de documents voulant être
@@ -1177,8 +1055,8 @@ préciser que nous souhaitons obtenir seulement les
 </pre></div>
 </div>
 </div>
-<div class="section" id="center-match-center">
-<h3><span class="section-number">5.2.5. </span><center> Match  </center><a class="headerlink" href="#center-match-center" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="match">
+<h3><span class="section-number">5.2.5. </span>Match<a class="headerlink" href="#match" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Pourquoi l’utiliser</strong></em></p>
 <p><code class="docutils literal notranslate"><span class="pre">$match</span></code> peut être utilisé comme un filtre, avec une condition. On pourrait le mettre n’importe où dans notre requête mais il est particulièrement intéressant en début ou en fin de requête.</p>
 <p><em><strong>Comment ça fonctionne ?</strong></em></p>
@@ -1202,8 +1080,8 @@ préciser que nous souhaitons obtenir seulement les
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : &quot;A&quot;, &quot;n&quot; : 17324 }
-{ &quot;_id&quot; : &quot;B&quot;, &quot;n&quot; : 3055 }
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : &quot;B&quot;, &quot;n&quot; : 3055 }
+{ &quot;_id&quot; : &quot;A&quot;, &quot;n&quot; : 17324 }
 </pre></div>
 </div>
 </div>
@@ -1222,8 +1100,8 @@ et le deuxième comme un <code class="docutils literal notranslate"><span class=
 C’est pour cela qu’on utilise aussi le <code class="docutils literal notranslate"><span class="pre">$match</span></code> plus tard, pour avoir accès aux données créées avec nos bouts de requêtes précédents, ce qui permet ici d’avoir accès au <code class="docutils literal notranslate"><span class="pre">n</span></code>.
 Cependant, ce dernier <code class="docutils literal notranslate"><span class="pre">$match</span></code> n’a pas accès à toute la base de données <code class="docutils literal notranslate"><span class="pre">NYfood</span></code> et n’agit que sur les résultats des requêtes précédentes.</p>
 </div>
-<div class="section" id="center-unwind-center">
-<h3><span class="section-number">5.2.6. </span><center> Unwind </center><a class="headerlink" href="#center-unwind-center" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="unwind">
+<h3><span class="section-number">5.2.6. </span>Unwind<a class="headerlink" href="#unwind" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>Pourquoi l’utiliser ?</strong></em></p>
 <p>Il arrive que les documents de certaines collections possèdent pour attribut une liste. Lorsque l’on effectue une requête d’agrégation, il peut être nécéssaire d’agir non pas sur la liste mais sur chaque élément de la liste. Pour cela, on utilise la commande <code class="docutils literal notranslate"><span class="pre">$unwind</span></code>. Elle permet, pour chaque élément de la liste, de dupliquer le document pour chaque valeur de la liste.</p>
 <p><em><strong>Comment ça fonctionne ?</strong></em></p>
@@ -1251,12 +1129,12 @@ Cependant, ce dernier <code class="docutils literal notranslate"><span class="pr
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : &quot;P&quot;, &quot;n&quot; : 1197 }
-{ &quot;_id&quot; : &quot;A&quot;, &quot;n&quot; : 74652 }
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : &quot;C&quot;, &quot;n&quot; : 3145 }
+{ &quot;_id&quot; : &quot;Z&quot;, &quot;n&quot; : 1337 }
+{ &quot;_id&quot; : &quot;P&quot;, &quot;n&quot; : 1197 }
 { &quot;_id&quot; : &quot;Not Yet Graded&quot;, &quot;n&quot; : 524 }
 { &quot;_id&quot; : &quot;B&quot;, &quot;n&quot; : 12602 }
-{ &quot;_id&quot; : &quot;C&quot;, &quot;n&quot; : 3145 }
-{ &quot;_id&quot; : &quot;Z&quot;, &quot;n&quot; : 1337 }
+{ &quot;_id&quot; : &quot;A&quot;, &quot;n&quot; : 74652 }
 </pre></div>
 </div>
 </div>
@@ -1272,43 +1150,106 @@ Pour que cette requête fonctionne, le <code class="docutils literal notranslate
 Pour cet exemple, on veut  <strong>les 3 notes les plus données dans les restaurants du quartier de Brooklyn</strong>.
 La première étape naturelle est de sélectionner les restaurants présents uniquement dans le quartier de Brooklyn.
 Pour cela on utilise <code class="docutils literal notranslate"><span class="pre">$match</span></code>, qui retourne uniquement les restaurants de Brooklyn.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>db.NYfood.aggregate(
-	[
-     {$match: {&quot;borough&quot;: &quot;Brooklyn&quot;}},
-    	]
-) 
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span>
+	<span class="p">[</span>
+     <span class="p">{</span><span class="nx">$match</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Brooklyn&quot;</span><span class="p">}},</span>
+    	<span class="p">]</span>
+<span class="p">)</span> 
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c6&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;469&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.961704, 40.662942 ] }, &quot;street&quot; : &quot;Flatbush Avenue&quot;, &quot;zipcode&quot; : &quot;11225&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Hamburgers&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-12-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 8 }, { &quot;date&quot; : ISODate(&quot;2014-07-01T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 23 }, { &quot;date&quot; : ISODate(&quot;2013-04-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, { &quot;date&quot; : ISODate(&quot;2012-05-08T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 } ], &quot;name&quot; : &quot;Wendy&#39;S&quot;, &quot;restaurant_id&quot; : &quot;30112340&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c9&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2780&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.98241999999999, 40.579505 ] }, &quot;street&quot; : &quot;Stillwell Avenue&quot;, &quot;zipcode&quot; : &quot;11224&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-06-10T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, { &quot;date&quot; : ISODate(&quot;2013-06-05T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 7 }, { &quot;date&quot; : ISODate(&quot;2012-04-13T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, { &quot;date&quot; : ISODate(&quot;2011-10-12T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 } ], &quot;name&quot; : &quot;Riviera Caterer&quot;, &quot;restaurant_id&quot; : &quot;40356018&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cd&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;7114&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.9068506, 40.6199034 ] }, &quot;street&quot; : &quot;Avenue U&quot;, &quot;zipcode&quot; : &quot;11234&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Delicatessen&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-05-29T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2014-01-14T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2013-08-03T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 8 }, { &quot;date&quot; : ISODate(&quot;2012-07-18T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, { &quot;date&quot; : ISODate(&quot;2012-03-09T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 }, { &quot;date&quot; : ISODate(&quot;2011-10-14T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 } ], &quot;name&quot; : &quot;Wilken&#39;S Fine Food&quot;, &quot;restaurant_id&quot; : &quot;40356483&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594ce&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;6409&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -74.00528899999999, 40.628886 ] }, &quot;street&quot; : &quot;11 Avenue&quot;, &quot;zipcode&quot; : &quot;11219&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-07-18T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, { &quot;date&quot; : ISODate(&quot;2013-07-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, { &quot;date&quot; : ISODate(&quot;2013-02-13T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2012-08-16T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 2 }, { &quot;date&quot; : ISODate(&quot;2011-08-17T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 } ], &quot;name&quot; : &quot;Regina Caterers&quot;, &quot;restaurant_id&quot; : &quot;40356649&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cf&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1839&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.9482609, 40.6408271 ] }, &quot;street&quot; : &quot;Nostrand Avenue&quot;, &quot;zipcode&quot; : &quot;11226&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Ice Cream, Gelato, Yogurt, Ices&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-07-14T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, { &quot;date&quot; : ISODate(&quot;2013-07-10T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 8 }, { &quot;date&quot; : ISODate(&quot;2012-07-11T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, { &quot;date&quot; : ISODate(&quot;2012-02-23T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 8 } ], &quot;name&quot; : &quot;Taste The Tropics Ice Cream&quot;, &quot;restaurant_id&quot; : &quot;40356731&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594d0&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;7715&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.9973325, 40.61174889999999 ] }, &quot;street&quot; : &quot;18 Avenue&quot;, &quot;zipcode&quot; : &quot;11214&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-04-16T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, { &quot;date&quot; : ISODate(&quot;2013-04-23T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 2 }, { &quot;date&quot; : ISODate(&quot;2012-04-24T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, { &quot;date&quot; : ISODate(&quot;2011-12-16T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 2 } ], &quot;name&quot; : &quot;C &amp; C Catering Service&quot;, &quot;restaurant_id&quot; : &quot;40357437&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594d2&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;1269&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.871194, 40.6730975 ] }, &quot;street&quot; : &quot;Sutter Avenue&quot;, &quot;zipcode&quot; : &quot;11208&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Chinese&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-09-16T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 21 }, { &quot;date&quot; : ISODate(&quot;2013-08-28T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 7 }, { &quot;date&quot; : ISODate(&quot;2013-04-02T00:00:00Z&quot;), &quot;grade&quot; : &quot;C&quot;, &quot;score&quot; : 56 }, { &quot;date&quot; : ISODate(&quot;2012-08-15T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 27 }, { &quot;date&quot; : ISODate(&quot;2012-03-28T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 27 } ], &quot;name&quot; : &quot;May May Kitchen&quot;, &quot;restaurant_id&quot; : &quot;40358429&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594d4&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;705&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.9653967, 40.6064339 ] }, &quot;street&quot; : &quot;Kings Highway&quot;, &quot;zipcode&quot; : &quot;11223&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Jewish/Kosher&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-11-10T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 11 }, { &quot;date&quot; : ISODate(&quot;2013-10-10T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 }, { &quot;date&quot; : ISODate(&quot;2012-10-04T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 7 }, { &quot;date&quot; : ISODate(&quot;2012-05-21T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 9 }, { &quot;date&quot; : ISODate(&quot;2011-12-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 19 } ], &quot;name&quot; : &quot;Seuda Foods&quot;, &quot;restaurant_id&quot; : &quot;40360045&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594d6&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;203&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.97822040000001, 40.6435254 ] }, &quot;street&quot; : &quot;Church Avenue&quot;, &quot;zipcode&quot; : &quot;11218&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Ice Cream, Gelato, Yogurt, Ices&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-02-10T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 2 }, { &quot;date&quot; : ISODate(&quot;2013-01-02T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 }, { &quot;date&quot; : ISODate(&quot;2012-01-09T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 3 }, { &quot;date&quot; : ISODate(&quot;2011-11-07T00:00:00Z&quot;), &quot;grade&quot; : &quot;P&quot;, &quot;score&quot; : 12 }, { &quot;date&quot; : ISODate(&quot;2011-07-21T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 13 } ], &quot;name&quot; : &quot;Carvel Ice Cream&quot;, &quot;restaurant_id&quot; : &quot;40360076&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594d7&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;6909&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -74.0259567, 40.6353674 ] }, &quot;street&quot; : &quot;3 Avenue&quot;, &quot;zipcode&quot; : &quot;11209&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Delicatessen&quot;, &quot;grades&quot; : [ { &quot;date&quot; : ISODate(&quot;2014-08-21T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 4 }, { &quot;date&quot; : ISODate(&quot;2014-03-05T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 3 }, { &quot;date&quot; : ISODate(&quot;2013-01-10T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 } ], &quot;name&quot; : &quot;Nordic Delicacies&quot;, &quot;restaurant_id&quot; : &quot;40361390&quot; }
+Type &quot;it&quot; for more
+</pre></div>
+</div>
+</div>
 </div>
 <p>Dans un second temps, il faut voir que pour récupérer les différentes valeurs de notes, il faut acceder à chaque élément de la liste et non la liste entière. Pour y accéder, il faut utiliser la commande <code class="docutils literal notranslate"><span class="pre">$unwind</span></code>, qui rendra donc à cette étape tous les restaurants de Brooklyn associés à une note qu’il a obtenu (Attention, cela retourne beaucoup de résultats : nombre de restaurants * nombre de notes)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>db.NYfood.aggregate(
-	[
-     {$match: {&quot;borough&quot;: &quot;Brooklyn&quot;}},
-     {$unwind: &quot;$grades&quot;},
-    ]
-) 
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span>
+	<span class="p">[</span>
+     <span class="p">{</span><span class="nx">$match</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Brooklyn&quot;</span><span class="p">}},</span>
+     <span class="p">{</span><span class="nx">$unwind</span><span class="o">:</span> <span class="s2">&quot;$grades&quot;</span><span class="p">},</span>
+    <span class="p">]</span>
+<span class="p">)</span> 
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c6&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;469&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.961704, 40.662942 ] }, &quot;street&quot; : &quot;Flatbush Avenue&quot;, &quot;zipcode&quot; : &quot;11225&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Hamburgers&quot;, &quot;grades&quot; : { &quot;date&quot; : ISODate(&quot;2014-12-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 8 }, &quot;name&quot; : &quot;Wendy&#39;S&quot;, &quot;restaurant_id&quot; : &quot;30112340&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c6&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;469&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.961704, 40.662942 ] }, &quot;street&quot; : &quot;Flatbush Avenue&quot;, &quot;zipcode&quot; : &quot;11225&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Hamburgers&quot;, &quot;grades&quot; : { &quot;date&quot; : ISODate(&quot;2014-07-01T00:00:00Z&quot;), &quot;grade&quot; : &quot;B&quot;, &quot;score&quot; : 23 }, &quot;name&quot; : &quot;Wendy&#39;S&quot;, &quot;restaurant_id&quot; : &quot;30112340&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c6&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;469&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.961704, 40.662942 ] }, &quot;street&quot; : &quot;Flatbush Avenue&quot;, &quot;zipcode&quot; : &quot;11225&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Hamburgers&quot;, &quot;grades&quot; : { &quot;date&quot; : ISODate(&quot;2013-04-30T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, &quot;name&quot; : &quot;Wendy&#39;S&quot;, &quot;restaurant_id&quot; : &quot;30112340&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c6&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;469&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.961704, 40.662942 ] }, &quot;street&quot; : &quot;Flatbush Avenue&quot;, &quot;zipcode&quot; : &quot;11225&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Hamburgers&quot;, &quot;grades&quot; : { &quot;date&quot; : ISODate(&quot;2012-05-08T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, &quot;name&quot; : &quot;Wendy&#39;S&quot;, &quot;restaurant_id&quot; : &quot;30112340&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c9&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2780&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.98241999999999, 40.579505 ] }, &quot;street&quot; : &quot;Stillwell Avenue&quot;, &quot;zipcode&quot; : &quot;11224&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : { &quot;date&quot; : ISODate(&quot;2014-06-10T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 5 }, &quot;name&quot; : &quot;Riviera Caterer&quot;, &quot;restaurant_id&quot; : &quot;40356018&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c9&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2780&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.98241999999999, 40.579505 ] }, &quot;street&quot; : &quot;Stillwell Avenue&quot;, &quot;zipcode&quot; : &quot;11224&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : { &quot;date&quot; : ISODate(&quot;2013-06-05T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 7 }, &quot;name&quot; : &quot;Riviera Caterer&quot;, &quot;restaurant_id&quot; : &quot;40356018&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c9&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2780&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.98241999999999, 40.579505 ] }, &quot;street&quot; : &quot;Stillwell Avenue&quot;, &quot;zipcode&quot; : &quot;11224&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : { &quot;date&quot; : ISODate(&quot;2012-04-13T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, &quot;name&quot; : &quot;Riviera Caterer&quot;, &quot;restaurant_id&quot; : &quot;40356018&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c9&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;2780&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.98241999999999, 40.579505 ] }, &quot;street&quot; : &quot;Stillwell Avenue&quot;, &quot;zipcode&quot; : &quot;11224&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;American &quot;, &quot;grades&quot; : { &quot;date&quot; : ISODate(&quot;2011-10-12T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 12 }, &quot;name&quot; : &quot;Riviera Caterer&quot;, &quot;restaurant_id&quot; : &quot;40356018&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cd&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;7114&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.9068506, 40.6199034 ] }, &quot;street&quot; : &quot;Avenue U&quot;, &quot;zipcode&quot; : &quot;11234&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Delicatessen&quot;, &quot;grades&quot; : { &quot;date&quot; : ISODate(&quot;2014-05-29T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, &quot;name&quot; : &quot;Wilken&#39;S Fine Food&quot;, &quot;restaurant_id&quot; : &quot;40356483&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cd&quot;), &quot;address&quot; : { &quot;building&quot; : &quot;7114&quot;, &quot;loc&quot; : { &quot;type&quot; : &quot;Point&quot;, &quot;coordinates&quot; : [ -73.9068506, 40.6199034 ] }, &quot;street&quot; : &quot;Avenue U&quot;, &quot;zipcode&quot; : &quot;11234&quot; }, &quot;borough&quot; : &quot;Brooklyn&quot;, &quot;cuisine&quot; : &quot;Delicatessen&quot;, &quot;grades&quot; : { &quot;date&quot; : ISODate(&quot;2014-01-14T00:00:00Z&quot;), &quot;grade&quot; : &quot;A&quot;, &quot;score&quot; : 10 }, &quot;name&quot; : &quot;Wilken&#39;S Fine Food&quot;, &quot;restaurant_id&quot; : &quot;40356483&quot; }
+Type &quot;it&quot; for more
+</pre></div>
+</div>
+</div>
 </div>
 <p>Ensuite, pour savoir quelle note a été la plus attribuée, il faut grouper pour chaque valeur de note. On utilise donc un <code class="docutils literal notranslate"><span class="pre">$group</span></code> sur l’attribut <code class="docutils literal notranslate"><span class="pre">$grades.grade$</span> <span class="pre">(accessible</span> <span class="pre">grâce</span> <span class="pre">a</span> </code>$unwind<code class="docutils literal notranslate"><span class="pre">).</span> <span class="pre">Puis,</span> <span class="pre">on</span> <span class="pre">décide</span> <span class="pre">de</span> <span class="pre">compter</span> <span class="pre">le</span> <span class="pre">nombre</span> <span class="pre">d'itérations</span> <span class="pre">de</span> <span class="pre">chaque</span> <span class="pre">note</span> <span class="pre">stockée</span> <span class="pre">dans</span> <span class="pre">la</span> <span class="pre">variable</span> </code>nb`. Cette étape nous retourne donc le nombre de fois où chaque note a été attribuée à un restaurant.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>db.NYfood.aggregate(
-	[
-     {$match: {&quot;borough&quot;: &quot;Brooklyn&quot;}},
-     {$unwind: &quot;$grades&quot;},
-     {$group: {_id: &quot;$grades.grade&quot;, nb: {$sum: 1}}},
-    ]
-) 
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span>
+	<span class="p">[</span>
+     <span class="p">{</span><span class="nx">$match</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Brooklyn&quot;</span><span class="p">}},</span>
+     <span class="p">{</span><span class="nx">$unwind</span><span class="o">:</span> <span class="s2">&quot;$grades&quot;</span><span class="p">},</span>
+     <span class="p">{</span><span class="nx">$group</span><span class="o">:</span> <span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="s2">&quot;$grades.grade&quot;</span><span class="p">,</span> <span class="nx">nb</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span> <span class="mf">1</span><span class="p">}}},</span>
+    <span class="p">]</span>
+<span class="p">)</span> 
 </pre></div>
 </div>
-<p>Nous sommes donc tout proches du résultat espéré. Il reste maintenant à trier les résultats par ordre décroissant, afin d’avoir les notes les plus données au début : <code class="docutils literal notranslate"><span class="pre">{$sort:</span> <span class="pre">{nb:</span> <span class="pre">-1}}</span></code>. Mais comme l’énoncé le précise, on souhaite afficher uniquement les 3 notes les plus données. Etant donné que les notes sont triées, il faut seulement préciser : <code class="docutils literal notranslate"><span class="pre">{$limit:</span> <span class="pre">3}</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>db.NYfood.aggregate(
-	[
-     {$match: {&quot;borough&quot;: &quot;Brooklyn&quot;}},
-     {$unwind: &quot;$grades&quot;},
-     {$group: {_id: &quot;$grades.grade&quot;, nb: {$sum: 1}}},
-     {$sort: {nb: -1}},
-     {$limit: 3}
-    ]
-) 
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : &quot;C&quot;, &quot;nb&quot; : 811 }
+{ &quot;_id&quot; : &quot;P&quot;, &quot;nb&quot; : 343 }
+{ &quot;_id&quot; : &quot;Z&quot;, &quot;nb&quot; : 285 }
+{ &quot;_id&quot; : &quot;Not Yet Graded&quot;, &quot;nb&quot; : 144 }
+{ &quot;_id&quot; : &quot;B&quot;, &quot;nb&quot; : 3055 }
+{ &quot;_id&quot; : &quot;A&quot;, &quot;nb&quot; : 17324 }
 </pre></div>
+</div>
+</div>
+</div>
+<p>Nous sommes donc tout proches du résultat espéré. Il reste maintenant à trier les résultats par ordre décroissant, afin d’avoir les notes les plus données au début : <code class="docutils literal notranslate"><span class="pre">{$sort:</span> <span class="pre">{nb:</span> <span class="pre">-1}}</span></code>. Mais comme l’énoncé le précise, on souhaite afficher uniquement les 3 notes les plus données. Etant donné que les notes sont triées, il faut seulement préciser : <code class="docutils literal notranslate"><span class="pre">{$limit:</span> <span class="pre">3}</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span>
+	<span class="p">[</span>
+     <span class="p">{</span><span class="nx">$match</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Brooklyn&quot;</span><span class="p">}},</span>
+     <span class="p">{</span><span class="nx">$unwind</span><span class="o">:</span> <span class="s2">&quot;$grades&quot;</span><span class="p">},</span>
+     <span class="p">{</span><span class="nx">$group</span><span class="o">:</span> <span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="s2">&quot;$grades.grade&quot;</span><span class="p">,</span> <span class="nx">nb</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span> <span class="mf">1</span><span class="p">}}},</span>
+     <span class="p">{</span><span class="nx">$sort</span><span class="o">:</span> <span class="p">{</span><span class="nx">nb</span><span class="o">:</span> <span class="o">-</span><span class="mf">1</span><span class="p">}},</span>
+     <span class="p">{</span><span class="nx">$limit</span><span class="o">:</span> <span class="mf">3</span><span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : &quot;A&quot;, &quot;nb&quot; : 17324 }
+{ &quot;_id&quot; : &quot;B&quot;, &quot;nb&quot; : 3055 }
+{ &quot;_id&quot; : &quot;C&quot;, &quot;nb&quot; : 811 }
+</pre></div>
+</div>
+</div>
 </div>
 <p>On obtient bien, avec cette requête, les 3 notes les plus attribuées aux restaurants de Brooklyn !</p>
 <p>Dans cette deuxième requête, on montre bien ici qu’il n’y a pas d’ordre pré-défini d’étape, et ici le <code class="docutils literal notranslate"><span class="pre">$match</span></code> n’est ni au début de la requête, ni à la fin.</p>
@@ -1380,6 +1321,6 @@ Pour cela on utilise <code class="docutils literal notranslate"><span class="pre
   
   <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-  None
+  
   </body>
 </html>

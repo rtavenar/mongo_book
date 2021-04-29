@@ -285,75 +285,55 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#presentation-et-installation-a-id-partie1-a">
+  <a class="reference internal nav-link" href="#presentation-et-installation">
    7.1.1. Présentation et installation
-   <a id="partie1">
-   </a>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connexion-serveur-base-de-donnees-et-collections-a-id-partie2-a">
+  <a class="reference internal nav-link" href="#connexion-serveur-base-de-donnees-et-collections">
    7.1.2. Connexion serveur, base de données et collections
-   <a id="partie2">
-   </a>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#requetes-a-id-partie3-a">
+  <a class="reference internal nav-link" href="#requetes">
    7.1.3. Requêtes
-   <a id="partie3">
-   </a>
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#requetes-simples-et-ses-specifictes-a-id-partie31-a">
+    <a class="reference internal nav-link" href="#requetes-simples-et-ses-specifictes">
      7.1.3.1. Requêtes simples et ses spécifictés
-     <a id="partie31">
-     </a>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#les-index-a-id-partie32-a">
+    <a class="reference internal nav-link" href="#les-index">
      7.1.3.2. Les index
-     <a id="partie32">
-     </a>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#les-requetes-d-agregation-a-id-partie33-a">
+    <a class="reference internal nav-link" href="#les-requetes-d-agregation">
      7.1.3.3. Les requêtes d’agrégation
-     <a id="partie33">
-     </a>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#les-modifications-a-id-partie34-a">
+    <a class="reference internal nav-link" href="#les-modifications">
      7.1.3.4. Les modifications
-     <a id="partie34">
-     </a>
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pour-aller-plus-loin-a-id-partie4-a">
+  <a class="reference internal nav-link" href="#pour-aller-plus-loin">
    7.1.4. Pour aller plus loin…
-   <a id="partie4">
-   </a>
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#export-au-format-json-a-id-partie41-a">
+    <a class="reference internal nav-link" href="#export-au-format-json">
      7.1.4.1. Export au format JSON
-     <a id="partie41">
-     </a>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#exercices-et-corrections-a-id-partie42-a">
+    <a class="reference internal nav-link" href="#exercices-et-corrections">
      7.1.4.2. Exercices et corrections
-     <a id="partie42">
-     </a>
     </a>
    </li>
   </ul>
@@ -372,7 +352,7 @@
   <div class="section" id="requetes-depuis-python-pymongo">
 <span id="sec-pymongo"></span><h1><span class="section-number">7.1. </span>Requêtes depuis Python : <code class="docutils literal notranslate"><span class="pre">pymongo</span></code><a class="headerlink" href="#requetes-depuis-python-pymongo" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><p>Auteurs : Pierre Cottais, Tom Houée, Florian Guillaume</p></li>
+<li><p>Auteurs : <strong>Pierre Cottais, Florian Guillaume, Tom Houée</strong></p></li>
 </ul>
 <p><strong>Comment faire pour effectuer les requêtes présentes dans les chapitres 1 à 6 avec <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> ?</strong></p>
 <p><strong>Sommaire :</strong></p>
@@ -388,8 +368,8 @@
 4.1. <a class="reference external" href="#partie41">Export au format JSON</a><br />
 4.2. <a class="reference external" href="#partie42">Exercices et corrections</a></p></li>
 </ol>
-<div class="section" id="presentation-et-installation-a-id-partie1-a">
-<h2><span class="section-number">7.1.1. </span>Présentation et installation <a id="partie1"></a><a class="headerlink" href="#presentation-et-installation-a-id-partie1-a" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="presentation-et-installation">
+<span id="partie1"></span><h2><span class="section-number">7.1.1. </span>Présentation et installation<a class="headerlink" href="#presentation-et-installation" title="Permalink to this headline">¶</a></h2>
 <p>PyMongo est une librairie Python contenant des outils pour travailler avec MongoDB et MongodbAtlas. PyMongo est maintenue par les développeurs de MongoDB officiel ce qui en fait la référence dans Python. Pour une documentation détaillée de la librairie, vous pouvez consulter la documentation :</p>
 <p><strong><a class="reference external" href="https://pymongo.readthedocs.io/en/stable/">https://pymongo.readthedocs.io/en/stable/</a></strong></p>
 <p>Pour installer la librairie, nous pouvons le faire avec la commande <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pymongo</span></code>, dans un terminal tel que Anaconda Prompt par exemple.</p>
@@ -405,8 +385,8 @@
 <p>Cette librairie est déjà incluse dans la distribution Anaconda.</p>
 </div>
 </div>
-<div class="section" id="connexion-serveur-base-de-donnees-et-collections-a-id-partie2-a">
-<h2><span class="section-number">7.1.2. </span>Connexion serveur, base de données et collections <a id="partie2"></a><a class="headerlink" href="#connexion-serveur-base-de-donnees-et-collections-a-id-partie2-a" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="connexion-serveur-base-de-donnees-et-collections">
+<span id="partie2"></span><h2><span class="section-number">7.1.2. </span>Connexion serveur, base de données et collections<a class="headerlink" href="#connexion-serveur-base-de-donnees-et-collections" title="Permalink to this headline">¶</a></h2>
 <p>La première étape consiste à créer une connexion avec nos bases de données sur le serveur de MongoDB. Pour effectuer cette connexion, nous devons utiliser une URI qui est un URL. Il  existe différentes URI de connexion, mais ici, nous devons juste nous connecter à notre serveur local MongoDB. Pour voir les différents moyens de vous connecter à des serveurs extérieurs comme par exemple MongodbAtlas, voir la page :</p>
 <p><strong><a class="reference external" href="https://docs.mongodb.com/manual/reference/connection-string/">https://docs.mongodb.com/manual/reference/connection-string/</a>.</strong></p>
 <p>Ainsi notre URL de connexion est “mongodb://localhost:27017” avec notre :</p>
@@ -454,7 +434,7 @@
 <p>Ainsi, nous pouvons voir que la fonction créer un objet de class <code class="docutils literal notranslate"><span class="pre">pymongo.mongo_client.MongoClient</span></code> où nous retrouvons nos informations comme le host le port, etc…
 La deuxième étape consiste à nous connecter à notre base de données et nos collections, nous prendons ici l’exemple de la base de données <code class="docutils literal notranslate"><span class="pre">food</span></code>:</p>
 <div class="tip admonition">
-<p class="admonition-title">Syntax</p>
+<p class="admonition-title">Syntaxe</p>
 <ul class="simple">
 <li><p>Client.BasedeDonnee.Collection</p></li>
 <li><p>Client[“BasedeDonnee”][“Collection”]</p></li>
@@ -498,7 +478,7 @@ Enfin, il ne nous reste plus qu’à récupérer la collection souhaitée. Cela 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coll_name</span> <span class="o">=</span> <span class="s2">&quot;NYfood&quot;</span>
 <span class="n">coll</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="n">coll_name</span><span class="p">]</span>
 
-<span class="c1"># même syntax qu&#39;auparavant</span>
+<span class="c1"># même syntaxe qu&#39;auparavant</span>
 
 <span class="n">coll</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">NYfood</span>
 
@@ -543,13 +523,13 @@ Enfin, il ne nous reste plus qu’à récupérer la collection souhaitée. Cela 
 <p>Cela fonctionne comme un dictionnaire Python. Toutefois, si votre base contient des caractères spéciaux, espace ou autre, on vous conseille la première écriture : <code class="docutils literal notranslate"><span class="pre">Client[&quot;BasedeDonnee&quot;][&quot;Collection&quot;]</span></code>.</p>
 </div>
 </div>
-<div class="section" id="requetes-a-id-partie3-a">
-<h2><span class="section-number">7.1.3. </span>Requêtes <a id="partie3"></a><a class="headerlink" href="#requetes-a-id-partie3-a" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="requetes">
+<span id="partie3"></span><h2><span class="section-number">7.1.3. </span>Requêtes<a class="headerlink" href="#requetes" title="Permalink to this headline">¶</a></h2>
 <p>Maintenant que nous avons fait nos connexions, il nous reste à voir comment effectuer des requêtes.</p>
 <p><strong>Fonctionnement :</strong>
 Le fonctionement est le même que sur l’interface MongoDB:</p>
 <div class="tip admonition">
-<p class="admonition-title">Syntax requête</p>
+<p class="admonition-title">Syntaxe requête</p>
 <ul class="simple">
 <li><p>Client.BasedeDonne.nomDeLaCollection.requete()</p></li>
 <li><p>Client[“BasedeDonnee”][“Collection”].requete()</p></li>
@@ -579,7 +559,7 @@ Le fonctionement est le même que sur l’interface MongoDB:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.cursor.Cursor at 0x7f984430a820&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.cursor.Cursor at 0x7fb3f9e55310&gt;
 </pre></div>
 </div>
 </div>
@@ -597,8 +577,8 @@ Exemple, on affiche les deux premiers individus issus de la requête.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608673c4dfcd1d8365c1928d&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;1007&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.856077, 40.848447]}, &#39;street&#39;: &#39;Morris Park Ave&#39;, &#39;zipcode&#39;: &#39;10462&#39;}, &#39;borough&#39;: &#39;Bronx&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 3, 3, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 2}, {&#39;date&#39;: datetime.datetime(2013, 9, 11, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 6}, {&#39;date&#39;: datetime.datetime(2013, 1, 24, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10}, {&#39;date&#39;: datetime.datetime(2011, 11, 23, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 9}, {&#39;date&#39;: datetime.datetime(2011, 3, 10, 0, 0), &#39;grade&#39;: &#39;B&#39;, &#39;score&#39;: 14}], &#39;name&#39;: &#39;Morris Park Bake Shop&#39;, &#39;restaurant_id&#39;: &#39;30075445&#39;}
-{&#39;_id&#39;: ObjectId(&#39;608673c4dfcd1d8365c192af&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;120&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.9998042, 40.7251256]}, &#39;street&#39;: &#39;Prince Street&#39;, &#39;zipcode&#39;: &#39;10012&#39;}, &#39;borough&#39;: &#39;Manhattan&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 10, 17, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 11}, {&#39;date&#39;: datetime.datetime(2013, 9, 18, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 13}, {&#39;date&#39;: datetime.datetime(2013, 4, 30, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 7}, {&#39;date&#39;: datetime.datetime(2012, 4, 20, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 7}, {&#39;date&#39;: datetime.datetime(2011, 12, 19, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 3}], &#39;name&#39;: &quot;Olive&#39;S&quot;, &#39;restaurant_id&#39;: &#39;40363151&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608a72b0b0543862350594c7&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;1007&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.856077, 40.848447]}, &#39;street&#39;: &#39;Morris Park Ave&#39;, &#39;zipcode&#39;: &#39;10462&#39;}, &#39;borough&#39;: &#39;Bronx&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 3, 3, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 2}, {&#39;date&#39;: datetime.datetime(2013, 9, 11, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 6}, {&#39;date&#39;: datetime.datetime(2013, 1, 24, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10}, {&#39;date&#39;: datetime.datetime(2011, 11, 23, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 9}, {&#39;date&#39;: datetime.datetime(2011, 3, 10, 0, 0), &#39;grade&#39;: &#39;B&#39;, &#39;score&#39;: 14}], &#39;name&#39;: &#39;Morris Park Bake Shop&#39;, &#39;restaurant_id&#39;: &#39;30075445&#39;}
+{&#39;_id&#39;: ObjectId(&#39;608a72b0b0543862350594ea&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;120&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.9998042, 40.7251256]}, &#39;street&#39;: &#39;Prince Street&#39;, &#39;zipcode&#39;: &#39;10012&#39;}, &#39;borough&#39;: &#39;Manhattan&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 10, 17, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 11}, {&#39;date&#39;: datetime.datetime(2013, 9, 18, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 13}, {&#39;date&#39;: datetime.datetime(2013, 4, 30, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 7}, {&#39;date&#39;: datetime.datetime(2012, 4, 20, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 7}, {&#39;date&#39;: datetime.datetime(2011, 12, 19, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 3}], &#39;name&#39;: &quot;Olive&#39;S&quot;, &#39;restaurant_id&#39;: &#39;40363151&#39;}
 </pre></div>
 </div>
 </div>
@@ -615,7 +595,7 @@ Exemple, on affiche les deux premiers individus issus de la requête.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608673c4dfcd1d8365c1928d&#39;),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608a72b0b0543862350594c7&#39;),
  &#39;address&#39;: {&#39;building&#39;: &#39;1007&#39;,
   &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.856077, 40.848447]},
   &#39;street&#39;: &#39;Morris Park Ave&#39;,
@@ -654,7 +634,7 @@ Ainsi, nous récupérons ci-dessous la localisation et les coordonnées du premi
 <p><strong>Methodes :</strong></p>
 <p>De plus, pour utiliser certaines méthodes sur nos requêtes comme <code class="docutils literal notranslate"><span class="pre">sort()</span></code>, c’est sensiblement la même syntaxe que MongoDB :</p>
 <div class="tip admonition">
-<p class="admonition-title">Syntax méthode</p>
+<p class="admonition-title">Syntaxe méthode</p>
 <ul class="simple">
 <li><p>Client.BasedeDonnee.Collection.requetes().methode()</p></li>
 <li><p>Client[“BasedeDonnee”][“Collection”].requete().methode()</p></li>
@@ -692,8 +672,8 @@ Ainsi, nous récupérons ci-dessous la localisation et les coordonnées du premi
 <span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">distinct</span><span class="p">(</span><span class="s2">&quot;grades.grade&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;cuisine&quot;</span><span class="p">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span> <span class="c1">#  liste des notes attribuées aux boulangeries</span>
 </pre></div>
 </div>
-<div class="section" id="requetes-simples-et-ses-specifictes-a-id-partie31-a">
-<h3><span class="section-number">7.1.3.1. </span>Requêtes simples et ses spécifictés <a id="partie31"></a><a class="headerlink" href="#requetes-simples-et-ses-specifictes-a-id-partie31-a" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="requetes-simples-et-ses-specifictes">
+<span id="partie31"></span><h3><span class="section-number">7.1.3.1. </span>Requêtes simples et ses spécifictés<a class="headerlink" href="#requetes-simples-et-ses-specifictes" title="Permalink to this headline">¶</a></h3>
 <p>L’utilisation de <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> implique l’utilisation de certaines spécificités, deux principalement qui marquent une différence avec MongoDB.
 Premièrement, nous avons une spécificité avec les opérateurs et les noms qui doivent toujours être entre guillemets comme par exemple <code class="docutils literal notranslate"><span class="pre">$gte</span></code>.</p>
 <p>Exemple :</p>
@@ -704,7 +684,7 @@ Premièrement, nous avons une spécificité avec les opérateurs et les noms qui
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608673c4dfcd1d8365c192f9&#39;),
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608a72b0b054386235059533&#39;),
  &#39;address&#39;: {&#39;building&#39;: &#39;72&#39;,
   &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.92506, 40.8275556]},
   &#39;street&#39;: &#39;East  161 Street&#39;,
@@ -739,7 +719,7 @@ Exemple, liste des restaurants ayant au moins une note postérieure au 20 janvie
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.cursor.Cursor at 0x7f984430a910&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pymongo.cursor.Cursor at 0x7fb3f8311f10&gt;
 </pre></div>
 </div>
 </div>
@@ -777,7 +757,7 @@ Par exemple, nous voulons afficher la liste des restaurants qui vérifient l’u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608673c4dfcd1d8365c19843&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;831&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.90503799999999, 40.812633]}, &#39;street&#39;: &#39;East 149 Street&#39;, &#39;zipcode&#39;: &#39;10455&#39;}, &#39;borough&#39;: &#39;Bronx&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 1, 15, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 12}, {&#39;date&#39;: datetime.datetime(2013, 1, 3, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10}], &#39;name&#39;: &#39;Pitusa Bakery&#39;, &#39;restaurant_id&#39;: &#39;40510823&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608a72b0b054386235059a7c&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;831&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.90503799999999, 40.812633]}, &#39;street&#39;: &#39;East 149 Street&#39;, &#39;zipcode&#39;: &#39;10455&#39;}, &#39;borough&#39;: &#39;Bronx&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 1, 15, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 12}, {&#39;date&#39;: datetime.datetime(2013, 1, 3, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10}], &#39;name&#39;: &#39;Pitusa Bakery&#39;, &#39;restaurant_id&#39;: &#39;40510823&#39;}
 </pre></div>
 </div>
 </div>
@@ -794,7 +774,7 @@ Par exemple, nous voulons afficher la liste des restaurants qui vérifient l’u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608673c4dfcd1d8365c19843&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;831&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.90503799999999, 40.812633]}, &#39;street&#39;: &#39;East 149 Street&#39;, &#39;zipcode&#39;: &#39;10455&#39;}, &#39;borough&#39;: &#39;Bronx&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 1, 15, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 12}, {&#39;date&#39;: datetime.datetime(2013, 1, 3, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10}], &#39;name&#39;: &#39;Pitusa Bakery&#39;, &#39;restaurant_id&#39;: &#39;40510823&#39;}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;_id&#39;: ObjectId(&#39;608a72b0b054386235059a7c&#39;), &#39;address&#39;: {&#39;building&#39;: &#39;831&#39;, &#39;loc&#39;: {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: [-73.90503799999999, 40.812633]}, &#39;street&#39;: &#39;East 149 Street&#39;, &#39;zipcode&#39;: &#39;10455&#39;}, &#39;borough&#39;: &#39;Bronx&#39;, &#39;cuisine&#39;: &#39;Bakery&#39;, &#39;grades&#39;: [{&#39;date&#39;: datetime.datetime(2014, 1, 15, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 12}, {&#39;date&#39;: datetime.datetime(2013, 1, 3, 0, 0), &#39;grade&#39;: &#39;A&#39;, &#39;score&#39;: 10}], &#39;name&#39;: &#39;Pitusa Bakery&#39;, &#39;restaurant_id&#39;: &#39;40510823&#39;}
 </pre></div>
 </div>
 </div>
@@ -813,11 +793,11 @@ Par exemple, nous voulons afficher la liste des restaurants qui vérifient l’u
 </div>
 </div>
 </div>
-<div class="section" id="les-index-a-id-partie32-a">
-<h3><span class="section-number">7.1.3.2. </span>Les index <a id="partie32"></a><a class="headerlink" href="#les-index-a-id-partie32-a" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="les-index">
+<span id="partie32"></span><h3><span class="section-number">7.1.3.2. </span>Les index<a class="headerlink" href="#les-index" title="Permalink to this headline">¶</a></h3>
 <p>Les index sont des structures de données spéciales qui stockent une petite partie de l’ensemble de données de la collection sous une forme facile à parcourir. L’index stocke la valeur d’un champ spécifique ou d’un ensemble de champs, triés par la valeur du champ. Ainsi, l’utilisation avec <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> est la même qu’en mongoDB.</p>
 <div class="tip admonition">
-<p class="admonition-title">Syntax de requête d’index</p>
+<p class="admonition-title">Syntaxe de requête d’index</p>
 <ul class="simple">
 <li><p>Client.BasedeDonnee.Collection.requeteIndex()</p></li>
 <li><p>Client[“BasedeDonnee”][“Collection”].requeteIndex()</p></li>
@@ -863,6 +843,8 @@ Par exemple, nous voulons afficher la liste des restaurants qui vérifient l’u
  Nom : borough_1, Valeur : {&#39;v&#39;: 2, &#39;key&#39;: [(&#39;borough&#39;, 1.0)]} 
 
  Nom : cuisine_1, Valeur : {&#39;v&#39;: 2, &#39;key&#39;: [(&#39;cuisine&#39;, 1.0)]} 
+
+ Nom : cuisine_1_borough_1, Valeur : {&#39;v&#39;: 2, &#39;key&#39;: [(&#39;cuisine&#39;, 1.0), (&#39;borough&#39;, 1.0)]} 
 </pre></div>
 </div>
 </div>
@@ -873,11 +855,11 @@ Par exemple, nous voulons afficher la liste des restaurants qui vérifient l’u
 </pre></div>
 </div>
 </div>
-<div class="section" id="les-requetes-d-agregation-a-id-partie33-a">
-<h3><span class="section-number">7.1.3.3. </span>Les requêtes d’agrégation <a id="partie33"></a><a class="headerlink" href="#les-requetes-d-agregation-a-id-partie33-a" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="les-requetes-d-agregation">
+<span id="partie33"></span><h3><span class="section-number">7.1.3.3. </span>Les requêtes d’agrégation<a class="headerlink" href="#les-requetes-d-agregation" title="Permalink to this headline">¶</a></h3>
 <p>Les requêtes d’agrégation ont pour but de faire des calculs simples (agrégats) sur toute la collection ou seulement sur certains groupes. Pour ce faire, on utilise la méthode <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> .</p>
 <div class="tip admonition">
-<p class="admonition-title">Syntax de la requête d’aggregation</p>
+<p class="admonition-title">Syntaxe de la requête d’aggregation</p>
 <ul class="simple">
 <li><p>Client.BasedeDonnee.Collection.aggregate()</p></li>
 <li><p>Client[“BasedeDonnee”][“Collection”].aggregate()</p></li>
@@ -900,12 +882,12 @@ Par exemple, nous voulons afficher la liste des restaurants qui vérifient l’u
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6085 restaurants dans le quartier Brooklyn
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>51 restaurants dans le quartier Missing
 10258 restaurants dans le quartier Manhattan
-5656 restaurants dans le quartier Queens
 2338 restaurants dans le quartier Bronx
+5656 restaurants dans le quartier Queens
 969 restaurants dans le quartier Staten Island
-51 restaurants dans le quartier Missing
+6085 restaurants dans le quartier Brooklyn
 </pre></div>
 </div>
 </div>
@@ -944,11 +926,11 @@ Création d’un graphique montrant, pour chaque valeur possible de note, le nom
 </div>
 </div>
 </div>
-<div class="section" id="les-modifications-a-id-partie34-a">
-<h3><span class="section-number">7.1.3.4. </span>Les modifications <a id="partie34"></a><a class="headerlink" href="#les-modifications-a-id-partie34-a" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="les-modifications">
+<span id="partie34"></span><h3><span class="section-number">7.1.3.4. </span>Les modifications<a class="headerlink" href="#les-modifications" title="Permalink to this headline">¶</a></h3>
 <p>Contrairement aux requêtes d’interrogation, les requêtes de modification peuvent modifier la base de données. Avec la librairie <code class="docutils literal notranslate"><span class="pre">pymongo</span></code> l’écriture est la même qu’en MongoDB.</p>
 <div class="tip admonition">
-<p class="admonition-title">Syntax de requête de modifications</p>
+<p class="admonition-title">Syntaxe de requête de modifications</p>
 <ul class="simple">
 <li><p>Client.BasedeDonnee.Collection.requeteModification()</p></li>
 <li><p>Client[“BasedeDonnee”][“Collection”].requeteModification()</p></li>
@@ -1021,10 +1003,10 @@ Création d’un graphique montrant, pour chaque valeur possible de note, le nom
 </div>
 </div>
 </div>
-<div class="section" id="pour-aller-plus-loin-a-id-partie4-a">
-<h2><span class="section-number">7.1.4. </span>Pour aller plus loin… <a id="partie4"></a><a class="headerlink" href="#pour-aller-plus-loin-a-id-partie4-a" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="export-au-format-json-a-id-partie41-a">
-<h3><span class="section-number">7.1.4.1. </span>Export au format JSON <a id="partie41"></a><a class="headerlink" href="#export-au-format-json-a-id-partie41-a" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="pour-aller-plus-loin">
+<span id="partie4"></span><h2><span class="section-number">7.1.4. </span>Pour aller plus loin…<a class="headerlink" href="#pour-aller-plus-loin" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="export-au-format-json">
+<span id="partie41"></span><h3><span class="section-number">7.1.4.1. </span>Export au format JSON<a class="headerlink" href="#export-au-format-json" title="Permalink to this headline">¶</a></h3>
 <p>Les résultats obtenus après une requête peuvent être conservés dans le but d’un projet ou d’une étude quelconque. Ainsi, nous vous proposons d’enregistrer vos requêtes sous la forme d’un format JSON.</p>
 <p>Remarque : le module JSON ne peut écrire dans un fichier avec des données de types classiques comme liste, dictionnaire, nombre, caractère. En l’occurrence, un identifiant qui aura une classe “ObjectID” ne pourra être écrit dans le fichier directement, de même pour les objets <code class="docutils literal notranslate"><span class="pre">datetime</span></code>. Nous nous devons donc de les convertir en chaîne de caractères au préalable.</p>
 <div class="cell docutils container">
@@ -1049,17 +1031,19 @@ Création d’un graphique montrant, pour chaque valeur possible de note, le nom
 </div>
 </div>
 </div>
-<div class="section" id="exercices-et-corrections-a-id-partie42-a">
-<h3><span class="section-number">7.1.4.2. </span>Exercices et corrections <a id="partie42"></a><a class="headerlink" href="#exercices-et-corrections-a-id-partie42-a" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercices-et-corrections">
+<span id="partie42"></span><h3><span class="section-number">7.1.4.2. </span>Exercices et corrections<a class="headerlink" href="#exercices-et-corrections" title="Permalink to this headline">¶</a></h3>
 <p>Ici nous restons dans la base <code class="docutils literal notranslate"><span class="pre">food</span></code> :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="s2">&quot;food&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p><strong>Question 1</strong></p>
 <p>Dans la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code>, trouvez les restaurants qui n’ont reçu que des notes égales à B.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Cliquez pour montrer la solution</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="09aa9bdd-2139-4a1d-a94c-8acd92e3d6b1" name="15bc6ad5-cc33-4e1d-bf28-bf6dcd069436" type="radio">
-</input><label class="tabbed-label" for="09aa9bdd-2139-4a1d-a94c-8acd92e3d6b1">
+<input checked="checked" id="2c625d6f-2dee-4313-bd0b-cf642af1c449" name="c7839641-2e12-4de1-89df-1a93ee7bdb55" type="radio">
+</input><label class="tabbed-label" for="2c625d6f-2dee-4313-bd0b-cf642af1c449">
 Python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Création de nos conditions</span>
 <span class="n">condi1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;grades.grade&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$exists&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}}</span>
@@ -1078,8 +1062,8 @@ Python</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="771b22ed-0b2e-4ead-8d18-4c1d1b2dc100" name="15bc6ad5-cc33-4e1d-bf28-bf6dcd069436" type="radio">
-</input><label class="tabbed-label" for="771b22ed-0b2e-4ead-8d18-4c1d1b2dc100">
+<input id="efa9fde3-b876-46f9-bf4e-de2cec1fa9c9" name="c7839641-2e12-4de1-89df-1a93ee7bdb55" type="radio">
+</input><label class="tabbed-label" for="efa9fde3-b876-46f9-bf4e-de2cec1fa9c9">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">$nor</span><span class="o">:</span> <span class="p">[</span>
 			 <span class="p">{</span><span class="s2">&quot;grades.grade&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$exists</span><span class="o">:</span> <span class="kc">false</span><span class="p">}},</span>
@@ -1092,11 +1076,14 @@ MongoDB</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
+</div>
 <p><strong>Question 2</strong></p>
 <p>Dans la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code>, on vous demande de conserver les quartiers ayant moins de 1000 restaurants.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Cliquez pour montrer la solution</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="3f9b9fb3-b5cd-4c0f-a82e-0464ef5788cb" name="6fbc95cd-2d3a-459a-9fb8-57496059cf3f" type="radio">
-</input><label class="tabbed-label" for="3f9b9fb3-b5cd-4c0f-a82e-0464ef5788cb">
+<input checked="checked" id="aa8ed99f-e2be-4513-b579-e7810db4a4b7" name="1c8c7be3-050b-4a4c-a1cb-60abf1eac2e9" type="radio">
+</input><label class="tabbed-label" for="aa8ed99f-e2be-4513-b579-e7810db4a4b7">
 Python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Création de nos conditions dans le aggregate</span>
 <span class="n">dico_match</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$match&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;borough&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;$ne&quot;</span><span class="p">:</span> <span class="s2">&quot;Missing&quot;</span><span class="p">}}}</span>
@@ -1112,8 +1099,8 @@ Python</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="cce25267-6795-4fdd-89f4-5b74f3753ef6" name="6fbc95cd-2d3a-459a-9fb8-57496059cf3f" type="radio">
-</input><label class="tabbed-label" for="cce25267-6795-4fdd-89f4-5b74f3753ef6">
+<input id="88b08026-41a7-4ae5-aa82-e576c3334643" name="1c8c7be3-050b-4a4c-a1cb-60abf1eac2e9" type="radio">
+</input><label class="tabbed-label" for="88b08026-41a7-4ae5-aa82-e576c3334643">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
 			<span class="p">{</span><span class="nx">$match</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$ne</span><span class="o">:</span> <span class="s2">&quot;Missing&quot;</span><span class="p">}}},</span>
@@ -1125,11 +1112,14 @@ MongoDB</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
+</div>
 <p><strong>Question 3</strong></p>
 <p>Dans la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code>, trouvez tous les restaurants qui possède le mot “Pizza” dans le nom de l’enseigne.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Cliquez pour montrer la solution</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b8badb09-ecf8-4aba-b49b-c80c01607e38" name="51292ab6-ee49-4863-860f-2e9b4eb6438d" type="radio">
-</input><label class="tabbed-label" for="b8badb09-ecf8-4aba-b49b-c80c01607e38">
+<input checked="checked" id="97084058-92e0-4264-8073-c9f31e516bcb" name="0061b468-f676-4dc3-a10b-024f1886e0bf" type="radio">
+</input><label class="tabbed-label" for="97084058-92e0-4264-8073-c9f31e516bcb">
 Python</label><div class="tabbed-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python reconnaît les expressions régulières</span>
 <span class="n">cursor</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">NYfood</span><span class="o">.</span><span class="n">find</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;/Pizza/&quot;</span><span class="p">})</span>
@@ -1137,11 +1127,12 @@ Python</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="52e02f6a-c5d5-4eb7-8432-4883bde0f6be" name="51292ab6-ee49-4863-860f-2e9b4eb6438d" type="radio">
-</input><label class="tabbed-label" for="52e02f6a-c5d5-4eb7-8432-4883bde0f6be">
+<input id="83448435-1a8e-4c9b-8a86-0392cde64865" name="0061b468-f676-4dc3-a10b-024f1886e0bf" type="radio">
+</input><label class="tabbed-label" for="83448435-1a8e-4c9b-8a86-0392cde64865">
 MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="sr">/Pizza/</span><span class="p">})</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1199,6 +1190,6 @@ MongoDB</label><div class="tabbed-content docutils">
   
   <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-  None
+  
   </body>
 </html>

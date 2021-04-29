@@ -290,11 +290,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-name-find-a-requetes-d-interrogation-et-de-filtrage-des-donnees">
-   1.2.
-   <a name="find">
-   </a>
-   Requêtes d’interrogation et de filtrage des données
+  <a class="reference internal nav-link" href="#requetes-d-interrogation-et-de-filtrage-des-donnees">
+   1.2. Requêtes d’interrogation et de filtrage des données
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -315,11 +312,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-name-operateurs-a-requetes-plus-complexes-en-utilisant-des-operateurs">
-   1.3.
-   <a name="operateurs">
-   </a>
-   Requêtes plus complexes en utilisant des opérateurs
+  <a class="reference internal nav-link" href="#requetes-plus-complexes-en-utilisant-des-operateurs">
+   1.3. Requêtes plus complexes en utilisant des opérateurs
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -381,11 +375,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-name-methodes-a-methodes-utiles-pour-des-requetes-en-mongodb">
-   1.4.
-   <a name="methodes">
-   </a>
-   Méthodes utiles pour des requêtes en MongoDB
+  <a class="reference internal nav-link" href="#methodes-utiles-pour-des-requetes-en-mongodb">
+   1.4. Méthodes utiles pour des requêtes en MongoDB
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -441,19 +432,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-name-resume-a-fiche-resume-pour-bien-demarrer-en-mongodb">
-     1.5.1.
-     <a name="resume">
-     </a>
-     Fiche “résumé” pour bien démarrer en MongoDB
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-name-quiz-a-quiz-premieres-requetes-en-mongodb-a-vous-de-jouer">
-     1.5.2.
-     <a name="quiz">
-     </a>
-     Quiz “Premières requêtes en MongoDB” : À vous de jouer !
+    <a class="reference internal nav-link" href="#quiz-premieres-requetes-en-mongodb-a-vous-de-jouer">
+     1.5.1. Quiz “Premières requêtes en MongoDB” : À vous de jouer !
     </a>
    </li>
   </ul>
@@ -472,14 +452,13 @@
   <div class="section" id="premieres-requetes-en-mongodb">
 <h1><span class="section-number">1. </span>Premières requêtes en MongoDB<a class="headerlink" href="#premieres-requetes-en-mongodb" title="Permalink to this headline">¶</a></h1>
 <p>Auteurs/trices : <strong>Julie FRANCOISE, Manon MAHEO et Valentin PENISSON</strong></p>
-<hr class="docutils" />
 <div class="section" id="introduction-a-mongodb">
 <h2><span class="section-number">1.1. </span>Introduction à MongoDB<a class="headerlink" href="#introduction-a-mongodb" title="Permalink to this headline">¶</a></h2>
-<p>Dans un <strong>système de base de données relationnelles</strong> <em>(comme les bases de données SQL)</em>, les données sont stockées par <strong>ligne</strong> <em>(appelées n-uplets)</em> dans des <strong>tables</strong> <em>(également appelées relations)</em>. Le modèle de données relationnel est un modèle <strong>très structuré</strong>, comportant des <strong>attributs typés</strong> <em>(les colonnes/attributs des tables ont un type précis qu’il soit numérique, alphanumérique ou temporel)</em> et des <strong>contraintes d’intégrité</strong> <em>(comme par exemple celle de l’unicité des valeurs de la clé primaire, la clé primaire étant un ensemble d’attributs permettant d’identifier de manière unique chaque n-uplet de la relation)</em>. Dans ce type de structure, il est nécessaire d’établir des <strong>jointures sur plusieurs tables</strong> afin de tirer des informations pertinentes sur la base de données.</p>
+<p>Dans un <strong>système de base de données relationnelles</strong> <em>(comme les bases de données que l’on interroge avec la syntaxe SQL)</em>, les données sont stockées par <strong>ligne</strong> <em>(appelées n-uplets)</em> dans des <strong>tables</strong> <em>(également appelées relations)</em>. Le modèle de données relationnel est un modèle <strong>très structuré</strong>, comportant des <strong>attributs typés</strong> <em>(les colonnes/attributs des tables ont un type précis qu’il soit numérique, alphanumérique ou temporel)</em> et des <strong>contraintes d’intégrité</strong> <em>(comme par exemple celle de l’unicité des valeurs de la clé primaire, la clé primaire étant un ensemble d’attributs permettant d’identifier de manière unique chaque n-uplet de la relation)</em>. Dans ce type de structure, il est nécessaire d’établir des <strong>jointures sur plusieurs tables</strong> afin de tirer des informations pertinentes sur la base de données.</p>
 <p><strong>Dans MongoDB, les données sont modélisées sous forme de document sous un style JSON.</strong> On ne parle plus de tables, ni d’enregistrements mais de <strong>collections</strong> et de <strong>documents</strong>.</p>
 <p>Une collection est un ensemble de documents, c’est l’équivalent d’une table dans un modèle relationnel. Un document est un enregistrement, une ligne dans le modèle de données relationnel. Ce système de gestion de données nous évite de faire des jointures de tables car <strong>toutes les informations nécessaires sont stockées dans un même document</strong>.</p>
 <p>De plus, l’utilisation de bases de données NoSQL avec MongoDB nous permet plus de flexibilité en termes de mise à jour de la structure des données : aucun modèle n’est supposé sur les données, aucun attribut n’est obligatoire et il n’y a pas de type fixé pour un attribut.</p>
-<p>Tout document appartient donc à une collection et a un champ appelé <code class="docutils literal notranslate"><span class="pre">_id</span></code> qui identifie le document dans la base de données. Prenons pour exemple la base de données <code class="docutils literal notranslate"><span class="pre">étudiants</span></code>. Voici un exemple de document :</p>
+<p>Tout document appartient donc à une collection et a un champ appelé <code class="docutils literal notranslate"><span class="pre">_id</span></code> qui identifie le document dans la base de données. Prenons pour exemple la base de données <code class="docutils literal notranslate"><span class="pre">etudiants</span></code>. Voici un exemple de document :</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;56011920de43611b917d773d&quot;</span><span class="p">),</span>
     <span class="s2">&quot;nom&quot;</span> <span class="o">:</span> <span class="s2">&quot;Paul&quot;</span><span class="p">,</span>
@@ -491,9 +470,6 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<blockquote>
-<div><p>On a une <strong>association de clés et de valeurs</strong>, un document est équivalent aux objets JSON <em>(et ressemble aux dictionnaires en python)</em>. Dans ce document, on a accès au <strong>nom de l’étudiant</strong> par la clé <code class="docutils literal notranslate"><span class="pre">nom</span></code>, à <strong>ses notes</strong> par la clé <code class="docutils literal notranslate"><span class="pre">notes</span></code> <em>(attention, ici on a une <strong>liste de valeurs</strong> entre crochets, ce type d’attribut n’est par exemple pas disponible dans le modèle relationnel)</em> et à <strong>son sexe</strong> par la clé <code class="docutils literal notranslate"><span class="pre">sexe</span></code>. L’étudiant représenté par ce document, est identifié à l’aide d’une clé <code class="docutils literal notranslate"><span class="pre">_id</span></code>.</p>
-</div></blockquote>
 <p>Les clés se doivent d’être des <strong>chaînes de caractères</strong> mais nous pouvons avoir comme valeur de ces clés des <em>valeurs booléennes, des nombres, des chaînes de caractères, des dates ou des listes de valeurs</em> comme nous venons de le voir. Les clés et les valeurs sont <strong>sensibles à la casse et au type</strong>. Chaque clé doît être <strong>unique</strong>, il n’est pas possible d’avoir deux fois la même clé dans un document.</p>
 <p><strong>Pour effectuer des requêtes sur une base de données MongoDB et filtrer les données, il est indispensable d’utiliser ces indications clés et valeurs.</strong></p>
 <div class="admonition-avant-de-commencer-il-vous-faut admonition">
@@ -502,9 +478,8 @@
 </div>
 <p>Dans ce chapitre, nous étudierons dans un premier temps <a class="reference external" href="#find"><strong>comment interroger les données d’une base de données MongoDB avec la fonction find</strong></a>. Dans un second temps, nous regarderons comment effectuer des <a class="reference external" href="#operateurs">requêtes plus complexes, impliquant des <strong>opérateurs de comparaison</strong></a>. Quelques <a class="reference external" href="#methodes"><strong>méthodes utiles</strong></a> pour des requêtes en MongoDB, une <a class="reference external" href="#resume"><strong>fiche “résumé” des quelques points à retenir</strong></a> et un petit <a class="reference external" href="#quiz"><strong>quiz</strong></a> sont donnés à la fin de ce chapitre.</p>
 </div>
-<hr class="docutils" />
-<div class="section" id="a-name-find-a-requetes-d-interrogation-et-de-filtrage-des-donnees">
-<h2><span class="section-number">1.2. </span><a name="find"></a> Requêtes d’interrogation et de filtrage des données<a class="headerlink" href="#a-name-find-a-requetes-d-interrogation-et-de-filtrage-des-donnees" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="requetes-d-interrogation-et-de-filtrage-des-donnees">
+<span id="find"></span><h2><span class="section-number">1.2. </span>Requêtes d’interrogation et de filtrage des données<a class="headerlink" href="#requetes-d-interrogation-et-de-filtrage-des-donnees" title="Permalink to this headline">¶</a></h2>
 <p><strong>Pour récupérer des documents stockés dans une collection, il est nécessaire d’utiliser la fonction <code class="docutils literal notranslate"><span class="pre">find</span></code>.</strong></p>
 <div class="admonition-remarque admonition">
 <p class="admonition-title">Remarque</p>
@@ -512,7 +487,7 @@
 </div>
 <div class="section" id="syntaxe-d-interrogation-de-donnees-sans-et-avec-condition">
 <h3><span class="section-number">1.2.1. </span>Syntaxe d’interrogation de données sans et avec condition<a class="headerlink" href="#syntaxe-d-interrogation-de-donnees-sans-et-avec-condition" title="Permalink to this headline">¶</a></h3>
-<p>En MongoDB, lorsque l’on interroge les données, il existe deux types de requêtes simples, retournant respectivement <strong>toutes les occurences d’une collection</strong> ou <strong>seulement la première</strong>. Que l’on souhaite récupérer la première occurrence de la liste des résultats ou bien toute la liste des résultats, voici la syntaxe :</p>
+<p>En MongoDB, lorsque l’on interroge une base de données, il existe deux types de requêtes simples, retournant respectivement <strong>toutes les occurences d’une collection</strong> ou <strong>seulement la première</strong>. Que l’on souhaite récupérer la première occurrence de la liste des résultats ou bien toute la liste des résultats, voici la syntaxe :</p>
 <div class="sphinx-bs container pb-4 docutils">
 <div class="row docutils">
 <div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
@@ -545,11 +520,19 @@ d’une collection avec findOne()</p>
 </div>
 </div>
 </div>
-<blockquote>
-<div><p>À noter : Dans les deuxièmes propositions de chaque cas présenté ci-dessus, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au <em>document masque</em>. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner.</p>
-</div></blockquote>
-<p>Au contraire, si l’on souhaite <strong>fixer des contraintes sur les documents à retourner</strong>, il suffit de passer en argument d’une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ “x” dont la valeur est “y”.</p>
-<p>La base de données food contient une collection NYfood qui recense un ensemble de restaurants américains et nous donne pour chaque restaurant des informations sur son quartier, son adresse, son type de cuisine, son nom, ses notes obtenues et son identifiant. Voici un extrait d’un document présent dans la collection NYfood :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">use</span> <span class="nx">food</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>switched to db food
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ici on a juste sélectionné la base sur laquelle on souhaite opérer : la base de données food contient une collection NYfood qui recense un ensemble de restaurants américains et nous donne pour chaque restaurant des informations sur son quartier, son adresse, son type de cuisine, son nom, ses notes obtenues et son identifiant. Voici un extrait d’un document présent dans la collection NYfood :</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;_id&quot;</span> <span class="o">:</span> <span class="nx">ObjectId</span><span class="p">(</span><span class="s2">&quot;6006c1882822efb1c9290f68&quot;</span><span class="p">),</span>
     <span class="s2">&quot;address&quot;</span> <span class="o">:</span> <span class="p">{</span>
@@ -591,15 +574,15 @@ d’une collection avec findOne()</p>
 </div>
 <p>En utilisant la syntaxe précédente, on recherche par exemple les documents de la collection NYfood correspondant à des <strong>boulangeries</strong> <em>(pour lesquels le champ “cuisine” vaut “Bakery”)</em> <strong>du Bronx</strong> <em>(pour lesquels le champ “borough” vaut “Bronx”)</em>. Dans cet exemple sur la base de données NYfood, la virgule représente un <strong>ET logique</strong> entre les contraintes.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="679206b1-6d3f-43ea-a0aa-0d3448fd4706" name="c6dfaf2f-e264-4934-9525-fd64fde7237d" type="radio">
-</input><label class="tabbed-label" for="679206b1-6d3f-43ea-a0aa-0d3448fd4706">
+<input checked="checked" id="e2d63336-8f48-4680-aa90-fc958f17c452" name="9e0de001-e2c8-4e5f-8e15-e4f363a93f14" type="radio">
+</input><label class="tabbed-label" for="e2d63336-8f48-4680-aa90-fc958f17c452">
 Syntaxe</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">nomDeLaCollection</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="s2">&quot;y&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
-<input id="5e9f77e3-4b48-411e-9d85-413b4b4d66c2" name="c6dfaf2f-e264-4934-9525-fd64fde7237d" type="radio">
-</input><label class="tabbed-label" for="5e9f77e3-4b48-411e-9d85-413b4b4d66c2">
+<input id="ddb51823-acc6-4c6a-90c9-a533a0126182" name="9e0de001-e2c8-4e5f-8e15-e4f363a93f14" type="radio">
+</input><label class="tabbed-label" for="ddb51823-acc6-4c6a-90c9-a533a0126182">
 Exemple sur la base de données food</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">}</span>
@@ -607,8 +590,8 @@ Exemple sur la base de données food</label><div class="tabbed-content docutils"
 </pre></div>
 </div>
 </div>
-<input id="978df486-0b7f-4e61-8a29-9413786c3de1" name="c6dfaf2f-e264-4934-9525-fd64fde7237d" type="radio">
-</input><label class="tabbed-label" for="978df486-0b7f-4e61-8a29-9413786c3de1">
+<input id="8f2a1619-7207-41b9-abad-73558cff0da4" name="9e0de001-e2c8-4e5f-8e15-e4f363a93f14" type="radio">
+</input><label class="tabbed-label" for="8f2a1619-7207-41b9-abad-73558cff0da4">
 Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
 <span class="k">FROM</span> <span class="n">NYfood</span>
@@ -622,10 +605,494 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 <h3><span class="section-number">1.2.2. </span>Poser une condition sur une clé de sous-document<a class="headerlink" href="#poser-une-condition-sur-une-cle-de-sous-document" title="Permalink to this headline">¶</a></h3>
 <p>Il se peut que pour une clé d’un document, comme par exemple l’adresse d’un restaurant dans la collection NYfood, nous disposons d’un <strong>sous-document</strong> contenant à la fois les coordonnées GPS et l’adresse postale. Plutôt qu’une liste de valeur comme présentée précédemment, nous avons comme valeur de la clé un nouveau document.</p>
 <p>Si l’on souhaite <strong>poser une condition sur une clé ou plusieurs clés de sous-document</strong>, on utilise alors la syntaxe suivante :</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;adress.zipcode&quot;</span><span class="o">:</span> <span class="s2">&quot;10462&quot;</span><span class="p">})</span>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;address.zipcode&quot;</span><span class="o">:</span> <span class="s2">&quot;10462&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
-<p>où <code class="docutils literal notranslate"><span class="pre">adress</span></code> est le sous-document et <code class="docutils literal notranslate"><span class="pre">zipcode</span></code> la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est “10462”.</p>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c7&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1007&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.856077,
+				40.848447
+			]
+		},
+		&quot;street&quot; : &quot;Morris Park Ave&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Bakery&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-03-03T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 2
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-09-11T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 6
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-01-24T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-11-23T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-03-10T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 14
+		}
+	],
+	&quot;name&quot; : &quot;Morris Park Bake Shop&quot;,
+	&quot;restaurant_id&quot; : &quot;30075445&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505951c&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;2222&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.84971759999999,
+				40.8304811
+			]
+		},
+		&quot;street&quot; : &quot;Haviland Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;American &quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-12-18T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-05-01T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 17
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-03-14T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-09-20T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-02-08T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 19
+		}
+	],
+	&quot;name&quot; : &quot;The New Starling Athletic Club Of The Bronx&quot;,
+	&quot;restaurant_id&quot; : &quot;40364956&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059571&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1191&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8513114,
+				40.8316981
+			]
+		},
+		&quot;street&quot; : &quot;Castle Hill Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Café/Coffee/Tea&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-07-03T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-07-08T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-02-11T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-08-14T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 14
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-08-23T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		}
+	],
+	&quot;name&quot; : &quot;Lulu&#39;S Coffee Shop&quot;,
+	&quot;restaurant_id&quot; : &quot;40366938&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350595d5&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;2375&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.85534559999999,
+				40.8426433
+			]
+		},
+		&quot;street&quot; : &quot;East Tremont Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;American &quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-10-14T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-04-08T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 8
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-11-04T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;C&quot;,
+			&quot;score&quot; : 45
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-05-23T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-10-18T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 15
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-10-05T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;P&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-05-14T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-12-21T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		}
+	],
+	&quot;name&quot; : &quot;Bronx Grill&quot;,
+	&quot;restaurant_id&quot; : &quot;40369601&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059659&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1200&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8507489,
+				40.832069
+			]
+		},
+		&quot;street&quot; : &quot;Castle Hill Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Chinese/Cuban&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-10-29T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 15
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-04-03T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-02-16T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 5
+		}
+	],
+	&quot;name&quot; : &quot;Sabrosura Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40375136&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505967e&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;749&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8657838,
+				40.8544744
+			]
+		},
+		&quot;street&quot; : &quot;Lydig Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Pizza/Italian&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2015-01-09T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;Z&quot;,
+			&quot;score&quot; : 17
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-06-25T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 20
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-12-09T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 22
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-06-15T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 24
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-05-30T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 7
+		}
+	],
+	&quot;name&quot; : &quot;John &amp; Joe Pizzeria &amp; Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40377243&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350596d8&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1506&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8537226,
+				40.8427071
+			]
+		},
+		&quot;street&quot; : &quot;Bronxdale Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;American &quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-06-04T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 5
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-05-22T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-12-13T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-05-14T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 16
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-12-28T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-08-10T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		}
+	],
+	&quot;name&quot; : &quot;Castlehill Diner&quot;,
+	&quot;restaurant_id&quot; : &quot;40382517&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059731&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1539&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8574277,
+				40.8366717
+			]
+		},
+		&quot;street&quot; : &quot;Unionport Road&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Pizza&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-12-18T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 8
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-12-18T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-07-24T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 3
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-08-01T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-02-29T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		}
+	],
+	&quot;name&quot; : &quot;Venice Pizza&quot;,
+	&quot;restaurant_id&quot; : &quot;40386278&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505976a&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;2140&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8529552,
+				40.83376459999999
+			]
+		},
+		&quot;street&quot; : &quot;Westchester Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Hamburgers&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-07-15T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 5
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2014-01-02T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-05-29T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 3
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-10-10T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 21
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-05-23T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-12-29T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		}
+	],
+	&quot;name&quot; : &quot;Wendy&#39;S&quot;,
+	&quot;restaurant_id&quot; : &quot;40388016&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059772&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;1665&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8555094,
+				40.8406624
+			]
+		},
+		&quot;street&quot; : &quot;Metropolitan Avenue&quot;,
+		&quot;zipcode&quot; : &quot;10462&quot;
+	},
+	&quot;borough&quot; : &quot;Bronx&quot;,
+	&quot;cuisine&quot; : &quot;Pizza&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-03-27T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-03-14T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-09-13T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-03-15T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-03-29T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		}
+	],
+	&quot;name&quot; : &quot;The Pizza Place&quot;,
+	&quot;restaurant_id&quot; : &quot;40388253&quot;
+}
+Type &quot;it&quot; for more
+</pre></div>
+</div>
+</div>
+</div>
+<p>où <code class="docutils literal notranslate"><span class="pre">address</span></code> est le sous-document et <code class="docutils literal notranslate"><span class="pre">zipcode</span></code> la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est “10462”.</p>
 </div>
 <div class="section" id="projection-des-donnees">
 <h3><span class="section-number">1.2.3. </span>Projection des données<a class="headerlink" href="#projection-des-donnees" title="Permalink to this headline">¶</a></h3>
@@ -635,15 +1102,15 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
   <dd>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais     limiter les informations retournées en précisant comme deuxième argument de ma recherche find, la clé name avec la valeur true. C'est un argument optionnel !</dd>
 </dl>
 <div class="tabbed-set docutils">
-<input checked="checked" id="35705acb-5d41-4c0c-ad1f-8054abcadb73" name="7105e19e-b4c0-41b3-a219-9899fe88e3b3" type="radio">
-</input><label class="tabbed-label" for="35705acb-5d41-4c0c-ad1f-8054abcadb73">
+<input checked="checked" id="dbea3173-6e45-4e30-b029-bf1d3558e2e8" name="22aca54f-a724-4abb-9a2f-0d6f14292aca" type="radio">
+</input><label class="tabbed-label" for="dbea3173-6e45-4e30-b029-bf1d3558e2e8">
 Projection en MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
-<input id="0c8e2c75-06be-4a16-9160-0e0126409422" name="7105e19e-b4c0-41b3-a219-9899fe88e3b3" type="radio">
-</input><label class="tabbed-label" for="0c8e2c75-06be-4a16-9160-0e0126409422">
+<input id="4a49d3c2-8103-4662-bf24-95e685135bc6" name="22aca54f-a724-4abb-9a2f-0d6f14292aca" type="radio">
+</input><label class="tabbed-label" for="4a49d3c2-8103-4662-bf24-95e685135bc6">
 Projection en SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">name</span>
 <span class="k">FROM</span> <span class="n">NYfood</span>
@@ -652,7 +1119,7 @@ Projection en SQL</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-<p>C’est donc l’équivalent du <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">name</span></code> en SQL. Jusqu’ici, on utilisais le <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code> <em>(pour all)</em> c’est-à-dire qu’on récupérait toutes les valeurs de chaque clé ou de chaque attribut.</p>
+<p>C’est donc l’équivalent du <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">name</span></code> en SQL. Jusqu’ici, on utilisait le <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code> <em>(pour all)</em> c’est-à-dire qu’on récupérait toutes les valeurs de chaque clé ou de chaque attribut.</p>
 <div class="tip admonition">
 <p class="admonition-title">Embellissez vos résultats !</p>
 <p>Les résultats de la fonction <code class="docutils literal notranslate"><span class="pre">find()</span></code> peuvent apparaître désorganisés. MongoDB fournit <code class="docutils literal notranslate"><span class="pre">pretty()</span></code> qui affiche les résultats sous une forme plus lisible. La syntaxe est la suivante : <code class="docutils literal notranslate"><span class="pre">collectionName.find().pretty()</span></code> 😉</p>
@@ -660,10 +1127,9 @@ Projection en SQL</label><div class="tabbed-content docutils">
 <p>Pour plus de renseignements sur la <strong>fonction <code class="docutils literal notranslate"><span class="pre">find()</span></code></strong>, consultez la documentation MongoDB <a class="reference external" href="https://docs.mongodb.com/manual/reference/method/db.collection.find/">disponible ici</a>.</p>
 </div>
 </div>
-<hr class="docutils" />
-<div class="section" id="a-name-operateurs-a-requetes-plus-complexes-en-utilisant-des-operateurs">
-<h2><span class="section-number">1.3. </span><a name="operateurs"></a> Requêtes plus complexes en utilisant des opérateurs<a class="headerlink" href="#a-name-operateurs-a-requetes-plus-complexes-en-utilisant-des-operateurs" title="Permalink to this headline">¶</a></h2>
-<p>Les opérateurs se séparent en deux grandes parties : les <strong>opérateurs de comparaison</strong> et les <strong>opérateurs logiques</strong>.</p>
+<div class="section" id="requetes-plus-complexes-en-utilisant-des-operateurs">
+<span id="operateurs"></span><h2><span class="section-number">1.3. </span>Requêtes plus complexes en utilisant des opérateurs<a class="headerlink" href="#requetes-plus-complexes-en-utilisant-des-operateurs" title="Permalink to this headline">¶</a></h2>
+<p>Nous verrons dans cette section deux types d’opérateurs : les <strong>opérateurs de comparaison</strong> et les <strong>opérateurs logiques</strong>.</p>
 <div class="admonition-remarque admonition">
 <p class="admonition-title">Remarque</p>
 <p>La syntaxe des requêtes avec des opérateurs de comparaison est la suivante : <code class="docutils literal notranslate"><span class="pre">db.nomDeLaCollection.find({&quot;x&quot;:</span> <span class="pre">{operateur:</span> <span class="pre">valeur}})</span></code>. Le sous-document contenant l’opératuer peut en fait contenir plusieurs opérateurs et ainsi ne seront retournées que les documents vérifiant toutes les conditions.</p>
@@ -886,7 +1352,7 @@ Projection en SQL</label><div class="tabbed-content docutils">
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Le résultat de cette requête sera l’ensemble des documents ne contenant pas la valeur <strong>1</strong> pour la variable <code class="docutils literal notranslate"><span class="pre">a</span></code> et <strong>“blue”</strong> pour la variable <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
+<p>Le résultat de cette requête sera l’ensemble des documents ne contenant pas la valeur <strong>1</strong> pour la variable <code class="docutils literal notranslate"><span class="pre">a</span></code> ni la valeur <strong>“blue”</strong> pour la variable <code class="docutils literal notranslate"><span class="pre">b</span></code>.</p>
 </div>
 <div class="section" id="not-logique">
 <h4><span class="section-number">1.3.2.4. </span><code class="docutils literal notranslate"><span class="pre">not</span></code> logique<a class="headerlink" href="#not-logique" title="Permalink to this headline">¶</a></h4>
@@ -911,7 +1377,7 @@ Projection en SQL</label><div class="tabbed-content docutils">
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928c&quot;),
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c6&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;469&quot;,
 		&quot;loc&quot; : {
@@ -952,7 +1418,7 @@ Projection en SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;30112340&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928d&quot;),
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c7&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1007&quot;,
 		&quot;loc&quot; : {
@@ -998,7 +1464,7 @@ Projection en SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;30075445&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928e&quot;),
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c8&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;351&quot;,
 		&quot;loc&quot; : {
@@ -1039,48 +1505,7 @@ Projection en SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;30191841&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c1928f&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;97-22&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8601152,
-				40.7311739
-			]
-		},
-		&quot;street&quot; : &quot;63 Road&quot;,
-		&quot;zipcode&quot; : &quot;11374&quot;
-	},
-	&quot;borough&quot; : &quot;Queens&quot;,
-	&quot;cuisine&quot; : &quot;Jewish/Kosher&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-11-24T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;Z&quot;,
-			&quot;score&quot; : 20
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-01-17T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-08-02T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-12-15T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 25
-		}
-	],
-	&quot;name&quot; : &quot;Tov Kosher Kitchen&quot;,
-	&quot;restaurant_id&quot; : &quot;40356068&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19290&quot;),
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594c9&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2780&quot;,
 		&quot;loc&quot; : {
@@ -1121,7 +1546,48 @@ Projection en SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40356018&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19291&quot;),
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594ca&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;97-22&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.8601152,
+				40.7311739
+			]
+		},
+		&quot;street&quot; : &quot;63 Road&quot;,
+		&quot;zipcode&quot; : &quot;11374&quot;
+	},
+	&quot;borough&quot; : &quot;Queens&quot;,
+	&quot;cuisine&quot; : &quot;Jewish/Kosher&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-11-24T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;Z&quot;,
+			&quot;score&quot; : 20
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-01-17T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-08-02T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-12-15T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;B&quot;,
+			&quot;score&quot; : 25
+		}
+	],
+	&quot;name&quot; : &quot;Tov Kosher Kitchen&quot;,
+	&quot;restaurant_id&quot; : &quot;40356068&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cb&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2206&quot;,
 		&quot;loc&quot; : {
@@ -1162,7 +1628,7 @@ Projection en SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40356442&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19292&quot;),
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cc&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;8825&quot;,
 		&quot;loc&quot; : {
@@ -1203,53 +1669,7 @@ Projection en SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40356151&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19293&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;6409&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-74.00528899999999,
-				40.628886
-			]
-		},
-		&quot;street&quot; : &quot;11 Avenue&quot;,
-		&quot;zipcode&quot; : &quot;11219&quot;
-	},
-	&quot;borough&quot; : &quot;Brooklyn&quot;,
-	&quot;cuisine&quot; : &quot;American &quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-07-18T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-07-30T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-02-13T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 11
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-08-16T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 2
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-08-17T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 11
-		}
-	],
-	&quot;name&quot; : &quot;Regina Caterers&quot;,
-	&quot;restaurant_id&quot; : &quot;40356649&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19294&quot;),
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cd&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;7114&quot;,
 		&quot;loc&quot; : {
@@ -1300,7 +1720,53 @@ Projection en SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40356483&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608673c4dfcd1d8365c19295&quot;),
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594ce&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;6409&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-74.00528899999999,
+				40.628886
+			]
+		},
+		&quot;street&quot; : &quot;11 Avenue&quot;,
+		&quot;zipcode&quot; : &quot;11219&quot;
+	},
+	&quot;borough&quot; : &quot;Brooklyn&quot;,
+	&quot;cuisine&quot; : &quot;American &quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-07-18T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-07-30T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-02-13T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-08-16T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 2
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-08-17T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		}
+	],
+	&quot;name&quot; : &quot;Regina Caterers&quot;,
+	&quot;restaurant_id&quot; : &quot;40356649&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594cf&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1839&quot;,
 		&quot;loc&quot; : {
@@ -1349,14 +1815,41 @@ Type &quot;it&quot; for more
 </div>
 </div>
 </div>
-<hr class="docutils" />
-<div class="section" id="a-name-methodes-a-methodes-utiles-pour-des-requetes-en-mongodb">
-<h2><span class="section-number">1.4. </span><a name="methodes"></a> Méthodes utiles pour des requêtes en MongoDB<a class="headerlink" href="#a-name-methodes-a-methodes-utiles-pour-des-requetes-en-mongodb" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="methodes-utiles-pour-des-requetes-en-mongodb">
+<span id="methodes"></span><h2><span class="section-number">1.4. </span>Méthodes utiles pour des requêtes en MongoDB<a class="headerlink" href="#methodes-utiles-pour-des-requetes-en-mongodb" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="connaitre-la-liste-des-collections-dans-une-base-de-donnees">
 <h3><span class="section-number">1.4.1. </span>Connaître la liste des collections dans une base de données<a class="headerlink" href="#connaitre-la-liste-des-collections-dans-une-base-de-donnees" title="Permalink to this headline">¶</a></h3>
 <p>Pour connaître la <strong>liste des collections</strong> contenues dans une base de données, on utilise la commande suivante sur la base de données considérée :</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">getCollectionInfos</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[
+	{
+		&quot;name&quot; : &quot;NYfood&quot;,
+		&quot;type&quot; : &quot;collection&quot;,
+		&quot;options&quot; : {
+			
+		},
+		&quot;info&quot; : {
+			&quot;readOnly&quot; : false,
+			&quot;uuid&quot; : UUID(&quot;b3ef6bfc-6faa-4253-b79f-65be5f828d34&quot;)
+		},
+		&quot;idIndex&quot; : {
+			&quot;v&quot; : 2,
+			&quot;key&quot; : {
+				&quot;_id&quot; : 1
+			},
+			&quot;name&quot; : &quot;_id_&quot;
+		}
+	}
+]
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="valeurs-distinctes-d-un-champ-la-methode-distinct">
@@ -1372,7 +1865,10 @@ Par exemple, la requête suivante en MongoDB permet d’afficher la <strong>list
 </div>
 <div class="card-body docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">collectionName</span><span class="p">.</span><span class="nx">distinct</span><span class="p">(</span><span class="nx">champ</span><span class="p">,</span> <span class="p">{...})</span>
-<span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">distinct</span><span class="p">(</span><span class="s2">&quot;grades.grade&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Manhattan&quot;</span><span class="p">})</span> 
+<span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">distinct</span><span class="p">(</span>
+    <span class="s2">&quot;grades.grade&quot;</span><span class="p">,</span> 
+    <span class="p">{</span><span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Manhattan&quot;</span><span class="p">}</span>
+<span class="p">)</span> 
 </pre></div>
 </div>
 </div>
@@ -1394,32 +1890,26 @@ Par exemple, la requête suivante en MongoDB permet d’afficher la <strong>list
 </div>
 </div>
 </div>
-<blockquote>
-<div><p>À noter : il n’y a pas d’équivalent en SQL pour l’exemple des notes attribuées aux restaurants du quartier “Manhattan” présenté ici puisque <strong>un attribut ne peut pas être une liste de valeurs en SQL</strong>.</p>
-</div></blockquote>
 </div>
 <div class="section" id="compter-le-nombre-d-elements-la-methode-count">
 <h3><span class="section-number">1.4.3. </span>Compter le nombre d’éléments : la méthode <code class="docutils literal notranslate"><span class="pre">count</span></code><a class="headerlink" href="#compter-le-nombre-d-elements-la-methode-count" title="Permalink to this headline">¶</a></h3>
 <p>La méthode <code class="docutils literal notranslate"><span class="pre">count</span></code> permet de <strong>compter le nombre de documents dans une collection</strong>. On peut l’utiliser directement sur la collection de base pour connaître le nombre de documents dans la collection ou bien l’utiliser après avoir exécuter une requête puisque la méthode <code class="docutils literal notranslate"><span class="pre">count()</span></code> accepte un document masque elle aussi.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="bde06594-a5ae-427c-b32c-e30cbaa17117" name="fb43ec3a-4bb7-418c-8fb5-6ac4471306ac" type="radio">
-</input><label class="tabbed-label" for="bde06594-a5ae-427c-b32c-e30cbaa17117">
+<input checked="checked" id="9affc300-4403-43c5-ab19-245cfbc70f3e" name="540e997f-1f61-4398-af7b-549ee2a21429" type="radio">
+</input><label class="tabbed-label" for="9affc300-4403-43c5-ab19-245cfbc70f3e">
 Sur une collection sans requête</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<input id="6d860d7f-7189-414c-8122-973c1437c8ed" name="fb43ec3a-4bb7-418c-8fb5-6ac4471306ac" type="radio">
-</input><label class="tabbed-label" for="6d860d7f-7189-414c-8122-973c1437c8ed">
+<input id="5d120bb5-aae1-434b-bda1-231c84743a10" name="540e997f-1f61-4398-af7b-549ee2a21429" type="radio">
+</input><label class="tabbed-label" for="5d120bb5-aae1-434b-bda1-231c84743a10">
 Sur une collection après requête</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">}).</span><span class="nx">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<blockquote>
-<div><p>Bien entendu, les résultats seront différents car nous n’avons pas le même nombre de documents avant et après un filtrage de données. Dans le premier exemple, on souhaite afficher le <strong>nombre de documents dans la collection NYfood</strong> tandis que dans le deuxième, on récupère le <strong>nombre de documents correspondant à des boulangeries</strong> <em>(pour lesquels le champ “cuisine” vaut “Bakery”)</em>.</p>
-</div></blockquote>
 </div>
 <div class="section" id="trier-la-recuperation-des-documents-la-methode-sort">
 <h3><span class="section-number">1.4.4. </span>Trier la récupération des documents : la méthode <code class="docutils literal notranslate"><span class="pre">sort</span></code><a class="headerlink" href="#trier-la-recuperation-des-documents-la-methode-sort" title="Permalink to this headline">¶</a></h3>
@@ -1445,11 +1935,9 @@ Sur une collection après requête</label><div class="tabbed-content docutils">
 </div>
 </div>
 </div>
-<hr class="docutils" />
 <div class="section" id="pour-conclure-ce-chapitre">
-<h2><span class="section-number">1.5. </span>Pour conclure ce chapitre<a class="headerlink" href="#pour-conclure-ce-chapitre" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="a-name-resume-a-fiche-resume-pour-bien-demarrer-en-mongodb">
-<h3><span class="section-number">1.5.1. </span><a name="resume"></a> Fiche “résumé” pour bien démarrer en MongoDB<a class="headerlink" href="#a-name-resume-a-fiche-resume-pour-bien-demarrer-en-mongodb" title="Permalink to this headline">¶</a></h3>
+<span id="resume"></span><h2><span class="section-number">1.5. </span>Pour conclure ce chapitre<a class="headerlink" href="#pour-conclure-ce-chapitre" title="Permalink to this headline">¶</a></h2>
+<p><strong>Fiche “résumé” pour bien démarrer en MongoDB</strong></p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Objectif</p></th>
@@ -1489,17 +1977,19 @@ Sur une collection après requête</label><div class="tabbed-content docutils">
 </tr>
 </tbody>
 </table>
-<p><strong>Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quiz ci-dessous.</strong></p>
-</div>
-<div class="section" id="a-name-quiz-a-quiz-premieres-requetes-en-mongodb-a-vous-de-jouer">
-<h3><span class="section-number">1.5.2. </span><a name="quiz"></a> Quiz “Premières requêtes en MongoDB” : À vous de jouer !<a class="headerlink" href="#a-name-quiz-a-quiz-premieres-requetes-en-mongodb-a-vous-de-jouer" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="quiz-premieres-requetes-en-mongodb-a-vous-de-jouer">
+<span id="quiz"></span><h3><span class="section-number">1.5.1. </span>Quiz “Premières requêtes en MongoDB” : À vous de jouer !<a class="headerlink" href="#quiz-premieres-requetes-en-mongodb-a-vous-de-jouer" title="Permalink to this headline">¶</a></h3>
+<p>Pour vous tester et être certain que vous avez bien compris, répondez aux questions du quiz ci-dessous.</p>
 <p><strong>Qu’est-ce qui caractérise MongoDB ?</strong></p>
 <ol class="simple">
 <li><p>C’est un modèle orienté graphique</p></li>
 <li><p>C’est un modèle orienté document</p></li>
 <li><p>C’est un modèle structuré</p></li>
 </ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Cliquez pour montrer la réponse</p>
 <p><em>Réponse 2 : C’est un modèle orienté document.</em></p>
+</div>
 <p><strong>Que nous renvoie cette requête sur la collection <code class="docutils literal notranslate"><span class="pre">notes</span></code> de la base <code class="docutils literal notranslate"><span class="pre">etudiants</span></code> ?</strong></p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="p">{</span><span class="s2">&quot;nom&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="s2">&quot;_id&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">})</span> 
 </pre></div>
@@ -1509,29 +1999,41 @@ Sur une collection après requête</label><div class="tabbed-content docutils">
 <li><p>Les noms des étudiants de la base et la clé <code class="docutils literal notranslate"><span class="pre">_id</span></code> qui identifie chaque étudiant</p></li>
 <li><p>Tous les noms des étudiants de la base, mais pas les autres clés</p></li>
 </ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Cliquez pour montrer la réponse</p>
 <p><em>Réponse 3 : L’argument <code class="docutils literal notranslate"><span class="pre">&quot;_id&quot;:</span> <span class="pre">false</span></code> permet de retirer l’affichage de la clé <code class="docutils literal notranslate"><span class="pre">id</span></code>. On ne récupère que le noms des étudiants de la base.</em></p>
+</div>
 <p><strong>Comment récupérer la liste des étudiants ayant obtenu exactement deux notes ?</strong></p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">db.notes.find({&quot;notes&quot;:</span> <span class="pre">{$size:</span> <span class="pre">2}})</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">db.notes.find({&quot;notes&quot;:</span> <span class="pre">{$exists:</span> <span class="pre">true}})</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">db.notes.find({$or:</span> <span class="pre">[{&quot;notes&quot;:</span> <span class="pre">{$size:</span> <span class="pre">1}},{&quot;notes&quot;:</span> <span class="pre">{$size:</span> <span class="pre">2}}]})</span></code></p></li>
 </ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Cliquez pour montrer la réponse</p>
 <p><em>Réponse 1 : L’opérateur <code class="docutils literal notranslate"><span class="pre">$size</span></code> permet de prendre en compte la taille de la liste de valeurs, telle qu’une liste de notes. Ici on souhaite que la liste de notes soit précisement de taille 2.</em></p>
+</div>
 <p><strong>Quel opérateur permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste ?</strong></p>
 <ol class="simple">
 <li><p>L’opérateur <code class="docutils literal notranslate"><span class="pre">$eq</span></code></p></li>
 <li><p>L’opérateur <code class="docutils literal notranslate"><span class="pre">$nor</span></code></p></li>
 <li><p>L’opérateur <code class="docutils literal notranslate"><span class="pre">$gt</span></code></p></li>
 </ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Cliquez pour montrer la réponse</p>
 <p><em>Réponse 2 : L’opérateur <code class="docutils literal notranslate"><span class="pre">$nor</span></code> permet de ne renvoyer que les documents qui ne vérifient aucune condition de la liste.</em></p>
+</div>
 <p><strong>Quelle méthode ci-dessous ne fait pas partie du langage MongoDB ?</strong></p>
 <ol class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">db.collectionName.find({}).orderby({&quot;key&quot;</span> <span class="pre">:</span> <span class="pre">1})</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">db.collectionName.find({}).sort({&quot;key&quot;</span> <span class="pre">:</span> <span class="pre">1})</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">db.collectionName.find({}).limit(3)</span></code></p></li>
 </ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Cliquez pour montrer la réponse</p>
 <p><em>Réponse 1 : Bien que <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> soit une instruction en SQL, ce n’est pas disponible pour les bases de données en MongoDB.</em></p>
-<p>Afin que le langage MongoDB n’ait plus aucun secret pour vous, nous vous invitons à lire les <strong>chapitres suivants</strong> et à consultez la <a class="reference external" href="https://docs.mongodb.com">documentation MongoDB</a> !</p>
+</div>
+<p>Afin que le langage MongoDB n’ait plus aucun secret pour vous, nous vous invitons à lire les <strong>chapitres suivants</strong> et à consulter la <a class="reference external" href="https://docs.mongodb.com">documentation MongoDB</a> !</p>
 </div>
 </div>
 </div>
@@ -1586,6 +2088,6 @@ Sur une collection après requête</label><div class="tabbed-content docutils">
   
   <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-  None
+  
   </body>
 </html>
