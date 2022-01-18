@@ -783,7 +783,7 @@ db.NYfood.aggregate(
 ```
 On obtient bien, avec cette requête, les 3 notes les plus attribuées aux restaurants de Brooklyn !
 
-``` {code-cell}
+```{code-cell}
  db.NYfood.aggregate(
 	[
 

@@ -110,7 +110,7 @@ L'objet des prochaines sections de ce chapitre sera alors d'explorer ces différ
 
 ### Méthode count
 
-Tout comme le `.count()` en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/01_find.html)), la méthode `count()` nous permet de calculer le nombre de résultats d'une collection, ou encore le nombre de résultats d'une certaine requête. Cette méthode n'a qu'un seul argument (query) et sa valeur par défaut est "{}". Elle renvoie un entier.
+Tout comme le `.count()` en MongoDB ([plus de précisions ici](01_find.md)), la méthode `count()` nous permet de calculer le nombre de résultats d'une collection, ou encore le nombre de résultats d'une certaine requête. Cette méthode n'a qu'un seul argument (query) et sa valeur par défaut est "{}". Elle renvoie un entier.
 
 **Exemples :**
 
@@ -161,7 +161,7 @@ db.NYfood.find({"cuisine":"Chinese"})
 
 ### Méthode find
 
-La méthode `find()` permet, à l'instar du `.find` en MongoDB ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/01_find.html)), d'interroger une collection en filtrant les documents et les champs. De plus, cette méthode intègre la possibilité de limiter, trier et skiper les documents d'un résultat. Autrement dit, cette méthode comprends en ses arguments le `.limit`, le `.sort` et le `.skip` de MongoDB. Présentons alors les 5 arguments de cette méthode : 
+La méthode `find()` permet, à l'instar du `.find` en MongoDB ([plus de précisions ici](01_find.md)), d'interroger une collection en filtrant les documents et les champs. De plus, cette méthode intègre la possibilité de limiter, trier et skiper les documents d'un résultat. Autrement dit, cette méthode comprends en ses arguments le `.limit`, le `.sort` et le `.skip` de MongoDB. Présentons alors les 5 arguments de cette méthode : 
 
 - query : correspond à la requête de filtrage des documents passée en premier agument d'un `.find` en MongoDB ; '{}' est la valeur par défaut
 - fields : correspond à la requête de filtrage des champs passée en second argument d'un `.find` en MongoDB
@@ -230,7 +230,7 @@ db.NYfood.createIndex({"name": 1}
 
 ````
 
-Il est aussi possible de faire des requêtes textuelles avec mongolite. Toutefois attention, cela se fait obligatoirement à l'aide de l'opérateur `$regex`. En effet, avec *mongolite* on ne peut pas faire de requêtes textuelles à l'aide d'expressions régulières car le package permettant de convertir une chaîne de caractères en fichier JSON dans R ne connait pas les expressions régulières. Hormis ce détail, la syntaxe entre simples *quotes* est la même que pour les requêtes textuelles en MongoDB ([plus de précisions ici](04_index.html)).
+Il est aussi possible de faire des requêtes textuelles avec mongolite. Toutefois attention, cela se fait obligatoirement à l'aide de l'opérateur `$regex`. En effet, avec *mongolite* on ne peut pas faire de requêtes textuelles à l'aide d'expressions régulières car le package permettant de convertir une chaîne de caractères en fichier JSON dans R ne connait pas les expressions régulières. Hormis ce détail, la syntaxe entre simples *quotes* est la même que pour les requêtes textuelles en MongoDB ([plus de précisions ici](04_index.md)).
 
 Ainsi, pour afficher les 10 premiers restaurants de Manhattan dont le nom commence par la lettre 'A' par exemple, la requête adaptée est :
 
@@ -268,7 +268,7 @@ Comme en NoSQL, l'accent circonflèxe sert à préciser que seulement les chaîn
 
 ---
 
-Pour ce qui est des requêtes géospatiales, la syntaxe entre simples *quotes* est la même que pour les requêtes géo-spatiales en MongoDB ([plus de précisions ici](04_index.html)).
+Pour ce qui est des requêtes géospatiales, la syntaxe entre simples *quotes* est la même que pour les requêtes géo-spatiales en MongoDB ([plus de précisions ici](04_index.md)).
 
 ### Méthode iterate
 
@@ -308,7 +308,7 @@ print(df)
 ```
 
 ### Méthode distinct
-Tout comme le `.distinct()` en MongoDB ([plus de précisions ici](01_find.html)), la méthode `distinct()` nous renvoie les valeurs distinctes d'un champ.  
+Tout comme le `.distinct()` en MongoDB ([plus de précisions ici](01_find.md)), la méthode `distinct()` nous renvoie les valeurs distinctes d'un champ.  
 
 **Exemple :**   
 
@@ -338,7 +338,7 @@ db.NYfood.distinct("grades.grade")
 
 ### Sélectionner par date
 
-Le traitement des dates avec *mongolite* mérite une attention particulière. En effet, lorsque l'on souhaite intéragir avec une collection sur un champ de type *date*, la syntaxe sera relativement différente de celle que l'on peut utiliser en *MongoDB* ([plus de précisions ici](https://rtavenar.github.io/mongo_book/content/03_dates.html)) ou avec *pymongo*. En raison de la classe d'une requête en mongolite (chaîne de caractère), on ne pourra pas utiliser d'objet R spécifique aux dates (comme les datetimes en python par exemple). Ainsi, toutes les dates définies dans une requête en mongolite devront être spécifiées dans un format purement JSON intégrant un opérateur `$date` et une syntaxe UTC. Concrètement, ce format sera du type : 
+Le traitement des dates avec *mongolite* mérite une attention particulière. En effet, lorsque l'on souhaite intéragir avec une collection sur un champ de type *date*, la syntaxe sera relativement différente de celle que l'on peut utiliser en *MongoDB* ([plus de précisions ici](03_dates.md)) ou avec *pymongo*. En raison de la classe d'une requête en mongolite (chaîne de caractère), on ne pourra pas utiliser d'objet R spécifique aux dates (comme les datetimes en python par exemple). Ainsi, toutes les dates définies dans une requête en mongolite devront être spécifiées dans un format purement JSON intégrant un opérateur `$date` et une syntaxe UTC. Concrètement, ce format sera du type : 
 
 ```javascript
 { "$date" : "AAAA-MM-JJThh:mm:ssZ" }
@@ -379,7 +379,7 @@ db.NYfood.find({"grades.date":{$gte: date}}).limit(10)
 
 ## Aggrégations
 
-Nous nous proposons dans ce paragraphe de traiter de la méthode `aggregate()` de mongolite qui permet d'éxécuter, à l'instar de d'un `.aggregate` en MongoDB, une pipeline d'aggrégation qui n'est rien d'autre qu'une succession de plusieurs étapes d'aggrégation. La méthode `aggregate()` prend comme argument une liste de dictionnaires que l'on met entre simples *quotes*. La syntaxe a utiliser pour cette liste de dictionnaires est la même que pour le `.aggregate` de MongoDB (nous vous renvoyons au chapitre sur [les requêtes d'aggrégations](05_agreg.html) pour plus de précisions). Tout comme la méthode `find()`, la méthode aggregate renvoie un *dataframe*.
+Nous nous proposons dans ce paragraphe de traiter de la méthode `aggregate()` de mongolite qui permet d'éxécuter, à l'instar de d'un `.aggregate` en MongoDB, une pipeline d'aggrégation qui n'est rien d'autre qu'une succession de plusieurs étapes d'aggrégation. La méthode `aggregate()` prend comme argument une liste de dictionnaires que l'on met entre simples *quotes*. La syntaxe a utiliser pour cette liste de dictionnaires est la même que pour le `.aggregate` de MongoDB (nous vous renvoyons au chapitre sur [les requêtes d'aggrégations](05_agreg.md) pour plus de précisions). Tout comme la méthode `find()`, la méthode aggregate renvoie un *dataframe*.
 
 **Exemple :**
 
@@ -422,7 +422,7 @@ it$page(2)
 ## Manipulation de données
 
 ### Méthode insert
-La méthode `insert()` permet, à l'instar du `.insert` en MongoDB ([plus de précisions ici](06_modif.html)), d'ajouter des données à une collection. 
+La méthode `insert()` permet, à l'instar du `.insert` en MongoDB ([plus de précisions ici](06_modif.md)), d'ajouter des données à une collection. 
 La méthode la plus simple, est d'insérer des données à partir d'un data frame R. Les colonnes du data frame seront automatiquement transformées en clées d'enregistrement JSON.  
   
  ```{code-cell} R

@@ -139,7 +139,7 @@ db.NYfood.find(
 
 ### Utilisation d'un objet date dans un aggregate
 
-Il est possible d'accéder aux attributs années, mois, jours,... d'une date. Ceci est très utile pour les [requêtes d'agrégations](05_agreg.html).
+Il est possible d'accéder aux attributs années, mois, jours,... d'une date. Ceci est très utile pour les [requêtes d'agrégations](05_agreg.md).
 
 Exemple d'une requête de regroupement par le mois et l'années. 
 Nous voulons afficher mois par mois le nombre d'étudiants ayant leur date de naissance à ce mois dans la base `etudiants`.

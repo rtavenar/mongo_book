@@ -43,10 +43,7 @@ Tout document appartient donc à une collection et a un champ appelé `_id` qui 
 }
 ```
 
-```{admonition}
-:class: tip
 Dans ce document, on a accès au nom de l'étudiant par la clé `nom`, à ses notes par la clé `notes` *(attention, ici on a une **liste de valeurs** entre crochets, ce type d'attribut n'existe pas dans le modèle relationnel)* et à son sexe par la clé `sexe`. L'étudiant représenté par ce document est identifié à l'aide d'une clé `_id`. 
-```
  
 Les clés se doivent d'être des chaînes de caractères et les valeurs peuvent être *des valeurs booléennes, des nombres, des chaînes de caractères, des dates ou des listes de valeurs* comme nous venons de le voir. Les clés et les valeurs sont sensibles à la casse et au type. Chaque clé doît être unique, il n'est pas possible d'avoir deux fois la même clé dans un document.
 
@@ -481,10 +478,7 @@ db.NYfood.count({"cuisine": "Bakery"})
 ```
 ````
 
-```{admonition}
-:class: tip
 Bien entendu, les résultats seront différents car nous n'avons pas le même nombre de documents avant et après un filtrage de données. Dans le premier exemple, on souhaite afficher le nombre de documents dans la collection `NYfood` tandis que dans les deux autres, on récupère le nombre de documents correspondant à des boulangeries (pour lesquels l'attribut `"cuisine"` vaut `"Bakery"`).
-```
 
 ### Trier les documents résultat : la méthode `sort`
 
