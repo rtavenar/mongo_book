@@ -22,8 +22,8 @@ l'Université de Rennes 2.
 Ce document a été rédigé collaborativement par les étudiants du Master 1
 en 2021.
 
-Pour aider à cette rédaction, deux annexes ont été mises à leur disposition :
+<!-- Pour aider à cette rédaction, deux annexes ont été mises à leur disposition :
 * [annexe consacrée à `git`](sec:git) ;
 * [page d'exemple](sec:exemple) pour se rendre compte de ce qu'il
 est possible de faire, et faire le lien avec
-[la page source correspondante sur github](https://raw.githubusercontent.com/rtavenar/mongo_book/main/content/app_exemple.md) ;
+[la page source correspondante sur github](https://raw.githubusercontent.com/rtavenar/mongo_book/main/content/app_exemple.md) ; -->

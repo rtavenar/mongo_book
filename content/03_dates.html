@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3. Attributs de type date &#8212; MongoDB : notes de cours</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -54,7 +54,10 @@
     <link rel="next" title="4. Les index" href="04_index.html" />
     <link rel="prev" title="2. Attributs de type liste" href="02_listes.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -72,13 +75,14 @@
     <a class="navbar-brand text-wrap" href="../index.html">
       
       
+      
       <h1 class="site-logo" id="site-title">MongoDB : notes de cours</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -87,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Chapitres
  </span>
@@ -156,28 +160,6 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Annexes
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="app_exemple.html">
-   Annexe A : Exemple de fichier source
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="app_git.html">
-   Annexe B : Utilisation de
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     git
-    </span>
-   </code>
-  </a>
- </li>
-</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -226,7 +208,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -277,12 +259,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#qu-est-ce-qu-une-date-dans-mongodb">
@@ -370,10 +352,106 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Attributs de type date</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#qu-est-ce-qu-une-date-dans-mongodb">
+   3.1. Qu’est-ce qu’une date dans MongoDB ?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manipulations-standard">
+   3.2. Manipulations standard
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utilisation-d-un-objet-date-au-format-date">
+     3.2.1. Utilisation d’un objet date au format Date.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utilisation-d-un-objet-date-dans-une-requete-d-egalite">
+     3.2.2. Utilisation d’un objet date dans une requête d’égalité.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utilisation-d-un-objet-date-dans-une-liste">
+     3.2.3. Utilisation d’un objet date dans une liste.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utilisation-d-un-objet-date-dans-un-aggregate">
+     3.2.4. Utilisation d’un objet date dans un aggregate
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformation-de-formats">
+   3.3. Transformation de formats
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#presentation-des-formats">
+     3.3.1. Présentation des formats
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datefromstring">
+     3.3.2.
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       $dateFromString
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exemples">
+       3.3.2.1. Exemples
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datetostring">
+     3.3.3.
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       $dateToString
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       3.3.3.1. Exemples
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="attributs-de-type-date">
+  <div class="tex2jax_ignore mathjax_ignore section" id="attributs-de-type-date">
 <h1><span class="section-number">3. </span>Attributs de type date<a class="headerlink" href="#attributs-de-type-date" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Auteurs/trices : <strong>ABOULKACEM Zakaria, GARY Gaston, HAMELIN Marine, RALIN Kévin</strong></p></li>
@@ -390,7 +468,7 @@ Les dates sont renseignées sous la forme ISO date, nous retrouvons la date de l
 Lorsque l’on utilise le shell MongoDB, on va créer des dates en Javascript et les utiliser pour nos requêtes.
 Dans ce cadre, nous pouvons mettre uniquement l’année ou l’année et le mois sans devoir spécifier tout le langage s’occupe de remplir les autres arguments pour retrouver la forme indiquée plus haut.</p>
 <p>Exemple :</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">ma_date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span> <span class="p">(</span><span class="s1">&#39;2021&#39;</span><span class="p">)</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">ma_date</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span> <span class="p">(</span><span class="s1">&#39;2021&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>nous donne un objet de type date de la forme suivante :</p>
@@ -425,7 +503,7 @@ Lorsque l’on souhaite effectuer un test sur une date, on utilisera des opérat
 </div>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-13&quot;</span><span class="p">)</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-13&quot;</span><span class="p">)</span>
 <span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;grades.date&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gt</span> <span class="o">:</span> <span class="nx">madate</span><span class="p">}})</span>
 </pre></div>
 </div>
@@ -456,7 +534,7 @@ La requête suivante nous renvoie donc les étudiants nés le 13 février 1995 �
 </div>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-13&quot;</span><span class="p">)</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-13&quot;</span><span class="p">)</span>
 <span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;ddn&quot;</span><span class="o">:</span> <span class="nx">madate</span><span class="p">}</span>
 <span class="p">)</span>
@@ -473,8 +551,8 @@ La requête suivante nous renvoie donc les étudiants nés le 13 février 1995 �
 <p>Pour avoir les étudiants nés le 13 février 1995, nous utiliserions la requête suivante :</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madateinf</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-13&quot;</span><span class="p">);</span>
-<span class="nx">madatesup</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-14&quot;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madateinf</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-13&quot;</span><span class="p">);</span>
+<span class="nx">madatesup</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;1995-02-14&quot;</span><span class="p">);</span>
 
 <span class="nx">db</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;ddn&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gte</span><span class="o">:</span> <span class="nx">madateinf</span><span class="p">,</span>
@@ -512,7 +590,7 @@ La requête suivante nous renvoie donc les étudiants nés le 13 février 1995 �
 </div>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2014-10-05&quot;</span><span class="p">)</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2014-10-05&quot;</span><span class="p">)</span>
 <span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;grades.date&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gt</span><span class="o">:</span> <span class="nx">madate</span><span class="p">}}</span>
 <span class="p">)</span>
@@ -541,8 +619,8 @@ La requête suivante nous renvoie donc les étudiants nés le 13 février 1995 �
 </div>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate1</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2014-11-01&quot;</span><span class="p">)</span>
-<span class="nx">madate2</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2014-12-01&quot;</span><span class="p">)</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">madate1</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2014-11-01&quot;</span><span class="p">)</span>
+<span class="nx">madate2</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2014-12-01&quot;</span><span class="p">)</span>
 <span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;grades&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$elemMatch</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="o">:</span> <span class="p">{</span><span class="nx">$gte</span><span class="o">:</span> <span class="nx">madate1</span><span class="p">,</span><span class="nx">$lt</span><span class="o">:</span> <span class="nx">madate2</span><span class="p">}}</span>
                <span class="p">}</span>
@@ -591,12 +669,12 @@ Nous voulons afficher mois par mois le nombre d’étudiants ayant leur date de 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;month&quot; : 3, &quot;year&quot; : 1995 }, &quot;nb&quot; : 1 }
-{ &quot;_id&quot; : { &quot;month&quot; : 3, &quot;year&quot; : 1993 }, &quot;nb&quot; : 1 }
-{ &quot;_id&quot; : { &quot;month&quot; : 1, &quot;year&quot; : 1993 }, &quot;nb&quot; : 1 }
-{ &quot;_id&quot; : { &quot;month&quot; : 2, &quot;year&quot; : 1995 }, &quot;nb&quot; : 1 }
 { &quot;_id&quot; : { &quot;month&quot; : 5, &quot;year&quot; : 1995 }, &quot;nb&quot; : 1 }
-{ &quot;_id&quot; : { &quot;month&quot; : 9, &quot;year&quot; : 1996 }, &quot;nb&quot; : 1 }
 { &quot;_id&quot; : { &quot;month&quot; : null, &quot;year&quot; : null }, &quot;nb&quot; : 1 }
+{ &quot;_id&quot; : { &quot;month&quot; : 3, &quot;year&quot; : 1993 }, &quot;nb&quot; : 1 }
+{ &quot;_id&quot; : { &quot;month&quot; : 2, &quot;year&quot; : 1995 }, &quot;nb&quot; : 1 }
+{ &quot;_id&quot; : { &quot;month&quot; : 1, &quot;year&quot; : 1993 }, &quot;nb&quot; : 1 }
+{ &quot;_id&quot; : { &quot;month&quot; : 9, &quot;year&quot; : 1996 }, &quot;nb&quot; : 1 }
 </pre></div>
 </div>
 </div>
@@ -789,34 +867,42 @@ Nous voulons afficher mois par mois le nombre d’étudiants ayant leur date de 
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="02_listes.html" title="previous page"><span class="section-number">2. </span>Attributs de type liste</a>
-    <a class='right-next' id="next-link" href="04_index.html" title="next page"><span class="section-number">4. </span>Les index</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="02_listes.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Attributs de type liste</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="04_index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Les index</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Ouvrage collectif<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Ouvrage collectif<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

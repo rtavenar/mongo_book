@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>4. Les index &#8212; MongoDB : notes de cours</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -54,7 +54,10 @@
     <link rel="next" title="5. Les requêtes d’agrégation" href="05_agreg.html" />
     <link rel="prev" title="3. Attributs de type date" href="03_dates.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -72,13 +75,14 @@
     <a class="navbar-brand text-wrap" href="../index.html">
       
       
+      
       <h1 class="site-logo" id="site-title">MongoDB : notes de cours</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -87,7 +91,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Chapitres
  </span>
@@ -156,28 +160,6 @@
   </ul>
  </li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  Annexes
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="app_exemple.html">
-   Annexe A : Exemple de fichier source
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="app_git.html">
-   Annexe B : Utilisation de
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     git
-    </span>
-   </code>
-  </a>
- </li>
-</ul>
 
     </div>
 </nav> <!-- To handle the deprecated key -->
@@ -226,7 +208,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -277,12 +259,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#a-quoi-servent-ils">
@@ -322,10 +304,58 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Les index</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-quoi-servent-ils">
+   4.1. À quoi servent-ils ?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quand-les-utiliser">
+   4.2. Quand les utiliser ?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntaxe-adaptee">
+   4.3. Syntaxe adaptée
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#index-composes">
+   4.4. Index composés
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#requetes-et-index-textuels">
+   4.5. Requêtes et Index textuels
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#index-geo-spatiaux">
+   4.6. Index géo-spatiaux
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
-  <div class="section" id="les-index">
+  <div class="tex2jax_ignore mathjax_ignore section" id="les-index">
 <h1><span class="section-number">4. </span>Les index<a class="headerlink" href="#les-index" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Auteurs/trices : Adrien VIGUE, Etienne BARON, Camille MONOT</p></li>
@@ -380,9 +410,9 @@ où vous vous attendez à devoir faire des mises à jour régulières.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;createdCollectionAutomatically&quot; : false,
 	&quot;numIndexesBefore&quot; : 3,
 	&quot;numIndexesAfter&quot; : 4,
+	&quot;createdCollectionAutomatically&quot; : false,
 	&quot;ok&quot; : 1
 }
 </pre></div>
@@ -465,7 +495,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594d2&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f7ec&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1269&quot;,
 		&quot;loc&quot; : {
@@ -511,7 +541,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40358429&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594fd&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f80e&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;976&quot;,
 		&quot;loc&quot; : {
@@ -552,7 +582,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40363920&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059779&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397fa92&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;152&quot;,
 		&quot;loc&quot; : {
@@ -598,7 +628,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40388386&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350597c0&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397fad8&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;463&quot;,
 		&quot;loc&quot; : {
@@ -634,7 +664,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40390653&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350597e5&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397fb00&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;152&quot;,
 		&quot;loc&quot; : {
@@ -675,7 +705,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40391528&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505981e&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397fb37&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;404&quot;,
 		&quot;loc&quot; : {
@@ -721,7 +751,48 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40393181&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505991a&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397fc3d&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;425&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.96837599999999,
+				40.59775399999999
+			]
+		},
+		&quot;street&quot; : &quot;Avenue U&quot;,
+		&quot;zipcode&quot; : &quot;11223&quot;
+	},
+	&quot;borough&quot; : &quot;Brooklyn&quot;,
+	&quot;cuisine&quot; : &quot;Chinese&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-10-09T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 12
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-10-10T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-10-01T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 8
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2011-10-25T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 11
+		}
+	],
+	&quot;name&quot; : &quot;Choy Le Chinese Restaurant&quot;,
+	&quot;restaurant_id&quot; : &quot;40398904&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397fc46&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;5100&quot;,
 		&quot;loc&quot; : {
@@ -767,48 +838,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40398688&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059925&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;425&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.96837599999999,
-				40.59775399999999
-			]
-		},
-		&quot;street&quot; : &quot;Avenue U&quot;,
-		&quot;zipcode&quot; : &quot;11223&quot;
-	},
-	&quot;borough&quot; : &quot;Brooklyn&quot;,
-	&quot;cuisine&quot; : &quot;Chinese&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-10-09T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-10-10T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-10-01T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 8
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-10-25T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 11
-		}
-	],
-	&quot;name&quot; : &quot;Choy Le Chinese Restaurant&quot;,
-	&quot;restaurant_id&quot; : &quot;40398904&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059b39&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397fe52&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1955&quot;,
 		&quot;loc&quot; : {
@@ -854,7 +884,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40537963&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059c5b&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397ff73&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;6820&quot;,
 		&quot;loc&quot; : {
@@ -909,7 +939,7 @@ Type &quot;it&quot; for more
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594d0&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f7e9&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;7715&quot;,
 		&quot;loc&quot; : {
@@ -950,43 +980,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40357437&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594d5&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;265-15&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.7032601,
-				40.7386417
-			]
-		},
-		&quot;street&quot; : &quot;Hillside Avenue&quot;,
-		&quot;zipcode&quot; : &quot;11004&quot;
-	},
-	&quot;borough&quot; : &quot;Queens&quot;,
-	&quot;cuisine&quot; : &quot;Ice Cream, Gelato, Yogurt, Ices&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-10-28T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-09-18T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 10
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-09-20T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		}
-	],
-	&quot;name&quot; : &quot;Carvel Ice Cream&quot;,
-	&quot;restaurant_id&quot; : &quot;40361322&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594d6&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f7ed&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;203&quot;,
 		&quot;loc&quot; : {
@@ -1032,7 +1026,43 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40360076&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594e4&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f7ef&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;265-15&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.7032601,
+				40.7386417
+			]
+		},
+		&quot;street&quot; : &quot;Hillside Avenue&quot;,
+		&quot;zipcode&quot; : &quot;11004&quot;
+	},
+	&quot;borough&quot; : &quot;Queens&quot;,
+	&quot;cuisine&quot; : &quot;Ice Cream, Gelato, Yogurt, Ices&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-10-28T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-09-18T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-09-20T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		}
+	],
+	&quot;name&quot; : &quot;Carvel Ice Cream&quot;,
+	&quot;restaurant_id&quot; : &quot;40361322&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f7ff&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1006&quot;,
 		&quot;loc&quot; : {
@@ -1078,7 +1108,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40363093&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594e9&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f804&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;625&quot;,
 		&quot;loc&quot; : {
@@ -1124,7 +1154,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40363298&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b0543862350594f4&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f80d&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1111&quot;,
 		&quot;loc&quot; : {
@@ -1160,7 +1190,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40363834&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059508&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f821&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;100&quot;,
 		&quot;loc&quot; : {
@@ -1201,7 +1231,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40364443&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505950c&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f826&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;215&quot;,
 		&quot;loc&quot; : {
@@ -1247,7 +1277,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40364531&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505951d&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f837&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;67&quot;,
 		&quot;loc&quot; : {
@@ -1288,7 +1318,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40365013&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b054386235059523&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397f83b&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;331&quot;,
 		&quot;loc&quot; : {
@@ -1344,8 +1374,8 @@ Type &quot;it&quot; for more
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;explainVersion&quot; : &quot;1&quot;,
 	&quot;queryPlanner&quot; : {
-		&quot;plannerVersion&quot; : 1,
 		&quot;namespace&quot; : &quot;food.NYfood&quot;,
 		&quot;indexFilterSet&quot; : false,
 		&quot;parsedQuery&quot; : {
@@ -1362,6 +1392,9 @@ Type &quot;it&quot; for more
 				}
 			]
 		},
+		&quot;maxIndexedOrSolutionsReached&quot; : false,
+		&quot;maxIndexedAndSolutionsReached&quot; : false,
+		&quot;maxScansToExplodeReached&quot; : false,
 		&quot;winningPlan&quot; : {
 			&quot;stage&quot; : &quot;FETCH&quot;,
 			&quot;filter&quot; : {
@@ -1396,7 +1429,7 @@ Type &quot;it&quot; for more
 	&quot;executionStats&quot; : {
 		&quot;executionSuccess&quot; : true,
 		&quot;nReturned&quot; : 763,
-		&quot;executionTimeMillis&quot; : 10,
+		&quot;executionTimeMillis&quot; : 11,
 		&quot;totalKeysExamined&quot; : 6085,
 		&quot;totalDocsExamined&quot; : 6085,
 		&quot;executionStages&quot; : {
@@ -1420,7 +1453,7 @@ Type &quot;it&quot; for more
 			&quot;inputStage&quot; : {
 				&quot;stage&quot; : &quot;IXSCAN&quot;,
 				&quot;nReturned&quot; : 6085,
-				&quot;executionTimeMillisEstimate&quot; : 2,
+				&quot;executionTimeMillisEstimate&quot; : 0,
 				&quot;works&quot; : 6086,
 				&quot;advanced&quot; : 6085,
 				&quot;needTime&quot; : 0,
@@ -1453,11 +1486,29 @@ Type &quot;it&quot; for more
 			}
 		}
 	},
+	&quot;command&quot; : {
+		&quot;find&quot; : &quot;NYfood&quot;,
+		&quot;filter&quot; : {
+			&quot;cuisine&quot; : &quot;Chinese&quot;,
+			&quot;borough&quot; : &quot;Brooklyn&quot;
+		},
+		&quot;$db&quot; : &quot;food&quot;
+	},
 	&quot;serverInfo&quot; : {
-		&quot;host&quot; : &quot;0e58f3097b3a&quot;,
+		&quot;host&quot; : &quot;2d33ba664157&quot;,
 		&quot;port&quot; : 27017,
-		&quot;version&quot; : &quot;4.4.5&quot;,
-		&quot;gitVersion&quot; : &quot;ff5cb77101b052fa02da43b8538093486cf9b3f7&quot;
+		&quot;version&quot; : &quot;5.0.5&quot;,
+		&quot;gitVersion&quot; : &quot;d65fd89df3fc039b5c55933c0f71d647a54510ae&quot;
+	},
+	&quot;serverParameters&quot; : {
+		&quot;internalQueryFacetBufferSizeBytes&quot; : 104857600,
+		&quot;internalQueryFacetMaxOutputDocSizeBytes&quot; : 104857600,
+		&quot;internalLookupStageIntermediateDocumentMaxSizeBytes&quot; : 104857600,
+		&quot;internalDocumentSourceGroupMaxMemoryBytes&quot; : 104857600,
+		&quot;internalQueryMaxBlockingSortMemoryUsageBytes&quot; : 104857600,
+		&quot;internalQueryProhibitBlockingMergeOnMongoS&quot; : 0,
+		&quot;internalQueryMaxAddToSetBytes&quot; : 104857600,
+		&quot;internalDocumentSourceSetWindowFieldsMaxMemoryBytes&quot; : 104857600
 	},
 	&quot;ok&quot; : 1
 }
@@ -1474,9 +1525,9 @@ Type &quot;it&quot; for more
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;createdCollectionAutomatically&quot; : false,
 	&quot;numIndexesBefore&quot; : 4,
 	&quot;numIndexesAfter&quot; : 5,
+	&quot;createdCollectionAutomatically&quot; : false,
 	&quot;ok&quot; : 1
 }
 </pre></div>
@@ -1492,8 +1543,8 @@ Type &quot;it&quot; for more
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;explainVersion&quot; : &quot;1&quot;,
 	&quot;queryPlanner&quot; : {
-		&quot;plannerVersion&quot; : 1,
 		&quot;namespace&quot; : &quot;food.NYfood&quot;,
 		&quot;indexFilterSet&quot; : false,
 		&quot;parsedQuery&quot; : {
@@ -1510,6 +1561,9 @@ Type &quot;it&quot; for more
 				}
 			]
 		},
+		&quot;maxIndexedOrSolutionsReached&quot; : false,
+		&quot;maxIndexedAndSolutionsReached&quot; : false,
+		&quot;maxScansToExplodeReached&quot; : false,
 		&quot;winningPlan&quot; : {
 			&quot;stage&quot; : &quot;FETCH&quot;,
 			&quot;filter&quot; : {
@@ -1638,7 +1692,7 @@ Type &quot;it&quot; for more
 	&quot;executionStats&quot; : {
 		&quot;executionSuccess&quot; : true,
 		&quot;nReturned&quot; : 763,
-		&quot;executionTimeMillis&quot; : 7,
+		&quot;executionTimeMillis&quot; : 6,
 		&quot;totalKeysExamined&quot; : 2418,
 		&quot;totalDocsExamined&quot; : 2418,
 		&quot;executionStages&quot; : {
@@ -1695,11 +1749,29 @@ Type &quot;it&quot; for more
 			}
 		}
 	},
+	&quot;command&quot; : {
+		&quot;find&quot; : &quot;NYfood&quot;,
+		&quot;filter&quot; : {
+			&quot;cuisine&quot; : &quot;Chinese&quot;,
+			&quot;borough&quot; : &quot;Brooklyn&quot;
+		},
+		&quot;$db&quot; : &quot;food&quot;
+	},
 	&quot;serverInfo&quot; : {
-		&quot;host&quot; : &quot;0e58f3097b3a&quot;,
+		&quot;host&quot; : &quot;2d33ba664157&quot;,
 		&quot;port&quot; : 27017,
-		&quot;version&quot; : &quot;4.4.5&quot;,
-		&quot;gitVersion&quot; : &quot;ff5cb77101b052fa02da43b8538093486cf9b3f7&quot;
+		&quot;version&quot; : &quot;5.0.5&quot;,
+		&quot;gitVersion&quot; : &quot;d65fd89df3fc039b5c55933c0f71d647a54510ae&quot;
+	},
+	&quot;serverParameters&quot; : {
+		&quot;internalQueryFacetBufferSizeBytes&quot; : 104857600,
+		&quot;internalQueryFacetMaxOutputDocSizeBytes&quot; : 104857600,
+		&quot;internalLookupStageIntermediateDocumentMaxSizeBytes&quot; : 104857600,
+		&quot;internalDocumentSourceGroupMaxMemoryBytes&quot; : 104857600,
+		&quot;internalQueryMaxBlockingSortMemoryUsageBytes&quot; : 104857600,
+		&quot;internalQueryProhibitBlockingMergeOnMongoS&quot; : 0,
+		&quot;internalQueryMaxAddToSetBytes&quot; : 104857600,
+		&quot;internalDocumentSourceSetWindowFieldsMaxMemoryBytes&quot; : 104857600
 	},
 	&quot;ok&quot; : 1
 }
@@ -1736,8 +1808,8 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;explainVersion&quot; : &quot;1&quot;,
 	&quot;queryPlanner&quot; : {
-		&quot;plannerVersion&quot; : 1,
 		&quot;namespace&quot; : &quot;food.NYfood&quot;,
 		&quot;indexFilterSet&quot; : false,
 		&quot;parsedQuery&quot; : {
@@ -1754,6 +1826,9 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 				}
 			]
 		},
+		&quot;maxIndexedOrSolutionsReached&quot; : false,
+		&quot;maxIndexedAndSolutionsReached&quot; : false,
+		&quot;maxScansToExplodeReached&quot; : false,
 		&quot;winningPlan&quot; : {
 			&quot;stage&quot; : &quot;FETCH&quot;,
 			&quot;filter&quot; : {
@@ -1939,11 +2014,29 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 			}
 		}
 	},
+	&quot;command&quot; : {
+		&quot;find&quot; : &quot;NYfood&quot;,
+		&quot;filter&quot; : {
+			&quot;cuisine&quot; : &quot;Chinese&quot;,
+			&quot;borough&quot; : &quot;Brooklyn&quot;
+		},
+		&quot;$db&quot; : &quot;food&quot;
+	},
 	&quot;serverInfo&quot; : {
-		&quot;host&quot; : &quot;0e58f3097b3a&quot;,
+		&quot;host&quot; : &quot;2d33ba664157&quot;,
 		&quot;port&quot; : 27017,
-		&quot;version&quot; : &quot;4.4.5&quot;,
-		&quot;gitVersion&quot; : &quot;ff5cb77101b052fa02da43b8538093486cf9b3f7&quot;
+		&quot;version&quot; : &quot;5.0.5&quot;,
+		&quot;gitVersion&quot; : &quot;d65fd89df3fc039b5c55933c0f71d647a54510ae&quot;
+	},
+	&quot;serverParameters&quot; : {
+		&quot;internalQueryFacetBufferSizeBytes&quot; : 104857600,
+		&quot;internalQueryFacetMaxOutputDocSizeBytes&quot; : 104857600,
+		&quot;internalLookupStageIntermediateDocumentMaxSizeBytes&quot; : 104857600,
+		&quot;internalDocumentSourceGroupMaxMemoryBytes&quot; : 104857600,
+		&quot;internalQueryMaxBlockingSortMemoryUsageBytes&quot; : 104857600,
+		&quot;internalQueryProhibitBlockingMergeOnMongoS&quot; : 0,
+		&quot;internalQueryMaxAddToSetBytes&quot; : 104857600,
+		&quot;internalDocumentSourceSetWindowFieldsMaxMemoryBytes&quot; : 104857600
 	},
 	&quot;ok&quot; : 1
 }
@@ -1960,9 +2053,9 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;createdCollectionAutomatically&quot; : false,
 	&quot;numIndexesBefore&quot; : 5,
 	&quot;numIndexesAfter&quot; : 6,
+	&quot;createdCollectionAutomatically&quot; : false,
 	&quot;ok&quot; : 1
 }
 </pre></div>
@@ -1978,8 +2071,8 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+	&quot;explainVersion&quot; : &quot;1&quot;,
 	&quot;queryPlanner&quot; : {
-		&quot;plannerVersion&quot; : 1,
 		&quot;namespace&quot; : &quot;food.NYfood&quot;,
 		&quot;indexFilterSet&quot; : false,
 		&quot;parsedQuery&quot; : {
@@ -1996,6 +2089,9 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 				}
 			]
 		},
+		&quot;maxIndexedOrSolutionsReached&quot; : false,
+		&quot;maxIndexedAndSolutionsReached&quot; : false,
+		&quot;maxScansToExplodeReached&quot; : false,
 		&quot;winningPlan&quot; : {
 			&quot;stage&quot; : &quot;FETCH&quot;,
 			&quot;inputStage&quot; : {
@@ -2089,7 +2185,7 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 	&quot;executionStats&quot; : {
 		&quot;executionSuccess&quot; : true,
 		&quot;nReturned&quot; : 763,
-		&quot;executionTimeMillis&quot; : 3,
+		&quot;executionTimeMillis&quot; : 2,
 		&quot;totalKeysExamined&quot; : 763,
 		&quot;totalDocsExamined&quot; : 763,
 		&quot;executionStages&quot; : {
@@ -2146,11 +2242,29 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 			}
 		}
 	},
+	&quot;command&quot; : {
+		&quot;find&quot; : &quot;NYfood&quot;,
+		&quot;filter&quot; : {
+			&quot;cuisine&quot; : &quot;Chinese&quot;,
+			&quot;borough&quot; : &quot;Brooklyn&quot;
+		},
+		&quot;$db&quot; : &quot;food&quot;
+	},
 	&quot;serverInfo&quot; : {
-		&quot;host&quot; : &quot;0e58f3097b3a&quot;,
+		&quot;host&quot; : &quot;2d33ba664157&quot;,
 		&quot;port&quot; : 27017,
-		&quot;version&quot; : &quot;4.4.5&quot;,
-		&quot;gitVersion&quot; : &quot;ff5cb77101b052fa02da43b8538093486cf9b3f7&quot;
+		&quot;version&quot; : &quot;5.0.5&quot;,
+		&quot;gitVersion&quot; : &quot;d65fd89df3fc039b5c55933c0f71d647a54510ae&quot;
+	},
+	&quot;serverParameters&quot; : {
+		&quot;internalQueryFacetBufferSizeBytes&quot; : 104857600,
+		&quot;internalQueryFacetMaxOutputDocSizeBytes&quot; : 104857600,
+		&quot;internalLookupStageIntermediateDocumentMaxSizeBytes&quot; : 104857600,
+		&quot;internalDocumentSourceGroupMaxMemoryBytes&quot; : 104857600,
+		&quot;internalQueryMaxBlockingSortMemoryUsageBytes&quot; : 104857600,
+		&quot;internalQueryProhibitBlockingMergeOnMongoS&quot; : 0,
+		&quot;internalQueryMaxAddToSetBytes&quot; : 104857600,
+		&quot;internalDocumentSourceSetWindowFieldsMaxMemoryBytes&quot; : 104857600
 	},
 	&quot;ok&quot; : 1
 }
@@ -2281,7 +2395,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;608a72b1b05438623505f702&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d3985a1a&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;372&quot;,
 		&quot;loc&quot; : {
@@ -2301,7 +2415,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;50018528&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b1b05438623505d31c&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d398362e&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1994&quot;,
 		&quot;loc&quot; : {
@@ -2337,7 +2451,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;41657236&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505a4df&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d39807f9&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1883&quot;,
 		&quot;loc&quot; : {
@@ -2383,7 +2497,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;40946431&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b1b05438623505dcf0&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d3984009&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;433A&quot;,
 		&quot;loc&quot; : {
@@ -2414,7 +2528,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;41720441&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b1b05438623505d2a6&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d39835c0&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;431&quot;,
 		&quot;loc&quot; : {
@@ -2450,7 +2564,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;41653409&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505bb65&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d3981e7e&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1928&quot;,
 		&quot;loc&quot; : {
@@ -2496,7 +2610,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;41408013&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505bf7f&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d3982297&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1884&quot;,
 		&quot;loc&quot; : {
@@ -2547,7 +2661,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;41462031&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b1b05438623505dda8&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d39840c1&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;391&quot;,
 		&quot;loc&quot; : {
@@ -2573,7 +2687,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;50000096&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b1b05438623505e436&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d398474e&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;479&quot;,
 		&quot;loc&quot; : {
@@ -2604,7 +2718,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;50003206&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b1b05438623505da6e&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d3983d86&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;17&quot;,
 		&quot;loc&quot; : {
@@ -2670,7 +2784,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505bbdd&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d3981ef6&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;347&quot;,
 		&quot;loc&quot; : {
@@ -2716,7 +2830,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41415537&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505b4a9&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d39817c2&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;233&quot;,
 		&quot;loc&quot; : {
@@ -2757,7 +2871,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41312502&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505a659&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d3980971&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;210&quot;,
 		&quot;loc&quot; : {
@@ -2808,7 +2922,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;40996589&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b1b05438623505c4d3&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d39827ec&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;210&quot;,
 		&quot;loc&quot; : {
@@ -2854,7 +2968,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41531418&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505bf52&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d398226c&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;208&quot;,
 		&quot;loc&quot; : {
@@ -2900,7 +3014,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41460032&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505991d&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397fc35&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;141&quot;,
 		&quot;loc&quot; : {
@@ -2941,7 +3055,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;40398690&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b1b05438623505dc4b&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c1bce53d29d3983f64&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;139&quot;,
 		&quot;loc&quot; : {
@@ -2972,7 +3086,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41717412&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505abbf&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d3980ed8&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;125&quot;,
 		&quot;loc&quot; : {
@@ -3013,7 +3127,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41145020&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505ae41&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d398115a&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;64&quot;,
 		&quot;loc&quot; : {
@@ -3064,7 +3178,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41200236&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;608a72b0b05438623505981c&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e690c0bce53d29d397fb35&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;85&quot;,
 		&quot;loc&quot; : {
@@ -3129,34 +3243,42 @@ Type &quot;it&quot; for more
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="03_dates.html" title="previous page"><span class="section-number">3. </span>Attributs de type date</a>
-    <a class='right-next' id="next-link" href="05_agreg.html" title="next page"><span class="section-number">5. </span>Les requêtes d’agrégation</a>
-
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="03_dates.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">3. </span>Attributs de type date</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="05_agreg.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Les requêtes d’agrégation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Ouvrage collectif<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Ouvrage collectif<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
