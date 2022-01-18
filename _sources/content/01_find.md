@@ -90,12 +90,9 @@ db.collectionName.findOne({})
 
 ````
 
-```{admonition}
-:class: tip
 À noter : Dans les deuxièmes propositions de chaque cas présenté ci-dessus, on a des accolades entre les parenthèses de la fonction. Ces accolades correspondent au *document masque*. Elles sont vides ce qui indique que nous ne posons pas de condition sur les documents à retourner.
+Si au contraire on souhaite **fixer des contraintes sur les documents à retourner**, il suffit de passer en argument d'une de ces fonctions un document masque contenant les valeurs souhaitées.
 
-Au contraire, si l'on souhaite **fixer des contraintes sur les documents à retourner**, il suffit de passer en argument d'une de ces fonctions un document masque contenant les valeurs souhaitées. La requête suivante retourne tous les documents ayant un champ "x" dont la valeur est "y". 
-```
 
 Pour voir cela sur un exemple, sélctionnons la base `food` comme suit :
 
@@ -148,7 +145,7 @@ Cette base de données contient une collection `NYfood` qui recense un ensemble 
 
 En utilisant la syntaxe précédente, recherchons par exemple les documents de la collection `NYfood` correspondant à des **boulangeries** *(pour lesquels le champ "cuisine" vaut "Bakery")* **du Bronx** *(pour lesquels le champ "borough" vaut "Bronx")*.  
 
-````{tabbed} Exemple sur la base de données `food`
+````{tabbed} Exemple
 
 ```javascript
 db.NYfood.find(
@@ -222,7 +219,7 @@ Nous verrons dans cette section deux types d'opérateurs : les [opérateurs de c
 
  ```{admonition} Remarque
  
-La syntaxe des requêtes avec des opérateurs de comparaison est la suivante : `db.nomDeLaCollection.find({"x": {operateur: valeur}})`.
+La syntaxe des requêtes avec des opérateurs de comparaison est la suivante : `db.collectionName.find({"x": {operateur: valeur}})`.
 ```
 
 (comparaison)=
@@ -232,16 +229,16 @@ L'opérateur de comparaison permet de comparer deux élements entre eux. Le tabl
 
 | Opérateur logique 	| Mot clé en MongoDB 	| 
 |-	|-	|
-| = 	| $eq 	|
-| ≠ 	| $ne 	|
-| < 	| $lt 	|
-| > 	| $gt 	|
-| ≤ 	| $lte 	|
-| ≥ 	| $gte 	|
-| ∈ 	| $in 	|
-| ∉ 	| $nin 	|
-| clé existante 	| $exists 	|
-| \|.\| 	| $size 	|
+| = 	| `$eq` 	|
+| ≠ 	| `$ne` 	|
+| < 	| `$lt` 	|
+| > 	| `$gt` 	|
+| ≤ 	| `$lte` 	|
+| ≥ 	| `$gte` 	|
+| ∈ 	| `$in` 	|
+| ∉ 	| `$nin` 	|
+| clé existante 	| `$exists` 	|
+| \|.\| 	| `$size` 	|
 
 Les opérateurs `$eq`, `$ne`, `$lt`, `$gt`, `$lte`, `$gte` s'utilisent de la même façon en MongoDB. Ces opérateurs comparent la valeur d'une variable à une valeur fixe (nombre, booléen, chaine de caractères...), comme dans l'exemple suivant :
 
@@ -276,7 +273,7 @@ La façon de l'utiliser en MongoDB est la suivante :
 MongoDB
 ^^^
 ```javascript
-db.t.find(
+db.collectionName.find(
     {"a": { $in: ["chaine1", "chaine2"] }
     }
 )
@@ -297,7 +294,7 @@ WHERE a IN ("chaine1", "chaine2")
 L'opérateur `$exists` vérifie l'existence d'une clé dans un document. Sa syntaxe en MongoDB est : 
 
 ```javascript
-db.t.find(
+db.collectionName.find(
     {"a": { $exists: true}
     }
 )
@@ -309,7 +306,7 @@ Enfin, l'opérateur `$size` permet de récuperer les documents pour lesquels l'a
 Sa syntaxe en MongoDB est la suivante :
 
 ```javascript
-db.t.find(
+db.collectionName.find(
     {"a": { $size: 5}
     }
 )
@@ -333,7 +330,7 @@ L'exemple ci-dessous nous montre l'équivalence entre MongoDB et le langage SQL 
 MongoDB
 ^^^
 ```javascript
-db.t.find(
+db.collectionName.find(
     {"a": 1, "b": 5}
 )
 ```
@@ -362,7 +359,7 @@ Le OU logique se construit de la manière suivane : `$or : [{condition 1}, ... ,
 MongoDB
 ^^^
 ```javascript
-db.t.find(
+db.collectionName.find(
     {$or : 
       [
         {"a": 1},
@@ -391,7 +388,7 @@ Le résultat de la requête sera les documents validant au moins un des deux con
 L'opérateur `$nor` permet de renvoyer les documents ne validant aucune des conditions d'une liste de conditions. Voici sa syntaxe qui est très semblable à celle de `$or` : 
 
 ```javascript
-db.t.find(
+db.collectionName.find(
     {$nor : 
       [
         {"a": 1},
@@ -409,7 +406,7 @@ Le `$not` renvoie les documents qui ne remplissent pas la condition qu'il contie
 Reprenons l'exemple précédent :
 
 ```javascript
-db.t.find(
+db.collectionName.find(
     {$not : 
       {"a": 1}
     }
@@ -441,11 +438,10 @@ Par exemple, la requête suivante en MongoDB permet d'afficher la liste des note
 Syntaxe et exemple en MongoDB
 ^^^
 ```javascript
-db.collectionName.distinct(champ, {...})
-db.NYfood.distinct(
-    "grades.grade", 
-    {"borough": "Manhattan"} // Ici, une condition
-) 
+db.collectionName.distinct(
+    champ, 
+    {...} // Ici, une condition
+)
 ```
 
 ---
