@@ -465,6 +465,10 @@ Exemple:</p>
 </div>
 </div>
 <p>Ici, on crée par exemple une collection “ventes” au sein de la base “voitures”.</p>
+<div class="warning admonition">
+<p class="admonition-title">Attention</p>
+<p>Si vous tentez d’exécuter plusieurs fois la commande, une erreur surviendra car votre collection existe déjà.</p>
+</div>
 </div>
 <div class="section" id="ajout-de-nouveaux-documents">
 <h3><span class="section-number">6.1.2. </span>Ajout de nouveaux documents<a class="headerlink" href="#ajout-de-nouveaux-documents" title="Permalink to this headline">¶</a></h3>
@@ -499,8 +503,8 @@ Exemple:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;61e69be8fbcbfd6ff0b57054&quot;), &quot;nom&quot; : &quot;C1&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;61e69be8fbcbfd6ff0b57055&quot;), &quot;nom&quot; : &quot;C2&quot; }
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;61e6a0f55eb1a317886556cf&quot;), &quot;nom&quot; : &quot;C1&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;61e6a0f55eb1a317886556d0&quot;), &quot;nom&quot; : &quot;C2&quot; }
 </pre></div>
 </div>
 </div>
@@ -527,6 +531,10 @@ Exemple:</p>
 </div>
 </div>
 <p>Le document sélectionné sur la première ligne est supprimé et remplacé selon les champs renseignés sur la seconde ligne. Les champs qui ne sont pas renseignés sont donc supprimés.</p>
+<div class="warning admonition">
+<p class="admonition-title">Attention</p>
+<p>Seul le premier document de la liste sera modifié.</p>
+</div>
 </div>
 <div class="section" id="modification-d-un-document">
 <h3><span class="section-number">6.2.2. </span>Modification d’un document<a class="headerlink" href="#modification-d-un-document" title="Permalink to this headline">¶</a></h3>
@@ -606,7 +614,7 @@ Exemple:</p>
 	&quot;nMatched&quot; : 0,
 	&quot;nUpserted&quot; : 1,
 	&quot;nModified&quot; : 0,
-	&quot;_id&quot; : ObjectId(&quot;61e69be9a74b4d04f5874fe0&quot;)
+	&quot;_id&quot; : ObjectId(&quot;61e6a0f6ac62e4b20f11e897&quot;)
 })
 </pre></div>
 </div>

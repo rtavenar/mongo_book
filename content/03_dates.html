@@ -639,7 +639,7 @@ La requête suivante nous renvoie donc les étudiants nés le 13 février 1995 �
 </div>
 <div class="section" id="utilisation-d-un-objet-date-dans-un-aggregate">
 <h3><span class="section-number">3.2.4. </span>Utilisation d’un objet date dans un aggregate<a class="headerlink" href="#utilisation-d-un-objet-date-dans-un-aggregate" title="Permalink to this headline">¶</a></h3>
-<p>Il est possible d’accéder aux attributs années, mois, jours,… d’une date. Ceci est très utile pour les <span class="xref myst">requêtes d’agrégations</span>.</p>
+<p>Il est possible d’accéder aux attributs années, mois, jours,… d’une date. Ceci est très utile pour les <a class="reference internal" href="05_agreg.html"><span class="doc std std-doc">requêtes d’agrégations</span></a>.</p>
 <p>Exemple d’une requête de regroupement par le mois et l’années.
 Nous voulons afficher mois par mois le nombre d’étudiants ayant leur date de naissance à ce mois dans la base <code class="docutils literal notranslate"><span class="pre">etudiants</span></code>.</p>
 <div class="cell docutils container">
@@ -669,12 +669,12 @@ Nous voulons afficher mois par mois le nombre d’étudiants ayant leur date de 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;month&quot; : 1, &quot;year&quot; : 1993 }, &quot;nb&quot; : 1 }
-{ &quot;_id&quot; : { &quot;month&quot; : 2, &quot;year&quot; : 1995 }, &quot;nb&quot; : 1 }
-{ &quot;_id&quot; : { &quot;month&quot; : 3, &quot;year&quot; : 1993 }, &quot;nb&quot; : 1 }
 { &quot;_id&quot; : { &quot;month&quot; : null, &quot;year&quot; : null }, &quot;nb&quot; : 1 }
-{ &quot;_id&quot; : { &quot;month&quot; : 5, &quot;year&quot; : 1995 }, &quot;nb&quot; : 1 }
 { &quot;_id&quot; : { &quot;month&quot; : 9, &quot;year&quot; : 1996 }, &quot;nb&quot; : 1 }
+{ &quot;_id&quot; : { &quot;month&quot; : 2, &quot;year&quot; : 1995 }, &quot;nb&quot; : 1 }
+{ &quot;_id&quot; : { &quot;month&quot; : 5, &quot;year&quot; : 1995 }, &quot;nb&quot; : 1 }
 { &quot;_id&quot; : { &quot;month&quot; : 3, &quot;year&quot; : 1995 }, &quot;nb&quot; : 1 }
+{ &quot;_id&quot; : { &quot;month&quot; : 3, &quot;year&quot; : 1993 }, &quot;nb&quot; : 1 }
 </pre></div>
 </div>
 </div>
@@ -830,12 +830,12 @@ Nous voulons afficher mois par mois le nombre d’étudiants ayant leur date de 
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773e&quot;), &quot;year_str&quot; : &quot;1995&quot;, &quot;month_str&quot; : &quot;02&quot;, &quot;date_str&quot; : &quot;13-02-1995&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;), &quot;year_str&quot; : null, &quot;month_str&quot; : null, &quot;date_str&quot; : null }
+{ &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;), &quot;year_str&quot; : &quot;1995&quot;, &quot;month_str&quot; : &quot;03&quot;, &quot;date_str&quot; : &quot;05-03-1995&quot; }
 { &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7741&quot;), &quot;year_str&quot; : &quot;1993&quot;, &quot;month_str&quot; : &quot;01&quot;, &quot;date_str&quot; : &quot;01-01-1993&quot; }
 { &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7742&quot;), &quot;year_str&quot; : &quot;1993&quot;, &quot;month_str&quot; : &quot;03&quot;, &quot;date_str&quot; : &quot;06-03-1993&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773c&quot;), &quot;year_str&quot; : &quot;1995&quot;, &quot;month_str&quot; : &quot;05&quot;, &quot;date_str&quot; : &quot;25-05-1995&quot; }
-{ &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773f&quot;), &quot;year_str&quot; : &quot;1995&quot;, &quot;month_str&quot; : &quot;03&quot;, &quot;date_str&quot; : &quot;05-03-1995&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773d&quot;), &quot;year_str&quot; : null, &quot;month_str&quot; : null, &quot;date_str&quot; : null }
 { &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d7740&quot;), &quot;year_str&quot; : &quot;1996&quot;, &quot;month_str&quot; : &quot;09&quot;, &quot;date_str&quot; : &quot;12-09-1996&quot; }
+{ &quot;_id&quot; : ObjectId(&quot;56011920de43611b917d773c&quot;), &quot;year_str&quot; : &quot;1995&quot;, &quot;month_str&quot; : &quot;05&quot;, &quot;date_str&quot; : &quot;25-05-1995&quot; }
 </pre></div>
 </div>
 </div>

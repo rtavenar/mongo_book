@@ -587,6 +587,7 @@ Une collection est un ensemble de documents, c’est l’équivalent d’une tab
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Dans ce document, on a accès au nom de l’étudiant par la clé <code class="docutils literal notranslate"><span class="pre">nom</span></code>, à ses notes par la clé <code class="docutils literal notranslate"><span class="pre">notes</span></code> <em>(attention, ici on a une <strong>liste de valeurs</strong> entre crochets, ce type d’attribut n’existe pas dans le modèle relationnel)</em> et à son sexe par la clé <code class="docutils literal notranslate"><span class="pre">sexe</span></code>. L’étudiant représenté par ce document est identifié à l’aide d’une clé <code class="docutils literal notranslate"><span class="pre">_id</span></code>.</p>
 <p>Les clés se doivent d’être des chaînes de caractères et les valeurs peuvent être <em>des valeurs booléennes, des nombres, des chaînes de caractères, des dates ou des listes de valeurs</em> comme nous venons de le voir. Les clés et les valeurs sont sensibles à la casse et au type. Chaque clé doît être unique, il n’est pas possible d’avoir deux fois la même clé dans un document.</p>
 <p>Dans ce chapitre, nous étudierons dans un premier temps <a class="reference external" href="#find">comment interroger les données d’une base de données MongoDB avec la fonction <code class="docutils literal notranslate"><span class="pre">find</span></code></a>.
 Dans un deuxième temps, nous regarderons comment effectuer des <a class="reference external" href="#operateurs">requêtes plus complexes, impliquant des opérateurs de comparaison</a>.
@@ -691,8 +692,8 @@ Si au contraire on souhaite <strong>fixer des contraintes sur les documents à r
 </div>
 <p>En utilisant la syntaxe précédente, recherchons par exemple les documents de la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code> correspondant à des <strong>boulangeries</strong> <em>(pour lesquels le champ “cuisine” vaut “Bakery”)</em> <strong>du Bronx</strong> <em>(pour lesquels le champ “borough” vaut “Bronx”)</em>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="f5f33d97-0869-4a16-8e5c-d7b143138afb" name="373b9965-f2a2-40a0-b9f3-c39d3e66930d" type="radio">
-</input><label class="tabbed-label" for="f5f33d97-0869-4a16-8e5c-d7b143138afb">
+<input checked="checked" id="6e4c417d-6773-4745-ac3a-10b6574bd127" name="b1f85172-9198-451b-9a83-ae4e21f2dfcc" type="radio">
+</input><label class="tabbed-label" for="6e4c417d-6773-4745-ac3a-10b6574bd127">
 Exemple</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">}</span>
@@ -700,8 +701,8 @@ Exemple</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="ed739560-7981-46ea-a89e-4b37bdf1576c" name="373b9965-f2a2-40a0-b9f3-c39d3e66930d" type="radio">
-</input><label class="tabbed-label" for="ed739560-7981-46ea-a89e-4b37bdf1576c">
+<input id="e0b4c6a0-246a-4532-b8b7-19331be1fd62" name="b1f85172-9198-451b-9a83-ae4e21f2dfcc" type="radio">
+</input><label class="tabbed-label" for="e0b4c6a0-246a-4532-b8b7-19331be1fd62">
 Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">NYfood</span><span class="w"></span>
@@ -724,7 +725,7 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;61e69bccdd9d64586febf07c&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e6a0d95ecaf12919b5c681&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1007&quot;,
 		&quot;loc&quot; : {
@@ -770,7 +771,7 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;30075445&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e69bccdd9d64586febf0d1&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e6a0d95ecaf12919b5c6d7&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2222&quot;,
 		&quot;loc&quot; : {
@@ -816,7 +817,7 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40364956&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e69bccdd9d64586febf127&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e6a0d95ecaf12919b5c72b&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1191&quot;,
 		&quot;loc&quot; : {
@@ -862,7 +863,7 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40366938&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e69bccdd9d64586febf189&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e6a0d95ecaf12919b5c78d&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2375&quot;,
 		&quot;loc&quot; : {
@@ -923,7 +924,7 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40369601&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e69bccdd9d64586febf210&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e6a0d95ecaf12919b5c813&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1200&quot;,
 		&quot;loc&quot; : {
@@ -959,7 +960,7 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40375136&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e69bccdd9d64586febf235&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e6a0d95ecaf12919b5c83a&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;749&quot;,
 		&quot;loc&quot; : {
@@ -1005,7 +1006,7 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40377243&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e69bccdd9d64586febf28e&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e6a0d95ecaf12919b5c892&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1506&quot;,
 		&quot;loc&quot; : {
@@ -1056,7 +1057,7 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40382517&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e69bccdd9d64586febf2e7&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e6a0d95ecaf12919b5c8ec&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1539&quot;,
 		&quot;loc&quot; : {
@@ -1102,7 +1103,7 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40386278&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e69bccdd9d64586febf320&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e6a0d95ecaf12919b5c925&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;2140&quot;,
 		&quot;loc&quot; : {
@@ -1153,7 +1154,7 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 	&quot;restaurant_id&quot; : &quot;40388016&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e69bccdd9d64586febf328&quot;),
+	&quot;_id&quot; : ObjectId(&quot;61e6a0d95ecaf12919b5c92d&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1665&quot;,
 		&quot;loc&quot; : {
@@ -1210,15 +1211,15 @@ Type &quot;it&quot; for more
 <p>Les résultats obtenus jusqu’à présent sont parfois assez indigestes, notamment parce que toutes les clés sont retournées pour tous les documents. Il est possible de limiter cela en spécifiant les clés à retourner comme second argument de la fonction <code class="docutils literal notranslate"><span class="pre">find()</span></code>. On appelle cela une <strong>projection</strong>.</p>
 <p>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais limiter les informations retournées en précisant, comme deuxième argument de ma requête <code class="docutils literal notranslate"><span class="pre">find</span></code>, la clé <code class="docutils literal notranslate"><span class="pre">name</span></code> avec la valeur <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="baa5a36e-deb3-4edf-a550-c99974fd7858" name="b9aaaf49-45cc-4022-b506-1ab134b5bc42" type="radio">
-</input><label class="tabbed-label" for="baa5a36e-deb3-4edf-a550-c99974fd7858">
+<input checked="checked" id="acc4e88e-66e0-4586-aec5-c914c2d47be8" name="56ffe716-3a5c-4155-8688-a3cc53ace7cb" type="radio">
+</input><label class="tabbed-label" for="acc4e88e-66e0-4586-aec5-c914c2d47be8">
 Projection en MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
-<input id="6000ff75-e7d4-4144-a065-768bc1ace206" name="b9aaaf49-45cc-4022-b506-1ab134b5bc42" type="radio">
-</input><label class="tabbed-label" for="6000ff75-e7d4-4144-a065-768bc1ace206">
+<input id="ba9410ae-abde-42a4-a980-9aa13dd1277a" name="56ffe716-3a5c-4155-8688-a3cc53ace7cb" type="radio">
+</input><label class="tabbed-label" for="ba9410ae-abde-42a4-a980-9aa13dd1277a">
 Projection en SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">NYfood</span><span class="w"></span>
@@ -1507,7 +1508,7 @@ Reprenons l’exemple précédent :</p>
 		},
 		&quot;info&quot; : {
 			&quot;readOnly&quot; : false,
-			&quot;uuid&quot; : UUID(&quot;98839c4b-b4f2-4090-a860-de145f509338&quot;)
+			&quot;uuid&quot; : UUID(&quot;aa4f4a35-2eb8-4b81-a021-ff3ce9c1f968&quot;)
 		},
 		&quot;idIndex&quot; : {
 			&quot;v&quot; : 2,
@@ -1565,28 +1566,29 @@ Par exemple, la requête suivante en MongoDB permet d’afficher la liste des no
 <h3><span class="section-number">1.4.3. </span>Compter le nombre d’éléments : la méthode <code class="docutils literal notranslate"><span class="pre">count</span></code><a class="headerlink" href="#compter-le-nombre-d-elements-la-methode-count" title="Permalink to this headline">¶</a></h3>
 <p>La méthode <code class="docutils literal notranslate"><span class="pre">count</span></code> permet de <strong>compter le nombre de documents dans une collection</strong>. On peut l’utiliser directement sur la collection de base pour connaître le nombre de documents dans la collection ou bien l’utiliser après avoir exécuté une requête :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="5a8ce5bc-5815-4d93-a403-d8ed97dd776b" name="76f4aea2-d9e8-4c4e-bb14-1cdec029d413" type="radio">
-</input><label class="tabbed-label" for="5a8ce5bc-5815-4d93-a403-d8ed97dd776b">
+<input checked="checked" id="8ce9b99d-776a-487a-9e37-d439f2d8c924" name="91e1e7ea-4556-48c0-82fa-17ca25709b78" type="radio">
+</input><label class="tabbed-label" for="8ce9b99d-776a-487a-9e37-d439f2d8c924">
 Sur une collection sans requête</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<input id="5fc5bbda-fb22-4c70-aa1a-c017d224cce8" name="76f4aea2-d9e8-4c4e-bb14-1cdec029d413" type="radio">
-</input><label class="tabbed-label" for="5fc5bbda-fb22-4c70-aa1a-c017d224cce8">
+<input id="b3022a11-322b-4cd5-abaf-68efa28d6d46" name="91e1e7ea-4556-48c0-82fa-17ca25709b78" type="radio">
+</input><label class="tabbed-label" for="b3022a11-322b-4cd5-abaf-68efa28d6d46">
 Sur une collection après requête</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">}).</span><span class="nx">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<input id="89fb8e8a-2ffb-4d8d-ab06-70c5af420ef0" name="76f4aea2-d9e8-4c4e-bb14-1cdec029d413" type="radio">
-</input><label class="tabbed-label" for="89fb8e8a-2ffb-4d8d-ab06-70c5af420ef0">
+<input id="43493377-6463-467a-9b21-c4e1852c603f" name="91e1e7ea-4556-48c0-82fa-17ca25709b78" type="radio">
+</input><label class="tabbed-label" for="43493377-6463-467a-9b21-c4e1852c603f">
 Syntaxe alternative</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">count</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Bien entendu, les résultats seront différents car nous n’avons pas le même nombre de documents avant et après un filtrage de données. Dans le premier exemple, on souhaite afficher le nombre de documents dans la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code> tandis que dans les deux autres, on récupère le nombre de documents correspondant à des boulangeries (pour lesquels l’attribut <code class="docutils literal notranslate"><span class="pre">&quot;cuisine&quot;</span></code> vaut <code class="docutils literal notranslate"><span class="pre">&quot;Bakery&quot;</span></code>).</p>
 </div>
 <div class="section" id="trier-les-documents-resultat-la-methode-sort">
 <h3><span class="section-number">1.4.4. </span>Trier les documents résultat : la méthode <code class="docutils literal notranslate"><span class="pre">sort</span></code><a class="headerlink" href="#trier-les-documents-resultat-la-methode-sort" title="Permalink to this headline">¶</a></h3>

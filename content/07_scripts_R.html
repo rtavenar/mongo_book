@@ -618,7 +618,7 @@
 <p><em>Mongolite</em> utilise une syntaxe JSON dans les arguments de ses méthodes pour interroger des collections. Cette syntaxe JSON devra être spécifiée sous forme de chaîne de caractère dans R. Ces différentes chaînes feront alors l’objet de divers paramètres pour les méthodes présentées dans ce chapitre.</p>
 <div class="section" id="methode-count">
 <h3><span class="section-number">7.2.2.1. </span>Méthode count<a class="headerlink" href="#methode-count" title="Permalink to this headline">¶</a></h3>
-<p>Tout comme le <code class="docutils literal notranslate"><span class="pre">.count()</span></code> en MongoDB (<a class="reference external" href="https://rtavenar.github.io/mongo_book/content/01_find.html">plus de précisions ici</a>), la méthode <code class="docutils literal notranslate"><span class="pre">count()</span></code> nous permet de calculer le nombre de résultats d’une collection, ou encore le nombre de résultats d’une certaine requête. Cette méthode n’a qu’un seul argument (query) et sa valeur par défaut est “{}”. Elle renvoie un entier.</p>
+<p>Tout comme le <code class="docutils literal notranslate"><span class="pre">.count()</span></code> en MongoDB (<a class="reference internal" href="01_find.html"><span class="doc std std-doc">plus de précisions ici</span></a>), la méthode <code class="docutils literal notranslate"><span class="pre">count()</span></code> nous permet de calculer le nombre de résultats d’une collection, ou encore le nombre de résultats d’une certaine requête. Cette méthode n’a qu’un seul argument (query) et sa valeur par défaut est “{}”. Elle renvoie un entier.</p>
 <p><strong>Exemples :</strong></p>
 <p>Afficher le nombre de résultats de la base NYfood par exemple :</p>
 <div class="cell docutils container">
@@ -633,16 +633,16 @@
 </div>
 <p>Nous pouvons également noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="8ed7d193-a7b6-44eb-8566-cca0f2e2a7ae" name="712e9d82-d27e-4a32-8a9f-cf98c85e0c75" type="radio">
-</input><label class="tabbed-label" for="8ed7d193-a7b6-44eb-8566-cca0f2e2a7ae">
+<input checked="checked" id="e306db2b-d8f7-46a3-adf6-03f786cf5227" name="449940c7-404b-486f-9e7e-19e503cf319f" type="radio">
+</input><label class="tabbed-label" for="e306db2b-d8f7-46a3-adf6-03f786cf5227">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">req</span> <span class="o">=</span> <span class="s">&quot;{}&quot;</span>
 <span class="n">coll</span><span class="o">$</span><span class="nf">count</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="63561ddf-f2e6-46d5-9d1a-287c33830be5" name="712e9d82-d27e-4a32-8a9f-cf98c85e0c75" type="radio">
-</input><label class="tabbed-label" for="63561ddf-f2e6-46d5-9d1a-287c33830be5">
+<input id="4a887116-86ed-49ed-ba9f-b836e505f366" name="449940c7-404b-486f-9e7e-19e503cf319f" type="radio">
+</input><label class="tabbed-label" for="4a887116-86ed-49ed-ba9f-b836e505f366">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">count</span><span class="p">()</span>
 </pre></div>
@@ -651,16 +651,16 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Et pour afficher le nombre de restaurants chinois :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="e39b5ef9-925b-42ce-bc08-58d1fa357a6b" name="3de617db-240f-49de-8fce-0afb7e908ca2" type="radio">
-</input><label class="tabbed-label" for="e39b5ef9-925b-42ce-bc08-58d1fa357a6b">
+<input checked="checked" id="77afd8c4-3072-41af-9b0d-311c14715b52" name="4cfcd01e-da5f-4eb3-a435-4757795052ca" type="radio">
+</input><label class="tabbed-label" for="77afd8c4-3072-41af-9b0d-311c14715b52">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">req</span> <span class="o">=</span> <span class="s">&#39;{&quot;cuisine&quot;:&quot;Chinese&quot;}&#39;</span>
 <span class="n">coll</span><span class="o">$</span><span class="nf">count</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="137e5cce-b3cd-4c98-a998-e931666645a2" name="3de617db-240f-49de-8fce-0afb7e908ca2" type="radio">
-</input><label class="tabbed-label" for="137e5cce-b3cd-4c98-a998-e931666645a2">
+<input id="0de7896f-9c9c-4010-b368-1004c1c11514" name="4cfcd01e-da5f-4eb3-a435-4757795052ca" type="radio">
+</input><label class="tabbed-label" for="0de7896f-9c9c-4010-b368-1004c1c11514">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span><span class="s2">&quot;Chinese&quot;</span><span class="p">})</span>
 </pre></div>
@@ -670,7 +670,7 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="methode-find">
 <h3><span class="section-number">7.2.2.2. </span>Méthode find<a class="headerlink" href="#methode-find" title="Permalink to this headline">¶</a></h3>
-<p>La méthode <code class="docutils literal notranslate"><span class="pre">find()</span></code> permet, à l’instar du <code class="docutils literal notranslate"><span class="pre">.find</span></code> en MongoDB (<a class="reference external" href="https://rtavenar.github.io/mongo_book/content/01_find.html">plus de précisions ici</a>), d’interroger une collection en filtrant les documents et les champs. De plus, cette méthode intègre la possibilité de limiter, trier et skiper les documents d’un résultat. Autrement dit, cette méthode comprends en ses arguments le <code class="docutils literal notranslate"><span class="pre">.limit</span></code>, le <code class="docutils literal notranslate"><span class="pre">.sort</span></code> et le <code class="docutils literal notranslate"><span class="pre">.skip</span></code> de MongoDB. Présentons alors les 5 arguments de cette méthode :</p>
+<p>La méthode <code class="docutils literal notranslate"><span class="pre">find()</span></code> permet, à l’instar du <code class="docutils literal notranslate"><span class="pre">.find</span></code> en MongoDB (<a class="reference internal" href="01_find.html"><span class="doc std std-doc">plus de précisions ici</span></a>), d’interroger une collection en filtrant les documents et les champs. De plus, cette méthode intègre la possibilité de limiter, trier et skiper les documents d’un résultat. Autrement dit, cette méthode comprends en ses arguments le <code class="docutils literal notranslate"><span class="pre">.limit</span></code>, le <code class="docutils literal notranslate"><span class="pre">.sort</span></code> et le <code class="docutils literal notranslate"><span class="pre">.skip</span></code> de MongoDB. Présentons alors les 5 arguments de cette méthode :</p>
 <ul class="simple">
 <li><p>query : correspond à la requête de filtrage des documents passée en premier agument d’un <code class="docutils literal notranslate"><span class="pre">.find</span></code> en MongoDB ; ‘{}’ est la valeur par défaut</p></li>
 <li><p>fields : correspond à la requête de filtrage des champs passée en second argument d’un <code class="docutils literal notranslate"><span class="pre">.find</span></code> en MongoDB</p></li>
@@ -714,8 +714,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>L’équivalent en MongoDB est le suivant :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="a14f006d-8c64-4353-bee8-191fa1d97f23" name="5a446fdb-fcf6-451f-97dc-5fa00589975a" type="radio">
-</input><label class="tabbed-label" for="a14f006d-8c64-4353-bee8-191fa1d97f23">
+<input checked="checked" id="c7d47b3f-b161-4891-ac8d-37d86f7a5a44" name="f68200f5-ba41-4d21-853d-3a86b1cbaaa9" type="radio">
+</input><label class="tabbed-label" for="c7d47b3f-b161-4891-ac8d-37d86f7a5a44">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">&lt;-</span> <span class="n">coll</span><span class="o">$</span><span class="nf">find</span><span class="p">(</span><span class="n">query</span> <span class="o">=</span> <span class="s">&#39;{&quot;cuisine&quot;:&quot;Chinese&quot;, &quot;borough&quot;:&quot;Brooklyn&quot;}&#39;</span><span class="p">,</span>
                   <span class="n">fields</span> <span class="o">=</span> <span class="s">&#39;{&quot;name&quot;: true, &quot;_id&quot;:false}&#39;</span><span class="p">,</span>
@@ -725,8 +725,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="9ecdd9a9-c4f7-4a2b-a92e-96baa453dd2b" name="5a446fdb-fcf6-451f-97dc-5fa00589975a" type="radio">
-</input><label class="tabbed-label" for="9ecdd9a9-c4f7-4a2b-a92e-96baa453dd2b">
+<input id="2488cfe5-3da9-4f19-ae6e-2c29171ba5d3" name="f68200f5-ba41-4d21-853d-3a86b1cbaaa9" type="radio">
+</input><label class="tabbed-label" for="2488cfe5-3da9-4f19-ae6e-2c29171ba5d3">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span><span class="s2">&quot;Chinese&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="o">:</span><span class="s2">&quot;Brooklyn&quot;</span><span class="p">},</span> 
 <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="kc">false</span><span class="p">}).</span><span class="nx">sort</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="o">:-</span><span class="mf">1</span><span class="p">}).</span><span class="nx">limit</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>
@@ -738,22 +738,22 @@ Mongolite</label><div class="tabbed-content docutils">
 <p><strong>Exemple :</strong></p>
 <p>Créer un index sur le champs <em>name</em> :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="867f5881-6ae9-4bbe-b061-f30d8f5b3490" name="524c8897-0384-4d83-a0eb-e17a8866d66b" type="radio">
-</input><label class="tabbed-label" for="867f5881-6ae9-4bbe-b061-f30d8f5b3490">
+<input checked="checked" id="f830cd34-3e0f-4b6d-8887-0378f75b1298" name="4acc431c-637e-4d4d-94e3-95132369c55f" type="radio">
+</input><label class="tabbed-label" for="f830cd34-3e0f-4b6d-8887-0378f75b1298">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">coll</span><span class="o">$</span><span class="nf">index</span><span class="p">(</span><span class="n">add</span> <span class="o">=</span> <span class="s">&#39;{&quot;name&quot; : 1}&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="b01f9b72-e99e-42bf-9a4a-b25ba02e1262" name="524c8897-0384-4d83-a0eb-e17a8866d66b" type="radio">
-</input><label class="tabbed-label" for="b01f9b72-e99e-42bf-9a4a-b25ba02e1262">
+<input id="eb213bcc-b019-496b-b07f-cc63018f7624" name="4acc431c-637e-4d4d-94e3-95132369c55f" type="radio">
+</input><label class="tabbed-label" for="eb213bcc-b019-496b-b07f-cc63018f7624">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">createIndex</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="mf">1</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Il est aussi possible de faire des requêtes textuelles avec mongolite. Toutefois attention, cela se fait obligatoirement à l’aide de l’opérateur <code class="docutils literal notranslate"><span class="pre">$regex</span></code>. En effet, avec <em>mongolite</em> on ne peut pas faire de requêtes textuelles à l’aide d’expressions régulières car le package permettant de convertir une chaîne de caractères en fichier JSON dans R ne connait pas les expressions régulières. Hormis ce détail, la syntaxe entre simples <em>quotes</em> est la même que pour les requêtes textuelles en MongoDB (<span class="xref myst">plus de précisions ici</span>).</p>
+<p>Il est aussi possible de faire des requêtes textuelles avec mongolite. Toutefois attention, cela se fait obligatoirement à l’aide de l’opérateur <code class="docutils literal notranslate"><span class="pre">$regex</span></code>. En effet, avec <em>mongolite</em> on ne peut pas faire de requêtes textuelles à l’aide d’expressions régulières car le package permettant de convertir une chaîne de caractères en fichier JSON dans R ne connait pas les expressions régulières. Hormis ce détail, la syntaxe entre simples <em>quotes</em> est la même que pour les requêtes textuelles en MongoDB (<a class="reference internal" href="04_index.html"><span class="doc std std-doc">plus de précisions ici</span></a>).</p>
 <p>Ainsi, pour afficher les 10 premiers restaurants de Manhattan dont le nom commence par la lettre ‘A’ par exemple, la requête adaptée est :</p>
 <div class="cell tag_output_scroll docutils container">
 <div class="cell_input docutils container">
@@ -818,16 +818,16 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Notons alors l’équivalent possible en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="0901a5ce-e494-4493-97b7-a1d5b35e472e" name="15f1eb0d-693a-41b0-9081-038f804bc4f5" type="radio">
-</input><label class="tabbed-label" for="0901a5ce-e494-4493-97b7-a1d5b35e472e">
+<input checked="checked" id="d4b0e7e7-e0fc-4c74-b375-ae29338a45f4" name="795a0585-d3e2-4975-b261-cead7e3ac5fa" type="radio">
+</input><label class="tabbed-label" for="d4b0e7e7-e0fc-4c74-b375-ae29338a45f4">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="s">&#39;{&quot;borough&quot;: &quot;Manhattan&quot;, &quot;name&quot;: {&quot;$regex&quot;: &quot;^A&quot;, &quot;$options&quot;:&quot;i&quot;}}&#39;</span>
 <span class="n">coll</span><span class="o">$</span><span class="nf">find</span><span class="p">(</span><span class="n">query</span> <span class="o">=</span> <span class="n">q</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="m">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="312286e7-7b80-4b67-ae51-adf3e0e8a6cd" name="15f1eb0d-693a-41b0-9081-038f804bc4f5" type="radio">
-</input><label class="tabbed-label" for="312286e7-7b80-4b67-ae51-adf3e0e8a6cd">
+<input id="2e35cde2-e56a-4cff-9647-bb6713e76aa3" name="795a0585-d3e2-4975-b261-cead7e3ac5fa" type="radio">
+</input><label class="tabbed-label" for="2e35cde2-e56a-4cff-9647-bb6713e76aa3">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Manhattan&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="sr">/^A/i</span> <span class="p">}).</span><span class="nx">limit</span><span class="p">(</span><span class="mf">10</span><span class="p">)</span>
 </pre></div>
@@ -839,7 +839,7 @@ Mongolite</label><div class="tabbed-content docutils">
 <p>Comme en NoSQL, l’accent circonflèxe sert à préciser que seulement les chaînes commençant par la lettre A seront acceptées. L’opérateur <code class="docutils literal notranslate"><span class="pre">&quot;$options&quot;:&quot;i&quot;</span></code> précise que la casse n’est pas importante (i.e, la chaine “abc” sera jugée acceptable).</p>
 </div>
 <hr class="docutils" />
-<p>Pour ce qui est des requêtes géospatiales, la syntaxe entre simples <em>quotes</em> est la même que pour les requêtes géo-spatiales en MongoDB (<span class="xref myst">plus de précisions ici</span>).</p>
+<p>Pour ce qui est des requêtes géospatiales, la syntaxe entre simples <em>quotes</em> est la même que pour les requêtes géo-spatiales en MongoDB (<a class="reference internal" href="04_index.html"><span class="doc std std-doc">plus de précisions ici</span></a>).</p>
 </div>
 <div class="section" id="methode-iterate">
 <h3><span class="section-number">7.2.2.3. </span>Méthode iterate<a class="headerlink" href="#methode-iterate" title="Permalink to this headline">¶</a></h3>
@@ -1144,7 +1144,7 @@ Mongolite</label><div class="tabbed-content docutils">
 [[4]]
 [[4]]$address
 [[4]]$address$building
-[1] &quot;2780&quot;
+[1] &quot;97-22&quot;
 
 [[4]]$address$loc
 [[4]]$address$loc$type
@@ -1152,83 +1152,83 @@ Mongolite</label><div class="tabbed-content docutils">
 
 [[4]]$address$loc$coordinates
 [[4]]$address$loc$coordinates[[1]]
-[1] -73.98242
+[1] -73.86012
 
 [[4]]$address$loc$coordinates[[2]]
-[1] 40.5795
+[1] 40.73117
 
 
 
 [[4]]$address$street
-[1] &quot;Stillwell Avenue&quot;
+[1] &quot;63 Road&quot;
 
 [[4]]$address$zipcode
-[1] &quot;11224&quot;
+[1] &quot;11374&quot;
 
 
 [[4]]$borough
-[1] &quot;Brooklyn&quot;
+[1] &quot;Queens&quot;
 
 [[4]]$cuisine
-[1] &quot;American &quot;
+[1] &quot;Jewish/Kosher&quot;
 
 [[4]]$grades
 [[4]]$grades[[1]]
 [[4]]$grades[[1]]$date
-[1] &quot;2014-06-10 UTC&quot;
+[1] &quot;2014-11-24 UTC&quot;
 
 [[4]]$grades[[1]]$grade
-[1] &quot;A&quot;
+[1] &quot;Z&quot;
 
 [[4]]$grades[[1]]$score
-[1] 5
+[1] 20
 
 
 [[4]]$grades[[2]]
 [[4]]$grades[[2]]$date
-[1] &quot;2013-06-05 UTC&quot;
+[1] &quot;2013-01-17 UTC&quot;
 
 [[4]]$grades[[2]]$grade
 [1] &quot;A&quot;
 
 [[4]]$grades[[2]]$score
-[1] 7
+[1] 13
 
 
 [[4]]$grades[[3]]
 [[4]]$grades[[3]]$date
-[1] &quot;2012-04-13 UTC&quot;
+[1] &quot;2012-08-02 UTC&quot;
 
 [[4]]$grades[[3]]$grade
 [1] &quot;A&quot;
 
 [[4]]$grades[[3]]$score
-[1] 12
+[1] 13
 
 
 [[4]]$grades[[4]]
 [[4]]$grades[[4]]$date
-[1] &quot;2011-10-12 UTC&quot;
+[1] &quot;2011-12-15 UTC&quot;
 
 [[4]]$grades[[4]]$grade
-[1] &quot;A&quot;
+[1] &quot;B&quot;
 
 [[4]]$grades[[4]]$score
-[1] 12
+[1] 25
 
 
 
 [[4]]$name
-[1] &quot;Riviera Caterer&quot;
+[1] &quot;Tov Kosher Kitchen&quot;
 
 [[4]]$restaurant_id
-[1] &quot;40356018&quot;
+[1] &quot;40356068&quot;
 
 
 [[5]]
 [[5]]$address
 [[5]]$address$building
-[1] &quot;97-22&quot;
+[1] &quot;2780&quot;
 
 [[5]]$address$loc
 [[5]]$address$loc$type
@@ -1236,77 +1236,77 @@ Mongolite</label><div class="tabbed-content docutils">
 
 [[5]]$address$loc$coordinates
 [[5]]$address$loc$coordinates[[1]]
-[1] -73.86012
+[1] -73.98242
 
 [[5]]$address$loc$coordinates[[2]]
-[1] 40.73117
+[1] 40.5795
 
 
 
 [[5]]$address$street
-[1] &quot;63 Road&quot;
+[1] &quot;Stillwell Avenue&quot;
 
 [[5]]$address$zipcode
-[1] &quot;11374&quot;
+[1] &quot;11224&quot;
 
 
 [[5]]$borough
-[1] &quot;Queens&quot;
+[1] &quot;Brooklyn&quot;
 
 [[5]]$cuisine
-[1] &quot;Jewish/Kosher&quot;
+[1] &quot;American &quot;
 
 [[5]]$grades
 [[5]]$grades[[1]]
 [[5]]$grades[[1]]$date
-[1] &quot;2014-11-24 UTC&quot;
+[1] &quot;2014-06-10 UTC&quot;
 
 [[5]]$grades[[1]]$grade
-[1] &quot;Z&quot;
+[1] &quot;A&quot;
 
 [[5]]$grades[[1]]$score
-[1] 20
+[1] 5
 
 
 [[5]]$grades[[2]]
 [[5]]$grades[[2]]$date
-[1] &quot;2013-01-17 UTC&quot;
+[1] &quot;2013-06-05 UTC&quot;
 
 [[5]]$grades[[2]]$grade
 [1] &quot;A&quot;
 
 [[5]]$grades[[2]]$score
-[1] 13
+[1] 7
 
 
 [[5]]$grades[[3]]
 [[5]]$grades[[3]]$date
-[1] &quot;2012-08-02 UTC&quot;
+[1] &quot;2012-04-13 UTC&quot;
 
 [[5]]$grades[[3]]$grade
 [1] &quot;A&quot;
 
 [[5]]$grades[[3]]$score
-[1] 13
+[1] 12
 
 
 [[5]]$grades[[4]]
 [[5]]$grades[[4]]$date
-[1] &quot;2011-12-15 UTC&quot;
+[1] &quot;2011-10-12 UTC&quot;
 
 [[5]]$grades[[4]]$grade
-[1] &quot;B&quot;
+[1] &quot;A&quot;
 
 [[5]]$grades[[4]]$score
-[1] 25
+[1] 12
 
 
 
 [[5]]$name
-[1] &quot;Tov Kosher Kitchen&quot;
+[1] &quot;Riviera Caterer&quot;
 
 [[5]]$restaurant_id
-[1] &quot;40356068&quot;
+[1] &quot;40356018&quot;
 </pre></div>
 </div>
 </div>
@@ -1320,30 +1320,30 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  address.building address.loc.type address.loc.coordinates    address.street
-1             8825            Point     -73.88038, 40.76431 Astoria Boulevard
-2             2206            Point     -74.13773, 40.61196 Victory Boulevard
-3             7114            Point     -73.90685, 40.61990          Avenue U
-4             6409            Point     -74.00529, 40.62889         11 Avenue
-5             1839            Point     -73.94826, 40.64083   Nostrand Avenue
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  address.building address.loc.type address.loc.coordinates     address.street
+1             8825            Point     -73.88038, 40.76431  Astoria Boulevard
+2             2206            Point     -74.13773, 40.61196  Victory Boulevard
+3             7114            Point     -73.90685, 40.61990           Avenue U
+4             1839            Point     -73.94826, 40.64083    Nostrand Avenue
+5             2300            Point     -73.87861, 40.85029 Southern Boulevard
   address.zipcode       borough                         cuisine
 1           11369        Queens                       American 
 2           10314 Staten Island                   Jewish/Kosher
 3           11234      Brooklyn                    Delicatessen
-4           11219      Brooklyn                       American 
-5           11226      Brooklyn Ice Cream, Gelato, Yogurt, Ices
+4           11226      Brooklyn Ice Cream, Gelato, Yogurt, Ices
+5           10460         Bronx                       American 
                                                                                                           grades
 1                                      1416009600, 1398988800, 1362182400, 1328832000, Z, A, A, A, 38, 10, 7, 13
 2                                       1412553600, 1400544000, 1365033600, 1327363200, A, A, A, A, 9, 12, 12, 9
 3 1401321600, 1389657600, 1375488000, 1342569600, 1331251200, 1318550400, A, A, A, A, A, A, 10, 10, 8, 10, 13, 9
-4                   1405641600, 1375142400, 1360713600, 1345075200, 1313539200, A, A, A, A, A, 12, 12, 11, 2, 11
-5                                        1405296000, 1373414400, 1341964800, 1329955200, A, A, A, A, 12, 8, 5, 8
+4                                        1405296000, 1373414400, 1341964800, 1329955200, A, A, A, A, 12, 8, 5, 8
+5                                                          1401235200, 1371600000, 1339718400, A, A, A, 11, 4, 3
                          name restaurant_id
 1     Brunos On The Boulevard      40356151
 2               Kosher Island      40356442
 3          Wilken&#39;S Fine Food      40356483
-4             Regina Caterers      40356649
-5 Taste The Tropics Ice Cream      40356731
+4 Taste The Tropics Ice Cream      40356731
+5                   Wild Asia      40357217
 </pre></div>
 </div>
 </div>
@@ -1351,7 +1351,7 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="methode-distinct">
 <h3><span class="section-number">7.2.2.4. </span>Méthode distinct<a class="headerlink" href="#methode-distinct" title="Permalink to this headline">¶</a></h3>
-<p>Tout comme le <code class="docutils literal notranslate"><span class="pre">.distinct()</span></code> en MongoDB (<span class="xref myst">plus de précisions ici</span>), la méthode <code class="docutils literal notranslate"><span class="pre">distinct()</span></code> nous renvoie les valeurs distinctes d’un champ.</p>
+<p>Tout comme le <code class="docutils literal notranslate"><span class="pre">.distinct()</span></code> en MongoDB (<a class="reference internal" href="01_find.html"><span class="doc std std-doc">plus de précisions ici</span></a>), la méthode <code class="docutils literal notranslate"><span class="pre">distinct()</span></code> nous renvoie les valeurs distinctes d’un champ.</p>
 <p><strong>Exemple :</strong></p>
 <p>Affichez la liste des notes existant dans la base :</p>
 <div class="cell docutils container">
@@ -1371,15 +1371,15 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons également noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="3a99ce86-59da-4595-ba14-d7f3eff82736" name="caf92baf-3cea-4c2a-86fa-c448e48970b4" type="radio">
-</input><label class="tabbed-label" for="3a99ce86-59da-4595-ba14-d7f3eff82736">
+<input checked="checked" id="c47196a2-7be5-4363-9b6a-ab0041190f1b" name="a8832dfe-3894-4d76-a25c-675fd541586f" type="radio">
+</input><label class="tabbed-label" for="c47196a2-7be5-4363-9b6a-ab0041190f1b">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">coll</span><span class="o">$</span><span class="nf">distinct</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="s">&quot;grades.grade&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="71b2f658-ec65-4b89-834a-0ee988fa3ffc" name="caf92baf-3cea-4c2a-86fa-c448e48970b4" type="radio">
-</input><label class="tabbed-label" for="71b2f658-ec65-4b89-834a-0ee988fa3ffc">
+<input id="3b9e2db9-9f49-4d78-aa91-7b350bd6fd64" name="a8832dfe-3894-4d76-a25c-675fd541586f" type="radio">
+</input><label class="tabbed-label" for="3b9e2db9-9f49-4d78-aa91-7b350bd6fd64">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">distinct</span><span class="p">(</span><span class="s2">&quot;grades.grade&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1389,7 +1389,7 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="selectionner-par-date">
 <h3><span class="section-number">7.2.2.5. </span>Sélectionner par date<a class="headerlink" href="#selectionner-par-date" title="Permalink to this headline">¶</a></h3>
-<p>Le traitement des dates avec <em>mongolite</em> mérite une attention particulière. En effet, lorsque l’on souhaite intéragir avec une collection sur un champ de type <em>date</em>, la syntaxe sera relativement différente de celle que l’on peut utiliser en <em>MongoDB</em> (<a class="reference external" href="https://rtavenar.github.io/mongo_book/content/03_dates.html">plus de précisions ici</a>) ou avec <em>pymongo</em>. En raison de la classe d’une requête en mongolite (chaîne de caractère), on ne pourra pas utiliser d’objet R spécifique aux dates (comme les datetimes en python par exemple). Ainsi, toutes les dates définies dans une requête en mongolite devront être spécifiées dans un format purement JSON intégrant un opérateur <code class="docutils literal notranslate"><span class="pre">$date</span></code> et une syntaxe UTC. Concrètement, ce format sera du type :</p>
+<p>Le traitement des dates avec <em>mongolite</em> mérite une attention particulière. En effet, lorsque l’on souhaite intéragir avec une collection sur un champ de type <em>date</em>, la syntaxe sera relativement différente de celle que l’on peut utiliser en <em>MongoDB</em> (<a class="reference internal" href="03_dates.html"><span class="doc std std-doc">plus de précisions ici</span></a>) ou avec <em>pymongo</em>. En raison de la classe d’une requête en mongolite (chaîne de caractère), on ne pourra pas utiliser d’objet R spécifique aux dates (comme les datetimes en python par exemple). Ainsi, toutes les dates définies dans une requête en mongolite devront être spécifiées dans un format purement JSON intégrant un opérateur <code class="docutils literal notranslate"><span class="pre">$date</span></code> et une syntaxe UTC. Concrètement, ce format sera du type :</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="s2">&quot;$date&quot;</span> <span class="o">:</span> <span class="s2">&quot;AAAA-MM-JJThh:mm:ssZ&quot;</span> <span class="p">}</span>
 </pre></div>
 </div>
@@ -1458,8 +1458,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="9f65a41c-8323-4588-a312-24a3baebfd64" name="8d0852e8-01a8-4b61-839a-88704c8da387" type="radio">
-</input><label class="tabbed-label" for="9f65a41c-8323-4588-a312-24a3baebfd64">
+<input checked="checked" id="b3ffc653-1af8-4fcc-8a44-ffe2d438d7d6" name="e3188f15-1096-4ca5-9c88-14e7afe0bede" type="radio">
+</input><label class="tabbed-label" for="b3ffc653-1af8-4fcc-8a44-ffe2d438d7d6">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">&lt;-</span> <span class="s">&#39;{&quot;grades.date&quot;: {&quot;$gte&quot;: {&quot;$date&quot;: &quot;2015-01-20T00:00:00Z&quot;}}}&#39;</span>
 <span class="n">data</span> <span class="o">&lt;-</span> <span class="n">coll</span><span class="o">$</span><span class="nf">find</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="m">10</span><span class="p">)</span>
@@ -1467,8 +1467,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="dca1b390-96f6-4c9e-adb7-497ea3712a4f" name="8d0852e8-01a8-4b61-839a-88704c8da387" type="radio">
-</input><label class="tabbed-label" for="dca1b390-96f6-4c9e-adb7-497ea3712a4f">
+<input id="49be95c8-f440-4450-a5cc-b05a38c7785b" name="e3188f15-1096-4ca5-9c88-14e7afe0bede" type="radio">
+</input><label class="tabbed-label" for="49be95c8-f440-4450-a5cc-b05a38c7785b">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">date</span> <span class="o">=</span> <span class="ow">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">&quot;2015-01-20&quot;</span><span class="p">)</span>
 <span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;grades.date&quot;</span><span class="o">:</span><span class="p">{</span><span class="nx">$gte</span><span class="o">:</span> <span class="nx">date</span><span class="p">}}).</span><span class="nx">limit</span><span class="p">(</span><span class="mf">10</span><span class="p">)</span>
@@ -1480,7 +1480,7 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <div class="section" id="aggregations">
 <h2><span class="section-number">7.2.3. </span>Aggrégations<a class="headerlink" href="#aggregations" title="Permalink to this headline">¶</a></h2>
-<p>Nous nous proposons dans ce paragraphe de traiter de la méthode <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> de mongolite qui permet d’éxécuter, à l’instar de d’un <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code> en MongoDB, une pipeline d’aggrégation qui n’est rien d’autre qu’une succession de plusieurs étapes d’aggrégation. La méthode <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> prend comme argument une liste de dictionnaires que l’on met entre simples <em>quotes</em>. La syntaxe a utiliser pour cette liste de dictionnaires est la même que pour le <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code> de MongoDB (nous vous renvoyons au chapitre sur <span class="xref myst">les requêtes d’aggrégations</span> pour plus de précisions). Tout comme la méthode <code class="docutils literal notranslate"><span class="pre">find()</span></code>, la méthode aggregate renvoie un <em>dataframe</em>.</p>
+<p>Nous nous proposons dans ce paragraphe de traiter de la méthode <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> de mongolite qui permet d’éxécuter, à l’instar de d’un <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code> en MongoDB, une pipeline d’aggrégation qui n’est rien d’autre qu’une succession de plusieurs étapes d’aggrégation. La méthode <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> prend comme argument une liste de dictionnaires que l’on met entre simples <em>quotes</em>. La syntaxe a utiliser pour cette liste de dictionnaires est la même que pour le <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code> de MongoDB (nous vous renvoyons au chapitre sur <a class="reference internal" href="05_agreg.html"><span class="doc std std-doc">les requêtes d’aggrégations</span></a> pour plus de précisions). Tout comme la méthode <code class="docutils literal notranslate"><span class="pre">find()</span></code>, la méthode aggregate renvoie un <em>dataframe</em>.</p>
 <p><strong>Exemple :</strong></p>
 <p>Prenons un exemple : dans la collection NYfood, le pipeline ci-dessous retourne le nombre de restaurants par arrondissement (borough).</p>
 <div class="cell docutils container">
@@ -1503,11 +1503,11 @@ Mongolite</label><div class="tabbed-content docutils">
 	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>1</th><td>Manhattan    </td><td>10258</td></tr>
-	<tr><th scope=row>2</th><td>Staten Island</td><td>  969</td></tr>
-	<tr><th scope=row>3</th><td>Queens       </td><td> 5656</td></tr>
+	<tr><th scope=row>1</th><td>Queens       </td><td> 5656</td></tr>
+	<tr><th scope=row>2</th><td>Bronx        </td><td> 2338</td></tr>
+	<tr><th scope=row>3</th><td>Staten Island</td><td>  969</td></tr>
 	<tr><th scope=row>4</th><td>Missing      </td><td>   51</td></tr>
-	<tr><th scope=row>5</th><td>Bronx        </td><td> 2338</td></tr>
+	<tr><th scope=row>5</th><td>Manhattan    </td><td>10258</td></tr>
 	<tr><th scope=row>6</th><td>Brooklyn     </td><td> 6085</td></tr>
 </tbody>
 </table>
@@ -1515,8 +1515,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="b979ff45-74d4-4cd1-9d4f-189e460cd469" name="d74fd5ad-e6fb-44d7-a2a0-b8ffb6ddb8f8" type="radio">
-</input><label class="tabbed-label" for="b979ff45-74d4-4cd1-9d4f-189e460cd469">
+<input checked="checked" id="eae90fa6-493c-4c08-b436-13e3cd2b972f" name="944077ac-0cea-473a-9b9d-944e5eb6cc96" type="radio">
+</input><label class="tabbed-label" for="eae90fa6-493c-4c08-b436-13e3cd2b972f">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">req</span> <span class="o">=</span> <span class="s">&#39;[{&quot;$group&quot;:{&quot;_id&quot;:&quot;$borough&quot;,&quot;nb_restos&quot;:{&quot;$sum&quot;:1}}}]&#39;</span> 
 <span class="n">df</span> <span class="o">&lt;-</span> <span class="n">coll</span><span class="o">$</span><span class="nf">aggregate</span><span class="p">(</span><span class="n">pipeline</span><span class="o">=</span><span class="n">req</span><span class="p">)</span> 
@@ -1524,8 +1524,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="2a2485c7-0fb9-4a8a-8a45-341a99341276" name="d74fd5ad-e6fb-44d7-a2a0-b8ffb6ddb8f8" type="radio">
-</input><label class="tabbed-label" for="2a2485c7-0fb9-4a8a-8a45-341a99341276">
+<input id="142fd942-cc0d-41a2-a40b-526eb1ec2c4c" name="944077ac-0cea-473a-9b9d-944e5eb6cc96" type="radio">
+</input><label class="tabbed-label" for="142fd942-cc0d-41a2-a40b-526eb1ec2c4c">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([{</span><span class="nx">$group</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="s2">&quot;$borough&quot;</span><span class="p">,</span> <span class="s2">&quot;nb_restos&quot;</span><span class="o">:</span><span class="p">{</span><span class="s2">&quot;$sum&quot;</span><span class="o">:</span><span class="mf">1</span><span class="p">}}}])</span>
 </pre></div>
@@ -1549,8 +1549,8 @@ Mongolite</label><div class="tabbed-content docutils">
 	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>1</th><td>Manhattan    </td><td>10258</td></tr>
-	<tr><th scope=row>2</th><td>Staten Island</td><td>  969</td></tr>
+	<tr><th scope=row>1</th><td>Bronx        </td><td>2338</td></tr>
+	<tr><th scope=row>2</th><td>Staten Island</td><td> 969</td></tr>
 </tbody>
 </table>
 </div></div>
@@ -1560,7 +1560,7 @@ Mongolite</label><div class="tabbed-content docutils">
 <h2><span class="section-number">7.2.4. </span>Manipulation de données<a class="headerlink" href="#manipulation-de-donnees" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="methode-insert">
 <h3><span class="section-number">7.2.4.1. </span>Méthode insert<a class="headerlink" href="#methode-insert" title="Permalink to this headline">¶</a></h3>
-<p>La méthode <code class="docutils literal notranslate"><span class="pre">insert()</span></code> permet, à l’instar du <code class="docutils literal notranslate"><span class="pre">.insert</span></code> en MongoDB (<span class="xref myst">plus de précisions ici</span>), d’ajouter des données à une collection.
+<p>La méthode <code class="docutils literal notranslate"><span class="pre">insert()</span></code> permet, à l’instar du <code class="docutils literal notranslate"><span class="pre">.insert</span></code> en MongoDB (<a class="reference internal" href="06_modif.html"><span class="doc std std-doc">plus de précisions ici</span></a>), d’ajouter des données à une collection.
 La méthode la plus simple, est d’insérer des données à partir d’un data frame R. Les colonnes du data frame seront automatiquement transformées en clées d’enregistrement JSON.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1642,25 +1642,25 @@ A noter qu’ici la méthode <code class="docutils literal notranslate"><span cl
 	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;int&gt;</th></tr>
 </thead>
 <tbody>
-	<tr><th scope=row>1</th><td>61e69bec4eecd712a1041d49</td><td>yolan </td><td>NA</td></tr>
-	<tr><th scope=row>2</th><td>61e69bec4eecd712a1041d4a</td><td>paul  </td><td>22</td></tr>
-	<tr><th scope=row>3</th><td>61e69bec4eecd712a1041d4b</td><td>faisal</td><td>NA</td></tr>
+	<tr><th scope=row>1</th><td>61e6a0f90330ed486f252019</td><td>yolan </td><td>NA</td></tr>
+	<tr><th scope=row>2</th><td>61e6a0f90330ed486f25201a</td><td>paul  </td><td>22</td></tr>
+	<tr><th scope=row>3</th><td>61e6a0f90330ed486f25201b</td><td>faisal</td><td>NA</td></tr>
 </tbody>
 </table>
 </div></div>
 </div>
 <p>Nous pouvons également noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="d71d5aed-0229-4d49-ae77-39b0c97c940d" name="7b107752-dda5-436e-b595-836cf81675ee" type="radio">
-</input><label class="tabbed-label" for="d71d5aed-0229-4d49-ae77-39b0c97c940d">
+<input checked="checked" id="48f8cdcc-1b84-4c1b-808b-72e54d57632e" name="134ea71b-edee-4ec3-9cd4-40fa758249e7" type="radio">
+</input><label class="tabbed-label" for="48f8cdcc-1b84-4c1b-808b-72e54d57632e">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">individus</span> <span class="o">&lt;-</span> <span class="nf">mongo</span><span class="p">(</span><span class="s">&quot;individus&quot;</span><span class="p">)</span>
 <span class="n">individus</span><span class="o">$</span><span class="nf">insert</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;{&quot;prenom&quot; : &quot;yolan&quot;}&#39;</span> <span class="p">,</span> <span class="s">&#39;{&quot;prenom&quot;: &quot;paul&quot;, &quot;age&quot; : 22}&#39;</span><span class="p">,</span> <span class="s">&#39;{&quot;prenom&quot;: &quot;faisal&quot;}&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
-<input id="3640de2f-9491-40df-8bc6-9aedf3137f7c" name="7b107752-dda5-436e-b595-836cf81675ee" type="radio">
-</input><label class="tabbed-label" for="3640de2f-9491-40df-8bc6-9aedf3137f7c">
+<input id="82e019a1-5d7d-457c-a207-8720938bf02c" name="134ea71b-edee-4ec3-9cd4-40fa758249e7" type="radio">
+</input><label class="tabbed-label" for="82e019a1-5d7d-457c-a207-8720938bf02c">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>db.createCollection(&quot;individus&quot;)
 db.individus.insert([
@@ -1697,15 +1697,15 @@ db.individus.insert([
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="229ce36b-5b0d-414d-8ba1-dea9ae5be9ab" name="eb1fc391-4ab5-429b-bbe0-d7f1a99bdf6e" type="radio">
-</input><label class="tabbed-label" for="229ce36b-5b0d-414d-8ba1-dea9ae5be9ab">
+<input checked="checked" id="c11ed304-71a9-4d0b-bba0-2e3eea32b923" name="488e31a0-6caf-4634-8266-a6f4f67524c2" type="radio">
+</input><label class="tabbed-label" for="c11ed304-71a9-4d0b-bba0-2e3eea32b923">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">$</span><span class="nf">remove</span><span class="p">(</span><span class="s">&#39;{&quot;Species&quot; : &quot;setosa&quot;}&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="635b7964-d6f8-4161-8ca2-ffa579230087" name="eb1fc391-4ab5-429b-bbe0-d7f1a99bdf6e" type="radio">
-</input><label class="tabbed-label" for="635b7964-d6f8-4161-8ca2-ffa579230087">
+<input id="68ea0160-b893-4bf1-bcf9-85e422db1737" name="488e31a0-6caf-4634-8266-a6f4f67524c2" type="radio">
+</input><label class="tabbed-label" for="68ea0160-b893-4bf1-bcf9-85e422db1737">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span>
 <span class="p">{</span><span class="s2">&quot;Species&quot;</span> <span class="o">:</span> <span class="s2">&quot;setosa&quot;</span><span class="p">}</span>
@@ -1738,15 +1738,15 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="103c4f23-fbad-45f0-91f9-1a802d4e591c" name="c4a97413-5261-42a2-9b4b-7959fcbd552f" type="radio">
-</input><label class="tabbed-label" for="103c4f23-fbad-45f0-91f9-1a802d4e591c">
+<input checked="checked" id="762850c6-9c3f-4423-abdc-9dfcbd82163a" name="9a09dcb7-1aeb-423b-955d-e881b624841c" type="radio">
+</input><label class="tabbed-label" for="762850c6-9c3f-4423-abdc-9dfcbd82163a">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">$</span><span class="nf">remove</span><span class="p">(</span><span class="s">&#39;{}&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="052db698-d1bf-4b78-aa9b-8928d34d000d" name="c4a97413-5261-42a2-9b4b-7959fcbd552f" type="radio">
-</input><label class="tabbed-label" for="052db698-d1bf-4b78-aa9b-8928d34d000d">
+<input id="779d419f-c807-463b-9bfb-2a5866003ada" name="9a09dcb7-1aeb-423b-955d-e881b624841c" type="radio">
+</input><label class="tabbed-label" for="779d419f-c807-463b-9bfb-2a5866003ada">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">remove</span><span class="p">({})</span>
 </pre></div>
@@ -1763,15 +1763,15 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="cd6b06a4-418a-4ab5-8f56-d0192aaf9d22" name="95bdc760-2fd2-40f4-b7de-2fa980c901eb" type="radio">
-</input><label class="tabbed-label" for="cd6b06a4-418a-4ab5-8f56-d0192aaf9d22">
+<input checked="checked" id="70700c65-033f-4ce1-afd8-8798c949dd4f" name="f5a7d013-b33f-47a4-8d9d-a278ae3d297a" type="radio">
+</input><label class="tabbed-label" for="70700c65-033f-4ce1-afd8-8798c949dd4f">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">$</span><span class="nf">drop</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<input id="6899b567-dd1d-4b88-9986-830073d671e5" name="95bdc760-2fd2-40f4-b7de-2fa980c901eb" type="radio">
-</input><label class="tabbed-label" for="6899b567-dd1d-4b88-9986-830073d671e5">
+<input id="6b423648-7db0-4b5a-8dd0-67df672c9e32" name="f5a7d013-b33f-47a4-8d9d-a278ae3d297a" type="radio">
+</input><label class="tabbed-label" for="6b423648-7db0-4b5a-8dd0-67df672c9e32">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">drop</span><span class="p">()</span>
 </pre></div>
@@ -1842,15 +1842,15 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="ed0b8eea-f6ea-4ea7-bad1-52d628c22b31" name="8601f349-cfd7-4bca-89bb-a523eb97a97d" type="radio">
-</input><label class="tabbed-label" for="ed0b8eea-f6ea-4ea7-bad1-52d628c22b31">
+<input checked="checked" id="a90d01ab-d034-4c9c-aacd-6130fde6bb38" name="18a61f00-da3e-408c-843b-0ce461afdb8c" type="radio">
+</input><label class="tabbed-label" for="a90d01ab-d034-4c9c-aacd-6130fde6bb38">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">individus</span><span class="o">$</span><span class="nf">update</span><span class="p">(</span><span class="s">&#39;{&quot;prenom&quot;:&quot;yolan&quot;}&#39;</span><span class="p">,</span> <span class="s">&#39;{&quot;$set&quot;:{&quot;age&quot;: 22}}&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="7efc7fab-60b3-4bd7-9562-f2f1c9892813" name="8601f349-cfd7-4bca-89bb-a523eb97a97d" type="radio">
-</input><label class="tabbed-label" for="7efc7fab-60b3-4bd7-9562-f2f1c9892813">
+<input id="d2c8f330-d93c-484d-9860-d9f1da394787" name="18a61f00-da3e-408c-843b-0ce461afdb8c" type="radio">
+</input><label class="tabbed-label" for="d2c8f330-d93c-484d-9860-d9f1da394787">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">individus</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
 <span class="p">{</span><span class="s2">&quot;prenom&quot;</span> <span class="o">:</span> <span class="s2">&quot;yolan&quot;</span><span class="p">},</span>
@@ -1915,8 +1915,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons également noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="6bca370f-390f-4e4e-84bc-afe484beede9" name="897436b4-b37a-459b-91d2-a20f913d19d6" type="radio">
-</input><label class="tabbed-label" for="6bca370f-390f-4e4e-84bc-afe484beede9">
+<input checked="checked" id="214ace5f-841d-4e7e-a34e-440c4b1dd250" name="b2d4356d-d305-45ea-81b0-3249cc5ed34a" type="radio">
+</input><label class="tabbed-label" for="214ace5f-841d-4e7e-a34e-440c4b1dd250">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">individus</span><span class="o">$</span><span class="nf">update</span><span class="p">(</span><span class="s">&#39;{}&#39;</span><span class="p">,</span> <span class="s">&#39;{&quot;$set&quot;:{&quot;booleen_age&quot;: false}}&#39;</span><span class="p">,</span> <span class="n">multiple</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 
@@ -1924,8 +1924,8 @@ Mongolite</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="28d11f7e-b3b8-4068-be12-a93b5ae9e23a" name="897436b4-b37a-459b-91d2-a20f913d19d6" type="radio">
-</input><label class="tabbed-label" for="28d11f7e-b3b8-4068-be12-a93b5ae9e23a">
+<input id="fcec28ca-92ce-402a-ab21-fbeee77afdd3" name="b2d4356d-d305-45ea-81b0-3249cc5ed34a" type="radio">
+</input><label class="tabbed-label" for="fcec28ca-92ce-402a-ab21-fbeee77afdd3">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">individus</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
 <span class="p">{},</span>
@@ -1955,7 +1955,7 @@ Mongolite</label><div class="tabbed-content docutils">
  $ modifiedCount: int 0
  $ matchedCount : int 0
  $ upsertedCount: int 1
- $ upsertedId   : chr &quot;61e69beca74b4d04f5875003&quot;
+ $ upsertedId   : chr &quot;61e6a0f9ac62e4b20f11e8ba&quot;
 </pre></div>
 </div>
 </div>
@@ -1984,15 +1984,15 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 <p>Nous pouvons également noter l’équivalent en MongoDB :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="2d6f95b7-88fa-47f0-9110-884e92f8fe4d" name="6ee7b9bf-79dc-4f74-9162-3abc3e2406f2" type="radio">
-</input><label class="tabbed-label" for="2d6f95b7-88fa-47f0-9110-884e92f8fe4d">
+<input checked="checked" id="76e36a58-95ae-4472-825a-72af720d746a" name="fc3bf1c1-3223-46a7-b192-54fe55cb6e39" type="radio">
+</input><label class="tabbed-label" for="76e36a58-95ae-4472-825a-72af720d746a">
 Mongolite</label><div class="tabbed-content docutils">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">individus</span><span class="o">$</span><span class="nf">update</span><span class="p">(</span><span class="s">&#39;{&quot;prenom&quot;:&quot;malo&quot;}&#39;</span><span class="p">,</span> <span class="s">&#39;{&quot;$set&quot;:{&quot;age&quot;: 22}}&#39;</span><span class="p">,</span> <span class="n">upsert</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<input id="e819c14f-934b-4f87-ab33-e0d0731c238c" name="6ee7b9bf-79dc-4f74-9162-3abc3e2406f2" type="radio">
-</input><label class="tabbed-label" for="e819c14f-934b-4f87-ab33-e0d0731c238c">
+<input id="16077633-b2bc-431a-8f8c-eb00f2ce85e9" name="fc3bf1c1-3223-46a7-b192-54fe55cb6e39" type="radio">
+</input><label class="tabbed-label" for="16077633-b2bc-431a-8f8c-eb00f2ce85e9">
 Équivalent MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">individus</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span>
 <span class="p">{</span><span class="s2">&quot;prenom&quot;</span><span class="o">:</span><span class="s2">&quot;malo&quot;</span><span class="p">},</span>
@@ -2017,10 +2017,10 @@ Mongolite</label><div class="tabbed-content docutils">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;61e69bec4eecd712a1041d49&quot; }, &quot;prenom&quot; : &quot;yolan&quot;, &quot;age&quot; : 22, &quot;booleen_age&quot; : true }
-{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;61e69bec4eecd712a1041d4a&quot; }, &quot;prenom&quot; : &quot;paul&quot;, &quot;age&quot; : 22, &quot;booleen_age&quot; : true }
-{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;61e69bec4eecd712a1041d4b&quot; }, &quot;prenom&quot; : &quot;faisal&quot;, &quot;booleen_age&quot; : false }
-{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;61e69beca74b4d04f5875003&quot; }, &quot;prenom&quot; : &quot;malo&quot;, &quot;age&quot; : 22 }
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;61e6a0f90330ed486f252019&quot; }, &quot;prenom&quot; : &quot;yolan&quot;, &quot;age&quot; : 22, &quot;booleen_age&quot; : true }
+{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;61e6a0f90330ed486f25201a&quot; }, &quot;prenom&quot; : &quot;paul&quot;, &quot;age&quot; : 22, &quot;booleen_age&quot; : true }
+{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;61e6a0f90330ed486f25201b&quot; }, &quot;prenom&quot; : &quot;faisal&quot;, &quot;booleen_age&quot; : false }
+{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;61e6a0f9ac62e4b20f11e8ba&quot; }, &quot;prenom&quot; : &quot;malo&quot;, &quot;age&quot; : 22 }
 </pre></div>
 </div>
 </div>

@@ -39,7 +39,7 @@ db.createCollection("ventes")
 
 Ici, on crée par exemple une collection "ventes" au sein de la base "voitures".
 
-```{admonition}
+```{admonition} Attention
 :class: warning
 Si vous tentez d'exécuter plusieurs fois la commande, une erreur surviendra car votre collection existe déjà.
 ```
@@ -70,7 +70,7 @@ db.ventes.update(
 ```
 Le document sélectionné sur la première ligne est supprimé et remplacé selon les champs renseignés sur la seconde ligne. Les champs qui ne sont pas renseignés sont donc supprimés.
 
-```{admonition}
+```{admonition} Attention
 :class: warning
 Seul le premier document de la liste sera modifié.
 ```
