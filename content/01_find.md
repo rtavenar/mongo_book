@@ -425,6 +425,8 @@ Pour connaître la **liste des collections** contenues dans une base de données
 db.getCollectionInfos()
 ```
 
+Ci-dessus, par exemple, la base de données courante (`food`) ne contient qu'une collection dont le nom (`name`) est `"NYfood"`.
+
 ### Valeurs distinctes d'un champ : la méthode `distinct`
 
 La méthode `distinct` permet de renvoyer **toutes les valeurs distinctes du champ spécifié**. C'est l'équivalent du `SELECT DISTINCT` en SQL.

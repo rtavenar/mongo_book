@@ -40,15 +40,19 @@ jobs:
     - name: Setup R
       uses: r-lib/actions/setup-r@v1
 
-    - name: Setup R-related packages
+    - name: Setup R dependencies
       run: |
         sudo apt-get install libsasl2-dev
         sudo apt install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
-        R -e 'install.packages("mongolite")'
-        R -e 'install.packages("IRkernel")'
-        R -e 'IRkernel::installspec()'
-        R -e 'install.packages("devtools")'
-        R -e 'library(devtools); devtools::install_github("IRkernel/repr")'
+    
+    - name: Setup R packages
+      run: |
+          install.packages("mongolite")
+          install.packages("IRkernel")
+          IRkernel::installspec()
+          install.packages("devtools")
+          library(devtools); devtools::install_github("IRkernel/repr")
+      shell: Rscript {0}
 
     # Start a local MongoDB server
     - name: Start MongoDB
