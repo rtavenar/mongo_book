@@ -37,17 +37,19 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -692,8 +694,8 @@ Si au contraire on souhaite <strong>fixer des contraintes sur les documents à r
 </div>
 <p>En utilisant la syntaxe précédente, recherchons par exemple les documents de la collection <code class="docutils literal notranslate"><span class="pre">NYfood</span></code> correspondant à des <strong>boulangeries</strong> <em>(pour lesquels le champ “cuisine” vaut “Bakery”)</em> <strong>du Bronx</strong> <em>(pour lesquels le champ “borough” vaut “Bronx”)</em>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="cbe76298-77c7-4ccd-a9a2-c61b652eefcf" name="e8413dab-99de-44dc-ae3d-a250bc5b63f2" type="radio">
-</input><label class="tabbed-label" for="cbe76298-77c7-4ccd-a9a2-c61b652eefcf">
+<input checked="checked" id="90af2185-1db9-4968-bfbb-121d3e3dd4a2" name="22b00a45-dc6c-4ad7-934d-835fc9e20545" type="radio">
+</input><label class="tabbed-label" for="90af2185-1db9-4968-bfbb-121d3e3dd4a2">
 Exemple</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span>
     <span class="p">{</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">}</span>
@@ -701,8 +703,8 @@ Exemple</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="7d7f11da-bfa4-4b57-b379-56fbf7ec28ec" name="e8413dab-99de-44dc-ae3d-a250bc5b63f2" type="radio">
-</input><label class="tabbed-label" for="7d7f11da-bfa4-4b57-b379-56fbf7ec28ec">
+<input id="d2e7469b-27f4-40fa-8575-f08efd0cf483" name="22b00a45-dc6c-4ad7-934d-835fc9e20545" type="radio">
+</input><label class="tabbed-label" for="d2e7469b-27f4-40fa-8575-f08efd0cf483">
 Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">NYfood</span><span class="w"></span>
@@ -723,486 +725,6 @@ Parallèle avec le langage SQL</label><div class="tabbed-content docutils">
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c135&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;1007&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.856077,
-				40.848447
-			]
-		},
-		&quot;street&quot; : &quot;Morris Park Ave&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Bakery&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-03-03T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 2
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-09-11T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 6
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-01-24T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 10
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-11-23T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-03-10T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 14
-		}
-	],
-	&quot;name&quot; : &quot;Morris Park Bake Shop&quot;,
-	&quot;restaurant_id&quot; : &quot;30075445&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c188&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;2222&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.84971759999999,
-				40.8304811
-			]
-		},
-		&quot;street&quot; : &quot;Haviland Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;American &quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-12-18T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2014-05-01T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 17
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-03-14T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-09-20T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-02-08T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 19
-		}
-	],
-	&quot;name&quot; : &quot;The New Starling Athletic Club Of The Bronx&quot;,
-	&quot;restaurant_id&quot; : &quot;40364956&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c1de&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;1191&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8513114,
-				40.8316981
-			]
-		},
-		&quot;street&quot; : &quot;Castle Hill Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Café/Coffee/Tea&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-07-03T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-07-08T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-02-11T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 11
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-08-14T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 14
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-08-23T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		}
-	],
-	&quot;name&quot; : &quot;Lulu&#39;S Coffee Shop&quot;,
-	&quot;restaurant_id&quot; : &quot;40366938&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c23f&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;2375&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.85534559999999,
-				40.8426433
-			]
-		},
-		&quot;street&quot; : &quot;East Tremont Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;American &quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-10-14T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2014-04-08T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 8
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-11-04T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;C&quot;,
-			&quot;score&quot; : 45
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-05-23T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 10
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-10-18T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 15
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-10-05T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;P&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-05-14T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-12-21T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 11
-		}
-	],
-	&quot;name&quot; : &quot;Bronx Grill&quot;,
-	&quot;restaurant_id&quot; : &quot;40369601&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c2c6&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;1200&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8507489,
-				40.832069
-			]
-		},
-		&quot;street&quot; : &quot;Castle Hill Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Chinese/Cuban&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-10-29T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 15
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2014-04-03T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-02-16T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 5
-		}
-	],
-	&quot;name&quot; : &quot;Sabrosura Restaurant&quot;,
-	&quot;restaurant_id&quot; : &quot;40375136&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c2ec&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;749&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8657838,
-				40.8544744
-			]
-		},
-		&quot;street&quot; : &quot;Lydig Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Pizza/Italian&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2015-01-09T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;Z&quot;,
-			&quot;score&quot; : 17
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2014-06-25T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 20
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-12-09T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 22
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-06-15T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 24
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-05-30T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 7
-		}
-	],
-	&quot;name&quot; : &quot;John &amp; Joe Pizzeria &amp; Restaurant&quot;,
-	&quot;restaurant_id&quot; : &quot;40377243&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c345&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;1506&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8537226,
-				40.8427071
-			]
-		},
-		&quot;street&quot; : &quot;Bronxdale Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;American &quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-06-04T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 5
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-05-22T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 10
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-12-13T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-05-14T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 16
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-12-28T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-08-10T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 11
-		}
-	],
-	&quot;name&quot; : &quot;Castlehill Diner&quot;,
-	&quot;restaurant_id&quot; : &quot;40382517&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c39e&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;1539&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8574277,
-				40.8366717
-			]
-		},
-		&quot;street&quot; : &quot;Unionport Road&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Pizza&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-12-18T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 8
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-12-18T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-07-24T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 3
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-08-01T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 10
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-02-29T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 10
-		}
-	],
-	&quot;name&quot; : &quot;Venice Pizza&quot;,
-	&quot;restaurant_id&quot; : &quot;40386278&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c3d6&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;2140&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8529552,
-				40.83376459999999
-			]
-		},
-		&quot;street&quot; : &quot;Westchester Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Hamburgers&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-07-15T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 5
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2014-01-02T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-05-29T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 3
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-10-10T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;B&quot;,
-			&quot;score&quot; : 21
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-05-23T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-12-29T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		}
-	],
-	&quot;name&quot; : &quot;Wendy&#39;S&quot;,
-	&quot;restaurant_id&quot; : &quot;40388016&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c3de&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;1665&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.8555094,
-				40.8406624
-			]
-		},
-		&quot;street&quot; : &quot;Metropolitan Avenue&quot;,
-		&quot;zipcode&quot; : &quot;10462&quot;
-	},
-	&quot;borough&quot; : &quot;Bronx&quot;,
-	&quot;cuisine&quot; : &quot;Pizza&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-03-27T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-03-14T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 12
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-09-13T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 10
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-03-15T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2011-03-29T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		}
-	],
-	&quot;name&quot; : &quot;The Pizza Place&quot;,
-	&quot;restaurant_id&quot; : &quot;40388253&quot;
-}
-Type &quot;it&quot; for more
-</pre></div>
-</div>
-</div>
 </div>
 <p>où <code class="docutils literal notranslate"><span class="pre">address</span></code> est le sous-document et <code class="docutils literal notranslate"><span class="pre">zipcode</span></code> la clé de ce dernier. Dans cet exemple, nous nous intéressons aux restaurants pour lesquels le zipcode est <code class="docutils literal notranslate"><span class="pre">&quot;10462&quot;</span></code>.</p>
 </div>
@@ -1211,15 +733,15 @@ Type &quot;it&quot; for more
 <p>Les résultats obtenus jusqu’à présent sont parfois assez indigestes, notamment parce que toutes les clés sont retournées pour tous les documents. Il est possible de limiter cela en spécifiant les clés à retourner comme second argument de la fonction <code class="docutils literal notranslate"><span class="pre">find()</span></code>. On appelle cela une <strong>projection</strong>.</p>
 <p>La projection permet de sélectionner les informations à renvoyer. Si, par exemple, je m’intéresse uniquement aux noms des boulangeries du Bronx, je vais limiter les informations retournées en précisant, comme deuxième argument de ma requête <code class="docutils literal notranslate"><span class="pre">find</span></code>, la clé <code class="docutils literal notranslate"><span class="pre">name</span></code> avec la valeur <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="48a8e8d3-fb11-4c95-9dda-1304c0dac36e" name="a16277d5-f91f-449c-afe4-9fe5b6a86aaa" type="radio">
-</input><label class="tabbed-label" for="48a8e8d3-fb11-4c95-9dda-1304c0dac36e">
+<input checked="checked" id="56ea634f-7d0b-410e-b7d8-a683c19cc0ee" name="582d654d-9b7a-4ab1-97ce-1e66a5fa6ba1" type="radio">
+</input><label class="tabbed-label" for="56ea634f-7d0b-410e-b7d8-a683c19cc0ee">
 Projection en MongoDB</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">,</span> <span class="s2">&quot;borough&quot;</span><span class="o">:</span> <span class="s2">&quot;Bronx&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
-<input id="7398eb45-f4c5-4890-9e1b-00889465ddf6" name="a16277d5-f91f-449c-afe4-9fe5b6a86aaa" type="radio">
-</input><label class="tabbed-label" for="7398eb45-f4c5-4890-9e1b-00889465ddf6">
+<input id="94ec719d-5433-444b-83a1-cc9ba693e1aa" name="582d654d-9b7a-4ab1-97ce-1e66a5fa6ba1" type="radio">
+</input><label class="tabbed-label" for="94ec719d-5433-444b-83a1-cc9ba693e1aa">
 Projection en SQL</label><div class="tabbed-content docutils">
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">NYfood</span><span class="w"></span>
@@ -1508,7 +1030,7 @@ Reprenons l’exemple précédent :</p>
 		},
 		&quot;info&quot; : {
 			&quot;readOnly&quot; : false,
-			&quot;uuid&quot; : UUID(&quot;92a37256-599a-493f-860f-b8b9f75c0842&quot;)
+			&quot;uuid&quot; : UUID(&quot;812b36e5-7a94-487e-985d-5a3c7ec1ba41&quot;)
 		},
 		&quot;idIndex&quot; : {
 			&quot;v&quot; : 2,
@@ -1567,22 +1089,22 @@ Par exemple, la requête suivante en MongoDB permet d’afficher la liste des no
 <h3><span class="section-number">1.4.3. </span>Compter le nombre d’éléments : la méthode <code class="docutils literal notranslate"><span class="pre">count</span></code><a class="headerlink" href="#compter-le-nombre-d-elements-la-methode-count" title="Permalink to this headline">¶</a></h3>
 <p>La méthode <code class="docutils literal notranslate"><span class="pre">count</span></code> permet de <strong>compter le nombre de documents dans une collection</strong>. On peut l’utiliser directement sur la collection de base pour connaître le nombre de documents dans la collection ou bien l’utiliser après avoir exécuté une requête :</p>
 <div class="tabbed-set docutils">
-<input checked="checked" id="81c24d5d-b734-4f5c-a4ce-e43bf1a40388" name="0d9c36b6-dc35-48da-ae7a-049524595146" type="radio">
-</input><label class="tabbed-label" for="81c24d5d-b734-4f5c-a4ce-e43bf1a40388">
+<input checked="checked" id="c5204161-9c83-4e18-a135-6f8b35b717d9" name="0821959b-41c1-4c0c-853e-80dc4082b8a7" type="radio">
+</input><label class="tabbed-label" for="c5204161-9c83-4e18-a135-6f8b35b717d9">
 Sur une collection sans requête</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<input id="e21f1440-86e3-4f56-9e34-bdc78a44406e" name="0d9c36b6-dc35-48da-ae7a-049524595146" type="radio">
-</input><label class="tabbed-label" for="e21f1440-86e3-4f56-9e34-bdc78a44406e">
+<input id="339bb833-0d0b-4ce7-a743-88da335cbaf2" name="0821959b-41c1-4c0c-853e-80dc4082b8a7" type="radio">
+</input><label class="tabbed-label" for="339bb833-0d0b-4ce7-a743-88da335cbaf2">
 Sur une collection après requête</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">}).</span><span class="nx">count</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<input id="e29b6282-e396-4161-965b-80b26c93e7aa" name="0d9c36b6-dc35-48da-ae7a-049524595146" type="radio">
-</input><label class="tabbed-label" for="e29b6282-e396-4161-965b-80b26c93e7aa">
+<input id="9c6affc6-e858-4644-9d07-434d8062827a" name="0821959b-41c1-4c0c-853e-80dc4082b8a7" type="radio">
+</input><label class="tabbed-label" for="9c6affc6-e858-4644-9d07-434d8062827a">
 Syntaxe alternative</label><div class="tabbed-content docutils">
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">db</span><span class="p">.</span><span class="nx">NYfood</span><span class="p">.</span><span class="nx">count</span><span class="p">({</span><span class="s2">&quot;cuisine&quot;</span><span class="o">:</span> <span class="s2">&quot;Bakery&quot;</span><span class="p">})</span>
 </pre></div>

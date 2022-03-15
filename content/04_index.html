@@ -37,17 +37,19 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -495,7 +497,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c13f&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4efd8&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1269&quot;,
 		&quot;loc&quot; : {
@@ -541,7 +543,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40358429&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c162&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4effa&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;976&quot;,
 		&quot;loc&quot; : {
@@ -582,7 +584,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40363920&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c3e6&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f27f&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;152&quot;,
 		&quot;loc&quot; : {
@@ -628,7 +630,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40388386&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c42b&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f2c5&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;463&quot;,
 		&quot;loc&quot; : {
@@ -664,7 +666,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40390653&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c452&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f2ec&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;152&quot;,
 		&quot;loc&quot; : {
@@ -705,7 +707,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40391528&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c48a&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f324&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;404&quot;,
 		&quot;loc&quot; : {
@@ -751,7 +753,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40393181&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c587&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f421&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;5100&quot;,
 		&quot;loc&quot; : {
@@ -797,7 +799,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40398688&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c592&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f42b&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;425&quot;,
 		&quot;loc&quot; : {
@@ -838,7 +840,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40398904&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c7a6&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f63f&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1955&quot;,
 		&quot;loc&quot; : {
@@ -884,7 +886,7 @@ Le tri n’a cependant pas d’importance sur l’efficacité de la requête.</p
 	&quot;restaurant_id&quot; : &quot;40537963&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c8c8&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f762&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;6820&quot;,
 		&quot;loc&quot; : {
@@ -939,7 +941,7 @@ Type &quot;it&quot; for more
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c13d&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4efd6&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;7715&quot;,
 		&quot;loc&quot; : {
@@ -980,7 +982,43 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40357437&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c141&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4efdb&quot;),
+	&quot;address&quot; : {
+		&quot;building&quot; : &quot;265-15&quot;,
+		&quot;loc&quot; : {
+			&quot;type&quot; : &quot;Point&quot;,
+			&quot;coordinates&quot; : [
+				-73.7032601,
+				40.7386417
+			]
+		},
+		&quot;street&quot; : &quot;Hillside Avenue&quot;,
+		&quot;zipcode&quot; : &quot;11004&quot;
+	},
+	&quot;borough&quot; : &quot;Queens&quot;,
+	&quot;cuisine&quot; : &quot;Ice Cream, Gelato, Yogurt, Ices&quot;,
+	&quot;grades&quot; : [
+		{
+			&quot;date&quot; : ISODate(&quot;2014-10-28T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 9
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2013-09-18T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 10
+		},
+		{
+			&quot;date&quot; : ISODate(&quot;2012-09-20T00:00:00Z&quot;),
+			&quot;grade&quot; : &quot;A&quot;,
+			&quot;score&quot; : 13
+		}
+	],
+	&quot;name&quot; : &quot;Carvel Ice Cream&quot;,
+	&quot;restaurant_id&quot; : &quot;40361322&quot;
+}
+{
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4efdc&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;203&quot;,
 		&quot;loc&quot; : {
@@ -1026,43 +1064,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40360076&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c143&quot;),
-	&quot;address&quot; : {
-		&quot;building&quot; : &quot;265-15&quot;,
-		&quot;loc&quot; : {
-			&quot;type&quot; : &quot;Point&quot;,
-			&quot;coordinates&quot; : [
-				-73.7032601,
-				40.7386417
-			]
-		},
-		&quot;street&quot; : &quot;Hillside Avenue&quot;,
-		&quot;zipcode&quot; : &quot;11004&quot;
-	},
-	&quot;borough&quot; : &quot;Queens&quot;,
-	&quot;cuisine&quot; : &quot;Ice Cream, Gelato, Yogurt, Ices&quot;,
-	&quot;grades&quot; : [
-		{
-			&quot;date&quot; : ISODate(&quot;2014-10-28T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 9
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2013-09-18T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 10
-		},
-		{
-			&quot;date&quot; : ISODate(&quot;2012-09-20T00:00:00Z&quot;),
-			&quot;grade&quot; : &quot;A&quot;,
-			&quot;score&quot; : 13
-		}
-	],
-	&quot;name&quot; : &quot;Carvel Ice Cream&quot;,
-	&quot;restaurant_id&quot; : &quot;40361322&quot;
-}
-{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c152&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4efec&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1006&quot;,
 		&quot;loc&quot; : {
@@ -1108,7 +1110,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40363093&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c157&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4eff0&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;625&quot;,
 		&quot;loc&quot; : {
@@ -1154,7 +1156,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40363298&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c161&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4effb&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1111&quot;,
 		&quot;loc&quot; : {
@@ -1190,7 +1192,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40363834&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c175&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f00d&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;100&quot;,
 		&quot;loc&quot; : {
@@ -1231,7 +1233,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40364443&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c17a&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f013&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;215&quot;,
 		&quot;loc&quot; : {
@@ -1277,7 +1279,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40364531&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c18a&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f023&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;67&quot;,
 		&quot;loc&quot; : {
@@ -1318,7 +1320,7 @@ Type &quot;it&quot; for more
 	&quot;restaurant_id&quot; : &quot;40365013&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c18f&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f029&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;331&quot;,
 		&quot;loc&quot; : {
@@ -1429,7 +1431,7 @@ Type &quot;it&quot; for more
 	&quot;executionStats&quot; : {
 		&quot;executionSuccess&quot; : true,
 		&quot;nReturned&quot; : 763,
-		&quot;executionTimeMillis&quot; : 8,
+		&quot;executionTimeMillis&quot; : 9,
 		&quot;totalKeysExamined&quot; : 6085,
 		&quot;totalDocsExamined&quot; : 6085,
 		&quot;executionStages&quot; : {
@@ -1495,10 +1497,10 @@ Type &quot;it&quot; for more
 		&quot;$db&quot; : &quot;food&quot;
 	},
 	&quot;serverInfo&quot; : {
-		&quot;host&quot; : &quot;de4fb77547f8&quot;,
+		&quot;host&quot; : &quot;6d4c71b2bc66&quot;,
 		&quot;port&quot; : 27017,
-		&quot;version&quot; : &quot;5.0.5&quot;,
-		&quot;gitVersion&quot; : &quot;d65fd89df3fc039b5c55933c0f71d647a54510ae&quot;
+		&quot;version&quot; : &quot;5.0.6&quot;,
+		&quot;gitVersion&quot; : &quot;212a8dbb47f07427dae194a9c75baec1d81d9259&quot;
 	},
 	&quot;serverParameters&quot; : {
 		&quot;internalQueryFacetBufferSizeBytes&quot; : 104857600,
@@ -1692,7 +1694,7 @@ Type &quot;it&quot; for more
 	&quot;executionStats&quot; : {
 		&quot;executionSuccess&quot; : true,
 		&quot;nReturned&quot; : 763,
-		&quot;executionTimeMillis&quot; : 6,
+		&quot;executionTimeMillis&quot; : 5,
 		&quot;totalKeysExamined&quot; : 2418,
 		&quot;totalDocsExamined&quot; : 2418,
 		&quot;executionStages&quot; : {
@@ -1758,10 +1760,10 @@ Type &quot;it&quot; for more
 		&quot;$db&quot; : &quot;food&quot;
 	},
 	&quot;serverInfo&quot; : {
-		&quot;host&quot; : &quot;de4fb77547f8&quot;,
+		&quot;host&quot; : &quot;6d4c71b2bc66&quot;,
 		&quot;port&quot; : 27017,
-		&quot;version&quot; : &quot;5.0.5&quot;,
-		&quot;gitVersion&quot; : &quot;d65fd89df3fc039b5c55933c0f71d647a54510ae&quot;
+		&quot;version&quot; : &quot;5.0.6&quot;,
+		&quot;gitVersion&quot; : &quot;212a8dbb47f07427dae194a9c75baec1d81d9259&quot;
 	},
 	&quot;serverParameters&quot; : {
 		&quot;internalQueryFacetBufferSizeBytes&quot; : 104857600,
@@ -1957,7 +1959,7 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 	&quot;executionStats&quot; : {
 		&quot;executionSuccess&quot; : true,
 		&quot;nReturned&quot; : 763,
-		&quot;executionTimeMillis&quot; : 4,
+		&quot;executionTimeMillis&quot; : 5,
 		&quot;totalKeysExamined&quot; : 2418,
 		&quot;totalDocsExamined&quot; : 2418,
 		&quot;executionStages&quot; : {
@@ -2023,10 +2025,10 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 		&quot;$db&quot; : &quot;food&quot;
 	},
 	&quot;serverInfo&quot; : {
-		&quot;host&quot; : &quot;de4fb77547f8&quot;,
+		&quot;host&quot; : &quot;6d4c71b2bc66&quot;,
 		&quot;port&quot; : 27017,
-		&quot;version&quot; : &quot;5.0.5&quot;,
-		&quot;gitVersion&quot; : &quot;d65fd89df3fc039b5c55933c0f71d647a54510ae&quot;
+		&quot;version&quot; : &quot;5.0.6&quot;,
+		&quot;gitVersion&quot; : &quot;212a8dbb47f07427dae194a9c75baec1d81d9259&quot;
 	},
 	&quot;serverParameters&quot; : {
 		&quot;internalQueryFacetBufferSizeBytes&quot; : 104857600,
@@ -2251,10 +2253,10 @@ Certaines requêtes pourront ainsi être accélérées par l’un ou l’autre d
 		&quot;$db&quot; : &quot;food&quot;
 	},
 	&quot;serverInfo&quot; : {
-		&quot;host&quot; : &quot;de4fb77547f8&quot;,
+		&quot;host&quot; : &quot;6d4c71b2bc66&quot;,
 		&quot;port&quot; : 27017,
-		&quot;version&quot; : &quot;5.0.5&quot;,
-		&quot;gitVersion&quot; : &quot;d65fd89df3fc039b5c55933c0f71d647a54510ae&quot;
+		&quot;version&quot; : &quot;5.0.6&quot;,
+		&quot;gitVersion&quot; : &quot;212a8dbb47f07427dae194a9c75baec1d81d9259&quot;
 	},
 	&quot;serverParameters&quot; : {
 		&quot;internalQueryFacetBufferSizeBytes&quot; : 104857600,
@@ -2395,7 +2397,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;61e6be04b0e056b29103236e&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b55208&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;372&quot;,
 		&quot;loc&quot; : {
@@ -2415,7 +2417,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;50018528&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102ff82&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b52e1c&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1994&quot;,
 		&quot;loc&quot; : {
@@ -2451,7 +2453,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;41657236&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102d14c&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4ffe5&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1883&quot;,
 		&quot;loc&quot; : {
@@ -2497,7 +2499,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;40946431&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be04b0e056b29103095d&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b537f5&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;433A&quot;,
 		&quot;loc&quot; : {
@@ -2528,7 +2530,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;41720441&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102ff14&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b52dad&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;431&quot;,
 		&quot;loc&quot; : {
@@ -2564,7 +2566,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;41653409&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102e7d1&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b5166a&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1928&quot;,
 		&quot;loc&quot; : {
@@ -2610,7 +2612,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;41408013&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102ebec&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b51a85&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;1884&quot;,
 		&quot;loc&quot; : {
@@ -2661,7 +2663,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;41462031&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be04b0e056b291030a14&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b538ad&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;391&quot;,
 		&quot;loc&quot; : {
@@ -2687,7 +2689,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;50000096&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be04b0e056b2910310a7&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b53f3c&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;479&quot;,
 		&quot;loc&quot; : {
@@ -2718,7 +2720,7 @@ En plus d’une meilleure efficacité, cet index va permettre de trouver des él
 	&quot;restaurant_id&quot; : &quot;50003206&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be04b0e056b2910306da&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b53574&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;17&quot;,
 		&quot;loc&quot; : {
@@ -2784,7 +2786,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102e84a&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b516e3&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;347&quot;,
 		&quot;loc&quot; : {
@@ -2830,7 +2832,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41415537&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102e116&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b50faf&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;233&quot;,
 		&quot;loc&quot; : {
@@ -2871,7 +2873,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41312502&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102d2c4&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b5015e&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;210&quot;,
 		&quot;loc&quot; : {
@@ -2922,7 +2924,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;40996589&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102f140&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b51fd8&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;210&quot;,
 		&quot;loc&quot; : {
@@ -2968,7 +2970,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41531418&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102ebc0&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b51a57&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;208&quot;,
 		&quot;loc&quot; : {
@@ -3014,7 +3016,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41460032&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c58a&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f423&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;141&quot;,
 		&quot;loc&quot; : {
@@ -3055,7 +3057,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;40398690&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be04b0e056b2910308b7&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad719b1d4e452b53750&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;139&quot;,
 		&quot;loc&quot; : {
@@ -3086,7 +3088,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41717412&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102d82a&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b506c3&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;125&quot;,
 		&quot;loc&quot; : {
@@ -3127,7 +3129,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41145020&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102daad&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b50947&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;64&quot;,
 		&quot;loc&quot; : {
@@ -3178,7 +3180,7 @@ Pour avoir un polygone fermé, il faudra veiller à ce que les dernières coordo
 	&quot;restaurant_id&quot; : &quot;41200236&quot;
 }
 {
-	&quot;_id&quot; : ObjectId(&quot;61e6be03b0e056b29102c489&quot;),
+	&quot;_id&quot; : ObjectId(&quot;62309ad619b1d4e452b4f323&quot;),
 	&quot;address&quot; : {
 		&quot;building&quot; : &quot;85&quot;,
 		&quot;loc&quot; : {
