@@ -154,7 +154,7 @@ coll$count(query=req)
 ````{tabbed} Équivalent MongoDB
 
 ```javascript
-db.NYfood.find({"cuisine":"Chinese"})
+db.NYfood.count({"cuisine":"Chinese"})
 ```
 
 ````
