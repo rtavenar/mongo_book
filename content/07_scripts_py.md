@@ -560,8 +560,9 @@ Dans la collection `NYfood`, trouvez tous les restaurants qui possède le mot "P
 
 ````{tabbed} Python
 ```python
-# Python reconnaît les expressions régulières
-cursor = db.NYfood.find({"name": "/Pizza/"})
+# On spécifie explicitement l'utilisation d'une expression 
+# régulière avec $regex
+cursor = db.NYfood.find({"name": {"$regex": "Pizza"}})
 reponse = list(cursor)
 ```
 ````
